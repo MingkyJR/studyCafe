@@ -18,6 +18,15 @@
 	<!-- ★★★마이페이지 관련 -->
 	
 	<!-- 회원정보 상세조회(회원정보 불러오기) -->
+	
+	<!-- 특정 회원조회 -->
+	<select id="getUser_number" 
+	        resultType="int"
+	        parameterType="int">
+	  <![CDATA[		
+		select user_number from user_info where user_number=#{no}
+	  ]]>
+	</select>
 
 	<!-- 회원정보 수정 -->
 	

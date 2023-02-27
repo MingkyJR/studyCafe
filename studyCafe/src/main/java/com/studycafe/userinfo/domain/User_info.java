@@ -6,7 +6,7 @@ public class User_info {
 
 	//filed
 	private int user_number;
-	private String n_name;
+	private String u_name;
 	private String u_id;
 	private String u_pass;
 	private int u_grade;
@@ -29,12 +29,12 @@ public class User_info {
 	}
 
 	//회원 이름
-	public String getN_name() {
-		return n_name;
+	public String getU_name() {
+		return u_name;
 	}
 
-	public void setN_name(String n_name) {
-		this.n_name = n_name;
+	public void setU_name(String u_name) {
+		this.u_name = u_name;
 	}
 
 	//회원id
@@ -94,10 +94,12 @@ public class User_info {
 
 	@Override
 	public String toString() {
-		return "User_info [user_number=" + user_number + ", n_name=" + n_name + ", u_id=" + u_id + ", u_pass=" + u_pass
+		return "User_info [user_number=" + user_number + ", u_name=" + u_name + ", u_id=" + u_id + ", u_pass=" + u_pass
 				+ ", u_grade=" + u_grade + ", u_tell=" + u_tell + ", u_gender=" + u_gender + ", u_credate=" + u_credate
 				+ "]";
 	}
+
+	
 
 	
 	
