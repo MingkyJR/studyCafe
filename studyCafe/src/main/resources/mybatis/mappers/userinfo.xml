@@ -5,9 +5,33 @@
  	
  	<!-- 쿼리 들어가야됨 -->
  	
-<!-- 회원정보 등록 -->
+ 	<!-- ★★★회원가입 관련 -->
+	<!-- 회원정보 등록 -->
+		<insert id="insertUserInfo"  parameterType="com.ourcom.app3.domain.User_info">
+			<![CDATA[
+			insert into user_info(user_number,u_name,u_id,u_pass,u_grade,u_tell,u_gender)
+			values(seq_user_info.nextval,#{u_name},#{u_id},#{u_pass},999,#{u_tell},#{u_gender});
+			]]>
+		</insert>
 
-<!--  --> 
+	
+	<!-- ★★★마이페이지 관련 -->
+	
+	<!-- 회원정보 상세조회(회원정보 불러오기) -->
+
+	<!-- 회원정보 수정 -->
+	
+	<!-- 회원 탈퇴 -->
+	
+	<!-- 특정 회원 조회 -->
+	
+	
+	
+	
+	<!-- ★★★로그인 관련 --> 
+	<!-- 로그인 -->
+	
+	<!--  로그아웃 -->
  
  
  </mapper>
