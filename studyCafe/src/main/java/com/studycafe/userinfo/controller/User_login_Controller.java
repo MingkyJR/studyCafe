@@ -52,7 +52,7 @@ import com.studycafe.userinfo.service.User_login_ServiceImpl;
 			return mav; 
 		}
 		
-		// 로그아웃처리
+		// 로그아웃처리 -
 		
 		
 		
