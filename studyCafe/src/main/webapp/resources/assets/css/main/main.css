@@ -1,0 +1,107 @@
+@charset "UTF-8";
+html, body{
+      margin: 0;
+      box-sizing: border-box;
+   }
+   .header_wrap{
+      height: 150px;
+      background-color: #d1d5ea;
+   }
+   .inline_section{
+      width: 1200px;
+      height: 100%;
+      margin: 0 auto;
+      text-align: center;
+   }
+   .inline_section_left{
+      box-sizing: border-box;
+      display: inline-block;
+      padding: 0 10px;
+      width: 49.7%;
+      height: 72px;
+      line-height: 72px;
+      border: 1px solid black;
+   }
+   .inline_section_right{
+      box-sizing: border-box;
+      display: inline-block;
+      padding: 0 10px;
+      width: 49.7%;
+      height: 72px;
+      line-height: 72px;
+      text-align: right;
+      border: 1px solid black;
+   }
+   .naviVar{
+        margin-top: 5px;
+      height: 70px;
+      line-height: 70px;
+      border: 1px solid black;
+      text-align: left;
+   }
+   a{
+      text-decoration: none;
+      font-family: inherit;
+      color: black;
+   }
+   .naviVar span{
+      margin: 0 10px;
+   }
+   .banner_wrap{
+      margin-top: 10px;
+      height: 350px;
+   }
+   .banner{
+      margin: 0 auto;
+      width: 1200px;
+      height: 350px;
+      text-align: center;
+      border: 1px solid black;
+   }
+   .banner_image{
+      display: inline-block;
+      float: left;
+      height: 350px;
+      border: 1px solid black;
+   }
+   .btn1{
+      display: inline-block;
+      margin-right: 50px;
+      margin-top: 280px;
+      float: right;
+      width: 180px;
+      height: 50px;
+      line-height: 50px;
+      border: 1px solid black;
+      border-radius: 15px;
+   }
+   .summary{
+      margin: 10px auto;
+      padding: 5px 5px 0 5px;
+      width: 1200px;
+      border-bottom: 1px solid #ccc;
+   }
+   .footer{
+      background: #d1d5ea;
+      height: 220px;
+   }
+   .footer_section{
+      margin: 0 auto;
+      padding: 50px 0;
+      width: 1200px;
+   }
+   .footer_inner{
+     width: 800px;
+      color: white;
+   }
+   .area_search{
+      width: 230px;
+      height: 45px;
+      line-height: 45px;
+      text-align: center;
+      border: 1px solid white;
+   }
+   .area_info{
+      margin-top: 10px;
+      color: #999;
+   }
