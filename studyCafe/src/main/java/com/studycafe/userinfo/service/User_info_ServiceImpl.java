@@ -22,16 +22,25 @@ public class User_info_ServiceImpl {
 	}
 
 	//회원(id)로 상세회원조회
+	@Override
 	public User_info getUser_info_ById(String id) {
 		return user_info_repository.getUser_info_ById(id);
 	}
 	
 //	//회원목록조회
 //getAllUser_info_List()부분 오류 발생
-	/*
-	 * @Override public List<User_info> getAllUser_info_List(){ List<User_info>
-	 * user_info = user_info_repository.getAllUser_info_List(); return user_info; }
-	 */
+	
+	@Override
+	 public List<User_info> getAllUser_info_List() {
+		 List<User_info> user_info = user_info_repository.getAllUser_info_List(); 
+		 return user_info; 
+		}
+	 
+	
+	//로그인 아이디 추가
+	
+	//
+	 
 
 	
 }//class의 끝.

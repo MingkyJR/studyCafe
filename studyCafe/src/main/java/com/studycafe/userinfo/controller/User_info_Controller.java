@@ -65,6 +65,29 @@ public class User_info_Controller {
 			mv.setViewName("user/user_list");
 			return mv;
 		}
+		
+		/*
+		 * //회원가입? -> 오류 터지면 user_add 및 user/add, user_add.jsp 파일들 다른 것으로 변경
+		 * 
+		 * @RequestMapping(value="/user/add",method=RequestMethod.POST) public String
+		 * user_add() throws Exception{ return "/user/user_add"; }
+		 */
+		
+		/*
+		 * // ----------------------로그인 관련--------------------------------------
+		 * 
+		 * @RequestMapping(value="/user/add",method=RequestMethod.POST) //아이디 중복체크, 생성
+		 * -> add로 오류뜨면 insert로 변경할 것. public String useradd(User_info user_info, Model
+		 * model) { int result = user_info_Service.setNewUser_info(user_info);
+		 * 
+		 * if (result == 0) { model.addAttribute("message","중복되는 아이디입니다."); return
+		 * "main"; } return "login"; }
+		 */
+			
+			
+		
+		
+		
 	
 	//비밀번호 수정폼 요청
 		@GetMapping("/usesr/update")
