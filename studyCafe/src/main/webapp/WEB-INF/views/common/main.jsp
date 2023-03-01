@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="<%=request.getContextPath()%>/resources/css/main.css" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/resources/assets/css/main/main.css" rel="stylesheet" />
 </head>
 <body>
 	<div class="banner_wrap">
