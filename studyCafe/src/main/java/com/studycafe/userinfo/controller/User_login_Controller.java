@@ -36,7 +36,7 @@ import com.studycafe.userinfo.service.User_login_ServiceImpl;
 		//02 로그인처리
 		@RequestMapping("loginCheck.do")
 		public ModelAndView loginCheck(@ModelAttribute User_info user_login, HttpSession session) {
-			boolean result = User_login_Service.loginCheck(user_login, session);
+			boolean result = user_login_Service.loginCheck(user_login, session);
 			ModelAndView mav = new ModelAndView(); //mav는 ModelAndView의 약어
 			//로그인성공
 			if(result == true) { 

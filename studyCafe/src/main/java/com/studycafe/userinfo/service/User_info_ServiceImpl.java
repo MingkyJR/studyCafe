@@ -9,7 +9,7 @@ import com.studycafe.userinfo.domain.User_info;
 import com.studycafe.userinfo.repository.User_info_repository;
 
 @Service
-public class User_info_ServiceImpl {
+public class User_info_ServiceImpl implements User_info_Service {
 
 	
 	@Autowired
