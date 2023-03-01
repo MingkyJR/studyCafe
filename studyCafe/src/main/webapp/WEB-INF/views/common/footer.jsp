@@ -12,7 +12,7 @@
 		<div class="footer_section">
 			<div class="footer_inner">
 			<div class="area_search">
-				<a style="color: white;" href="#">스터디카페 햇반점@</a>
+				<a style="color: #999;" href="#">스터디카페 햇반점@</a>
 			</div>
 			<div class="area_info">
 				송준호 | 조종범 | 금도윤 | 신성주 | 변종서 | 윤원영 | 민은기

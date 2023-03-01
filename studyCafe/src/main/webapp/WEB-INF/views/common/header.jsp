@@ -10,9 +10,11 @@
 <body>
 	<div class="header_wrap">
 		<div class="inline_section">
-			<div class="inline_section_left"><div style="text-align: left;"><img src="<%= request.getContextPath() %>/resources/assets/images/main/pencil.png" style="width: 40px; height: 40px;" />스터디 카페</div></div>
-			<div class="inline_section_right">
-				<span>로그인</span><span> | </span><span>회원가입</span>
+			<div class="header_top">
+				<div class="inline_section_left"><div style="text-align: left;">스터디 카페 햇반점</div></div>
+				<div class="inline_section_right">
+					<span>로그인</span><span> | </span><span>회원가입</span>
+				</div>
 			</div>
 			<div class="naviVar">
 				<div>

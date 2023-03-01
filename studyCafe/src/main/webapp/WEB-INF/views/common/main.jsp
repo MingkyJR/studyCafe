@@ -13,7 +13,7 @@
 			<div class="banner_image">
 				<img src="<%=request.getContextPath()%>/resources/assets/images/main/studycafe3.jpg">
 			</div>
-			<div class="btn1"><a href="#">예약하러가기</a></div>
+			<div class="btn1"><a href="#" style="color: #F6F4E8">예약하러가기</a></div>
 		</div>
 	</div>
 	<div class="summary">
@@ -49,6 +49,17 @@
 		<p style="margin: 8px 18px;">✔ 전좌석 USB콘센트(3구), WIFI 5회선</p>
 		<h4 style="margin: 8px 18px;">▶ 셀프-스터디존</h4>
 		<p style="margin: 8px 18px;">✔ 대화 /노트북 타이핑/ 마우스 클릭 불가 → 몰입 공간</p>
+	</div>
+	<div class="summary">
+		<div style="display: inline-block; border-bottom: 2px solid black;"><h3 style="display: inline-block;">오시는 길</h3></div>
+	</div>
+	<div class="summary">
+		<iframe
+		    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50626.28931655576!2d126.95279775413661!3d37.52812429931103!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c989a38890123%3A0x8a8d7c332f9d03aa!2z7KSR7JWZ7KCV67O06riw7Iig7J247J6s6rCc67Cc7JuQ!5e0!3m2!1sko!2skr!4v1675785604795!5m2!1sko!2skr"
+		    width="100%" height="370px" style="border: 0;">
+	    </iframe>
+	    <p>스터디카페 햇반점</p>
+	    <h3 style="margin-top: 0;">서울특별시 강남구 에스코빌딩 6층</h3>
 	</div>
 </body>
 </html>
