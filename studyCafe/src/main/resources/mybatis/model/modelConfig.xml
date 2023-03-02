@@ -1,3 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+	
+<configuration>
+	<typeAliases>	
+		<!-- 		
+		<typeAlias type="패키지명.클래스명" alias="클래스별칭"/>
+		예) <typeAlias type="java.lang.String" alias="String"/>
+		 -->
+		<typeAlias type="com.studycafe.article.domain.Article" alias="article"/>
+		<typeAlias type="com.studycafe.article.domain.Page" alias="page"/>
+	</typeAliases>
+</configuration>

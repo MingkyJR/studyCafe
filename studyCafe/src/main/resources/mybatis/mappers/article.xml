@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.article" >
+
+
+	<!-- 게시물 목록 개수 조회 -->
+	<select id="articleListCount" resultType="int">
+		<![CDATA[
+			select count(a_no) from article where a_isshow='Y' order by a_no desc
+		]]>
+	</select>
+	
+	<select id="articleAllList" resultType="article" parameterType="page">
+		<![CDATA[
+			select a.*,u.u_id from(select s.*, row_number()over(order by s.a_no desc) as num from article s where a_isshow='Y')
+			a join user_info u on a.u_number=u.u_number
+			where num>#{start} and num<=#{end}
+			order by a.a_no desc
+		]]>
+	</select>
+	
+	
+	<select id="articleDetail" resultType="article" parameterType="int">
+		<![CDATA[
+			select a.*,u.u_id from article a join user_info u on a.u_number=u.u_number 
+			where a.a_no=#{no} and a.a_isshow='Y'
+		]]>
+	</select>
+	<select id="searchTitle" resultType="article" parameterType="String">
+		<![CDATA[
+			select a.*,u.u_id from article a join user_info u on a.u_number=u.u_number
+			where a.a_title like '%'||#{searchTitle}||'%' and a.a_isshow='Y'
+			order by a.a_no desc
+		]]>
+	</select>
+	<select id="addArticle" parameterType="article">
+		<![CDATA[
+		insert into article(a_no,a_title,a_content,a_regdate,a_modidate,a_cnt,a_isshow,u_number)
+		values (seq_article.nextval,#{a_title},#{a_content},sysdate,sysdate,0,'Y',1)
+		]]>
+	</select>
+	<select id="modifyArticle" parameterType="article">
+		<![CDATA[
+		update article
+		set a_modidate = sysdate,a_title=#{a_title},a_content=#{a_content}
+		where a_no=#{a_no}
+		]]>
+	</select>
+	<select id="deleteArticle" parameterType="int">
+		<![CDATA[
+		update article
+		set a_isshow='N'
+		where a_no=#{a_no}
+		]]>
+	</select>
+
+</mapper>
