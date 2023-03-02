@@ -13,14 +13,15 @@
 			<div class="header_top">
 				<div class="inline_section_left"><div style="text-align: left;">스터디 카페 햇반점</div></div>
 				<div class="inline_section_right">
-					<span>로그인</span><span> | </span><span>회원가입</span>
+					<span><a href="#">로그인</a></span><span> | </span><span><a href="#">회원가입</a></span>
 				</div>
 			</div>
 			<div class="naviVar">
 				<div>
 					<span><a href="#">공지사항</a></span>
-					<span><a href="#">이용안내</a></span>
-					<span><a href="#">공간소개</a></span>
+					<span><a href="#">문의사항</a></span>
+					<span><a href="#">음식 주문</a></span>
+					<span><a href="#">좌석 예약</a></span>
 					<span><a href="#">스터디룸 예약</a></span>
 				</div>
 			</div>
