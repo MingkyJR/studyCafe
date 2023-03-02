@@ -22,7 +22,7 @@
 					<span><a href="#">문의사항</a></span>
 					<span><a href="#">음식 주문</a></span>
 					<span><a href="#">좌석 예약</a></span>
-					<span><a href="#">스터디룸 예약</a></span>
+					<span><a href="<%=request.getContextPath()%>/room">스터디룸 예약</a></span>
 				</div>
 			</div>
 		</div>

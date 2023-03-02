@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+  
+<tiles-definitions>
+	<definition name="/room" extends="baseLayout">
+		<put-attribute name="title" value="스터디룸 예약"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/studyRoom/roomList.jsp"></put-attribute>
+	</definition>
+</tiles-definitions>
