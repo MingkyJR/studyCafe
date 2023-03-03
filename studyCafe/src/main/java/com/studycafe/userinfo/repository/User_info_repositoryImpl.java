@@ -36,11 +36,11 @@ public class User_info_repositoryImpl implements User_info_repository{
 		public void setNewUser_info(User_info User_info) {
 		 System.out.println(User_info);
 		 String sql = 
-		    "insert into user_info(user_number,u_name,u_id,u_pass,u_tell,u_gender,u_credate) " + 
+		    "insert into user_info(u_number,u_name,u_id,u_pass,u_tell,u_gender,u_credate) " + 
 		 	"values(?,?,?,?,?,?,?)";
 		 	this.template.update(
 				 sql,
-				 User_info.getUser_number(), //유저 식별 번호 1 
+				 User_info.getU_number(), //유저 식별 번호 1 
 				 User_info.getU_name(), //유저이름 2
 				 User_info.getU_id(), //유저 id 3 
 				 User_info.getU_pass(), //유저 비번 4
@@ -60,7 +60,7 @@ public class User_info_repositoryImpl implements User_info_repository{
 		 	
 		 	@Override
 		 	public User_info getUser_info_ById(String id) {
-		 		String sql ="select user_number,u_name,u_id,u_pass,u_grade,u_tell,u_gender,u_credate " + 
+		 		String sql ="select u_number,u_name,u_id,u_pass,u_grade,u_tell,u_gender,u_credate " + 
 						"from user_info " + 
 						"where u_id =?";
 		 		
@@ -76,7 +76,7 @@ public class User_info_repositoryImpl implements User_info_repository{
 		 	//회원목록 조회
 			@Override
 			public List<User_info> getAllUser_info_List(){
-				String sql = "select user_number,u_name,u_id,u_pass,u_grade,u_tell,u_gender,u_credate " + 
+				String sql = "select u_number,u_name,u_id,u_pass,u_grade,u_tell,u_gender,u_credate " + 
 						"from user_info";
 				List<User_info> user_list = this.template.query(
 												sql, 

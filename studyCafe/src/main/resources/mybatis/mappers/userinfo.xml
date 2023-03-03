@@ -10,7 +10,7 @@
 	<!-- 회원정보 등록 -->
 		<insert id="insertUserInfo"  parameterType="com.ourcom.app3.domain.User_info">
 			<![CDATA[
-			insert into user_info(user_number,u_name,u_id,u_pass,u_grade,u_tell,u_gender)
+			insert into user_info(u_number,u_name,u_id,u_pass,u_grade,u_tell,u_gender)
 			values(seq_user_info.nextval,#{u_name},#{u_id},#{u_pass},999,#{u_tell},#{u_gender});
 			]]>
 		</insert>
@@ -22,11 +22,11 @@
 	<!-- 회원정보 상세조회(회원정보 불러오기) -->
 	
 	<!-- 특정 회원조회 -->
-	<select id="getUser_number" 
+	<select id="getu_number" 
 	        resultType="int"
 	        parameterType="int">
 	  <![CDATA[		
-		select user_number from user_info where user_number=#{no}
+		select u_number from user_info where u_number=#{no}
 	  ]]>
 	</select>
 

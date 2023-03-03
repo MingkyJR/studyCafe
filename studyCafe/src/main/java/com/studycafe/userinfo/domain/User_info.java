@@ -5,7 +5,7 @@ import java.util.Date;
 public class User_info {
 
 	//filed
-	private int user_number;
+	private int u_number;
 	private String u_name;
 	private String u_id;
 	private String u_pass;
@@ -20,12 +20,12 @@ public class User_info {
 
 	//get, set
 	//회원 고유(식별) 번호
-	public int getUser_number() {
-		return user_number;
+	public void setU_number(int u_number) {
+		this.u_number = u_number;
 	}
 
-	public void setUser_number(int user_number) {
-		this.user_number = user_number;
+	public void setU_name(String u_name) {
+		this.u_name = u_name;
 	}
 
 	//회원 이름
@@ -33,9 +33,10 @@ public class User_info {
 		return u_name;
 	}
 
-	public void setU_name(String u_name) {
-		this.u_name = u_name;
+	public int getU_number() {
+		return u_number;
 	}
+
 
 	//회원id
 	public String getU_id() {
@@ -94,13 +95,10 @@ public class User_info {
 
 	@Override
 	public String toString() {
-		return "User_info [user_number=" + user_number + ", u_name=" + u_name + ", u_id=" + u_id + ", u_pass=" + u_pass
+		return "User_info [u_number=" + u_number + ", u_name=" + u_name + ", u_id=" + u_id + ", u_pass=" + u_pass
 				+ ", u_grade=" + u_grade + ", u_tell=" + u_tell + ", u_gender=" + u_gender + ", u_credate=" + u_credate
 				+ "]";
 	}
-
-	
-
 	
 	
 }
