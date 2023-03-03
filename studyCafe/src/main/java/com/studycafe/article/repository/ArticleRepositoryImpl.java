@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.studycafe.article.domain.Article;
 import com.studycafe.article.domain.ArticleComment;
+import com.studycafe.article.domain.Login;
 import com.studycafe.article.domain.Page;
 
 @Repository
@@ -71,6 +72,12 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 	@Override
 	public void addComment(ArticleComment articleComment) throws DataAccessException {
 		sqlSession.insert("mapper.article.addComment",articleComment);		
+	}
+
+
+	@Override
+	public Login getLogin(Login login) throws DataAccessException {
+		return sqlSession.selectOne("mapper.article.getLogin",login);
 	}
 
 

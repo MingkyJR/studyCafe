@@ -40,6 +40,7 @@
 </head>
 <body>
 	<h2>articleDetail</h2>
+	${AUTHUSER }
 	<table border="1">
 		<tr>
 			<th>제목</th><td colspan="5">${article.a_title}</td>

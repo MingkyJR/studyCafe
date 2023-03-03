@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.studycafe.article.domain.Article;
 import com.studycafe.article.domain.ArticleComment;
 import com.studycafe.article.domain.ArticlePage;
+import com.studycafe.article.domain.Login;
 import com.studycafe.article.domain.Page;
 import com.studycafe.article.repository.ArticleRepository;
 
@@ -60,6 +61,11 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public void addComment(ArticleComment articleComment) throws Exception {
 		articleRepository.addComment(articleComment);
+	}
+
+	@Override
+	public Login getLogin(Login login) throws Exception {
+		return articleRepository.getLogin(login);
 	}
 
 

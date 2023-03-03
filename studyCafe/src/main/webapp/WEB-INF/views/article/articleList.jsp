@@ -20,8 +20,8 @@
 <title>스터디카페</title>
 </head>
 <body>
-${AUTH_USER}
 	<h2>공지사항 리스트(articleList.jsp)</h2>
+${AUTHUSER}
 	<table border="1">
 		<tr>
 			<th>번호</th><th>제목</th><th>아이디</th><th>날짜</th><th>조회수</th>

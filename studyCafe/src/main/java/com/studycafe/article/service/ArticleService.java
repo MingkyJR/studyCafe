@@ -2,10 +2,10 @@ package com.studycafe.article.service;
 
 import java.util.List;
 
-
 import com.studycafe.article.domain.Article;
 import com.studycafe.article.domain.ArticleComment;
 import com.studycafe.article.domain.ArticlePage;
+import com.studycafe.article.domain.Login;
 import com.studycafe.article.domain.Page;
 
 public interface ArticleService {
@@ -25,6 +25,8 @@ public interface ArticleService {
 	public List<ArticleComment> getCommentList(int no) throws Exception;
 
 	public void addComment(ArticleComment articleComment) throws Exception;
+	
+	public Login getLogin(Login login) throws Exception;
 
 
 }
