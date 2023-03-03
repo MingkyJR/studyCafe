@@ -38,7 +38,7 @@ public class HomeController {
 	
 	@RequestMapping(value="/article", method = RequestMethod.GET)
 	public String article() {
-		return "article";
+		return "articleDetail";
 	}
 	
 }
