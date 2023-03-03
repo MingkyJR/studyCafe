@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.qna">
+
+	<!-- 
+	이런 타입은 MyBatis에 내장된(built-in) typeAlias 이기 때문에 modelConfig.xml에 등록하지 않고도 바로 사용 가능
+	- java.lang.Integer => int
+	- java.lang.String => string
+	
+	다른종류는 modelConfig.xml에 등록해줘야 한다.
+	<typeAlias type="com.ourcom.app3.domain.Article" alias="article"/>
+	대신 action-mybatis.xml에서 modelConfig.xml 사용가능하도록 주석 해제 필요.
+	-->
+	
+	<!-- select 요소  : select 쿼리문 실행
+		 id속성 : unique해야한다. 각 요소를 구분하기 위한 용도 -->
+	<!-- 전체 게시물수 조회 -->
+	<select id="qnaTotalCnt" resultType="java.lang.Integer">
+	  <![CDATA[
+		select count(*) from qna_board
+	  ]]>
+	</select>
+	
+	<select id="qnaAllList" resultType="com.studycafe.qna.domain.Qna" parameterType="java.lang.Integer">
+	  <![CDATA[
+		select * from qna_board order by q_no desc
+	  ]]>
+	</select>
+	
+
+</mapper>

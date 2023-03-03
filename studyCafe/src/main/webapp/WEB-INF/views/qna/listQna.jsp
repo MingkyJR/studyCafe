@@ -5,10 +5,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
- <meta charset="UTF-8">
- <meta name="description" content="member board Web Application">
- <meta name="keywords" content="member, board, article, mvc">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <title></title>
  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
@@ -136,7 +132,7 @@
 <%--          	             location.replace("<%=request.getContextPath()%>/notice/list.do?rowSize=${rowSize}"); --%>
  	             location.href='<%=request.getContextPath()%>/notice/list.do?rowSize=${rowSize}';
  	          }else{
-<%--          	             location.replace("<%=request.getContextPath()%>/notice/write.do?rowSize=${rowSize}"); --%>
+<%--          	     location.replace("<%=request.getContextPath()%>/notice/write.do?rowSize=${rowSize}"); --%>
 <%--  	             location.href='<%=request.getContextPath()%>/notice/write.do?rowSize=${rowSize}'; --%>
  	            location.href='<%=request.getContextPath()%>/notice/write.do?pageNo=${pageNo}&rowSize=${rowSize}';
 	          }
@@ -218,11 +214,13 @@ ${noticePage.content} <hr/><hr/><hr/> --%>
  	<thead>
  		<tr class="hang">
  			<th id="nu">번호</th>
- 			<th id="ti">제목</th>
  			<th id="wr">작성자</th>
+ 			<th id="ti">제목</th>
  			<th id="rd">작성일</th>
  			<th id="md">최종수정일</th>
  			<th id="ct">조회수</th>
+ 			<th id="ca">비밀글</th>
+ 			<th id="as">상태</th>
  			<th id="rf">첨부<br/>파일</th>
  		</tr>
  	</thead>
@@ -263,24 +261,18 @@ ${noticePage.content} <hr/><hr/><hr/> --%>
  	<c:forEach var="item" items="${noticePage.content}" varStatus="status">
  	<tr>
  		<td>${item.number}</td>
- 		<td><a href="<%=request.getContextPath()%>/notice/read.do?no=${item.number}&pageNo=${noticePage.currentPage}&rowSize=${rowSize}">${item.title}</a></td>
  		<td>${item.writer.writer_name}</td>
-<%--  		<td>${item.regdate}(YYYY-MM-DD)</td> --%>
-<%--  		<td><fmt:formatDate type="date" value="${item.regdate}" /></td> --%>
- 		<td>
-<%--  			<fmt:formatDate type="date" value="${item.regdate}" /><br/> --%>
-<%--  			<fmt:formatDate pattern="yyyy-MM-dd" type="date" value="${item.regdate}" /><br/> --%>
-<%--  			<fmt:formatDate pattern="yyyy년 MM월 dd일" type="date" value="${item.regdate}" /><br/> --%>
- 			<fmt:formatDate pattern="yyyy.MM.dd. HH:mm:ss" type="date" value="${item.regdate}" /></td>
+ 		<td><a href="<%=request.getContextPath()%>/notice/read.do?no=${item.number}&pageNo=${noticePage.currentPage}&rowSize=${rowSize}">${item.title}</a></td>
+ 		<td><fmt:formatDate pattern="yyyy.MM.dd. HH:mm:ss" type="date" value="${item.regdate}" /></td>
  		<td><fmt:formatDate pattern="yyyy.MM.dd. HH:mm:ss" type="date" value="${item.moddate}" /></td>
  		<td>${item.read_cnt}</td>
+ 		<td>${item.q_isopen}</td>
  		<td>
  		<c:forEach var="item2" items="${noticeFile}">
 	 		<c:if test="${item2.notice_no==item.number}">
 	 			<img class="file-img" src="../assets/images/clip2.png" width="20px" height="20px"/>
 	 		</c:if> 
 		</c:forEach>
- 		
  		</td>
  	</tr>
  	</c:forEach>
@@ -297,7 +289,7 @@ ${noticePage.content} <hr/><hr/><hr/> --%>
 	 		<div class="paging">
 	 		 <a href="<%=request.getContextPath()%>/notice/list.do?pageNo=${noticePage.startPage-5}&rowSize=${rowSize}">&laquo;</a> 
 			</div>
-	 		</c:if>	
+	 	</c:if>	
 	 			
 	 		<%-- JSTL forEach조건문: 페이지 번호 출력 --%>
 	 		<c:forEach var="pNo"

@@ -1,4 +1,4 @@
-package com.studycafe.scafe.qna.domain;
+package com.studycafe.qna.domain;
 
 import java.util.List;
 

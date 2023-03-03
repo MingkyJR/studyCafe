@@ -1,4 +1,4 @@
-package com.studycafe.scafe.qna.controller;
+package com.studycafe.qna.controller;
 
 import java.util.List;
 
@@ -10,11 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.studycafe.scafe.qna.domain.QnaFile;
-import com.studycafe.scafe.qna.domain.QnaPage;
-import com.studycafe.scafe.qna.service.QnaService;
-
-
+import com.studycafe.qna.domain.QnaFile;
+import com.studycafe.qna.domain.QnaPage;
+import com.studycafe.qna.service.QnaService;
 
 @Controller
 public class QnaController {
@@ -22,8 +20,9 @@ public class QnaController {
 	@Autowired
 	QnaService qnaService;
 
-	@RequestMapping(value="/qna/list.do", method=RequestMethod.GET)
-	public String qnaList(Model model,HttpServletRequest request) {
+	//qna 게시글 전체 조회
+	@RequestMapping(value="/qna/list", method=RequestMethod.GET)
+	public String qnaList(Model model,HttpServletRequest request) throws Exception {
 		
 		//1.파라미터 얻기(향후 보고싶은 페이지)
 		String strPageNo = request.getParameter("pageNo");//보고싶은 페이지
@@ -60,18 +59,17 @@ public class QnaController {
 		}else {
 			qnaPage = qnaService.getQnaPage(choice, keyword, pageNo, rowSize);
 		}
-		List<QnaFile> qnaFile = QnaService.listFile();
+		List<QnaFile> qnaFile = qnaService.listFile();
 
-		request.setAttribute("qnaPage", qnaPage);
-		request.setAttribute("qnaFile", qnaFile);
-		request.setAttribute("pageNo", pageNo);
-		request.setAttribute("rowSize", rowSize);
-		request.setAttribute("choice", choice);
-		request.setAttribute("keyword", keyword);
+		model.addAttribute("qnaPage", qnaPage);
+		model.addAttribute("qnaFile", qnaFile);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("rowSize", rowSize);
+		model.addAttribute("choice", choice);
+		model.addAttribute("keyword", keyword);
 		System.out.println("List 결과"+qnaFile);
 		
 		//4.View지정
-
 		return "qna/listQna";
 	}
 

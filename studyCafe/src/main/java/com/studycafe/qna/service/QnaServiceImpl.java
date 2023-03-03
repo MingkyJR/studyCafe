@@ -1,4 +1,4 @@
-package com.studycafe.scafe.qna.service;
+package com.studycafe.qna.service;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.studycafe.scafe.qna.domain.Qna;
-import com.studycafe.scafe.qna.domain.QnaFile;
-import com.studycafe.scafe.qna.domain.QnaPage;
-import com.studycafe.scafe.qna.repository.QnaRepository;
+import com.studycafe.qna.domain.Qna;
+import com.studycafe.qna.domain.QnaFile;
+import com.studycafe.qna.domain.QnaPage;
+import com.studycafe.qna.repository.QnaRepository;
 
 @Service
 public class QnaServiceImpl implements QnaService {
@@ -18,25 +18,21 @@ public class QnaServiceImpl implements QnaService {
 		private QnaRepository qnaRepository;
 
 		@Override
-		public QnaPage getQnaPage(int pageNo, int size) { //원래소스
-
-			int total = qnaRepository.selectCount();//전체 게시물수 //원래소스
-			List<Qna> qnaList = qnaRepository.select((pageNo-1)*size, size); //원래소스
-			
+		public QnaPage getQnaPage(int pageNo, int size) {
+			int total = qnaRepository.selectCount();//전체 게시물수 
+			int calNo=(pageNo-1)*size;
+			List<Qna> qnaList = qnaRepository.select(calNo, size); 
 			return new QnaPage(total, pageNo, size, qnaList);
-			
 		}
 			
 		@Override
 		public QnaPage getQnaPage(String choice, String keyword, int pageNo, int size) { //리턴 유형이 바뀜
-				
 			int sTotal = qnaRepository.searchSelectCount(choice, keyword);//전체 게시물수 
 			List<Qna> sNoticeList = qnaRepository.searchSelect(choice, keyword, (pageNo-1)*size, size); 
-			
 			return new QnaPage(sTotal, pageNo, size, sNoticeList);
 		}
 
-
+		@Override
 		public List<QnaFile> listFile() {
 				List<QnaFile> qnaFile = qnaRepository.listFile();
 				return qnaFile;

@@ -1,4 +1,4 @@
-package com.studycafe.scafe.qna.repository;
+package com.studycafe.qna.repository;
 
 import java.util.List;
 
@@ -6,22 +6,23 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.studycafe.scafe.qna.domain.Qna;
-import com.studycafe.scafe.qna.domain.QnaFile;
+import com.studycafe.qna.domain.Qna;
+import com.studycafe.qna.domain.QnaFile;
 
 @Repository
 public class QnaRepositoryImpl implements QnaRepository {
+	
 	@Autowired
 	private SqlSession sqlSession;
 
 	@Override
 	public int selectCount() {
-		return 0;
+		return sqlSession.selectOne("mapper.qna.qnaTotalCnt");
 	}
 
 	@Override
-	public List<Qna> select(int i, int size) {
-		return null;
+	public List<Qna> select(int calNo, int size) {
+		return sqlSession.selectList("mapper.qna.qnaAllList");
 	}
 
 	@Override
@@ -36,7 +37,6 @@ public class QnaRepositoryImpl implements QnaRepository {
 
 	@Override
 	public List<QnaFile> listFile() {
-		
 		return null;
 	}
 }
