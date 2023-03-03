@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.studycafe.userinfo.domain.User_info;
-import com.studycafe.userinfo.service.User_login_Service;
 import com.studycafe.userinfo.service.User_login_ServiceImpl;
 
 	
@@ -53,7 +52,14 @@ import com.studycafe.userinfo.service.User_login_ServiceImpl;
 		}
 		
 		// 로그아웃처리 -
-		
+		@RequestMapping("logout.do")
+		public ModelAndView logout(HttpSession session) {
+			user_login_Service.logout(session);
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("user/login");
+			mav.addObject("msg","logout");
+			return mav;
+		}
 		
 		
 		
