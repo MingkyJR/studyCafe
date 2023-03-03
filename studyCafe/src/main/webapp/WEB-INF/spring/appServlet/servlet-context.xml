@@ -30,7 +30,7 @@
 		 @Autowired: 의존관계 설정시 사용. 객체를 자동 주입. Spring 종속 애너테이션.org.springframework.beans.factory.annotation.Autowired
 		 @Inject : @Autowired와 유사. Spring에 종속적이지 않는 애너테이션. javax.inject.Inject 
 	 -->
-	<context:component-scan base-package="com.studycafe.scafe" />
+	<context:component-scan base-package="com.studycafe"/>
 	
 	<!-- 파라미터가 없는 기본생성자를 이용한 bean객체 생성 -->
 	<!-- bean요소  
