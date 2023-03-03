@@ -3,16 +3,15 @@ package com.studycafe.article.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.studycafe.article.domain.Article;
+import com.studycafe.article.domain.ArticleComment;
 import com.studycafe.article.domain.ArticlePage;
 import com.studycafe.article.domain.Page;
 import com.studycafe.article.service.ArticleService;
@@ -34,9 +33,6 @@ public class ArticleController {
 			pageNo = Integer.parseInt(strPageNo);			
 		}
 		Page page = new Page(pageNo);
-		System.out.println("page.getStart()"+page.getStart());
-		System.out.println("page.getEnd()"+page.getEnd());
-		System.out.println("page"+page);
 		
 		ArticlePage articlePage  = articleService.getArticlePage(page);
 		model.addAttribute("articlePage", articlePage);
@@ -47,7 +43,10 @@ public class ArticleController {
 	@GetMapping("/article/articleDetail")
 	public String articleDetail(Model model,@RequestParam("no") int no) throws Exception{
 		Article article = articleService.getArticleDetail(no);
+		List<ArticleComment> articleCommemt = articleService.getCommentList(no);
 		model.addAttribute("article",article);
+		model.addAttribute("commemt",articleCommemt);
+		System.out.println("articleCommemt="+articleCommemt);
 		return "article/articleDetail";
 	}
 	
@@ -106,6 +105,12 @@ public class ArticleController {
 		articleService.deleteArticle(a_no);
 		return "redirect:/article/articleList";
 		
+	}
+	
+	@GetMapping("/article/addComment")
+	public String addComment(ArticleComment articleComment) throws Exception{
+		articleService.addComment(articleComment);
+		return "redirect:/article/articleDetail?no="+articleComment.getA_no();
 	}
 	
 	

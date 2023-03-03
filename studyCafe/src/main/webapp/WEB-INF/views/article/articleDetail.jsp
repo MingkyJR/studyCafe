@@ -28,6 +28,11 @@
 			location.href='${cp}/article/articleList';
 		});
 	});
+	$(document).ready(function(){
+		$("#btn4").click(function(){
+			location.href='${cp}/article/modiCommSDSADASASDASDAS';
+		});
+	});
 		
 	
 </script>
@@ -67,5 +72,30 @@
 			</td>
 		</tr>
 	</table>
+	<br/><br/><br/>
+	<form action="${cp}/article/addComment">
+		<textarea name="ac_content" id="ac_content" rows="5" cols="30" required="required"></textarea> 
+		<input type="hidden" id="a_no" name="a_no" value="${article.a_no}" />
+		<br/>
+		<input type="submit" value="댓글등록"/>
+	</form>
+		<table border="1">
+		<c:if test="${not empty commemt }">
+			<tr>
+				<th>내용</th><th>작성자아이디</th><th>날짜</th><th>수정</th>		
+			</tr>
+			<c:forEach items="${commemt}" var="commemt">
+				<tr>
+					<td>${commemt.ac_content}</td>
+					<td>${commemt.u_id}</td>
+					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${commemt.ac_modidate}" /></td>
+					<td><input type="button" value="수정" id="btn4" /></td>
+			</c:forEach>
+		</c:if>
+		<c:if test="${empty commemt }">
+			<tr><th>댓글이 없습니다</th></tr>
+		</c:if>
+		</table>
+		
 </body>
 </html>

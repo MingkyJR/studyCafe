@@ -10,5 +10,6 @@
 		 -->
 		<typeAlias type="com.studycafe.article.domain.Article" alias="article"/>
 		<typeAlias type="com.studycafe.article.domain.Page" alias="page"/>
+		<typeAlias type="com.studycafe.article.domain.ArticleComment" alias="comment"/>
 	</typeAliases>
 </configuration>

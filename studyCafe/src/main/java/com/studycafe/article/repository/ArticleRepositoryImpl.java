@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.studycafe.article.domain.Article;
+import com.studycafe.article.domain.ArticleComment;
 import com.studycafe.article.domain.Page;
 
 @Repository
@@ -25,7 +26,6 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 	
 	@Override
 	public List<Article> getArticleAllList(Page pageNo) throws DataAccessException {
-		System.out.println("pageno"+pageNo);
 		
 		return sqlSession.selectList("mapper.article.articleAllList", pageNo);
 	}
@@ -35,6 +35,14 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 		return sqlSession.selectOne("mapper.article.articleDetail",no);
 	}
 
+	@Override
+	public List<ArticleComment> getCommentList(int no) throws DataAccessException {
+		System.out.println(no);
+		List<ArticleComment> articleComment = sqlSession.selectList("mapper.article.commentList",no);
+		System.out.println("articleComment="+articleComment);
+		return articleComment;
+	}
+	
 	@Override
 	public List<Article> getSearchTitle(String searchTitle) throws DataAccessException {
 		return sqlSession.selectList("mapper.article.searchTitle",searchTitle);
@@ -58,6 +66,15 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 	public void deleteArticle(int a_no) throws DataAccessException {
 		sqlSession.update("mapper.article.deleteArticle",a_no);
 	}
+
+
+	@Override
+	public void addComment(ArticleComment articleComment) throws DataAccessException {
+		sqlSession.insert("mapper.article.addComment",articleComment);		
+	}
+
+
+	
 
 
 

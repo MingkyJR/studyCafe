@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.studycafe.article.domain.Article;
+import com.studycafe.article.domain.ArticleComment;
 import com.studycafe.article.domain.ArticlePage;
 import com.studycafe.article.domain.Page;
 import com.studycafe.article.repository.ArticleRepository;
@@ -31,6 +32,10 @@ public class ArticleServiceImpl implements ArticleService {
 	public Article getArticleDetail(int no) throws Exception {
 		return articleRepository.getArticleDetail(no);
 	}
+	@Override
+	public List<ArticleComment> getCommentList(int no) throws Exception {
+		return articleRepository.getCommentList(no);
+	}
 
 	@Override
 	public List<Article> getSearchTitle(String searchTitle) throws Exception {
@@ -51,6 +56,12 @@ public class ArticleServiceImpl implements ArticleService {
 	public void deleteArticle(int a_no) throws Exception {
 		articleRepository.deleteArticle(a_no);
 	}
+
+	@Override
+	public void addComment(ArticleComment articleComment) throws Exception {
+		articleRepository.addComment(articleComment);
+	}
+
 
 
 

@@ -27,6 +27,15 @@
 			where a.a_no=#{no} and a.a_isshow='Y'
 		]]>
 	</select>
+	<select id="commentList" resultType="comment" parameterType="int">
+		<![CDATA[
+			select ac.*,info.u_id
+			from (select u.*,a.a_no
+			from article a join user_info u on a.u_number=u.u_number
+			where a.a_no=#{no}) info join article_comment ac on info.a_no=ac.a_no
+			where ac.ac_isshow='Y'
+		]]>
+	</select>
 	<select id="searchTitle" resultType="article" parameterType="String">
 		<![CDATA[
 			select a.*,u.u_id from article a join user_info u on a.u_number=u.u_number
@@ -34,25 +43,31 @@
 			order by a.a_no desc
 		]]>
 	</select>
-	<select id="addArticle" parameterType="article">
+	<insert id="addArticle" parameterType="article">
 		<![CDATA[
 		insert into article(a_no,a_title,a_content,a_regdate,a_modidate,a_cnt,a_isshow,u_number)
 		values (seq_article.nextval,#{a_title},#{a_content},sysdate,sysdate,0,'Y',1)
 		]]>
-	</select>
-	<select id="modifyArticle" parameterType="article">
+	</insert>
+	<update id="modifyArticle" parameterType="article">
 		<![CDATA[
 		update article
 		set a_modidate = sysdate,a_title=#{a_title},a_content=#{a_content}
 		where a_no=#{a_no}
 		]]>
-	</select>
-	<select id="deleteArticle" parameterType="int">
+	</update>
+	<update id="deleteArticle" parameterType="int">
 		<![CDATA[
 		update article
 		set a_isshow='N'
 		where a_no=#{a_no}
 		]]>
-	</select>
+	</update>
+	<insert id="addComment" parameterType="comment">
+		<![CDATA[
+		insert into article_comment(ac_no,ac_content,ac_regdate,ac_modidate,ac_isshow,a_no)
+		values (seq_article_comment.nextval,#{ac_content},sysdate,sysdate,'Y',#{a_no});
+		]]>
+	</insert>
 
 </mapper>

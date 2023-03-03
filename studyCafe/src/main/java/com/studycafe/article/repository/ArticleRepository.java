@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import com.studycafe.article.domain.Article;
+import com.studycafe.article.domain.ArticleComment;
 import com.studycafe.article.domain.ArticlePage;
 import com.studycafe.article.domain.Page;
 
@@ -24,5 +25,9 @@ public interface ArticleRepository {
 	public void modifyArticle(Article article) throws DataAccessException;
 
 	public void deleteArticle(int a_no) throws DataAccessException;
+
+	public List<ArticleComment> getCommentList(int no) throws DataAccessException;
+
+	public void addComment(ArticleComment articleComment) throws DataAccessException;
 
 }
