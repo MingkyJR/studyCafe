@@ -3,6 +3,7 @@
           "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="mapper.userinfo">
  	
+ 	<!-- 로그인 및 회원가입관련 -->
  	<!-- 쿼리 들어가야됨 -->
  	
  	<!-- ★★★회원가입 관련 -->
@@ -39,14 +40,26 @@
 	
 	
 	<!-- ★★★로그인 관련 --> 
-	<!-- 로그인 -->
+
 	<select id="loginCheck" resultType="String">
-		SELECT u_name AS user_name FROM user_info
-		WHERE u_id = #{userID} AND u_pass = #{userPw}
+		 <![CDATA[	
+			SELECT u_name AS user_name FROM user_info
+			WHERE u_id = #{user_id} AND u_pass = #{user_pass}
+			]]>
 	</select>
 	
+	<select id="view_user" resultType="com.studycafe.userinfo.domain.User_info">
+		<![CDATA[	
+			SELECT u_name AS user_name,
+			u_id AS user_id,
+			u_tell AS user_tell,
+			u_gender AS user_gender,
+			u_credate AS user_credate
+			FROM user_info
+			WHERE u_id = #{user_id} AND u_pass = #{user_pass}
+		]]>
+	</select>
 	
-	<!--  로그아웃 -->
  
  
  </mapper>
