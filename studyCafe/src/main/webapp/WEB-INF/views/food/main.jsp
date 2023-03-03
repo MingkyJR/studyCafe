@@ -41,8 +41,8 @@ div.product {
 	<div class="summary">
 	<c:forEach var="list" items="${list}">
 		<div class="product">
-	  		<a href="${contextPath}">
-	    		<img src="${contextPath}/resources/assets/images/food/${list.fileName}" alt="Cinque Terre" width="600" height="300">
+	  		<a href="${contextPath}/food/addCart?food_no=${list.food_no}">
+	    		<img src="${contextPath}/resources/assets/images/food/${list.fileName}" alt="food image" width="600" height="300">
 	 		</a>
 		<div class="desc">${list.food_name}</div>
 		<div class="desc">${list.food_price}</div>

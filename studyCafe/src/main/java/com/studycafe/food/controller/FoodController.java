@@ -2,6 +2,9 @@ package com.studycafe.food.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +30,8 @@ public class FoodController {
 	@GetMapping("/food/main")
 	public String reqMain(Model model,@RequestParam(name="type",required = false,defaultValue = "0")int type) throws Exception {
 		List<Food> list = null;
-		int user_number = 1;
-		List<Cart> cartList = foodService.getCart(user_number);
+		int u_number = 1;
+		List<Cart> cartList = foodService.getCart(u_number);
 		if(type==0) {
 			list = foodService.getFoodList();
 		}else {
@@ -38,24 +41,24 @@ public class FoodController {
 		
 		model.addAttribute("list", list);
 		model.addAttribute("cartList", cartList);
-		return "/food/main";
+		return "/food/mainP";
 	}
 	
-	@GetMapping("/food/cart")
-	public String reqCart(Model model, @RequestParam(name="user_number")int user_number) throws Exception {
-		List<Cart> cartList = foodService.getCart(user_number);
-		model.addAttribute("list", cartList);
-	
-		return "food/cart";
+	//장바구니에 상품 추가
+	@GetMapping("/food/addCart")
+	public void addCart(int food_no,@RequestParam(name="type",required = false,defaultValue = "0")int type, HttpServletResponse resp) throws Exception {
+		int u_number = 1;
+		Cart cart = new Cart(u_number, food_no);
+		foodService.addCart(cart);
+		if(type==0) {
+			resp.sendRedirect("/scafe/food/main");
+		}else {
+			resp.sendRedirect("/scafe/food/main?type="+type);
+		}
 	}
 	
 	
-	/*
-	 * @GetMapping("/food/addCart") public String addCart(@RequestParam int food_no)
-	 * { int user_number = 1;
-	 * 
-	 * }
-	 */
+	
 	 
 }
 

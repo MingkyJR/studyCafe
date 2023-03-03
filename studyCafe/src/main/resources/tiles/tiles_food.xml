@@ -14,7 +14,7 @@
     </definition>
     
     <!-- 메인 화면의 뷰이름 -->    <!-- 기본 레이아웃은 baseLayout을 상속받음 -->
-    <definition name="/food/main" extends="foodLayout">
+    <definition name="/food/mainP" extends="foodLayout">
         <put-attribute name="title" value="음식 주문"/>
         <put-attribute name="body" value="/WEB-INF/views/food/main.jsp"/>    <!-- 레이아웃에서 본문 표시할 JSP 위치 -->
     </definition>

@@ -23,16 +23,18 @@
 	<!-- 장바구니 조회 -->
 	<select id="getCart" resultType="cart" parameterType="int">
 	<![CDATA[
-		select a.cart_no, a.user_number, a.food_no, a.quantity, b.food_name, b.food_price
+		select a.cart_no, a.u_number, a.food_no, a.quantity, b.food_name, b.food_price
 		from cart a left outer join food b on a.food_no = b.food_no
-		where user_number = #{user_number}
+		where u_number = #{u_number}
 	]]>
 	</select>
+	
+	
 	
 	<insert id="addCart" parameterType="cart">
 	<![CDATA[
 		insert into cart
-		values(cart_seq.nextval, #{user_number}, #{food_no}, #{quantity})
+		values(cart_seq.nextval, #{u_number}, #{food_no}, 1)
 	]]>
 	</insert>
 	

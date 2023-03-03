@@ -29,8 +29,14 @@ public class FoodRepositoryImpl implements FoodRepository{
 	}
 	
 	//장바구니 조회
-	public List<Cart> getCart(int user_number) throws DataAccessException {
-		List<Cart> list = sqlSession.selectList("mapper.food.getCart", user_number);
+	public List<Cart> getCart(int u_number) throws DataAccessException {
+		List<Cart> list = sqlSession.selectList("mapper.food.getCart", u_number);
 		return list;
+	}
+	
+	//장바구니에 상품 추가
+	public void addCart(Cart cart) throws DataAccessException {
+		int cnt = sqlSession.insert("mapper.food.addCart", cart);
+		System.out.println("insert결과="+cnt);
 	}
 }

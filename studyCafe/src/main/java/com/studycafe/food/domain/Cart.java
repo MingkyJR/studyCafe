@@ -3,7 +3,7 @@ package com.studycafe.food.domain;
 public class Cart {
 	
 	private int cart_no;
-	private int user_number;
+	private int u_number;
 	private int food_no;
 	private int quantity;
 	
@@ -11,6 +11,11 @@ public class Cart {
 	private int food_price;
 	
 	public Cart() {}
+	
+	public Cart(int u_number, int food_no) {
+		this.u_number = u_number;
+		this.food_no = food_no;
+	}
 
 	public int getCart_no() {
 		return cart_no;
@@ -20,12 +25,12 @@ public class Cart {
 		this.cart_no = cart_no;
 	}
 
-	public int getUser_number() {
-		return user_number;
+	public int getU_number() {
+		return u_number;
 	}
 
-	public void setUser_number(int user_number) {
-		this.user_number = user_number;
+	public void setU_number(int u_number) {
+		this.u_number = u_number;
 	}
 
 	public int getFood_no() {
@@ -62,7 +67,7 @@ public class Cart {
 
 	@Override
 	public String toString() {
-		return "Cart [cart_no=" + cart_no + ", user_number=" + user_number + ", food_no=" + food_no + ", quantity="
+		return "Cart [cart_no=" + cart_no + ", u_number=" + u_number + ", food_no=" + food_no + ", quantity="
 				+ quantity + ", food_name=" + food_name + ", food_price=" + food_price + "]";
 	}
 

@@ -14,5 +14,8 @@ public interface FoodService {
 	public List<Food> getTypeFoodList(int type) throws Exception;
 	
 	//장바구니 조회
-	public List<Cart> getCart(int user_number) throws Exception;
+	public List<Cart> getCart(int u_number) throws Exception;
+	
+	//장바구니에 상품 추가
+	public void addCart(Cart cart) throws Exception;
 }
