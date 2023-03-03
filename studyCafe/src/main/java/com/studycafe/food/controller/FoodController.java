@@ -27,6 +27,8 @@ public class FoodController {
 	@GetMapping("/food/main")
 	public String reqMain(Model model,@RequestParam(name="type",required = false,defaultValue = "0")int type) throws Exception {
 		List<Food> list = null;
+		int user_number = 1;
+		List<Cart> cartList = foodService.getCart(user_number);
 		if(type==0) {
 			list = foodService.getFoodList();
 		}else {
@@ -35,23 +37,25 @@ public class FoodController {
 				
 		
 		model.addAttribute("list", list);
-		return "food/main";
+		model.addAttribute("cartList", cartList);
+		return "/food/main";
 	}
 	
 	@GetMapping("/food/cart")
 	public String reqCart(Model model, @RequestParam(name="user_number")int user_number) throws Exception {
 		List<Cart> cartList = foodService.getCart(user_number);
-		System.out.println("cart list = " + cartList);
 		model.addAttribute("list", cartList);
 	
 		return "food/cart";
 	}
 	
+	
 	/*
 	 * @GetMapping("/food/addCart") public String addCart(@RequestParam int food_no)
-	 * {
+	 * { int user_number = 1;
 	 * 
 	 * }
 	 */
+	 
 }
 
