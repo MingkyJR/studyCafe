@@ -34,4 +34,19 @@ public class FoodServiceImpl implements FoodService {
 	public void addCart(Cart cart) throws Exception {
 		foodRepository.addCart(cart);
 	}
+	
+	//장바구니 상품 수량+
+	public void upQuantity(Cart cart) throws Exception {
+		foodRepository.upQuantity(cart);
+	}
+	
+	//장바구니 상품 수량-
+	public void downQuantity(Cart cart) throws Exception {
+		foodRepository.downQuantity(cart);
+	}
+	
+	//장바구니 상품 삭제
+	public void deleteCart(Cart cart) throws Exception {
+		foodRepository.deleteCart(cart);
+	}
 }

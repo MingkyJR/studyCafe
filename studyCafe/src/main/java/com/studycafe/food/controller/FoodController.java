@@ -46,15 +46,35 @@ public class FoodController {
 	
 	//장바구니에 상품 추가
 	@GetMapping("/food/addCart")
-	public void addCart(int food_no,@RequestParam(name="type",required = false,defaultValue = "0")int type, HttpServletResponse resp) throws Exception {
+	public void addCart(int food_no,@RequestParam(name="type",required = false,defaultValue = "0")int type, HttpServletResponse res) throws Exception {
 		int u_number = 1;
 		Cart cart = new Cart(u_number, food_no);
 		foodService.addCart(cart);
 		if(type==0) {
-			resp.sendRedirect("/scafe/food/main");
+			res.sendRedirect("/scafe/food/main");
 		}else {
-			resp.sendRedirect("/scafe/food/main?type="+type);
+			res.sendRedirect("/scafe/food/main?type="+type);
 		}
+	}
+	
+	@GetMapping("/food/changeQ")
+	public void changeQuantity(int pm, int food_no, HttpServletResponse res) throws Exception {
+		int u_number = 1;
+		Cart cart = new Cart(u_number, food_no);
+		if(pm == 1) {
+			foodService.upQuantity(cart);
+		}else {
+			foodService.downQuantity(cart);
+		}
+		res.sendRedirect("/scafe/food/main");
+	}
+	
+	@GetMapping("/food/deleteCart")
+	public void deleteCart(int food_no, HttpServletResponse res) throws Exception {
+		int u_number = 1;
+		Cart cart = new Cart(u_number, food_no);
+		foodService.deleteCart(cart);
+		res.sendRedirect("/scafe/food/main");
 	}
 	
 	

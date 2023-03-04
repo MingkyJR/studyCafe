@@ -20,4 +20,13 @@ public interface FoodRepository {
 	
 	//장바구니에 상품 추가
 	public void addCart(Cart cart) throws DataAccessException;
+	
+	//장바구니 상품 수량+
+	public void upQuantity(Cart cart) throws DataAccessException;
+	
+	//장바구니 상품 수량-
+	public void downQuantity(Cart cart) throws DataAccessException;
+	
+	//장바구니 상품 삭제
+	public void deleteCart(Cart cart) throws DataAccessException;
 }

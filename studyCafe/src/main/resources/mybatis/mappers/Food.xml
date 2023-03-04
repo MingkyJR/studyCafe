@@ -26,17 +26,44 @@
 		select a.cart_no, a.u_number, a.food_no, a.quantity, b.food_name, b.food_price
 		from cart a left outer join food b on a.food_no = b.food_no
 		where u_number = #{u_number}
+		order by cart_no
 	]]>
 	</select>
 	
-	
-	
+	<!-- 장바구니에 상품 추가 -->
 	<insert id="addCart" parameterType="cart">
 	<![CDATA[
 		insert into cart
 		values(cart_seq.nextval, #{u_number}, #{food_no}, 1)
 	]]>
 	</insert>
+	
+	<!-- 장바구니 상품 수량 +1 -->
+	<update id="upQuantity" parameterType="cart">
+	<![CDATA[
+		update cart
+		set quantity = quantity + 1
+		where food_no = #{food_no} and u_number = #{u_number}
+	]]>
+	</update>
+	
+	<!-- 장바구니 상품 수량 -1 -->
+	<update id="downQuantity" parameterType="cart">
+	<![CDATA[
+		update cart
+		set quantity = quantity - 1
+		where food_no = #{food_no} and u_number = #{u_number}
+	]]>
+	</update>
+	
+	<!-- 장바구니 상품 삭제 -->
+	<delete id="deleteCart" parameterType="cart">
+	<![CDATA[
+		delete from cart
+		where food_no = #{food_no} and u_number = #{u_number}
+	]]>
+	</delete>
+	
 	
 </mapper>    
 

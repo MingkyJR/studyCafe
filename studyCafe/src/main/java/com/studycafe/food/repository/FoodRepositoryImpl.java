@@ -39,4 +39,19 @@ public class FoodRepositoryImpl implements FoodRepository{
 		int cnt = sqlSession.insert("mapper.food.addCart", cart);
 		System.out.println("insert결과="+cnt);
 	}
+	
+	//장바구니 상품 수량+
+	public void upQuantity(Cart cart) throws DataAccessException {
+		sqlSession.update("mapper.food.upQuantity", cart);
+	}
+	
+	//장바구니 상품 수량-
+	public void downQuantity(Cart cart) throws DataAccessException {
+		sqlSession.update("mapper.food.downQuantity", cart);
+	}
+	
+	//장바구니 상품 삭제
+	public void deleteCart(Cart cart) throws DataAccessException {
+		sqlSession.delete("mapper.food.deleteCart", cart);
+	}
 }

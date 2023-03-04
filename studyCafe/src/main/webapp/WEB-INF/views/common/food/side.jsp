@@ -9,7 +9,7 @@
 <br/>
 <br/>
 <div style="border: solid black 1px;">
-	<h3>주문목록</h3>
+	<h3>장바구니</h3>
 	<div>
 	<c:if test="${empty cartList}">
 	장바구니가 비어있습니다
@@ -21,16 +21,18 @@
 	<tr>
 		<th>${cartList.food_name}</th>
 		<th class="right">
-		<img src="${conPath}/resources/assets/icon/food/x-lg.svg"/>
+		<a href="${conPath}/food/deleteCart?food_no=${cartList.food_no}">
+			<img src="${conPath}/resources/assets/icon/food/x-lg.svg"/>
+		</a>
 		</th>
 	</tr>
 	<tr>
 		<td>
-		<a href="#">
+		<a href="${conPath}/food/changeQ?pm=0&food_no=${cartList.food_no}">
 		<img src="${conPath}/resources/assets/icon/food/dash-square.svg"/>
 		</a>
 		 ${cartList.quantity} 
-		<a href="#">
+		<a href="${conPath}/food/changeQ?pm=1&food_no=${cartList.food_no}">
 		<img src="${conPath}/resources/assets/icon/food/plus-square.svg"/>
 		</a>
 		</td>
