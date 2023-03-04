@@ -38,9 +38,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 
 	@Override
 	public List<ArticleComment> getCommentList(int no) throws DataAccessException {
-		System.out.println(no);
 		List<ArticleComment> articleComment = sqlSession.selectList("mapper.article.commentList",no);
-		System.out.println("articleComment="+articleComment);
 		return articleComment;
 	}
 	
@@ -72,12 +70,25 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 	@Override
 	public void addComment(ArticleComment articleComment) throws DataAccessException {
 		sqlSession.insert("mapper.article.addComment",articleComment);		
+		
 	}
 
 
 	@Override
 	public Login getLogin(Login login) throws DataAccessException {
 		return sqlSession.selectOne("mapper.article.getLogin",login);
+	}
+
+
+	@Override
+	public ArticleComment getComment(int ac_no) throws DataAccessException {
+		return sqlSession.selectOne("mapper.article.getComment",ac_no);
+	}
+
+
+	@Override
+	public void modiComment(ArticleComment articleComment) throws DataAccessException {
+		sqlSession.update("mapper.article.modiComment",articleComment);
 	}
 
 

@@ -23,9 +23,7 @@ public class ArticleServiceImpl implements ArticleService {
 	public ArticlePage getArticlePage(Page pageNo) throws Exception {
 		
 		int total = articleRepository.getArticleListCount();
-		System.out.println(total);
 		List<Article> articleAllList = articleRepository.getArticleAllList(pageNo);
-		System.out.println(articleAllList);
 		return new ArticlePage(total,pageNo.getPageNo(),5, articleAllList);
 	}
 
@@ -66,6 +64,16 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public Login getLogin(Login login) throws Exception {
 		return articleRepository.getLogin(login);
+	}
+
+	@Override
+	public ArticleComment getComment(int ac_no) throws Exception {
+		return articleRepository.getComment(ac_no);
+	}
+
+	@Override
+	public void modiComment(ArticleComment articleComment) throws Exception {
+		articleRepository.modiComment(articleComment);
 	}
 
 

@@ -31,7 +31,6 @@ public class ArticleController {
 	@GetMapping("/logined")
 	public String logined(Login login,Model model,HttpServletRequest request) throws Exception {
 		Login loginUser = articleService.getLogin(login);
-		System.out.println("loginUser"+loginUser);
 		if(loginUser==null) {
 			return null;
 		}
@@ -66,7 +65,6 @@ public class ArticleController {
 		List<ArticleComment> articleCommemt = articleService.getCommentList(no);
 		model.addAttribute("article",article);
 		model.addAttribute("commemt",articleCommemt);
-		System.out.println("articleCommemt="+articleCommemt);
 		return "article/articleDetail";
 	}
 	
@@ -80,23 +78,11 @@ public class ArticleController {
 	
 	@GetMapping("/article/addArticleForm")
 	public String addArticleForm(Model model) throws Exception{
-		/*multipartRequest.setCharacterEncoding("utf-8");
-		HttpSession session = multipartRequest.getSession();
-		session.setAttribute("AUTHUSER_ID","hongId");*/
 		return "article/addArticleForm";
 	}
 	@GetMapping("/article/addArticle")
-	public String addArticle(
-			@RequestParam("a_title") String a_title, 
-			@RequestParam("a_content") String a_content) throws Exception{
-		
-		Article article = new Article();
-		article.setA_title(a_title); 
-		article.setA_content(a_content);
-		
+	public String addArticle(Article article) throws Exception{
 		articleService.addArticle(article);
-		
-		
 		return "redirect:/article/articleList";
 	}
 	@GetMapping("/article/modifyArticleForm")
@@ -130,6 +116,23 @@ public class ArticleController {
 	@GetMapping("/article/addComment")
 	public String addComment(ArticleComment articleComment) throws Exception{
 		articleService.addComment(articleComment);
+		return "redirect:/article/articleDetail?no="+articleComment.getA_no();
+	}
+	
+	
+	@GetMapping("/article/modiCommentForm")
+	public String articleModiComment(Model model,@RequestParam("no") int no,int ac_no) throws Exception{
+		Article article = articleService.getArticleDetail(no);
+		
+		ArticleComment articleCommemt1 = articleService.getComment(ac_no);
+		model.addAttribute("article",article);
+		model.addAttribute("commemt",articleCommemt1);
+		return "article/articleModiComment";
+	}
+	@GetMapping("/article/modiComment")
+	public String modiComment(Model model,ArticleComment articleComment) throws Exception{
+		System.out.println("articleComment="+articleComment);
+		articleService.modiComment(articleComment);
 		return "redirect:/article/articleDetail?no="+articleComment.getA_no();
 	}
 	

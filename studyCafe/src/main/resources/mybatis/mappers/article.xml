@@ -3,6 +3,11 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.article" >
 
+	<select id="getLogin" resultType="com.studycafe.article.domain.Login" parameterType="com.studycafe.article.domain.Login">
+		<![CDATA[
+			select * from user_info where u_id=#{u_id} and u_pass=#{u_pass}
+		]]>
+	</select>
 
 	<!-- 게시물 목록 개수 조회 -->
 	<select id="articleListCount" resultType="int">
@@ -34,6 +39,7 @@
 			from article a join user_info u on a.u_number=u.u_number
 			where a.a_no=#{no}) info join article_comment ac on info.a_no=ac.a_no
 			where ac.ac_isshow='Y'
+			order by ac.ac_no desc
 		]]>
 	</select>
 	<select id="searchTitle" resultType="article" parameterType="String">
@@ -46,7 +52,7 @@
 	<insert id="addArticle" parameterType="article">
 		<![CDATA[
 		insert into article(a_no,a_title,a_content,a_regdate,a_modidate,a_cnt,a_isshow,u_number)
-		values (seq_article.nextval,#{a_title},#{a_content},sysdate,sysdate,0,'Y',1)
+		values (seq_article.nextval,#{a_title},#{a_content},sysdate,sysdate,0,'Y',#{u_number})
 		]]>
 	</insert>
 	<update id="modifyArticle" parameterType="article">
@@ -65,14 +71,21 @@
 	</update>
 	<insert id="addComment" parameterType="comment">
 		<![CDATA[
-		insert into article_comment(ac_no,ac_content,ac_regdate,ac_modidate,ac_isshow,a_no)
-		values (seq_article_comment.nextval,#{ac_content},sysdate,sysdate,'Y',#{a_no});
+		insert into article_comment(ac_no,ac_content,ac_regdate,ac_modidate,ac_isshow,a_no,u_number,u_id)
+		values (seq_article_comment.nextval,#{ac_content},sysdate,sysdate,'Y',#{a_no},#{u_number},#{u_id})
 		]]>
 	</insert>
 
-	<select id="getLogin" resultType="com.studycafe.article.domain.Login" parameterType="com.studycafe.article.domain.Login">
+	<select id="getComment" resultType="comment" parameterType="int">
 		<![CDATA[
-			select * from user_info where u_id=#{u_id} and u_pass=#{u_pass}
+			select * from article_comment where ac_no=#{ac_no}
 		]]>
 	</select>
+	<update id="modiComment" parameterType="comment">
+		<![CDATA[
+		update article_comment
+		set ac_modidate = sysdate, ac_content=#{ac_content}
+		where ac_no=#{ac_no}
+		]]>
+	</update>
 </mapper>

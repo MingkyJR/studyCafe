@@ -27,4 +27,7 @@
 	<definition name="article/modifyArticleForm" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/views/article/modifyArticleForm.jsp"/>
 	</definition>
+	<definition name="article/articleModiComment" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/article/articleModiComment.jsp"/>
+	</definition>
 </tiles-definitions>

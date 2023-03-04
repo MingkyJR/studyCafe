@@ -29,21 +29,6 @@
 		});
 	});
 
-	$(document).ready(function(){
-		$("#btn5").click(function(){
-			location.href='${cp}/article/modiCommSDSADASASDASDAS';
-		});
-	});
-	$(document).ready(function(){
-		$("#btn6").click(function(){
-			alert("자신글만 수정 가능합니다.");
-		});
-	});
-	$(document).ready(function(){
-		$("#btn7").click(function(){
-			alert("자신글만 삭제 가능합니다.");
-		});
-	});
 		
 	
 </script>
@@ -74,7 +59,6 @@
 		</tr>
 		<tr>
 			<th>내용</th><td colspan="5">${article.a_content}</td>
-			<input type="hidden" id="a_no" name="a_no" value="${article.a_no}" />
 		</tr>
 		<tr>
 			<td colspan="6" >
@@ -87,43 +71,14 @@
 		</tr>
 	</table>
 	<br/><br/><br/>
-	<form action="${cp}/article/addComment">
-	
-		<textarea name="ac_content" id="ac_content" rows="5" cols="30" required="required"></textarea> 
-		<input type="hidden" id="a_no" name="a_no" value="${article.a_no}" />
-		<input type="hidden" id="u_number" name="u_number" value="${AUTHUSER.u_number}" />
-		<input type="hidden" id="u_id" name="u_id" value="${AUTHUSER.u_id}" />
+ 
+	<form  action="/article/modiComment">
+		<textarea name="ac_content" id="ac_content" rows="5" cols="30" required="required">${commemt.ac_content}</textarea> 
+		<input type="hidden" id="ac_no" name="ac_no" value="${commemt.ac_no}"/>
+		<input type="hidden" id="a_no" name="a_no" value="${commemt.a_no}"/>
 		<br/>
-		<input type="submit" value="댓글등록"/>
+		<input type="submit" value="댓글수정"/>
 	</form>
-		<table border="1">
-		<c:if test="${not empty commemt }">
-		${AUTHUSER.u_id }
-			<tr>
-				<th>내용</th><th>작성자아이디</th><th>날짜</th><th>수정</th><th>삭제</th>		
-			</tr>
-			<c:forEach items="${commemt}" var="commemt">
-				<tr>
-					<td>${commemt.ac_content}</td>
-					<td>${commemt.u_id}</td>
-					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${commemt.ac_modidate}" /></td>
-					<c:if test="${AUTHUSER.u_id eq commemt.u_id}">
-					<td><input type="button" value="수정" id="btn4"
-					onclick="location.href='${cp}/article/modiCommentForm?no=${article.a_no}&ac_no=${commemt.ac_no}'"/>
-					 </td>
-					<td><input type="button" value="삭제" id="btn5" /></td>
-					</c:if>
-					<c:if test="${AUTHUSER.u_id ne commemt.u_id}">
-					<td><input type="button" value="수정" id="btn6" /></td>
-					<td><input type="button" value="삭제" id="btn7" /></td>
-					</c:if>
-				</tr>
-			</c:forEach>
-		</c:if>
-		<c:if test="${empty commemt }">
-			<tr><th>댓글이 없습니다</th></tr>
-		</c:if>
-		</table>
-		
+	
 </body>
 </html>

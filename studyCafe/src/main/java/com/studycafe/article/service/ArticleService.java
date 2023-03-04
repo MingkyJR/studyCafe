@@ -28,5 +28,9 @@ public interface ArticleService {
 	
 	public Login getLogin(Login login) throws Exception;
 
+	public ArticleComment getComment(int ac_no) throws Exception;
+
+	public void modiComment(ArticleComment articleComment) throws Exception;
+
 
 }

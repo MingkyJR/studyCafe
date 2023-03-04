@@ -34,7 +34,7 @@
 		<tr>
 			<td>
 			<textarea name="a_content" id="a_content" rows="5" cols="30" required="required"></textarea>
-<!-- 			<input type="hidden" name="u_id" id="u_id" /> -->
+ 			<input type="hidden" name="u_number" id="u_number" value="${AUTHUSER.u_number}" />
 			</td>
 		</tr>
 		<tr>

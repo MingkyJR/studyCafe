@@ -44,8 +44,6 @@ CONSTRAINT fk_article_number foreign key(u_number) references user_info(u_number
 )
 drop table article_comment;
 
-insert into article_comment(ac_no,ac_content,ac_regdate,ac_modidate,ac_isshow,a_no)
-values (seq_article_comment.nextval,'댓글1',sysdate,sysdate,'Y',123);
 
 create table article_comment(
 ac_no       number(5)       constraint pk_article_comment_no primary key,    
@@ -54,9 +52,26 @@ ac_regdate  date            default sysdate,
 ac_modidate date            constraint nn_article_comment_modidate null,     
 ac_isshow   varchar2(1)     constraint nn_article_comment_isshow null,    
 a_no        number(5),
-CONSTRAINT fk_article_comment_no foreign key(a_no) references article(a_no)
+u_number    number,
+CONSTRAINT fk_article_comment_no foreign key(a_no) references article(a_no),
+CONSTRAINT fk_articlecomment_number foreign key(u_number) references user_info(u_number)
 );
 
+select * from article_comment;
+insert into article_comment(ac_no,ac_content,ac_regdate,ac_modidate,ac_isshow,a_no)
+values (seq_article_comment.nextval,'댓글1',sysdate,sysdate,'Y',123);
+
+			select ac.*
+			from (select u.*,a.a_no
+			from article a join user_info u on a.u_number=u.u_number
+			where a.a_no=145) info join article_comment ac on info.a_no=ac.a_no
+			where ac.ac_isshow='Y'
+			order by ac.ac_no desc;
+
+select u_id
+from user_info u join article a on u.u_number=a.u_number
+where ;
+a_no
 
 drop sequence seq_article;
 
@@ -169,8 +184,8 @@ where ac.ac_no=a.a_no and a.user_number=u.user_number and a.a_no=1;
 select ac.*,info.u_id
 from (select u.*,a.a_no
 from article a join user_info u on a.u_number=u.u_number
-where a.a_no=123) info join article_comment ac on info.a_no=ac.a_no
-where ac.acisshow='Y';
+where a.a_no=145) info join article_comment ac on info.a_no=ac.a_no
+where ac.ac_isshow='Y';
 ,
 on ac.ac_no=a.a_no
 order by ac.ac_no;

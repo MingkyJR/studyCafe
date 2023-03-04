@@ -33,4 +33,8 @@ public interface ArticleRepository {
 
 	public Login getLogin(Login login) throws DataAccessException;
 
+	public ArticleComment getComment(int ac_no) throws DataAccessException;
+
+	public void modiComment(ArticleComment articleComment) throws DataAccessException;
+
 }

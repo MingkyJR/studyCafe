@@ -10,18 +10,21 @@ public class ArticleComment {
 	private Date ac_regdate;
 	private Date ac_modidate;
 	private String ac_isshow;
+	private int u_number;
 	private String u_id;
 	
 	public ArticleComment() {}
 
 	public ArticleComment(int ac_no, int a_no, String ac_content, Date ac_regdate, Date ac_modidate, String ac_isshow,
-			String u_id) {
+			int u_number, String u_id) {
+		super();
 		this.ac_no = ac_no;
 		this.a_no = a_no;
 		this.ac_content = ac_content;
 		this.ac_regdate = ac_regdate;
 		this.ac_modidate = ac_modidate;
 		this.ac_isshow = ac_isshow;
+		this.u_number = u_number;
 		this.u_id = u_id;
 	}
 
@@ -73,6 +76,14 @@ public class ArticleComment {
 		this.ac_isshow = ac_isshow;
 	}
 
+	public int getU_number() {
+		return u_number;
+	}
+
+	public void setU_number(int u_number) {
+		this.u_number = u_number;
+	}
+
 	public String getU_id() {
 		return u_id;
 	}
@@ -84,8 +95,10 @@ public class ArticleComment {
 	@Override
 	public String toString() {
 		return "ArticleComment [ac_no=" + ac_no + ", a_no=" + a_no + ", ac_content=" + ac_content + ", ac_regdate="
-				+ ac_regdate + ", ac_modidate=" + ac_modidate + ", ac_isshow=" + ac_isshow + ", u_id=" + u_id + "]";
+				+ ac_regdate + ", ac_modidate=" + ac_modidate + ", ac_isshow=" + ac_isshow + ", u_number=" + u_number
+				+ ", u_id=" + u_id + "]";
 	}
+
 
 	
 }
