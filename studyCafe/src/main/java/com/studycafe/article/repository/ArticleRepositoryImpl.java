@@ -27,10 +27,19 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 	
 	@Override
 	public List<Article> getArticleAllList(Page pageNo) throws DataAccessException {
-		
 		return sqlSession.selectList("mapper.article.articleAllList", pageNo);
 	}
 
+	@Override
+	public int searchTitleCount(String searchTitle) throws DataAccessException {
+		return sqlSession.selectOne("mapper.article.searchTitleCount",searchTitle);
+	}
+	
+	
+	@Override
+	public List<Article> getSearchTitleList(Page pageNo) throws DataAccessException {
+		return sqlSession.selectList("mapper.article.SearchTitleList", pageNo);
+	}
 	@Override
 	public Article getArticleDetail(int no) throws DataAccessException {
 		return sqlSession.selectOne("mapper.article.articleDetail",no);
@@ -90,6 +99,15 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 	public void modiComment(ArticleComment articleComment) throws DataAccessException {
 		sqlSession.update("mapper.article.modiComment",articleComment);
 	}
+
+
+	@Override
+	public void deleteComment(int ac_no) throws DataAccessException {
+		sqlSession.update("mapper.article.deleteComment",ac_no);
+		
+	}
+
+
 
 
 	

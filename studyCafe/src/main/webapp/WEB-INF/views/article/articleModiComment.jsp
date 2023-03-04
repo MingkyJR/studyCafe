@@ -36,7 +36,6 @@
 </head>
 <body>
 	<h2>articleDetail</h2>
-	${AUTHUSER }
 	<table border="1">
 		<tr>
 			<th>제목</th><td colspan="5">${article.a_title}</td>
@@ -72,7 +71,7 @@
 	</table>
 	<br/><br/><br/>
  
-	<form  action="/article/modiComment">
+	<form  action="${cp}/article/modiComment" method="get">
 		<textarea name="ac_content" id="ac_content" rows="5" cols="30" required="required">${commemt.ac_content}</textarea> 
 		<input type="hidden" id="ac_no" name="ac_no" value="${commemt.ac_no}"/>
 		<input type="hidden" id="a_no" name="a_no" value="${commemt.a_no}"/>

@@ -24,6 +24,21 @@
 			order by a.a_no desc
 		]]>
 	</select>
+	<select id="searchTitleCount" resultType="int" parameterType="String">
+		<![CDATA[
+			select count(a_no)
+			from article 
+			where a_title like '%'||#{searchTitle}||'%' and a_isshow='Y'
+		]]>
+	</select>
+	<select id="SearchTitleList" resultType="article" parameterType="page">
+		<![CDATA[
+			select a.*,u.u_id from(select s.*, row_number()over(order by s.a_no desc) as num from article s where a_title like '%'||#{searchTitle}||'%' and a_isshow='Y')
+			a join user_info u on a.u_number=u.u_number
+			where num>#{start} and num<=#{end}
+			order by a.a_no desc
+		]]>
+	</select>
 	
 	
 	<select id="articleDetail" resultType="article" parameterType="int">
@@ -42,17 +57,10 @@
 			order by ac.ac_no desc
 		]]>
 	</select>
-	<select id="searchTitle" resultType="article" parameterType="String">
-		<![CDATA[
-			select a.*,u.u_id from article a join user_info u on a.u_number=u.u_number
-			where a.a_title like '%'||#{searchTitle}||'%' and a.a_isshow='Y'
-			order by a.a_no desc
-		]]>
-	</select>
 	<insert id="addArticle" parameterType="article">
 		<![CDATA[
-		insert into article(a_no,a_title,a_content,a_regdate,a_modidate,a_cnt,a_isshow,u_number)
-		values (seq_article.nextval,#{a_title},#{a_content},sysdate,sysdate,0,'Y',#{u_number})
+		insert into article(a_no,a_title,a_content,a_regdate,a_modidate,a_cnt,a_isshow,u_number,u_id)
+		values (seq_article.nextval,#{a_title},#{a_content},sysdate,sysdate,0,'Y',#{u_number},#{u_id})
 		]]>
 	</insert>
 	<update id="modifyArticle" parameterType="article">
@@ -85,6 +93,13 @@
 		<![CDATA[
 		update article_comment
 		set ac_modidate = sysdate, ac_content=#{ac_content}
+		where ac_no=#{ac_no}
+		]]>
+	</update>
+	<update id="deleteComment" parameterType="int">
+		<![CDATA[
+		update article_comment
+		set ac_isshow='N'
 		where ac_no=#{ac_no}
 		]]>
 	</update>

@@ -37,4 +37,10 @@ public interface ArticleRepository {
 
 	public void modiComment(ArticleComment articleComment) throws DataAccessException;
 
+	public void deleteComment(int ac_no) throws DataAccessException;
+
+	public int searchTitleCount(String searchTitle) throws DataAccessException;
+
+	public List<Article> getSearchTitleList(Page pageNo) throws DataAccessException;
+
 }

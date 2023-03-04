@@ -37,8 +37,11 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public List<Article> getSearchTitle(String searchTitle) throws Exception {
-		return articleRepository.getSearchTitle(searchTitle);
+	public ArticlePage getSearchTitle(Page pageNo) throws Exception {
+		int total = articleRepository.searchTitleCount(pageNo.getSearchTitle());
+		System.out.println("total="+total);
+		List<Article> SearchTitleList = articleRepository.getSearchTitleList(pageNo);
+		return new ArticlePage(total,pageNo.getPageNo(),5, SearchTitleList);
 	}
 
 	@Override
@@ -74,6 +77,12 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public void modiComment(ArticleComment articleComment) throws Exception {
 		articleRepository.modiComment(articleComment);
+	}
+
+	@Override
+	public void deleteComment(int ac_no) throws Exception {
+		articleRepository.deleteComment(ac_no);
+		
 	}
 
 

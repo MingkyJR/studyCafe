@@ -30,11 +30,6 @@
 	});
 
 	$(document).ready(function(){
-		$("#btn5").click(function(){
-			location.href='${cp}/article/modiCommSDSADASASDASDAS';
-		});
-	});
-	$(document).ready(function(){
 		$("#btn6").click(function(){
 			alert("자신글만 수정 가능합니다.");
 		});
@@ -111,7 +106,8 @@
 					<td><input type="button" value="수정" id="btn4"
 					onclick="location.href='${cp}/article/modiCommentForm?no=${article.a_no}&ac_no=${commemt.ac_no}'"/>
 					 </td>
-					<td><input type="button" value="삭제" id="btn5" /></td>
+					<td><input type="button" value="삭제" id="btn5" 
+					onclick="location.href='${cp}/article/deleteComment?no=${article.a_no}&ac_no=${commemt.ac_no}'"/></td>
 					</c:if>
 					<c:if test="${AUTHUSER.u_id ne commemt.u_id}">
 					<td><input type="button" value="수정" id="btn6" /></td>

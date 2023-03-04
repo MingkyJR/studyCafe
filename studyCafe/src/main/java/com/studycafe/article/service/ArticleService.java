@@ -14,7 +14,7 @@ public interface ArticleService {
 
 	public Article getArticleDetail(int no) throws Exception;
 
-	public List<Article> getSearchTitle(String searchTitle) throws Exception;
+	public ArticlePage getSearchTitle(Page pageNo) throws Exception;
 
 	public void addArticle(Article article) throws Exception;
 
@@ -31,6 +31,8 @@ public interface ArticleService {
 	public ArticleComment getComment(int ac_no) throws Exception;
 
 	public void modiComment(ArticleComment articleComment) throws Exception;
+
+	public void deleteComment(int ac_no) throws Exception;
 
 
 }

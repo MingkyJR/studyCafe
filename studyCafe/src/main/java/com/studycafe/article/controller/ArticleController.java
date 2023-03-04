@@ -46,7 +46,7 @@ public class ArticleController {
 	public String articleList(Model model,HttpServletRequest request) throws Exception {
 		
 		
-		String strPageNo = request.getParameter("pageNo"); //보고싶은페이지
+		String strPageNo = request.getParameter("pageNo");
 		int pageNo = 1;   
 		if(strPageNo!=null) {
 			pageNo = Integer.parseInt(strPageNo);			
@@ -70,9 +70,20 @@ public class ArticleController {
 	
 	//특정글 검색
 	@GetMapping("/article/searchTitle")
-	public String searchTitle(Model model,String searchTitle) throws Exception {
-		List<Article> articleList = articleService.getSearchTitle(searchTitle);
-		model.addAttribute("articleList",articleList);
+	public String searchTitle(Model model,HttpServletRequest request,String searchTitle) throws Exception {
+		
+		String strPageNo = request.getParameter("pageNo");
+		int pageNo = 1;   
+		if(strPageNo!=null) {
+			pageNo = Integer.parseInt(strPageNo);			
+		}
+		Page page = new Page(pageNo,searchTitle);
+		
+		ArticlePage searchArticlePage  = articleService.getSearchTitle(page);
+		model.addAttribute("searchArticlePage", searchArticlePage);
+		model.addAttribute("searchTitle", searchTitle);
+		
+		
 		return "article/searchTitle";
 	}
 	
@@ -131,9 +142,15 @@ public class ArticleController {
 	}
 	@GetMapping("/article/modiComment")
 	public String modiComment(Model model,ArticleComment articleComment) throws Exception{
-		System.out.println("articleComment="+articleComment);
 		articleService.modiComment(articleComment);
 		return "redirect:/article/articleDetail?no="+articleComment.getA_no();
+	}
+	
+	@GetMapping("/article/deleteComment")
+	public String deleteComment(Model model,int no,int ac_no) throws Exception {
+		articleService.deleteComment(ac_no);
+		return "redirect:/article/articleDetail?no="+no;
+		
 	}
 	
 	

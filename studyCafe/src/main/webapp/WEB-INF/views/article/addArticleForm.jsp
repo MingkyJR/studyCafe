@@ -19,6 +19,7 @@
 <title>스터디카페</title>
 </head>
 <body>
+${AUTHUSER }
 	<h2>게시글 작성</h2>
 	<form action="${cp}/article/addArticle">
 	<table border="1">
@@ -35,6 +36,7 @@
 			<td>
 			<textarea name="a_content" id="a_content" rows="5" cols="30" required="required"></textarea>
  			<input type="hidden" name="u_number" id="u_number" value="${AUTHUSER.u_number}" />
+ 			<input type="hidden" name="u_id" id="u_id" value="${AUTHUSER.u_id}" />
 			</td>
 		</tr>
 		<tr>

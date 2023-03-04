@@ -14,9 +14,11 @@
 		
 		$("#btn1").click(function(){
 			if(confirm("수정하시겠습니까?") === true) {
-				location.href='${cp}/article/articleList';
 				alert("수정하였습니다.")
 		    }
+		});
+		$("#btn2").click(function(){
+				location.href='${cp}/article/articleDetail?no=${article.a_no}';
 		});
 	});
 		
@@ -25,7 +27,7 @@
 </head>
 <body>
 ${article.a_no}
-	<h2>게시글 작성</h2>
+	<h2>게시글 수정</h2>
 	<form action="${cp}/article/modifyArticle">
 	<table border="1">
 		<tr>
@@ -49,8 +51,8 @@ ${article.a_no}
 		</tr>
 		<tr>
 			<td>
-				<input type="submit" value="수정하기" />
-				<input type="button" id="btn1" value="목록으로" />
+				<input type="submit" value="수정하기" id="btn1" />
+				<input type="button" id="btn2" value="돌아가기" />
 			</td>
 			
 		</tr>
