@@ -24,7 +24,12 @@
 	
 	<select id="qnaAllList" resultType="com.studycafe.qna.domain.Qna" parameterType="java.lang.Integer">
 	  <![CDATA[
-		select * from qna_board order by q_no desc
+		SELECT notice_no, writer_id, writer_name, title, regdate, moddate, read_cnt, isshow "+ 
+					"FROM "+ 
+					"(SELECT A.*, ROWNUM RNUM "+ 
+					"FROM(select * from  notice order by notice_no desc) A "+ 
+					"WHERE ROWNUM <= (?) ) "+ 
+					"WHERE RNUM > ?
 	  ]]>
 	</select>
 	

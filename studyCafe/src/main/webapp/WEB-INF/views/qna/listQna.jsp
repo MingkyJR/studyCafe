@@ -42,6 +42,10 @@
 	 	}
 	 	#ct{ width:60px; background: #C5CAD7;
 	 	}
+	 	#ca{ width:60px; background: #C5CAD7;
+	 	}
+	 	#as{ width:60px; background: #C5CAD7;
+	 	}
 	 	#rf{ width:60px; background: #C5CAD7;
 	 	}
 	 	

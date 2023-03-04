@@ -17,7 +17,7 @@ public class QnaRepositoryImpl implements QnaRepository {
 
 	@Override
 	public int selectCount() {
-		return sqlSession.selectOne("mapper.qna.qnaTotalCnt");
+		return sqlSession.selectOne("mapper.qna.qnaTotalCnt" );
 	}
 
 	@Override

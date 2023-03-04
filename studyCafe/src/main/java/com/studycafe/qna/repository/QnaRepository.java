@@ -15,7 +15,7 @@ public interface QnaRepository {
 
 	public int searchSelectCount(String choice, String keyword) throws DataAccessException;
 
-	public List<Qna> searchSelect(String choice, String keyword, int i, int size) throws DataAccessException;
+	public List<Qna> searchSelect(String choice, String keyword, int calNo, int size) throws DataAccessException;
 
 	public List<QnaFile> listFile() throws DataAccessException;
 	

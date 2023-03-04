@@ -28,7 +28,8 @@ public class QnaServiceImpl implements QnaService {
 		@Override
 		public QnaPage getQnaPage(String choice, String keyword, int pageNo, int size) { //리턴 유형이 바뀜
 			int sTotal = qnaRepository.searchSelectCount(choice, keyword);//전체 게시물수 
-			List<Qna> sNoticeList = qnaRepository.searchSelect(choice, keyword, (pageNo-1)*size, size); 
+			int calNo=(pageNo-1)*size;
+			List<Qna> sNoticeList = qnaRepository.searchSelect(choice, keyword, calNo, size); 
 			return new QnaPage(sTotal, pageNo, size, sNoticeList);
 		}
 
