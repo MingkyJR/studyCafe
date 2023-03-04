@@ -16,36 +16,43 @@ public class FoodServiceImpl implements FoodService {
 	FoodRepository foodRepository; 
 	
 	//전체 목록 조회
+	@Override
 	public List<Food> getFoodList() throws Exception{
 		return foodRepository.getFoodList();
 	}
 	
 	//특정 종류 조회
+	@Override
 	public List<Food> getTypeFoodList(int type) throws Exception{
 		return foodRepository.getTypeFoodList(type);
 	}
 	
 	//장바구니 조회
+	@Override
 	public List<Cart> getCart(int u_number) throws Exception{
 		return foodRepository.getCart(u_number);
 	}
 	
 	//장바구니에 상품 추가
+	@Override
 	public void addCart(Cart cart) throws Exception {
 		foodRepository.addCart(cart);
 	}
 	
 	//장바구니 상품 수량+
+	@Override
 	public void upQuantity(Cart cart) throws Exception {
 		foodRepository.upQuantity(cart);
 	}
 	
 	//장바구니 상품 수량-
+	@Override
 	public void downQuantity(Cart cart) throws Exception {
 		foodRepository.downQuantity(cart);
 	}
 	
 	//장바구니 상품 삭제
+	@Override
 	public void deleteCart(Cart cart) throws Exception {
 		foodRepository.deleteCart(cart);
 	}

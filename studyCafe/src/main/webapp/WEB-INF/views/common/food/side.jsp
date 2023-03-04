@@ -3,7 +3,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="conPath"  value="${pageContext.request.contextPath}"/>
-
+<c:set var ="total" value="0"/>
 <br/>
 <br/>
 <br/>
@@ -38,9 +38,10 @@
 		</td>
 		<td class="right">${cartList.food_price * cartList.quantity}</td>
 	</tr>
+	<c:set var="total" value="${total+cartList.food_price * cartList.quantity}"/>
 </c:forEach>
 </table>
-<button type="button" onclick="location.href='${conPath}'">주문하기</button>
+<button type="button" onclick="location.href='${conPath}'">주문하기</button> 합계 :<c:out value="${total}"/>원
 </form>
 </c:if>
 </div>
