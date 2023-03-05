@@ -22,16 +22,48 @@
 	  ]]>
 	</select>
 	
-	<select id="qnaAllList" resultType="com.studycafe.qna.domain.Qna" parameterType="java.lang.Integer">
+	<select id="qnaAllList" resultType="com.studycafe.qna.domain.Qna" parameterType="com.studycafe.qna.domain.Page">
 	  <![CDATA[
-		SELECT notice_no, writer_id, writer_name, title, regdate, moddate, read_cnt, isshow "+ 
-					"FROM "+ 
-					"(SELECT A.*, ROWNUM RNUM "+ 
-					"FROM(select * from  notice order by notice_no desc) A "+ 
-					"WHERE ROWNUM <= (?) ) "+ 
-					"WHERE RNUM > ?
+		select a.*,u.u_id from(select s.*, row_number()over(order by s.q_no desc) as num from qna_board s where q_isshow='Y')
+		a join user_info u on a.u_number=u.u_number
+		where num>#{start} and num<=#{end}
+		order by a.q_no desc
 	  ]]>
 	</select>
+	
+	<select id="qnaSearchTotalCnt" resultType="java.lang.Integer" parameterType="com.studycafe.qna.domain.SearchPage">
+	  <![CDATA[
+		SELECT count(q_no) count 
+		FROM
+		(SELECT A.*, ROWNUM RNUM
+		FROM(select * from  qna_board where ${choice} like '%'||#{keyword}||'%' order by q_no desc) A)
+	  ]]>
+	</select>
+	
+	<select id="qnaSearchAllList" resultType="com.studycafe.qna.domain.Qna" parameterType="com.studycafe.qna.domain.SearchPage">
+	  <![CDATA[
+		select a.*,u.u_id from(select s.*, row_number()over(order by s.q_no desc) as num from qna_board s where q_isshow='Y' and ${choice} like '%'||#{keyword}||'%')
+		a join user_info u on a.u_number=u.u_number
+		where num>#{start} and num<=#{end}
+		order by a.q_no desc
+	  ]]>
+	</select>
+	
+	<select id="qnaDetail" resultType="com.studycafe.qna.domain.Qna" parameterType="java.lang.Integer">
+	  <![CDATA[
+		select q_no, q_writer, q_title, q_content, q_regdate, q_moddate, q_cnt, q_isopen, q_openpw, q_isshow, q_chk, u_number
+		from qna_board
+		where q_isshow='Y' and q_no=#{no}
+	  ]]>
+	</select>
+
+	<update id="qnaReadCnt" parameterType="java.lang.Integer">
+	  <![CDATA[
+		update qna_board
+		set q_cnt=q_cnt+1
+		where q_isshow='Y' and q_no=#{no}
+	  ]]>
+	</update>
 	
 
 </mapper>

@@ -128,17 +128,13 @@
         	});
 
 		
-    	    function authCheck(gr){ 
-				//alert(gr);
-				//gr=999;
- 	          if(gr==null || gr==1){ 
-	             alert("권한이 없습니다.");
-<%--          	             location.replace("<%=request.getContextPath()%>/notice/list.do?rowSize=${rowSize}"); --%>
- 	             location.href='<%=request.getContextPath()%>/notice/list.do?rowSize=${rowSize}';
+    	    function authCheck(auth){ 
+				//alert(auth);
+ 	          if(auth==null){ 
+	             alert("권한이 없습니다. 로그인이 필요합니다.");
+ 	             location.href='<%=request.getContextPath()%>/qna/list?rowSize=${rowSize}';
  	          }else{
-<%--          	     location.replace("<%=request.getContextPath()%>/notice/write.do?rowSize=${rowSize}"); --%>
-<%--  	             location.href='<%=request.getContextPath()%>/notice/write.do?rowSize=${rowSize}'; --%>
- 	            location.href='<%=request.getContextPath()%>/notice/write.do?pageNo=${pageNo}&rowSize=${rowSize}';
+ 	            location.href='<%=request.getContextPath()%>/qna/writeForm?pageNo=${pageNo}&rowSize=${rowSize}';
 	          }
  	          
 	    	}
@@ -156,7 +152,7 @@ List<Notice> listNotice=~~~~;
  request.setAttribute("listNotice", listNotice); 
  
  NoticePage noticePage<=목록+페이징처리 관련내용.
- request.setAttribute("noticePage", noticePage);
+ request.setAttribute("qnaPage", qnaPage);
  request.setAttribute("pageNo", pageNo);
  request.setAttribute("rowSize", rowSize);
  request.setAttribute("searchPage", searchPage);
@@ -178,10 +174,10 @@ ${noticePage.content} <hr/><hr/><hr/> --%>
 
 
 <p class="home" style="margin:0 auto; max-width: 950px;">
-<a href="<%=request.getContextPath()%>/chat.do">HOME</a>
+<a href="<%=request.getContextPath()%>/qna/list">HOME</a>
 </p>
 <hr/>
- 
+<%--  ${qnaPage.keyword} --%>
 <%--  ${param.keyword} --%>
 <%--  ${param.choice} --%>
 <!-- 위나 아래나 결과는 같다 -->
@@ -190,7 +186,7 @@ ${noticePage.content} <hr/><hr/><hr/> --%>
 
 <br/><br/><br/><br/>
 
- <form name="rowSizeFrm" id="rowSizeFrm" action="<%=request.getContextPath()%>/notice/list.do" method="post">
+ <form name="rowSizeFrm" id="rowSizeFrm" action="<%=request.getContextPath()%>/qna/list" method="post">
 <div id="sch" style="text-align:right;">
 <%--  <input type="hidden" name="keyword" id="keyword" value="${param.keyword}"/> --%>
 <%--   <input type="hidden" name="choice" id="choice" value="${param.choice}"/> --%>
@@ -208,9 +204,8 @@ ${noticePage.content} <hr/><hr/><hr/> --%>
  </form>
 
  <div id="bwr" style="text-align:left;">
- 	<button type="button" id="wri" onclick="authCheck(${AUTHUSER.emp_grade});">글쓰기</button>
+ 	<button type="button" id="wri" onclick="authCheck(${AUTHUSER.u_number})">글쓰기</button>
 </div>
-
 
 <br/>
 	
@@ -225,7 +220,7 @@ ${noticePage.content} <hr/><hr/><hr/> --%>
  			<th id="ct">조회수</th>
  			<th id="ca">비밀글</th>
  			<th id="as">상태</th>
- 			<th id="rf">첨부<br/>파일</th>
+<!--  			<th id="rf">첨부<br/>파일</th> -->
  		</tr>
  	</thead>
  
@@ -234,18 +229,18 @@ ${noticePage.content} <hr/><hr/><hr/> --%>
  	<%--  keyword가 없으면서 게시글이 없는 경우 --%>
  	<%-- JSTL if조건문 이용하여 출력 --%>
  	<c:if test="${empty keyword or (keyword eq '')}">
-	 	<c:if test="${noticePage.hasNoNotices()}"> 
+	 	<c:if test="${qnaPage.hasNoNotices()}"> 
 	 	 <tr>
-	 		<td colspan="7" style="text-align:center;">게시글이 없습니다.</td>
+	 		<td colspan="8" style="text-align:center;">게시글이 없습니다.</td>
 	 	</tr>
 	 	</c:if>
  	</c:if>
  	<%--  keyword가 있으면서 결과가 없는 경우 --%>
  	<%-- JSTL if조건문 이용하여 출력 --%>
  	 <c:if test="${not empty keyword or (keyword ne '')}">
-	 	<c:if test="${noticePage.hasNoNotices()}"> 
+	 	<c:if test="${qnaPage.hasNoNotices()}"> 
 	 	 <tr>
-	 		<td colspan="7" style="text-align:center;">결과가 없습니다.</td>
+	 		<td colspan="8" style="text-align:center;">결과가 없습니다.</td>
 	 	</tr>
 	 	</c:if>
  	</c:if>
@@ -261,23 +256,24 @@ ${noticePage.content} <hr/><hr/><hr/> --%>
  	<br/><br/><br/><br/><br/><br/> --%>
  	
 <%--  	<c:forEach var="item" items="${listNotice}"> --%>
-	<c:if test="${noticePage.hasNotices()}"> 
- 	<c:forEach var="item" items="${noticePage.content}" varStatus="status">
+	<c:if test="${qnaPage.hasNotices()}"> 
+ 	<c:forEach var="item" items="${qnaPage.content}" varStatus="status">
  	<tr>
- 		<td>${item.number}</td>
- 		<td>${item.writer.writer_name}</td>
- 		<td><a href="<%=request.getContextPath()%>/notice/read.do?no=${item.number}&pageNo=${noticePage.currentPage}&rowSize=${rowSize}">${item.title}</a></td>
- 		<td><fmt:formatDate pattern="yyyy.MM.dd. HH:mm:ss" type="date" value="${item.regdate}" /></td>
- 		<td><fmt:formatDate pattern="yyyy.MM.dd. HH:mm:ss" type="date" value="${item.moddate}" /></td>
- 		<td>${item.read_cnt}</td>
+ 		<td>${item.q_no}</td>
+ 		<td>${item.q_writer}</td>
+ 		<td><a href="<%=request.getContextPath()%>/qna/read.do?no=${item.q_no}&pageNo=${qnaPage.currentPage}&rowSize=${rowSize}">${item.q_title}</a></td>
+ 		<td><fmt:formatDate pattern="yyyy.MM.dd. HH:mm:ss" type="date" value="${item.q_regdate}" /></td>
+ 		<td><fmt:formatDate pattern="yyyy.MM.dd. HH:mm:ss" type="date" value="${item.q_moddate}" /></td>
+ 		<td>${item.q_cnt}</td>
  		<td>${item.q_isopen}</td>
- 		<td>
- 		<c:forEach var="item2" items="${noticeFile}">
-	 		<c:if test="${item2.notice_no==item.number}">
-	 			<img class="file-img" src="../assets/images/clip2.png" width="20px" height="20px"/>
-	 		</c:if> 
-		</c:forEach>
- 		</td>
+ 		<td>${item.q_chk}</td>
+<!--  		<td> -->
+<%--  		<c:forEach var="item2" items="${qnaFile}"> --%>
+<%-- 	 		<c:if test="${item2.q_no==item.q_no}"> --%>
+<!-- 	 			<img class="file-img" src="../assets/images/clip2.png" width="20px" height="20px"/> -->
+<%-- 	 		</c:if>  --%>
+<%-- 		</c:forEach> --%>
+<!--  		</td> -->
  	</tr>
  	</c:forEach>
  	</c:if>
@@ -289,56 +285,56 @@ ${noticePage.content} <hr/><hr/><hr/> --%>
  <div id="page" style="text-align:center;">
 		<c:if test="${empty keyword or (keyword eq '')}">
 	 		<%-- JSTL if조건문: 이전 출력 --%>
-	 		<c:if test="${noticePage.startPage>5}">
+	 		<c:if test="${qnaPage.startPage>5}">
 	 		<div class="paging">
-	 		 <a href="<%=request.getContextPath()%>/notice/list.do?pageNo=${noticePage.startPage-5}&rowSize=${rowSize}">&laquo;</a> 
+	 		 <a href="<%=request.getContextPath()%>/qna/list?pageNo=${qnaPage.startPage-5}&rowSize=${rowSize}">&laquo;</a> 
 			</div>
 	 	</c:if>	
 	 			
 	 		<%-- JSTL forEach조건문: 페이지 번호 출력 --%>
 	 		<c:forEach var="pNo"
-	 			begin="${noticePage.startPage}" end="${noticePage.endPage}">
+	 			begin="${qnaPage.startPage}" end="${qnaPage.endPage}">
 	 			<div class="paging">
-	 		 <a href="<%=request.getContextPath()%>/notice/list.do?pageNo=${pNo}&rowSize=${rowSize}">${pNo}</a> 
+	 		 <a href="<%=request.getContextPath()%>/qna/list?pageNo=${pNo}&rowSize=${rowSize}">${pNo}</a> 
 				</div>
 	 		</c:forEach>
 	 		
 	 		<%-- JSTL forEach조건문: 다음 출력 --%>
-	 		<c:if test="${noticePage.endPage<noticePage.totalPages}">
+	 		<c:if test="${qnaPage.endPage<qnaPage.totalPages}">
 	 		<div class="paging">
-	 		 <a href="<%=request.getContextPath()%>/notice/list.do?pageNo=${noticePage.startPage+5}&rowSize=${rowSize}">&raquo;</a> 
+	 		 <a href="<%=request.getContextPath()%>/qna/list?pageNo=${qnaPage.startPage+5}&rowSize=${rowSize}">&raquo;</a> 
 			</div>
 	 		</c:if>	
 		</c:if>
 		
 		<c:if test="${not empty keyword or (keyword ne '')}">
-		 	<c:if test="${noticePage.hasNoNotices()}"> 
-	 		 <button type="button" id="list" onclick="location.href='<%=request.getContextPath()%>/notice/list.do';">전체목록보기</button>		 		 
+		 	<c:if test="${qnaPage.hasNoNotices()}"> 
+	 		 <button type="button" id="list" onclick="location.href='<%=request.getContextPath()%>/qna/list';">전체목록보기</button>		 		 
 		 	</c:if>
-		 	<c:if test="${noticePage.hasNotices()}"> 
+		 	<c:if test="${qnaPage.hasNotices()}"> 
 			<%-- JSTL if조건문: 이전 출력 --%>
-	 		<c:if test="${noticePage.startPage>5}">
+	 		<c:if test="${qnaPage.startPage>5}">
 	 		<div class="paging">
-	 		 <a href="<%=request.getContextPath()%>/notice/list.do?pageNo=${noticePage.startPage-5}&rowSize=${rowSize}&choice=${choice}&keyword=${keyword}">&laquo;</a> 
+	 		 <a href="<%=request.getContextPath()%>/qna/list?pageNo=${qnaPage.startPage-5}&rowSize=${rowSize}&choice=${choice}&keyword=${keyword}">&laquo;</a> 
 			</div>
 	 		</c:if>	
 	 			
 	 		<%-- JSTL forEach조건문: 페이지 번호 출력 --%>
 	 		<c:forEach var="pNo"
-	 			begin="${noticePage.startPage}" end="${noticePage.endPage}">
+	 			begin="${qnaPage.startPage}" end="${qnaPage.endPage}">
 	 			<div class="paging">
-	 		 <a href="<%=request.getContextPath()%>/notice/list.do?pageNo=${pNo}&rowSize=${rowSize}&choice=${choice}&keyword=${keyword}">${pNo}</a> 
+	 		 <a href="<%=request.getContextPath()%>/qna/list?pageNo=${pNo}&rowSize=${rowSize}&choice=${choice}&keyword=${keyword}">${pNo}</a> 
 				</div>
 	 		</c:forEach>
 	 		
 	 		<%-- JSTL forEach조건문: 다음 출력 --%>
-	 		<c:if test="${noticePage.endPage<noticePage.totalPages}">
+	 		<c:if test="${qnaPage.endPage<qnaPage.totalPages}">
 	 		<div class="paging">
-	 		 <a href="<%=request.getContextPath()%>/notice/list.do?pageNo=${noticePage.startPage+5}&rowSize=${rowSize}&choice=${choice}&keyword=${keyword}">&raquo;</a>
+	 		 <a href="<%=request.getContextPath()%>/qna/list?pageNo=${qnaPage.startPage+5}&rowSize=${rowSize}&choice=${choice}&keyword=${keyword}">&raquo;</a>
 			</div>
 	 		 </c:if>
 	 		 <br/><br/>
-	 		 <button type="button" id="list" onclick="location.href='<%=request.getContextPath()%>/notice/list.do';">전체목록보기</button>	 
+	 		 <button type="button" id="list" onclick="location.href='<%=request.getContextPath()%>/qna/list';">전체목록보기</button>	 
 	 		</c:if>	
 		</c:if>
 		
@@ -348,14 +344,14 @@ ${noticePage.content} <hr/><hr/><hr/> --%>
 
  <br/><br/><br/><br/>
 <!--  검색기능 폼 -->
- <form name="searchFrm" id="searchFrm" action="<%=request.getContextPath()%>/notice/list.do" 
+ <form name="searchFrm" id="searchFrm" action="<%=request.getContextPath()%>/qna/list" 
  		method="post" style="text-align:center;">
 <%--  <input type="hidden" name="pageNo" id="pageNo" value="${pageNo}"/> --%>
 <%--  <input type="hidden" name="rowSize" id="rowSize" value="${rowSize}"/>  --%>
  <select name="choice" id="choice"> <!-- 높이:20 중간맞춤 -->
 <!--     <option value="sel">선택</option> -->
-    <option value="title" <c:if test="${choice == 'title'}">selected</c:if>>제목</option>
-    <option value="writer_name" <c:if test="${choice == 'writer_name'}">selected</c:if>>작성자</option>
+    <option value="q_title" <c:if test="${choice == 'q_title'}">selected</c:if>>제목</option>
+    <option value="q_writer" <c:if test="${choice == 'q_writer'}">selected</c:if>>작성자</option>
 <!--     <option value="content">내용</option> -->
 </select>
 <lebel class="hidden"></lebel>	<!-- ?choice=title&keyword=~~~ -->

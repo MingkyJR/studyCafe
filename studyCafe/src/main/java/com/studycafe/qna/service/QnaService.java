@@ -1,18 +1,27 @@
 package com.studycafe.qna.service;
 
-import java.util.List;
-
-import com.studycafe.qna.domain.QnaFile;
+import com.studycafe.qna.domain.Page;
+import com.studycafe.qna.domain.Qna;
 import com.studycafe.qna.domain.QnaPage;
+import com.studycafe.qna.domain.SearchPage;
+import com.studycafe.qna.domain.User;
+import com.studycafe.qna.domain.WriteRequest;
+
 
 public interface QnaService {
 
 	
-	public QnaPage getQnaPage(int pageNo, int size) throws Exception;
+	public QnaPage getQnaPage(Page page) throws Exception;
 	
-	public QnaPage getQnaPage(String choice, String keyword, int pageNo, int size) throws Exception;
+	public QnaPage getQnaPage(SearchPage sPage) throws Exception;
 
-	public List<QnaFile> listFile() throws Exception;
+	//public List<QnaFile> listFile() throws Exception;
+
+	public Qna getQnaDetail(int no, boolean b) throws Exception;
+	
+	public int addQnaWrite(WriteRequest writeReq, User user) throws Exception;
+	
+	
 	
 	
 
