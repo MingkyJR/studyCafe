@@ -18,7 +18,7 @@
 	<!-- 전체 게시물수 조회 -->
 	<select id="qnaTotalCnt" resultType="java.lang.Integer">
 	  <![CDATA[
-		select count(*) from qna_board
+		select count(*) from qna_board where q_isshow='Y'
 	  ]]>
 	</select>
 	
@@ -36,7 +36,7 @@
 		SELECT count(q_no) count 
 		FROM
 		(SELECT A.*, ROWNUM RNUM
-		FROM(select * from  qna_board where ${choice} like '%'||#{keyword}||'%' order by q_no desc) A)
+		FROM(select * from  qna_board where ${choice} like '%'||#{keyword}||'%' order by q_no desc) A) where q_isshow='Y'
 	  ]]>
 	</select>
 	
@@ -65,5 +65,27 @@
 	  ]]>
 	</update>
 	
+	<insert id="qnaWrite" parameterType="com.studycafe.qna.domain.Qna">
+	  <![CDATA[
+		insert into qna_board (q_no, q_writer, q_title, q_content, q_regdate, q_moddate, q_cnt, q_isopen, q_openpw, q_isshow, q_chk, u_number)
+		values(qna_seq.NEXTVAL, #{q_writer}, #{q_title}, #{q_content}, sysdate, sysdate, 0, 'Y', '12345', 'Y', 1, #{u_number})
+	  ]]>
+	</insert>
+	
+	<update id="qnaModify" parameterType="com.studycafe.qna.domain.Qna">
+	  <![CDATA[
+		update qna_board
+		set q_moddate = sysdate, q_title=#{q_title}, q_content=#{q_content}
+		where q_no=#{q_no}
+	  ]]>
+	</update>
+	
+	<update id="qnaDelete" parameterType="java.lang.Integer">
+	  <![CDATA[
+		update qna_board
+		set q_isshow='N'
+		where q_no=#{no}
+	  ]]>
+	</update>
 
 </mapper>

@@ -25,5 +25,11 @@ public interface QnaRepository {
 	public Qna selectById(int no) throws DataAccessException;
 
 	public int increaseReadCount(int no) throws DataAccessException;
+
+	public void addQnaWrite(Qna qna) throws DataAccessException;
+
+	public void modifyQna(Qna qna) throws DataAccessException;
+	
+	public void deleteQna(int no) throws DataAccessException;
 	
 }

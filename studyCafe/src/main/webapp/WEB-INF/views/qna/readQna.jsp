@@ -100,7 +100,21 @@
         			location.href='<%=request.getContextPath()%>/qna/delete2?no=${noticeData.notice.number}&pageNo=${pageNo}&rowSize=${rowSize}';
         		}
         	}
-<%--         	location.href="<%=request.getContextPath()%>/notice/list.do"; // --%>
+        	
+        	
+        	
+        	function deleteConfirm(){
+       		 if (confirm("삭제를 진행하시겠습니까?")) {
+       	            alert("삭제가 완료되었습니다.");
+       				location.href='<%=request.getContextPath()%>/qna/delete?no=${qna.q_no}';
+       	        } else {
+       	            alert("삭제가 취소되었습니다.");
+       	        	location.href='<%=request.getContextPath()%>/qna/read?no=${qna.q_no}&pageNo=${pageNo}&rowSize=${rowSize}';
+
+       	        }
+       	}
+        	
+
         </script>
         
 
@@ -115,15 +129,9 @@
 *요청페이지:${pageNo}<br/><br/>
 *1페이지당 게시글수:${rowSize}<br/><br/>--%>
 
-<%-- ${AUTHUSER.emp_grade} --%>
 
-
-<%--  <a href="<%=request.getContextPath()%>/index.jsp">HOME</a> --%>
-<%--  <a href="<%=request.getContextPath()%>/chat.do">HOME</a> --%>
-<!-- <p class="home" style="text-align: left; margin-left:150px;"> -->
 <p class="home" style="margin:0 auto; max-width: 950px;">
-<%-- <a href="<%=request.getContextPath()%>/view/main.jsp">HOME</a> --%>
-<a href="<%=request.getContextPath()%>/chat.do">HOME</a>
+<a href="<%=request.getContextPath()%>/qna/list">HOME</a>
 </p>
  <hr/>
 
@@ -167,17 +175,7 @@
  		<br/>
  		<br/></td>
  	</tr>
- 	
- 	 <tr style="height:50px;">
- 		<th class="h">첨부파일</th>
- 		<td class="c">
-<%-- 		<c:if test="${noticeFile ne null}"> --%>
-<%--  			<a href="<c:url value='${request.getServletContext().getRealPath("/upload")}/qna/download?fileName=${qnaFile.file_name}'/>"> --%>
-<%--  			<img title="${qnaFile.file_name}" class="file-img" src="../assets/images/clip2.png" width="20px" height="20px"/> --%>
-<%--  			${qnaFile.file_name} &nbsp;&nbsp; (${finalUnit})</a> --%>
-<%--  		</c:if> --%>
- 		</td>
- 	</tr>
+ 
 
  	 <tr style="height:50px;">
  		<td colspan="2" style="text-align:center;" class="c">
@@ -208,20 +206,21 @@
 
  		
 <%--  		<a href="<%=request.getContextPath()%>/notice/list.do?pageNo=${pageNo}&rowSize=${rowSize}">목록보기</a> --%>
- 		<button type="button" id="list" onclick="location.href='<%=request.getContextPath()%>/qna/list?pageNo=${pageNo}&rowSize=${rowSize}';">목록보기</button>
+		<button type="button" id="list" onclick="location.href='<%=request.getContextPath()%>/qna/list?pageNo=1&rowSize=5'">처음 목록보기</button>
+ 		<button type="button" id="list" onclick="location.href='<%=request.getContextPath()%>/qna/list?pageNo=${pageNo}&rowSize=${rowSize}';">이전 목록보기</button>
  		<%--수정과 삭제기능은 로그인한 유저의 id와 작성자의 id가 일치하는 경우에만 노출하도록 한다. --%>
  		<%-- <c:if test="${AUTHUSER.memberid==noticeData.notice.writer.writer_id}"> --%>
  		<c:if test="${AUTHUSER.u_id==qna.q_writer}">
 <%--  		<a href="<%=request.getContextPath()%>/notice/modify.do?no=${noticeData.notice.number}&pageNo=${pageNo}&rowSize=${rowSize}">게시글 수정</a> --%>
 <%--  		<button type="button" id="mod" onclick="mdAuthCheck(${AUTHUSER.u_grade});">게시글 수정</button> --%>
- 		<button type="button" id="mod" onclick="a href='<%=request.getContextPath()%>/notice/modify.do?no=${qna.q_no}&pageNo=${pageNo}&rowSize=${rowSize}'">게시글 수정</button>
+ 		<button type="button" id="mod" onclick="location.href='<%=request.getContextPath()%>/qna/modifyForm?no=${qna.q_no}&pageNo=${pageNo}&rowSize=${rowSize}';">게시글 수정</button>
 <%--  		<a href="<%=request.getContextPath()%>/notice/delete.do?no=${noticeData.notice.number}">글삭제(delete용)</a> --%>
 <%--  		<button type="button" id="del" onclick="rmAuthCheck(${AUTHUSER.u_grade});">게시글 삭제</button> --%>
 <%--  		<button type="button" onclick="rmAuthCheck(${AUTHUSER.grade});">게시글 삭제(delete)</button> --%>
 <%--  		</c:if> --%>
 <%--  		<a href="<%=request.getContextPath()%>/notice/delete2.do?no=${noticeData.notice.number}">글삭제(update용)</a> --%>
- 		<button type="button" id="del" onclick="a href='<%=request.getContextPath()%>/notice/delete2.do?no=${qna.q_no}'">게시글 삭제</button>
-<%--  		<button type="button" onclick="rmAuthCheck2(${AUTHUSER.grade});">게시글 삭제(update)</button>  //기능상 필요없어서 막아놓기 --%>
+<%--  		<button type="button" id="del" onclick="location.href='<%=request.getContextPath()%>/qna/delete?no=${qna.q_no}'">게시글 삭제</button> --%>
+		<button type="button" id="del" onclick="deleteConfirm()">게시글 삭제</button>
  		</c:if>
  		</td>
  	</tr>

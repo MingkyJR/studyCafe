@@ -16,11 +16,11 @@ public class Qna {
 	private String q_openpw; //조회수 read_cnt
 	private String q_isshow;//노출(삭제)여부.기본Y. Y(노출),N(미노출,삭제된 데이터)
 	private int q_chk;//노출(삭제)여부.기본Y. Y(노출),N(미노출,삭제된 데이터)
-	
+	private int u_number;
 	
 	public Qna() {}
 	public Qna(int q_no, String q_writer, String q_title, String q_content, Date q_regdate, Date q_moddate, int q_cnt,
-			String q_isopen, String q_openpw, String q_isshow, int q_chk) {
+			String q_isopen, String q_openpw, String q_isshow, int q_chk, int u_number) {
 		super();
 		this.q_no = q_no;
 		this.q_writer = q_writer;
@@ -33,6 +33,7 @@ public class Qna {
 		this.q_openpw = q_openpw;
 		this.q_isshow = q_isshow;
 		this.q_chk = q_chk;
+		this.u_number = u_number;
 	}
 	public int getQ_no() {
 		return q_no;
@@ -100,14 +101,22 @@ public class Qna {
 	public void setQ_chk(int q_chk) {
 		this.q_chk = q_chk;
 	}
-	
-	
+	public int getU_number() {
+		return u_number;
+	}
+	public void setU_number(int u_number) {
+		this.u_number = u_number;
+	}
 	@Override
 	public String toString() {
 		return "Qna [q_no=" + q_no + ", q_writer=" + q_writer + ", q_title=" + q_title + ", q_content=" + q_content
 				+ ", q_regdate=" + q_regdate + ", q_moddate=" + q_moddate + ", q_cnt=" + q_cnt + ", q_isopen="
-				+ q_isopen + ", q_openpw=" + q_openpw + ", q_isshow=" + q_isshow + ", q_chk=" + q_chk + "]";
+				+ q_isopen + ", q_openpw=" + q_openpw + ", q_isshow=" + q_isshow + ", q_chk=" + q_chk + ", u_number="
+				+ u_number + "]";
 	}
+	
+	
+
 	
 	
 

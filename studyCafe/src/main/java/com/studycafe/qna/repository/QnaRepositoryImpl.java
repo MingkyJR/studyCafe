@@ -64,4 +64,20 @@ public class QnaRepositoryImpl implements QnaRepository {
 		System.out.println("increCnt야 넘어와라"+increCnt);
 		return increCnt;
 	}
+
+	@Override
+	public void addQnaWrite(Qna qna) throws DataAccessException {
+		sqlSession.insert("mapper.qna.qnaWrite", qna);
+	}
+
+	@Override
+	public void modifyQna(Qna qna) throws DataAccessException {
+		sqlSession.update("mapper.qna.qnaModify", qna);
+	}
+
+	@Override
+	public void deleteQna(int no) throws DataAccessException {
+		sqlSession.update("mapper.qna.qnaDelete", no);
+		
+	}
 }
