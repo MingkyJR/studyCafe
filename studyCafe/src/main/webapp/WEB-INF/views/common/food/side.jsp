@@ -14,10 +14,10 @@
 <br/>
 <br/>
 <div style="border: solid black 1px;">
-	<h3>장바구니</h3>
+	<h3>주문 목록</h3>
 	<div>
 	<c:if test="${empty cartList}">
-	장바구니가 비어있습니다
+	주문 목록이 비어있습니다
 	</c:if>
 	<c:if test="${not empty cartList}">
 <table class="cartTable">
@@ -25,19 +25,19 @@
 	<tr>
 		<th>${cartList.food_name}</th>
 		<th class="right">
-		<a href="${conPath}/food/deleteCart?food_no=${cartList.food_no}">
+		<a href="${conPath}/food/deleteCart?food_no=${cartList.food_no}&type=${type}"> <!-- 삭제버튼 -->
 			<img src="${conPath}/resources/assets/icon/food/x-lg.svg"/>
 		</a>
 		</th>
 	</tr>
 	<tr>
 		<td>
-		<a href="${conPath}/food/changeQ?pm=0&food_no=${cartList.food_no}">
-		<img src="${conPath}/resources/assets/icon/food/dash-square.svg"/>
+		<a href="${conPath}/food/changeQ?pm=0&food_no=${cartList.food_no}&type=${type}">
+		<img src="${conPath}/resources/assets/icon/food/dash-square.svg"/> <!-- -버튼 -->
 		</a>
 		 ${cartList.quantity} 
-		<a href="${conPath}/food/changeQ?pm=1&food_no=${cartList.food_no}">
-		<img src="${conPath}/resources/assets/icon/food/plus-square.svg"/>
+		<a href="${conPath}/food/changeQ?pm=1&food_no=${cartList.food_no}&type=${type}">
+		<img src="${conPath}/resources/assets/icon/food/plus-square.svg"/> <!-- +버튼 -->
 		</a>
 		</td>
 		<td class="right">${cartList.food_price * cartList.quantity}</td>
@@ -45,22 +45,22 @@
 	<c:set var="total" value="${total+cartList.food_price * cartList.quantity}"/>
 </c:forEach>
 </table>
-<button onclick="requestPay()">결제하기</button> 합계 :<c:out value="${total}"/>원
+<button onclick="requestPayKG()">결제하기</button> 합계 :<c:out value="${total}"/>원
 </c:if>
 </div>
 </div>
 <script>
 const IMP = window.IMP; // 생략 가능
 IMP.init("imp86313206");
-
-function requestPay() {
+  
+function requestPayKG() {
     // IMP.request_pay(param, callback) 결제창 호출
     IMP.request_pay({ // param
-        pg: "kakaopay",
+        pg: "html5_inicis",
         pay_method: "card",
-        merchant_uid: "ORD20180131-0000014",
+        merchant_uid: "3",
         name: "스터디카페 햇반",
-        amount: '${total}',
+        amount: 1000,
         buyer_email: "gildong@gmail.com",
         buyer_name: "홍길동",
         buyer_tel: "010-4242-4242",

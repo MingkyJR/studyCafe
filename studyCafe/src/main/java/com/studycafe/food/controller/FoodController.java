@@ -41,12 +41,13 @@ public class FoodController {
 		
 		model.addAttribute("list", list);
 		model.addAttribute("cartList", cartList);
+		model.addAttribute("type", type);
 		return "/food/mainP";
 	}
 	
 	//장바구니에 상품 추가
 	@GetMapping("/food/addCart")
-	public void addCart(int food_no,@RequestParam(name="type",required = false,defaultValue = "0")int type, HttpServletResponse res) throws Exception {
+	public void addCart(int food_no,int type, HttpServletResponse res) throws Exception {
 		int u_number = 1;
 		Cart cart = new Cart(u_number, food_no);
 		foodService.addCart(cart);
@@ -58,7 +59,7 @@ public class FoodController {
 	}
 	
 	@GetMapping("/food/changeQ")
-	public void changeQuantity(int pm, int food_no, HttpServletResponse res) throws Exception {
+	public void changeQuantity(int pm, int food_no,int type, HttpServletResponse res) throws Exception {
 		int u_number = 1;
 		Cart cart = new Cart(u_number, food_no);
 		if(pm == 1) {
@@ -66,15 +67,24 @@ public class FoodController {
 		}else {
 			foodService.downQuantity(cart);
 		}
-		res.sendRedirect("/scafe/food/main");
+		
+		if(type==0) {
+			res.sendRedirect("/scafe/food/main");
+		}else {
+			res.sendRedirect("/scafe/food/main?type="+type);
+		}
 	}
 	
 	@GetMapping("/food/deleteCart")
-	public void deleteCart(int food_no, HttpServletResponse res) throws Exception {
+	public void deleteCart(int food_no,int type, HttpServletResponse res) throws Exception {
 		int u_number = 1;
 		Cart cart = new Cart(u_number, food_no);
 		foodService.deleteCart(cart);
-		res.sendRedirect("/scafe/food/main");
+		if(type==0) {
+			res.sendRedirect("/scafe/food/main");
+		}else {
+			res.sendRedirect("/scafe/food/main?type="+type);
+		}
 	}
 	
 	
