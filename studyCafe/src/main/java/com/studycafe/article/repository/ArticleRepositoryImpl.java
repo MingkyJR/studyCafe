@@ -108,6 +108,18 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 	}
 
 
+	@Override
+	public void addCnt(Article article) throws DataAccessException {
+		sqlSession.update("mapper.article.addCnt",article);		
+	}
+
+
+	@Override
+	public void subCnt(int a_no) throws DataAccessException {
+		sqlSession.update("mapper.article.subCnt",a_no);		
+	}
+
+
 
 
 	

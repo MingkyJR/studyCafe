@@ -8,6 +8,55 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-2.2.4.js" ></script>
+    <style>
+        .error {color:red;font-size:0.8em;}
+		table {
+	    width: 800px;
+/* 	    height: 600px; */
+	    margin-left: auto;
+	    margin-right: auto;
+	    border-radius: 5px;
+	 	}
+	 	th {
+	    text-align: center;
+/* 	    border: 1px solid #EFEFEF; */
+	    background: #C5CAD7;
+	   
+	 	}
+/* 	 	textarea{ width:98%; border:0; resize: none;} */
+	 	textarea{ width:97%;
+		  padding: 7px; 
+		  border:1px solid #CBCACA; 
+		  border-radius:5px; 
+		  resize: none;
+		 }
+	 	
+	 	
+	 	#wrb{
+	 	  color: white;
+		  text-align: center;
+		  background: #7C8EBF;
+		  border: solid 1px #191970;
+		  border-radius: 3px;
+	 	}
+	 	
+	 	#list{
+	 	  color: white;
+		  text-align: center;
+		  background: #7C8EBF;
+		  border: solid 1px #191970;
+		  border-radius: 3px;
+	 	}
+	 	#btn1{
+	 	  color: white;
+		  text-align: center;
+		  background: #7C8EBF;
+		  border: solid 1px #191970;
+		  border-radius: 3px;
+	 	}
+	 	
+	 	
+    </style>
 <script>
 
 	$(document).ready(function(){
@@ -19,29 +68,29 @@
 <title>스터디카페</title>
 </head>
 <body>
-${AUTHUSER }
-	<h2>게시글 작성</h2>
 	<form action="${cp}/article/addArticle">
 	<table border="1">
-		<tr>
-			<th>제목</th>
+		<tr style="height:60px;">
+			<th>아이디</th>
+			<td><input type="hidden" name="u_id" id="u_id" value="${AUTHUSER.u_id}"/>${AUTHUSER.u_id}</td>
 		</tr>
-		<tr>
-			<td><input type="text" name="a_title" id="a_title"  size="28" required="required"/></td>
-		</tr>
-		<tr>
-			<th>내용</th>
-		</tr>
-		<tr>
+		<tr style="height:60px;">
+			<th>제목<b style="color:red; font-weight: 500;">*</b></th>
 			<td>
-			<textarea name="a_content" id="a_content" rows="5" cols="30" required="required"></textarea>
- 			<input type="hidden" name="u_number" id="u_number" value="${AUTHUSER.u_number}" />
- 			<input type="hidden" name="u_id" id="u_id" value="${AUTHUSER.u_id}" />
+			<input type="text" name="a_title" id="a_title"  style="border:1px solid #CBCACA; width:480px; height:50px; border-radius:5px;" required="required" placeholder="제목을 입력하세요."/>
+			<span class="error"></span>
 			</td>
 		</tr>
 		<tr>
+			<th>내용<b style="color:red; font-weight: 500;">*</b></th>
 			<td>
-				<input type="submit" value="글쓰기" />
+			<textarea name="a_content" id="a_content" rows="20" cols="70" required="required" autofocus placeholder="내용을 입력하세요."></textarea>
+ 			<input type="hidden" name="u_number" id="u_number" value="${AUTHUSER.u_number}" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="text-align:center;">
+				<input type="submit" value="글쓰기" id="wrb"/>
 				<input type="button" id="btn1" value="목록으로" />
 			</td>
 			

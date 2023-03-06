@@ -34,5 +34,9 @@ public interface ArticleService {
 
 	public void deleteComment(int ac_no) throws Exception;
 
+	public void addCnt(Article article) throws Exception;
+
+	public void subCnt(int a_no) throws Exception;
+
 
 }

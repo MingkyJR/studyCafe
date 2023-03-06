@@ -36,7 +36,6 @@ public class ArticleController {
 		}
 		HttpSession session = request.getSession();
 		session.setAttribute("AUTHUSER", loginUser);
-		//model.addAttribute("AUTHUSER", loginUser);
 		return "forward:/article/articleList";
 	}
 	
@@ -61,8 +60,10 @@ public class ArticleController {
 	//특정글 상세조회
 	@GetMapping("/article/articleDetail")
 	public String articleDetail(Model model,@RequestParam("no") int no) throws Exception{
-		Article article = articleService.getArticleDetail(no);
+		Article article1 = articleService.getArticleDetail(no);
 		List<ArticleComment> articleCommemt = articleService.getCommentList(no);
+		articleService.addCnt(article1);
+		Article article = articleService.getArticleDetail(no);
 		model.addAttribute("article",article);
 		model.addAttribute("commemt",articleCommemt);
 		return "article/articleDetail";
@@ -114,6 +115,7 @@ public class ArticleController {
 		article.setA_content(a_content);
 		
 		articleService.modifyArticle(article);
+		articleService.subCnt(a_no);
 		return "redirect:/article/articleDetail?no="+a_no;
 	}
 	
@@ -127,6 +129,7 @@ public class ArticleController {
 	@GetMapping("/article/addComment")
 	public String addComment(ArticleComment articleComment) throws Exception{
 		articleService.addComment(articleComment);
+		articleService.subCnt(articleComment.getA_no());
 		return "redirect:/article/articleDetail?no="+articleComment.getA_no();
 	}
 	
@@ -143,12 +146,14 @@ public class ArticleController {
 	@GetMapping("/article/modiComment")
 	public String modiComment(Model model,ArticleComment articleComment) throws Exception{
 		articleService.modiComment(articleComment);
+		articleService.subCnt(articleComment.getA_no());
 		return "redirect:/article/articleDetail?no="+articleComment.getA_no();
 	}
 	
 	@GetMapping("/article/deleteComment")
 	public String deleteComment(Model model,int no,int ac_no) throws Exception {
 		articleService.deleteComment(ac_no);
+		articleService.subCnt(no);
 		return "redirect:/article/articleDetail?no="+no;
 		
 	}

@@ -43,4 +43,8 @@ public interface ArticleRepository {
 
 	public List<Article> getSearchTitleList(Page pageNo) throws DataAccessException;
 
+	public void addCnt(Article article) throws DataAccessException;
+
+	public void subCnt(int a_no) throws DataAccessException;
+
 }

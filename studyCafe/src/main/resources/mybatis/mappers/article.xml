@@ -103,4 +103,18 @@
 		where ac_no=#{ac_no}
 		]]>
 	</update>
+	<update id="addCnt" parameterType="article">
+		<![CDATA[
+		update article
+		set a_cnt=a_cnt +1
+		where a_no=#{a_no}
+		]]>
+	</update>
+	<update id="subCnt" parameterType="int">
+		<![CDATA[
+		update article
+		set a_cnt=a_cnt -1
+		where a_no=#{a_no}
+		]]>
+	</update>
 </mapper>

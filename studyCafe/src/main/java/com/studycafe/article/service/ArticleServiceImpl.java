@@ -85,6 +85,16 @@ public class ArticleServiceImpl implements ArticleService {
 		
 	}
 
+	@Override
+	public void addCnt(Article article) throws Exception{
+		articleRepository.addCnt(article);
+	}
+
+	@Override
+	public void subCnt(int a_no) throws Exception {
+		articleRepository.subCnt(a_no);
+	}
+
 
 
 

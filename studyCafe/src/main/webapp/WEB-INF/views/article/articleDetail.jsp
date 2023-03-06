@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="u" tagdir="/WEB-INF/tags" %>
 <c:set var="cp" value="<%=request.getContextPath() %>" />
 <!DOCTYPE html>
 <html>
@@ -68,7 +69,7 @@
 			
 		</tr>
 		<tr>
-			<th>내용</th><td colspan="5">${article.a_content}</td>
+			<th>내용</th><td colspan="5"><u:pre value="${article.a_content}"/></td>
 			<input type="hidden" id="a_no" name="a_no" value="${article.a_no}" />
 		</tr>
 		<tr>
@@ -99,7 +100,7 @@
 			</tr>
 			<c:forEach items="${commemt}" var="commemt">
 				<tr>
-					<td>${commemt.ac_content}</td>
+					<td><u:pre value="${commemt.ac_content}"/></td>
 					<td>${commemt.u_id}</td>
 					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${commemt.ac_modidate}" /></td>
 					<c:if test="${AUTHUSER.u_id eq commemt.u_id}">
