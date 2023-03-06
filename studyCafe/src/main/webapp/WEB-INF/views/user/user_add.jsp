@@ -3,24 +3,43 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-<title>Form Tag</title>
+<title>회원가입(등록)</title>
+<%@ include file="../include/user_header.jsp" %>
 </head>
-<body>
-http://localhost:8083/app/member/add
-	<h3>회원가입(addMember.jsp)</h3>
-	<form:form modelAttribute="NewMember" method="post"
-	           action="./add">
-		<p>아이디 : <form:input path="id"  name="id" /> 
-		<p>비밀번호 : <form:password path="passwd"/>
-		<p>이름 : <form:input path="name"/>
- 		<p>성별 : <form:radiobutton  path="gender"  value="남성"/>남성 
-				<form:radiobutton   path="gender"  value="여성"/>여성
-		<p>가입일 <form:input path="regdate" />
-		<p><input type="submit" value="가입하기"/> 
-			<input type="reset"  value="다시쓰기"/>
-	</form:form> 
-</body>
 
+<body>
+<%@ include file="../include/user_menu.jsp" %>
+	<h3>회원가입(user_add.jsp)</h3>
+	<form name="form1" method="post" action="${path}/user/user_insert.do">
+		<table border="1">
+			<tr>
+				<td>아이디</td>
+				<td><input name="id"></td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input name="pass"></td>
+			</tr>
+			<tr>
+				<td>이름</td>
+				<td><input name="name"></td>
+			</tr>
+			<tr>
+				<td>전화번호</td>
+				<td><input name="tell"></td>
+			</tr>
+			<tr>
+				<td>성별</td>
+				<td><input type="radio" name="gender"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" value="확인">
+					<input type="submit" value="취소">
+			</tr>
+		</table> 
+	</form>
+</body>
 <html>
 
 

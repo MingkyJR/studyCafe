@@ -27,7 +27,7 @@ import com.studycafe.userinfo.service.User_login_ServiceImpl;
 		//01 로그인화면
 		@RequestMapping("login.do")
 		public String login() {
-			return "user/login"; //view/user/login.jsp 
+			return "user/user_login"; //view/user/login.jsp 
 			//경로 : src->main->webapp->web-inf->views->user
 			
 		}
@@ -40,12 +40,12 @@ import com.studycafe.userinfo.service.User_login_ServiceImpl;
 			//로그인성공
 			if(result == true) { 
 				mav.setViewName("home");
-				mav.addObject("msg", "succes");
+				mav.addObject("msg", "success");
 			}
 			//로그인실패
 			else {
 				//login.jsp로 이동
-				mav.setViewName("user/login");
+				mav.setViewName("user/user_login");
 				mav.addObject("msg","failuer");
 			}
 			return mav; 

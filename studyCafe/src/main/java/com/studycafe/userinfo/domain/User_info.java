@@ -5,14 +5,15 @@ import java.util.Date;
 public class User_info {
 
 	//filed
-	private int u_number;
-	private String u_name;
-	private String u_id;
-	private String u_pass;
-	private int u_grade;
-	private String u_tell;
-	private String u_gender;
-	private Date u_credate;
+	private int u_number; //회원 번호
+	private String u_name; //이름
+	private String u_id; //아이디
+	private String u_pass; //비밀번호
+	private int u_grade;  //등급
+	private String u_tell; //전화번호
+	private String u_gender; //성별
+	private Date u_credate; //회원가입일
+	private Date u_upDate; //회원정보 수정일
 	
 	//construct
 	public User_info() {
@@ -92,13 +93,26 @@ public class User_info {
 	public void setU_credate(Date u_credate) {
 		this.u_credate = u_credate;
 	}
+	
+	//회원정보 수정일
+	public Date getU_upDate() {
+		return u_upDate;
+	}
+
+	public void setU_upDate(Date u_upDate) {
+		this.u_upDate = u_upDate;
+	}
 
 	@Override
 	public String toString() {
 		return "User_info [u_number=" + u_number + ", u_name=" + u_name + ", u_id=" + u_id + ", u_pass=" + u_pass
 				+ ", u_grade=" + u_grade + ", u_tell=" + u_tell + ", u_gender=" + u_gender + ", u_credate=" + u_credate
-				+ "]";
+				+ ", u_upDate=" + u_upDate + "]";
 	}
+
+	
+
+
 	
 	
 }

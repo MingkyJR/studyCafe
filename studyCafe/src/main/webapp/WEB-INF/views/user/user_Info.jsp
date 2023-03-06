@@ -11,13 +11,13 @@
   <hr/>
   ${member}
   <ul>
-   <li>id:${member.id}</li>
-   <li>passwd:${member.passwd}</li>
-   <li>name:${member.name}</li>
-   <li>gender:${member.gender}</li>
-   <li>regdate:${member.regdate}</li>
+   <li>id:${u.id}</li>
+   <li>password:${u_passwd}</li>
+   <li>name:${u_name}</li>
+   <li>gender:${u_gender}</li>
+   <li>credate:${u_credate}</li>
    </ul>
-   <span><a href="<%=request.getContextPath()%>/member/update?memberid=${member.id}">비번수정</a></span>
+   <span><a href="<%=request.getContextPath()%>/user/update?u_id=${u_id}">비번수정</a></span>
 </body>
 </html>
 

@@ -17,6 +17,7 @@ public class User_info_ServiceImpl implements User_info_Service {
 	
 
 	//회원등록처리	
+	@Override
 	public void setNewUser_info(User_info User_info) {
 		user_info_repository.setNewUser_info(User_info);
 	}

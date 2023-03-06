@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원정보 수정</title>
 </head>
 <body>
-  <h3>회원정보수정(ModiMemberForm.jsp)</h3>
-   수정하고자 하는 회원id=${memberid}<hr/>
+  <h3>회원정보수정(user_modify_Form.jsp)</h3>
+   수정하고자 하는 회원id=${u_id}<hr/>
 </body>
 </html>

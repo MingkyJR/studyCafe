@@ -265,6 +265,19 @@
                     <downloadJavadocs>true</downloadJavadocs>
                 </configuration>
             </plugin>
+            
+            <!-- war에러 잡는 코드 부분 -->
+               <plugin>
+                	<groupId>org.apache.maven.plugins</groupId>
+                	<artifactId>maven-war-plugin</artifactId>
+                	<version>2.4</version>
+                	<configuration>
+                		<warSourceDirectory>src/main/webapp</warSourceDirectory>
+						<warName>sample</warName>
+                		<failOnMissingWebXml>false</failOnMissingWebXml>
+                	</configuration>
+                </plugin><!-- war에러 잡는 코드 부분 여기까지-->
+                
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -275,6 +288,9 @@
                     <compilerArgument>-Xlint:all</compilerArgument>
                     <showWarnings>true</showWarnings>
                     <showDeprecation>true</showDeprecation>
+    		                <properties>
+    							<failOnMissingWebXml>false</failOnMissingWebXml>
+							</properties>
                 </configuration>
             </plugin>
             <plugin>
@@ -286,5 +302,6 @@
                 </configuration>
             </plugin>
         </plugins>
+      
     </build>
 </project>
