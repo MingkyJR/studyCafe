@@ -72,6 +72,7 @@ public class FoodController {
 		}
 	}
 	
+	//장바구니 수량 변경
 	@GetMapping("/food/changeQ")
 	public void changeQuantity(int pm, int food_no,int type, HttpServletResponse res) throws Exception {
 		int u_number = 1;

@@ -45,7 +45,7 @@
 	<c:set var="total" value="${total+cartList.food_price * cartList.quantity}"/>
 </c:forEach>
 </table>
-<button onclick="requestPayKG()">결제하기</button> 합계 :<c:out value="${total}"/>원
+<button onclick="requestPayKakao()">결제하기</button> 합계 :<c:out value="${total}"/>원
 </c:if>
 </div>
 </div>
@@ -58,9 +58,9 @@ function requestPayKG() {
     IMP.request_pay({ // param
         pg: "html5_inicis",
         pay_method: "card",
-        merchant_uid: "4",
+        merchant_uid: "USDK123123",
         name: "스터디카페 햇반",
-        amount: 1000,
+        amount: "${total}",
         buyer_email: "gildong@gmail.com",
         buyer_name: "홍길동",
         buyer_tel: "010-4242-4242",
@@ -70,7 +70,31 @@ function requestPayKG() {
         if (rsp.success) {
             // 결제 성공 시 로직
         	var msg = '결제가 완료되었습니다.';
-            location.href='/food/success';
+            location.href='scafe/food/success';
+        } else {
+            // 결제 실패 시 로직
+            
+        }
+    });
+  }
+function requestPayKakao() {
+    // IMP.request_pay(param, callback) 결제창 호출
+    IMP.request_pay({ // param
+        pg: "kakaopay",
+        pay_method: "card",
+        merchant_uid: "USDK177123",
+        name: "스터디카페 햇반",
+        amount: "${total}",
+        buyer_email: "gildong@gmail.com",
+        buyer_name: "홍길동",
+        buyer_tel: "010-4242-4242",
+        buyer_addr: "서울특별시 강남구 신사동",
+        buyer_postcode: "01181"
+    }, function (rsp) { // callback
+        if (rsp.success) {
+            // 결제 성공 시 로직
+        	var msg = '결제가 완료되었습니다.';
+            location.href='http://localhost:8081/scafe/food/success';
         } else {
             // 결제 실패 시 로직
             
