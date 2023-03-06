@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.studycafe.userinfo.domain.User_info;
-import com.studycafe.userinfo.service.User_info_Service2;
+import com.studycafe.userinfo.service.User_info_Service;
 
 @Controller
-public class User_Info_Controller2 {
+public class User_Info_Controller {
 		
-		private static final Logger logger = LoggerFactory.getLogger(User_info_Controller.class);
+		private static final Logger logger = LoggerFactory.getLogger(User_Info_Controller.class);
 	
 	@Inject
-	User_info_Service2 user_info_Service2;
+	User_info_Service user_info_Service2;
 	
 	//01 회원목록
 	@RequestMapping("user/user_list.do")
