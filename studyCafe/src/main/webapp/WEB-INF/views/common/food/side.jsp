@@ -32,9 +32,14 @@
 	</tr>
 	<tr>
 		<td>
-		<a href="${conPath}/food/changeQ?pm=0&food_no=${cartList.food_no}&type=${type}">
-		<img src="${conPath}/resources/assets/icon/food/dash-square.svg"/> <!-- -버튼 -->
-		</a>
+		<c:if test="${cartList.quantity == 1}">
+			<img src="${conPath}/resources/assets/icon/food/dash-square.svg"/> <!-- -버튼 -->
+		</c:if>
+		<c:if test="${cartList.quantity != 1}">
+			<a href="${conPath}/food/changeQ?pm=0&food_no=${cartList.food_no}&type=${type}">
+				<img src="${conPath}/resources/assets/icon/food/dash-square.svg"/> <!-- -버튼 -->
+			</a>
+		</c:if>
 		 ${cartList.quantity} 
 		<a href="${conPath}/food/changeQ?pm=1&food_no=${cartList.food_no}&type=${type}">
 		<img src="${conPath}/resources/assets/icon/food/plus-square.svg"/> <!-- +버튼 -->
