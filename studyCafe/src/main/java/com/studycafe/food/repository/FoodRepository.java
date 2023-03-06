@@ -18,6 +18,9 @@ public interface FoodRepository {
 	//장바구니 조회
 	public List<Cart> getCart(int u_number) throws DataAccessException;
 	
+	//장바구니 상품 존재하는지
+	public Cart existCart(Cart cart) throws DataAccessException;
+	
 	//장바구니에 상품 추가
 	public void addCart(Cart cart) throws DataAccessException;
 	

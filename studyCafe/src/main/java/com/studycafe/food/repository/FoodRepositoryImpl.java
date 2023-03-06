@@ -37,6 +37,12 @@ public class FoodRepositoryImpl implements FoodRepository{
 		return list;
 	}
 	
+	//장바구니 상품 존재하는지
+	public Cart existCart(Cart cart) throws DataAccessException {
+		Cart result = sqlSession.selectOne("mapper.food.existCart", cart);
+		return result;
+	}
+	
 	//장바구니에 상품 추가
 	@Override
 	public void addCart(Cart cart) throws DataAccessException {

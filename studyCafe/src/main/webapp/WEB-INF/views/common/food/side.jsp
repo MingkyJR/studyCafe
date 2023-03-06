@@ -58,7 +58,7 @@ function requestPayKG() {
     IMP.request_pay({ // param
         pg: "html5_inicis",
         pay_method: "card",
-        merchant_uid: "3",
+        merchant_uid: "4",
         name: "스터디카페 햇반",
         amount: 1000,
         buyer_email: "gildong@gmail.com",
@@ -69,8 +69,11 @@ function requestPayKG() {
     }, function (rsp) { // callback
         if (rsp.success) {
             // 결제 성공 시 로직
+        	var msg = '결제가 완료되었습니다.';
+            location.href='/food/success';
         } else {
             // 결제 실패 시 로직
+            
         }
     });
   }

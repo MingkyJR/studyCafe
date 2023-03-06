@@ -33,6 +33,12 @@ public class FoodServiceImpl implements FoodService {
 		return foodRepository.getCart(u_number);
 	}
 	
+	//장바구니 상품 존재하는지
+	@Override
+	public Cart existCart(Cart cart) throws Exception{
+		return foodRepository.existCart(cart);
+	}
+	
 	//장바구니에 상품 추가
 	@Override
 	public void addCart(Cart cart) throws Exception {

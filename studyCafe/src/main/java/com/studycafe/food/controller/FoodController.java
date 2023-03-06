@@ -1,5 +1,6 @@
 package com.studycafe.food.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.studycafe.food.domain.Cart;
@@ -50,11 +52,23 @@ public class FoodController {
 	public void addCart(int food_no,int type, HttpServletResponse res) throws Exception {
 		int u_number = 1;
 		Cart cart = new Cart(u_number, food_no);
-		foodService.addCart(cart);
-		if(type==0) {
-			res.sendRedirect("/scafe/food/main");
-		}else {
-			res.sendRedirect("/scafe/food/main?type="+type);
+		Cart check = foodService.existCart(cart);
+		if(check != null) {
+			res.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = res.getWriter();
+			if(type==0) {
+	            out.println("<script>alert('이미 주문 목록에 있습니다.'); location.href='/scafe/food/main';</script>");
+			}else {
+	            out.println("<script>alert('이미 주문 목록에 있습니다.'); location.href='/scafe/food/main?type="+type+"';</script>");
+			}
+			out.flush();
+		}else{
+			foodService.addCart(cart);
+			if(type==0) {
+				res.sendRedirect("/scafe/food/main");
+			}else {
+				res.sendRedirect("/scafe/food/main?type="+type);
+			}
 		}
 	}
 	
@@ -85,6 +99,11 @@ public class FoodController {
 		}else {
 			res.sendRedirect("/scafe/food/main?type="+type);
 		}
+	}
+	
+	@GetMapping("/food/success")
+	public String success() {
+		return "/food/success";
 	}
 	
 	

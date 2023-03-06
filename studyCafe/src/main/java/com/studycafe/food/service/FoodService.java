@@ -16,6 +16,9 @@ public interface FoodService {
 	//장바구니 조회
 	public List<Cart> getCart(int u_number) throws Exception;
 	
+	//장바구니 상품 존재하는지
+	public Cart existCart(Cart cart) throws Exception;
+	
 	//장바구니에 상품 추가
 	public void addCart(Cart cart) throws Exception;
 	
@@ -27,4 +30,5 @@ public interface FoodService {
 	
 	//장바구니 상품 삭제
 	public void deleteCart(Cart cart) throws Exception;
+	
 }

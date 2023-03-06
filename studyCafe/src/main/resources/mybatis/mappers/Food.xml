@@ -30,6 +30,15 @@
 	]]>
 	</select>
 	
+	<!-- 장바구니 물품 있는지 조회 -->
+	<select id="existCart" resultType="cart" parameterType="cart">
+	<![CDATA[
+		select *
+		from cart
+		where food_no = #{food_no} and u_number = #{u_number}
+	]]>
+	</select>
+	
 	<!-- 장바구니에 상품 추가 -->
 	<insert id="addCart" parameterType="cart">
 	<![CDATA[

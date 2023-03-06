@@ -21,6 +21,7 @@ div.product {
 	div.product img {
 		width: 100%;
 		height: 200px;
+		border-bottom: 1px solid #ccc;
 	}
 	
 	div.desc {
