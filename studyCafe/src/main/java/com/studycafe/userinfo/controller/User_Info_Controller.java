@@ -35,23 +35,23 @@ public class User_Info_Controller {
 	//02_01 회원등록페이로 이동
 	@RequestMapping("user/user_add.do")
 	public String user_add() {
-		
+
 		return "user/user_add";
 	}
 	
 	// 02_02 회원등록 처리 후 회원목록으로 리다이렉트
 	// ModelAttribute 폼에서 입력한 데이터 저장
 	@RequestMapping("user/user_insert.do")
-	public String user_insert(@ModelAttribute User_info user_info) {
+	public String user_insert(@ModelAttribute User_info user_vo) {
 		
-		user_info_Service2.User_insert(user_info);
+		user_info_Service2.User_insert(user_vo);
 		
 		return "redirect:/user/user_list.do";
 	}
 	
 	//03. 회원 상세정보 조회
-		@RequestMapping
-		public String User_view(String u_id, Model model) {
+		@RequestMapping("user/user_view.do")
+		public String User_view(@RequestParam String u_id, Model model) {
 			//회원정보 model에 저장
 			model.addAttribute("dto",user_info_Service2.User_view(u_id));
 			//클릭한 아이디 확인
@@ -82,7 +82,7 @@ public class User_Info_Controller {
 		
 	
 	//05. 회원정보 삭제처리
-	@RequestMapping
+	@RequestMapping("user/user_delete.do")
 	public String user_delete(@RequestParam String u_id, @RequestParam String u_pass, Model model ) {
 		//비밀번호 체크
 		boolean result = user_info_Service2.check_Pass(u_id, u_pass);

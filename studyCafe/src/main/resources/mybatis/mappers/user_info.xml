@@ -6,8 +6,6 @@
  	<!-- 로그인 및 회원가입관련 -->
  	<!-- 쿼리 들어가야됨 -->
  	
- 	<!-- ★★★회원가입 관련 -->
- 	
  	<!-- 01.회원목록 -->
  		<select id="user_list" resultType="com.studycafe.userinfo.domain.User_info">
  			<![CDATA[
@@ -26,7 +24,7 @@
 		</insert>
 	
 	<!-- 회원정보 상세조회(회원정보 불러오기) -->
-	<select id="user_list" resultType="com.studycafe.userinfo.domain.User_info">
+	<select id="user_view" resultType="com.studycafe.userinfo.domain.User_info">
  			<![CDATA[
  			SELECT u_number,u_name,u_id,u_pass,u_grade,u_tell,u_gender,u_credate
 			FROM user_info
@@ -76,8 +74,7 @@
 	
 	
 	
-	<!-- ★★★로그인 관련 --> 
-
+	<!-- 로그인 관련 -->
 	<select id="loginCheck" resultType="String">
 		 <![CDATA[	
 			SELECT u_name
