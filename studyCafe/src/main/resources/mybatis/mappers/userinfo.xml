@@ -80,8 +80,9 @@
 
 	<select id="loginCheck" resultType="String">
 		 <![CDATA[	
-			SELECT u_name AS user_name FROM user_info
-			WHERE u_id = #{user_id} AND u_pass = #{user_pass}
+			SELECT u_name
+			FROM user_info
+			WHERE u_id = #{u_id} AND u_pass = #{u_pass}
 			]]>
 	</select>
 	

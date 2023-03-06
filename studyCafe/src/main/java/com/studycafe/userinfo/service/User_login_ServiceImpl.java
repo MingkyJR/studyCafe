@@ -3,9 +3,12 @@ package com.studycafe.userinfo.service;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Service;
+
 import com.studycafe.userinfo.domain.User_info;
 import com.studycafe.userinfo.repository.User_login_repository;
 
+@Service
 public class User_login_ServiceImpl implements User_login_Service {
 
 	@Inject

@@ -70,5 +70,6 @@ from user_info;
 -- ¿˙¿Â
 commit;
 
-SELECT u_name AS user_name FROM user_info
-		WHERE u_id = #{userID} AND u_pass = #{userPw}
+SELECT u_name
+FROM user_info
+WHERE u_id = #{u_id} AND u_pass = #{u_pass};

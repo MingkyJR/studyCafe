@@ -5,10 +5,10 @@
 <html>
 <head>
 	<title>Home</title>
-<%@ include file="user/user_login.jsp" %> 		<!-- 수정필요 -->
+<%@ include file="include/user_header.jsp" %> 		<!-- 수정필요 -->
 </head>
 <body>
-<%@ include file="user/user_login_menu.jsp" %>		<!-- 수정필요 -->
+<%@ include file="include/user_login_menu.jsp" %>		<!-- 수정필요 -->
 		<c:if test="${msg == 'success'}">
 		<h2>${sessionScope.user_name}(${sessionScope.user_id})님 환영합니다.</h2>
 		</c:if>
