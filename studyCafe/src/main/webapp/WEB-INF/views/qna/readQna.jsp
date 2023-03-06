@@ -227,44 +227,44 @@
  </table>
  
  <%-- 댓글등록 ----------------------------------%>
- <form name = "frmInsReply" id="frmInsReply" 
- 		action="<%=request.getContextPath()%>/reply/writeReply.do" method="post">
- <input type="hidden" name="pageNo" id="pageNo" value="${pageNo}"/>
- <input type="hidden" name="oriNo" id="oriNo" value="${reboard.no}"/>
- <input type="hidden" name="writer" id="writer" value="${sessionScope.AUTHUSER.memberid}"/> 
- <table border="1">
-	 <tbody>
-		 <tr>
-			<th>댓글제목</th>
-			<td colspan="3">
-			<input type="text" name="qr_title" id="qr_title" onclick="loginChk()"/>
-			</td>
-		</tr>
+<!--  <form name = "frmInsReply" id="frmInsReply"  -->
+<%--  		action="<%=request.getContextPath()%>/reply/writeReply.do" method="post"> --%>
+<%--  <input type="hidden" name="pageNo" id="pageNo" value="${pageNo}"/> --%>
+<%--  <input type="hidden" name="oriNo" id="oriNo" value="${reboard.no}"/> --%>
+<%--  <input type="hidden" name="writer" id="writer" value="${sessionScope.AUTHUSER.memberid}"/>  --%>
+<!--  <table border="1"> -->
+<!-- 	 <tbody> -->
+<!-- 		 <tr> -->
+<!-- 			<th>댓글제목</th> -->
+<!-- 			<td colspan="3"> -->
+<!-- 			<input type="text" name="qr_title" id="qr_title" onclick="loginChk()"/> -->
+<!-- 			</td> -->
+<!-- 		</tr> -->
 			 
-		<tr>
-			<th>댓글내용</th>
-			<td colspan="3">
-			<textarea name="qr_content" id="qr_content" cols="50" rows="10" onclick="loginChk()" placeholder="타인을 배려하는 마음을 담아 댓글을 작성해주세요.&#10;내용에 따라 이용약관 및 관련 법률에 의해 임의 조치를 수행 할 수 있습니다."></textarea>
-			</td>
-		</tr>
+<!-- 		<tr> -->
+<!-- 			<th>댓글내용</th> -->
+<!-- 			<td colspan="3"> -->
+<!-- 			<textarea name="qr_content" id="qr_content" cols="50" rows="10" onclick="loginChk()" placeholder="타인을 배려하는 마음을 담아 댓글을 작성해주세요.&#10;내용에 따라 이용약관 및 관련 법률에 의해 임의 조치를 수행 할 수 있습니다."></textarea> -->
+<!-- 			</td> -->
+<!-- 		</tr> -->
 			 
-		<tr>
-			 <th>비밀번호</th>
-			 <td colspan="3">
-			 <input type="password" name="rPassword" id="rPassword" onclick="loginChk()"/>
-			 </td>
-		</tr>
+<!-- 		<tr> -->
+<!-- 			 <th>비밀번호</th> -->
+<!-- 			 <td colspan="3"> -->
+<!-- 			 <input type="password" name="rPassword" id="rPassword" onclick="loginChk()"/> -->
+<!-- 			 </td> -->
+<!-- 		</tr> -->
 
-		<tr>
-			 <td colspan="4" class="center">
-			 <button type="button" id="btnInsReply_ajax">댓글쓰기(ajax)</button>
-			 </td>
-		</tr>
+<!-- 		<tr> -->
+<!-- 			 <td colspan="4" class="center"> -->
+<!-- 			 <button type="button" id="btnInsReply_ajax">댓글쓰기(ajax)</button> -->
+<!-- 			 </td> -->
+<!-- 		</tr> -->
 
-	 </tbody>
- </table>
+<!-- 	 </tbody> -->
+<!--  </table> -->
  
- </form>
+<!--  </form> -->
  
  
  
