@@ -1,5 +1,8 @@
 package com.studycafe.qna.controller;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.studycafe.qna.domain.Page;
 import com.studycafe.qna.domain.Qna;
+import com.studycafe.qna.domain.QnaComment;
 import com.studycafe.qna.domain.QnaPage;
 import com.studycafe.qna.domain.SearchPage;
 import com.studycafe.qna.domain.User;
@@ -31,7 +35,8 @@ public class QnaController {
 //		values(1, '관리자', 'adminid', '1234', 5, '01042485278', '남' );
 //		insert into user_info(u_number, u_name, u_id, u_pass, u_grade, u_tell, u_gender)
 //		values(2, '홍길동', 'hongid', '1234', 1, '01088521142', '남' );
-		User authUser = new User(2, "테스트", "test", "1234", 1, "01044859948", "남" );
+		User authUser = new User(1, "관리자", "adminid", "1234", 1, "01044859948", "남" );
+		//User authUser = new User(2, "테스트", "test", "1234", 1, "01044859948", "남" );
 		//User authUser = new User(2, "홍길동", "hongid", "1234", 1, "01088521142", "남" );
 		request.getSession().setAttribute("AUTHUSER", authUser); //원래 여기에 없는 코드. 추후 취합 시에 삭제 필요
 		
@@ -93,7 +98,7 @@ public class QnaController {
 	}
 
 
-	//qna 게시글 상세 보기(조회)
+	//qna 게시글 상세 보기(조회)+답글 목록 조회
 	//private NoticeFile noticeFile = null;
 	@RequestMapping(value="/qna/read", method= {RequestMethod.GET, RequestMethod.POST})
 	public String qnaRead(Model model, HttpServletRequest request,int no) throws Exception {
@@ -133,10 +138,14 @@ public class QnaController {
 		
 		 Qna qna =  qnaService.getQnaDetail(no, true);
 		
+
+		 List<QnaComment> qnaComm = qnaService.selectReply(no);
+		System.out.println("qnaComm@@@@@@@@@@@@@@@@"+qna.getQ_no());
+		
 		 //3.Model(비즈니스로직 수행결과)처리
 		 //릴레이용 pageNo=요청페이지&rowSize=1페이지당 게시글수
 		 model.addAttribute("qna", qna);
-		 //model.addAttribute("qnaFile", qnaFile);
+		 model.addAttribute("qnaComm",qnaComm);
 		 model.addAttribute("pageNo", pageNo);
 		 model.addAttribute("rowSize", rowSize);
 
@@ -164,8 +173,6 @@ public class QnaController {
 			return "qna/writeForm";
 	}
 
-	
-	
 	//qna글쓰기 처리
 	@RequestMapping(value="/qna/write", method=RequestMethod.POST)
 	public String qnaWrite(HttpServletRequest request, Model model, Qna qna) throws Exception {
@@ -247,8 +254,6 @@ public class QnaController {
 	public String qnaDelete(HttpServletRequest request, Model model, 
 							@RequestParam("no") int no) throws Exception {
 		
-		//System.out.println("!!엔오!!"+no);
-		//System.out.println("!큐엔오!!!"+q_no);
 		qnaService.deleteQna(no);
 		return "redirect:/qna/list";
 	}
@@ -257,7 +262,59 @@ public class QnaController {
 	
 	
 	
+	@RequestMapping(value="/qna/writeReply", method=RequestMethod.POST)
+	public String qnaWriteReply(Model model, @RequestParam("oriNo") int orino,
+								HttpServletRequest request, QnaComment qnaComm) throws Exception{
+		String strRowSize = request.getParameter("rowSize");
+		int rowSize = 5;
+		if(strRowSize!=null) {
+			rowSize = Integer.parseInt(strRowSize);			
+		}
+		
+		String strPageNo = request.getParameter("pageNo");//보고싶은 페이지
+		int pageNo = 1;
+		if(strPageNo!=null) {
+			pageNo=Integer.parseInt(strPageNo);
+		}
+		qnaComm.setQr_orino(orino);
+		qnaService.writeReply(qnaComm);
+		
+		model.addAttribute("pageNo",pageNo);
+		model.addAttribute("rowSize",rowSize);	
+		return "redirect:/qna/read?no="+orino;
+		//return "redirect:/qna/selectReply";
+		//return "/qna/selectReply";
+	}
 	
+
+	@RequestMapping(value="/qna/modifyReply", method=RequestMethod.GET)
+	public String qnaSelectReply(Model model, HttpServletRequest request, QnaComment qnaComm,int q_no) throws Exception {
+		
+		String strRowSize = request.getParameter("rowSize");
+		int rowSize = 5;
+		if(strRowSize!=null) {
+			rowSize = Integer.parseInt(strRowSize);			
+		}
+		
+		String strPageNo = request.getParameter("pageNo");//보고싶은 페이지
+		int pageNo = 1;
+		if(strPageNo!=null) {
+			pageNo=Integer.parseInt(strPageNo);
+		}
+		
+//		String strOrino = request.getParameter("oriNo");
+//		int orino = Integer.parseInt(strOrino);
+		
+//		int orino = qnaComm.getQr_orino();
+		
+		qnaService.modifyReply(qnaComm);
+		
+		model.addAttribute("pageNo",pageNo);
+		model.addAttribute("rowSize",rowSize);	
+		
+		//return "redirect:/qna/read?no="+orino;
+		return "redirect:/qna/read?no="+q_no;
+	}
 	
 	
 	

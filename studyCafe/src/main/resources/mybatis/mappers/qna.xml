@@ -87,5 +87,27 @@
 		where q_no=#{no}
 	  ]]>
 	</update>
+	
+	<insert id="qnaWriteReply" parameterType="com.studycafe.qna.domain.QnaComment">
+	  <![CDATA[
+		insert into qna_comment (qr_no, qr_orino, qr_writer, qr_title, qr_content, qr_regdate, qr_isshow, qr_good, qr_bad)
+		values(qr_seq.NEXTVAL, #{qr_orino}, #{qr_writer}, #{qr_title}, #{qr_content}, sysdate, 'Y', 0, 0)
+	  ]]>
+	</insert>
+	
+	<select id="qnaSelectReply" resultType="com.studycafe.qna.domain.QnaComment" parameterType="java.lang.Integer">
+	  <![CDATA[
+		select qr_no, qr_orino, qr_writer, qr_title, qr_content, qr_regdate, qr_isshow, qr_good, qr_bad
+		from qna_comment where qr_orino=#{orino} and qr_isshow='Y'
+	  ]]>
+	</select>
+	
+	<update id="qnaModifyReply" parameterType="com.studycafe.qna.domain.QnaComment">
+	  <![CDATA[
+		update qna_comment
+		set qr_title=#{qr_title}, qr_content=#{qr_content}
+		where qr_isshow='Y' and qr_no=#{qr_no}
+	  ]]>
+	</update>
 
 </mapper>

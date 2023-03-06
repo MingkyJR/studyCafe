@@ -17,7 +17,7 @@
     
     <!-- Global Init -->
        <style>
-		table {
+		#main1 {
 	    width: 800px;
 	    height: 600px;
 	    margin-left: auto;
@@ -29,6 +29,25 @@
 	    background: #C5CAD7;
 	    width : 190px;
 	 	}
+	 	#rep1 {
+	 	
+	 	width: 780px;
+	 	margin-left: auto;
+	    margin-right: auto;
+	    }
+	 	#rep2 {
+	 	
+	 	width: 780px;
+	 	margin-left: auto;
+	    margin-right: auto;
+	    }
+	    #rep3 {
+	 	
+	 	width: 780px;
+	 	margin-left: auto;
+	    margin-right: auto;
+	    }
+	    
 	 	
 	 	.c {
 	    text-align: left;
@@ -66,7 +85,29 @@
 
         <script>
         	$(document).ready(function(){
+   		
+        		
+        		
+        	 	$(".btnReplyU").click(function(){
+        	 		let rNoVal=$(this).attr("param");//댓글번호
+        	 		//alert("댓글번호"+rNoVal);
 
+        	 		$("#frmModiReply"+rNoVal).show();
+        	 		//$("#frmModiReply"+rNoVal).toggle();
+        	 	});
+        	 	
+        	 	
+        	 	$(".btnModiC").click(function(){
+        	 		let rNoVal=$(this).attr("param");//댓글번호
+        	 		//alert("댓글번호"+rNoVal);
+
+        	 		$("#frmModiReply"+rNoVal).hide();
+        	 		//$("#frmModiReply"+rNoVal).toggle();
+        	 	});
+        		
+        		
+
+        		
         	});
         	
         	function mdAuthCheck(gr){
@@ -134,9 +175,30 @@
 <a href="<%=request.getContextPath()%>/qna/list">HOME</a>
 </p>
  <hr/>
+ 	<c:if test="${AUTHUSER.u_id=='adminid'}">
+	 	<form name="qnaChkFrm" id="qnaChkFrm" action="<%=request.getContextPath()%>/qna/list" method="post">
+		 	<table border="1" style="text-align:right; height:60px; margin-left:auto;">
+			 	<tr>
+			 		<th>답변 진행상태</th>
+						<td>
+							<select name = "q_chk" id = "q_chk" >
+								<option value="" disabled>선택</option>
+								<option value="1" <c:if test="${qna.q_chk == 1}">selected</c:if>>미답변</option>
+					         	<option value="2" <c:if test="${qna.q_chk == 2}">selected</c:if>>답변 준비중</option>
+					         	<option value="3" <c:if test="${qna.q_chk == 3}">selected</c:if>>답변 완료</option>
+					    	</select> 
+						<input type="submit" id="statBtn" value="상태저장"></button>
+						</td>
+			 	</tr>
+		 	</table>
+		 	
+		</form>
+ 	</c:if>
+
+
 
 <br/><br/>
- <table border="1" style="text-align:center;">
+ <table id="main1" border="1" style="text-align:center;">
 <!--  <table border="1"> -->
  	<tr style="height:50px;">
  		<th class="h">게시글 번호</th>
@@ -202,62 +264,133 @@
 		 
 		<%--pageNo=${pageNo}<br/> --%>
 
- 		
-
- 		
-<%--  		<a href="<%=request.getContextPath()%>/notice/list.do?pageNo=${pageNo}&rowSize=${rowSize}">목록보기</a> --%>
 		<button type="button" id="list" onclick="location.href='<%=request.getContextPath()%>/qna/list?pageNo=1&rowSize=5'">처음 목록보기</button>
  		<button type="button" id="list" onclick="location.href='<%=request.getContextPath()%>/qna/list?pageNo=${pageNo}&rowSize=${rowSize}';">이전 목록보기</button>
  		<%--수정과 삭제기능은 로그인한 유저의 id와 작성자의 id가 일치하는 경우에만 노출하도록 한다. --%>
- 		<%-- <c:if test="${AUTHUSER.memberid==noticeData.notice.writer.writer_id}"> --%>
  		<c:if test="${AUTHUSER.u_id==qna.q_writer}">
-<%--  		<a href="<%=request.getContextPath()%>/notice/modify.do?no=${noticeData.notice.number}&pageNo=${pageNo}&rowSize=${rowSize}">게시글 수정</a> --%>
-<%--  		<button type="button" id="mod" onclick="mdAuthCheck(${AUTHUSER.u_grade});">게시글 수정</button> --%>
  		<button type="button" id="mod" onclick="location.href='<%=request.getContextPath()%>/qna/modifyForm?no=${qna.q_no}&pageNo=${pageNo}&rowSize=${rowSize}';">게시글 수정</button>
-<%--  		<a href="<%=request.getContextPath()%>/notice/delete.do?no=${noticeData.notice.number}">글삭제(delete용)</a> --%>
-<%--  		<button type="button" id="del" onclick="rmAuthCheck(${AUTHUSER.u_grade});">게시글 삭제</button> --%>
-<%--  		<button type="button" onclick="rmAuthCheck(${AUTHUSER.grade});">게시글 삭제(delete)</button> --%>
-<%--  		</c:if> --%>
-<%--  		<a href="<%=request.getContextPath()%>/notice/delete2.do?no=${noticeData.notice.number}">글삭제(update용)</a> --%>
-<%--  		<button type="button" id="del" onclick="location.href='<%=request.getContextPath()%>/qna/delete?no=${qna.q_no}'">게시글 삭제</button> --%>
 		<button type="button" id="del" onclick="deleteConfirm()">게시글 삭제</button>
  		</c:if>
  		</td>
  	</tr>
  </table>
+ <br/>
+ <br/>
+  <%-- c:if이용 댓글이 없는 경우 --%>
+ <c:if test="${empty qnaComm}">
+ <table class=t1" style="text-align:center; margin-left: auto; margin-right: auto;">
+  <tbody>
+   <tr>
+	 <td colspan="4" class="center">
+	     <Strong>등록된 답글이 없습니다.</Strong>
+	 </td>
+   </tr>
+  </tbody>
+ </table>
+ </c:if>
  
- <%-- 댓글등록 ----------------------------------%>
- <form name = "frmInsReply" id="frmInsReply" 
- 		action="<%=request.getContextPath()%>/reply/writeReply.do" method="post">
- <input type="hidden" name="pageNo" id="pageNo" value="${pageNo}"/>
- <input type="hidden" name="oriNo" id="oriNo" value="${reboard.no}"/>
- <input type="hidden" name="writer" id="writer" value="${sessionScope.AUTHUSER.memberid}"/> 
- <table border="1">
+ <%-- c:if이용 댓글이 있는 경우 c:forEach이용 반복출력 --%>
+ <%-- 등록한 답글 목록 보기 --%>
+  <c:if test="${not empty qnaComm}">
+ 	<c:forEach var="reply" items="${qnaComm}">			 
+ 	  <table border="1" id="rep2">
 	 <tbody>
-		 <tr>
-			<th>댓글제목</th>
-			<td colspan="3">
-			<input type="text" name="qr_title" id="qr_title" onclick="loginChk()"/>
-			</td>
+<!-- 		<tr style="height:50px;"> -->
+<%-- 			 <th>답글 작성자</th><td>${reply.qr_writer}</td> --%>
+<%-- 			 <th>답글 작성일</th><td>${reply.qr_regdate}</td> --%>
+<!-- 		</tr> -->
+			 
+		<tr style="height:30px;">
+			 <th>답글 제목</th> <td colspan="3">${reply.qr_title}</td>
+			 <td rowspan="2" style="width:180px;"><Strong>답글 작성자</Strong><br/>${reply.qr_writer}<br/><br/><Strong>답글 작성일</Strong><br/>${reply.qr_regdate}</td>
+		</tr>
+			 
+		<tr style="height:80px;">
+			 <th>답글 내용</th>
+			 <td colspan="3" ><u:pre value="${reply.qr_content}"/></td>
 		</tr>
 			 
 		<tr>
-			<th>댓글내용</th>
-			<td colspan="3">
-			<textarea name="qr_content" id="qr_content" cols="50" rows="10" onclick="loginChk()" placeholder="타인을 배려하는 마음을 담아 댓글을 작성해주세요.&#10;내용에 따라 이용약관 및 관련 법률에 의해 임의 조치를 수행 할 수 있습니다."></textarea>
-			</td>
-		</tr>
-			 
-		<tr>
-			 <th>비밀번호</th>
-			 <td colspan="3">
-			 <input type="password" name="rPassword" id="rPassword" onclick="loginChk()"/>
+			 <td colspan="5" class="center" style="text-align:center;">
+			 	<button type="button" id="btnReplyUpdate${reply.qr_no}" class="btnReplyU" id="btnReplyUpdate${reply.qr_no}" param="${reply.qr_no}">답글수정</button>
+			 	<button type="button" id="btnReplyDelete${reply.qr_no}" class="btnReplyD" id="btnReplyDelete${reply.qr_no}" param="${reply.qr_no}">답글삭제</button>
+
 			 </td>
+		 </tr>
+	 </tbody>
+ </table><br/>
+ <%-------------------답글 수정 폼 -------------------------------------%>
+<%-- forEach 반복문을 돌리기 때문에 id가 유니크 하려면 id 뒤에 ${reply.no}를 꼭 붙여 줘야한다. 각각의 댓글에 해당하는 id처럼  --%>
+ <form name = "frmModiReply" id="frmModiReply${reply.qr_no}" 
+ 		action="<%=request.getContextPath()%>/reply/modifyReply" method="post"
+ 		style ="display:none;">
+ <input type="hidden" name="pageNo" id="pageNo${reply.qr_no}" value="${pageNo}"/>
+ <input type="hidden" name="oriNo" id="oriNo${reply.qr_no}" value="${qna.q_no}"/>
+ <input type="hidden" name="rNo" id="rNo${reply.qr_no}" value="${reply.qr_no}"/> 
+ <table id="rep3" border="1">
+	 <tbody>
+		 <tr style="height:30px;">
+			<th>답글제목</th>
+			<td colspan="3">
+			<input type="text" name="qr_title" id="qr_title${reply.qr_no}" onclick="loginChk()" style="width:619px; height:30px;" value="${reply.qr_title}"/>
+			</td>
+		</tr>
+			 
+		<tr style="height:150px;">
+			<th>답글내용</th>
+			<td colspan="3">
+			<textarea name="qr_content" id="qr_content${reply.qr_no}" cols="90" rows="10" onclick="loginChk()" placeholder="타인을 배려하는 마음을 담아 댓글을 작성해주세요.&#10;내용에 따라 이용약관 및 관련 법률에 의해 임의 조치를 수행 할 수 있습니다.">${reply.qr_content}</textarea>
+			</td>
 		</tr>
 
 		<tr>
-			 <td colspan="4" class="center">
-			 <button type="button" id="btnInsReply_ajax">댓글쓰기(ajax)</button>
+			 <td colspan="4" class="center" style="text-align:center;">
+			 <button type="button" id="btnModiReply${reply.qr_no}" class="btnModiR" param="${reply.qr_no}" 
+			 	onclick="location.href='<%=request.getContextPath()%>/qna/modifyReply?q_no=${qna.q_no}';">댓글수정(처리)하기</button>
+			 <button type="button" id="btnModiCancel${reply.qr_no}" class="btnModiC" param="${reply.qr_no}">댓글수정취소</button>
+			 </td>
+		</tr>
+	 </tbody>
+ 	</table><%-- 답글상세 테이블 끝 --%>
+ 	</form>
+ <br/>
+ 	</c:forEach>
+ </c:if>
+ 
+ <br/><br/>
+ 
+ 
+ 
+ <%---------------------------- 답글등록 폼 ----------------------------------%>
+<c:if test="${AUTHUSER.u_id=='adminid'}">
+ <form name = "frmInsReply" id="frmInsReply" 
+ 		action="<%=request.getContextPath()%>/qna/writeReply" method="post">
+ <input type="hidden" name="pageNo" id="pageNo" value="${pageNo}"/>
+ <input type="hidden" name="oriNo" id="oriNo" value="${qna.q_no}"/>
+ <input type="hidden" name="qr_writer" id="qr_writer" value="${sessionScope.AUTHUSER.u_id}"/> 
+ <table id=rep1 border="1">
+	 <tbody>
+<!-- 		<tr> -->
+<%-- 			<th>답글 작성자</th><td colspan="3">${sessionScope.AUTHUSER.u_id}</td> --%>
+<!-- 		</tr> -->
+		 <tr style="height:25px;">
+			<th>답글 제목</th>
+			<td colspan="4">
+			<input type="text" name="qr_title" id="qr_title" style="width:619px; height:30px;" required="required" placeholder="답변 제목을 입력해주세요."/>
+			</td>
+		</tr>
+			 
+		<tr style="height:150px;">
+			<th>답글 내용</th>
+			<td colspan="4">
+			<textarea name="qr_content" id="qr_content" cols="90" rows="10" required="required" style="resize: none;" placeholder="답변 내용을 입력해주세요.">
+			</textarea>
+			</td>
+		</tr>
+
+		<tr style="height:30px;">
+			 <td colspan="5" class="center" style="text-align:center;">
+			 <button type="submit" id="btnInsReply_ajax">답글쓰기</button>
 			 </td>
 		</tr>
 
@@ -266,66 +399,9 @@
  
  </form>
  
+ </c:if>
  
- 
-<!--  <table> -->
-<!--     <tr> -->
-<!--         <th colspan="2">댓글 목록</th> -->
-<!--     </tr> -->
-<%--     <c:choose> --%>
-<%--         <c:when test="${message != null }"> --%>
-<!--             <tr> -->
-<%--                 <td>${message }</td> --%>
-<!--             </tr> -->
-<%--         </c:when> --%>
-<%--         <c:otherwise> --%>
-<%--             <c:forEach var="list" items="${list }"> --%>
-<!--                 <tr> -->
-<%--                     <td><font size="1.5"><b>${list.cid }</b> --%>
-<%--                         ${list.ctime } --%>
-<%--                         <c:if test = "${sessionId.id == list.cid }"> --%>
-<!--                             <b> -->
-<%--                                 <a href="javascript:open_win('BoardServlet?command=comment_edit_delete&cnum=${list.cnum }','noname')">[수정/삭제]</a> --%>
-<!--                             </b> -->
-<%--                         </c:if> --%>
-<!--                         </font> -->
-<!--                         <br> -->
-<%--                             ${list.ccontent } --%>
-<!--                     </td> -->
-<!--                 </tr> -->
-<%--             </c:forEach> --%>
-<%--         </c:otherwise> --%>
-<%--     </c:choose> --%>
-<!-- </table> -->
 
-
-
-<%-- <form action = "BoardServlet" method = "post" name = "check">
-<input type = "hidden" name = "command" value = "comment_write">
-<input type = "hidden" name = "pnum" value = "${param.num }">
-<table>
-    <tr>
-        <th>댓글</th>
-        <td><textarea rows="3" cols="40" name = "c_content"></textarea></td>
-    
-        <td><input type = "submit" value = "댓글달기" onclick = "return com_check()"></td>
-    </tr>
-</table>
-</form>
- 
-<c:forEach var="i" begin = "1" end ="${totalCount }" step="1">
-    <a href="BoardServlet?command=board_view&num=${param.num }&page=${i}">[${i}]</a>
-</c:forEach>
- 
-<br><br>
-<input type = "button" value = "목록" onclick = "location.href='BoardServlet?command=board_list'">
-<c:if test = "${sessionId.id == sVo.mid }">
-<input type = "button" value = "수정" onclick = "open_win('BoardServlet?command=board_pass&num=${sVo.num}','update')">
-<input type = "button" value = "삭제" onclick = "open_win('BoardServlet?command=board_pass&num=${sVo.num}','delete')">
-<input type = "button" value = "답글" onclick = "open_win('BoardServlet?command=board_reply_form&num=${sVo.num}','reply')">
-</c:if> --%>
- 
- 
  
 
 </body>

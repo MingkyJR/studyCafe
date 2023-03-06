@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.studycafe.qna.domain.Page;
 import com.studycafe.qna.domain.Qna;
+import com.studycafe.qna.domain.QnaComment;
 import com.studycafe.qna.domain.QnaFile;
 import com.studycafe.qna.domain.SearchPage;
 
@@ -78,6 +79,21 @@ public class QnaRepositoryImpl implements QnaRepository {
 	@Override
 	public void deleteQna(int no) throws DataAccessException {
 		sqlSession.update("mapper.qna.qnaDelete", no);
-		
+	}
+
+	@Override
+	public void writeReply(QnaComment qnaComm) throws DataAccessException {
+		sqlSession.insert("mapper.qna.qnaWriteReply", qnaComm);
+	}
+
+	@Override
+	public List<QnaComment> selectReply(int orino) throws DataAccessException {
+		List<QnaComment> qnaComm = sqlSession.selectList("mapper.qna.qnaSelectReply", orino);
+		return qnaComm;
+	}
+
+	@Override
+	public void modifyReply(QnaComment qnaComm) throws DataAccessException {
+		sqlSession.update("mapper.qna.qnaModifyReply", qnaComm);
 	}
 }

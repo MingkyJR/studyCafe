@@ -1,7 +1,10 @@
 package com.studycafe.qna.service;
 
+import java.util.List;
+
 import com.studycafe.qna.domain.Page;
 import com.studycafe.qna.domain.Qna;
+import com.studycafe.qna.domain.QnaComment;
 import com.studycafe.qna.domain.QnaPage;
 import com.studycafe.qna.domain.SearchPage;
 
@@ -20,6 +23,12 @@ public interface QnaService {
 	public void modifyQna(Qna qna) throws Exception;
 
 	public void deleteQna(int no) throws Exception;
+
+	public void writeReply(QnaComment qnaComm) throws Exception;
+
+	public List<QnaComment> selectReply(int orino) throws Exception;
+
+	public void modifyReply(QnaComment qnaComm) throws Exception;
 	
 	
 

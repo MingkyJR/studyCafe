@@ -146,7 +146,7 @@
 
 </head>
 <body>
-
+${AUTHUSER.u_id}
 <%-- 컨트롤러에 의해서 아래와 같이 Model을 받았다   23.01.13. 받는 모델을 변경!!!!! listNotice에서 NoticePage로
 List<Notice> listNotice=~~~~;
  request.setAttribute("listNotice", listNotice); 
@@ -261,7 +261,7 @@ ${noticePage.content} <hr/><hr/><hr/> --%>
  	<tr>
  		<td>${item.q_no}</td>
  		<td>${item.q_writer}</td>
- 		<td><a href="<%=request.getContextPath()%>/qna/read.do?no=${item.q_no}&pageNo=${qnaPage.currentPage}&rowSize=${rowSize}">${item.q_title}</a></td>
+ 		<td><a href="<%=request.getContextPath()%>/qna/read?no=${item.q_no}&pageNo=${qnaPage.currentPage}&rowSize=${rowSize}">${item.q_title}</a></td>
  		<td><fmt:formatDate pattern="yyyy.MM.dd. HH:mm:ss" type="date" value="${item.q_regdate}" /></td>
  		<td><fmt:formatDate pattern="yyyy.MM.dd. HH:mm:ss" type="date" value="${item.q_moddate}" /></td>
  		<td>${item.q_cnt}</td>

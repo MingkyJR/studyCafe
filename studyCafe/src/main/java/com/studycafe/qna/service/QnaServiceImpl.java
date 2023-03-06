@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.studycafe.qna.domain.Page;
 import com.studycafe.qna.domain.Qna;
+import com.studycafe.qna.domain.QnaComment;
 import com.studycafe.qna.domain.QnaPage;
 import com.studycafe.qna.domain.SearchPage;
 import com.studycafe.qna.repository.QnaRepository;
@@ -63,6 +64,24 @@ public class QnaServiceImpl implements QnaService {
 		@Override
 		public void deleteQna(int no) throws Exception {
 			qnaRepository.deleteQna(no);
+		}
+
+		@Override
+		public void writeReply(QnaComment qnaComm) throws Exception {
+			qnaRepository.writeReply(qnaComm);
+			
+		}
+
+		@Override
+		public List<QnaComment> selectReply(int orino) throws Exception {
+			List<QnaComment> qnaComm = qnaRepository.selectReply(orino);
+			return qnaComm;
+		}
+
+		@Override
+		public void modifyReply(QnaComment qnaComm) throws Exception {
+			qnaRepository.modifyReply(qnaComm);
+			
 		}
 		
 		

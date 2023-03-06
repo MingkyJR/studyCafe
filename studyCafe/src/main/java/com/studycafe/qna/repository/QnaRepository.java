@@ -6,6 +6,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.studycafe.qna.domain.Page;
 import com.studycafe.qna.domain.Qna;
+import com.studycafe.qna.domain.QnaComment;
 import com.studycafe.qna.domain.QnaFile;
 import com.studycafe.qna.domain.SearchPage;
 
@@ -31,5 +32,11 @@ public interface QnaRepository {
 	public void modifyQna(Qna qna) throws DataAccessException;
 	
 	public void deleteQna(int no) throws DataAccessException;
+	
+	public void writeReply(QnaComment qnaComm) throws DataAccessException;
+
+	public List<QnaComment> selectReply(int orino) throws DataAccessException;
+
+	public void modifyReply(QnaComment qnaComm) throws DataAccessException;
 	
 }
