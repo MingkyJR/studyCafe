@@ -81,6 +81,13 @@
 		  border: solid 1px #191970;
 		  border-radius: 3px;
 	 	}
+	 	#sumbit{
+	 	  color: white;
+		  text-align: center;
+		  background: #7C8EBF;
+		  border: solid 1px #191970;
+		  border-radius: 3px;
+	 	}
 		
 		#list{
 	 	  color: white;
@@ -175,11 +182,10 @@
      </c:if> 
    </div>
 	
-
+	<br/>
 	<form method="get" action="${cp}/article/searchTitle" style="text-align:center;">
-		*제목검색
 		<input type="text" id="searchTitle" name="searchTitle" />
-		<input type="submit" value="찾기" />
+		<input type="submit" value="제목검색" id="sumbit"/>
 	</form>
 
 </body>

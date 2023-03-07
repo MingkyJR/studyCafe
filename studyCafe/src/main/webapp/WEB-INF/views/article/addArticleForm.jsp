@@ -68,6 +68,7 @@
 <title>스터디카페</title>
 </head>
 <body>
+<br/>
 	<form action="${cp}/article/addArticle">
 	<table border="1">
 		<tr style="height:60px;">
@@ -88,14 +89,13 @@
  			<input type="hidden" name="u_number" id="u_number" value="${AUTHUSER.u_number}" />
 			</td>
 		</tr>
-		<tr>
-			<td colspan="2" style="text-align:center;">
-				<input type="submit" value="글쓰기" id="wrb"/>
-				<input type="button" id="btn1" value="목록으로" />
-			</td>
-			
-		</tr>
 	</table>
+	<br/>
+		<div style="text-align:center;">
+			<input type="submit" value="글쓰기" id="wrb"/>
+			<input type="button" id="btn1" value="목록으로" />
+		</div>
+			
 	</form>
 </body>
 </html>

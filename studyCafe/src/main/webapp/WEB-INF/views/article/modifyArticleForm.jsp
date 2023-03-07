@@ -69,6 +69,22 @@
 		  border-radius: 3px;
 	 	}
 	 	
+	 	
+	 	#btn1{
+	 	  color: white;
+		  text-align: center;
+		  background: #7C8EBF;
+		  border: solid 1px #191970;
+		  border-radius: 3px;
+	 	}
+	 	#btn2{
+	 	  color: white;
+		  text-align: center;
+		  background: #7C8EBF;
+		  border: solid 1px #191970;
+		  border-radius: 3px;
+	 	}
+	 	
  	 	#t1{ 
  	 	height:30px; 
  	 	} 
@@ -109,11 +125,6 @@
 
 	$(document).ready(function(){
 		
-		$("#btn1").click(function(){
-			if(confirm("수정하시겠습니까?") === true) {
-				alert("수정하였습니다.")
-		    }
-		});
 		$("#btn2").click(function(){
 				location.href='${cp}/article/articleDetail?no=${article.a_no}';
 		});
@@ -123,6 +134,7 @@
 <title>스터디카페</title>
 </head>
 <body>
+<br/>
 	<form action="${cp}/article/modifyArticle">
 	<table border="1">
 		<tr id="t1" style="height:50px;">
@@ -149,14 +161,12 @@
 	 		<textarea name="a_content" id="a_content" rows="20" cols="60" placeholder="내용을 입력하세요." autofocus required="required">${article.a_content}</textarea>
 	 		</td>
  		</tr>
-		<tr style="height:50px;">
-			<td colspan="2" style="text-align:center;">
-				<input type="submit" value="수정하기" id="btn1" />
-				<input type="button" id="btn2" value="돌아가기" />
-			</td>
-			
-		</tr>
 	</table>
+		<br/>
+		<div style="text-align:center;">
+			<input type="submit" value="수정하기" id="btn1" />
+			<input type="button" id="btn2" value="돌아가기" />
+		</div>
 	</form>
 </body>
 </html>
