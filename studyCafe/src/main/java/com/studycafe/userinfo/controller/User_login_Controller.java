@@ -14,7 +14,7 @@ import com.studycafe.userinfo.service.User_login_Service;
 	
 //로그인관련 controller
 	@Controller //현재 클래스를 스프링에서 관리하는 컨트롤러 bean생성
-	@RequestMapping("/user/*") //모든 맵핑은 /user를 상속
+	@RequestMapping("/user/") //모든 맵핑은 /user를 상속
 	public class User_login_Controller {
 	
 		@Inject
