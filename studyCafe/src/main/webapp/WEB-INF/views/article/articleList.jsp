@@ -127,10 +127,11 @@
 <title>스터디카페</title>
 </head>
 <body>
-	<h2>공지사항 리스트(articleList.jsp)</h2>
+	<h2 style="text-align:center;">공지사항</h2>
 	<div>
-		<input type="button" value="글쓰기" id="wri" name="btn1" />
+		<input type="button" value="글쓰기" id="wri" name="btn1" style="margin-left:1100px;" />
 	</div>
+	<br/>
 	<table class="t1" border="1" style="table-layout: fixed;">
 		<tr>
 			<th id="nu">번호</th>
@@ -153,9 +154,10 @@
 			<td>${article.a_cnt}</td>
 		</tr>
 	</c:forEach>
+	</table>
+	<br/>
 	 <%-- paging출력 부분 --%>
-   <tr>
-  	<td colspan="5" style="text-align:center;">
+	 <div style="text-align:center;">
      <%-- JSTL if조건문: 이전출력 --%>
      <c:if test="${articlePage.startPage>5}">
        <a href="${cp}/article/articleList?pageNo=${articlePage.startPage-5}">prev</a>
@@ -171,11 +173,10 @@
      <c:if test="${articlePage.endPage<articlePage.totalPages}">
        <a href="${cp}/article/articleList?pageNo=${articlePage.startPage+5}">next</a>
      </c:if> 
-   </td>
-   </tr>
-	</table>
+   </div>
+	
 
-	<form method="get" action="${cp}/article/searchTitle" >
+	<form method="get" action="${cp}/article/searchTitle" style="text-align:center;">
 		*제목검색
 		<input type="text" id="searchTitle" name="searchTitle" />
 		<input type="submit" value="찾기" />

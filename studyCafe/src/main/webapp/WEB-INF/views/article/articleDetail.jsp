@@ -9,6 +9,50 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-2.2.4.js" ></script>
+       <style>
+		#t1 {
+	    width: 800px;
+	    height: 600px;
+	    margin-left: auto;
+	    margin-right: auto;
+	 	}
+	 	th {
+	    text-align: center;
+/* 	    border: 1px solid #EFEFEF; */
+	    background: #C5CAD7;
+	    width : 190px;
+	 	}
+	 	
+	 	.c {
+	    text-align: left;
+/* 	    border: 1px solid #EFEFEF; */
+/* 	    background: #C5CAD7 */
+		padding-left : 5px; 
+	 	}
+	 	
+	 	
+	 	#list{
+	 	  color: white;
+		  text-align: center;
+		  background: #7C8EBF;
+		  border: solid 1px #191970;
+		  border-radius: 3px;
+	 	}
+	 	#mod{
+	 	  color: white;
+		  text-align: center;
+		  background: #7C8EBF;
+		  border: solid 1px #191970;
+		  border-radius: 3px;
+	 	}
+	 	#del{
+	 	  color: white;
+		  text-align: center;
+		  background: #7C8EBF;
+		  border: solid 1px #191970;
+		  border-radius: 3px;
+	 	}
+        </style>
 <script>
 
 	$(document).ready(function(){
@@ -46,55 +90,63 @@
 <title>스터디카페</title>
 </head>
 <body>
-	<h2>articleDetail</h2>
-	${AUTHUSER }
-	<table border="1">
-		<tr>
-			<th>제목</th><td colspan="5">${article.a_title}</td>
+ <table border="1" style="text-align:center;" id="t1">
+		<tr tr style="height:50px;">
+			<th class="h">글 번호</th>
+			<td class="c">${article.a_no}</td>
 		</tr>
-		<tr>
-			<th>작성아이디</th><td>${article.u_id}</td>
-			<c:if test="${article.a_regdate eq article.a_modidate}">
-			<th>작성일</th>
-			<td><fmt:formatDate pattern="yyyy년 MM월 dd일 HH:mm:ss" value="${article.a_regdate}" /></td>
-			</c:if>
-			<c:if test="${article.a_regdate ne article.a_modidate}">
-			<th>수정일</th>
-			<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${article.a_modidate}" /></td>
-			</c:if>
-			<th>조회수</th><td>${article.a_cnt}</td>
+		<tr tr style="height:50px;">
+			<th class="h">아이디</th>
+			<td class="c">${article.u_id}</td>
 		</tr>
-
-		<tr>
-			
+		<c:if test="${article.a_regdate eq article.a_modidate}">
+		<tr tr style="height:50px;">
+			<th class="h">최초 작성일</th>
+			<td class="c"><fmt:formatDate pattern="yyyy년 MM월 dd일 HH:mm:ss" value="${article.a_regdate}" /></td>
 		</tr>
-		<tr>
-			<th>내용</th><td colspan="5"><u:pre value="${article.a_content}"/></td>
-			<input type="hidden" id="a_no" name="a_no" value="${article.a_no}" />
+		</c:if>
+		<c:if test="${article.a_regdate ne article.a_modidate}">
+		<tr tr style="height:50px;">
+			<th class="h">마지막 수정일</th>
+			<td class="c"><fmt:formatDate pattern="yyyy년 MM월 dd일 HH:mm:ss" value="${article.a_modidate}" /></td>
 		</tr>
-		<tr>
-			<td colspan="6" >
+		</c:if>
+		<tr tr style="height:50px;">
+			<th class="h">조회수</th>
+			<td class="c">${article.a_cnt}</td>
+		</tr>
+		<tr tr style="height:50px;">
+			<th class="h">제목</th>
+			<td class="c">${article.a_title}</td>
+		</tr>
+		<tr tr style="height:50px;">
+			<th class="h">내용</th>
+			<td class="c" style="white-space: pre-wrap;"><u:pre value="${article.a_content}"/>
+		</tr>
+	</table>
+	<br/>
+		<div style="text-align:center;">
 				<c:if test="${AUTHUSER.u_number eq article.u_number }">
 				<input type="button" id="btn1" value="수정"/>
 				<input type="button" id="btn2" value="삭제"/>
 				</c:if>
 				<input type="button" id="btn3" value="목록보기"/>
-			</td>
-		</tr>
-	</table>
+		</div>
 	<br/><br/><br/>
 	<form action="${cp}/article/addComment">
-	
-		<textarea name="ac_content" id="ac_content" rows="5" cols="30" required="required"></textarea> 
+	<div style="text-align:center;">
+		<textarea name="ac_content" id="ac_content" rows="5" cols="90" required="required"></textarea> 
+	</div>
 		<input type="hidden" id="a_no" name="a_no" value="${article.a_no}" />
 		<input type="hidden" id="u_number" name="u_number" value="${AUTHUSER.u_number}" />
 		<input type="hidden" id="u_id" name="u_id" value="${AUTHUSER.u_id}" />
 		<br/>
-		<input type="submit" value="댓글등록"/>
+		<input type="submit" value="댓글등록" style="margin-left:900px;"/>
 	</form>
-		<table border="1">
+	<br/>
+	<br/>
+		<table border="1" style="text-align:center;" id="t2">
 		<c:if test="${not empty commemt }">
-		${AUTHUSER.u_id }
 			<tr>
 				<th>내용</th><th>작성자아이디</th><th>날짜</th><th>수정</th><th>삭제</th>		
 			</tr>

@@ -37,7 +37,9 @@ a_modidate  date            constraint nn_article_modidate null,
 a_cnt       number(5)       constraint nn_article_cnt null,         
 a_isshow    varchar2(1)     constraint nn_article_isshow null,       
 u_number    number,
-CONSTRAINT fk_article_number foreign key(u_number) references user_info(u_number)
+u_id varchar2(50),
+CONSTRAINT fk_article_number foreign key(u_number) references user_info(u_number),
+CONSTRAINT fk_article_id foreign key(u_id) references user_info(u_id)
 );
 
 
