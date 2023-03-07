@@ -35,9 +35,9 @@ public class QnaController {
 //		values(1, '관리자', 'adminid', '1234', 5, '01042485278', '남' );
 //		insert into user_info(u_number, u_name, u_id, u_pass, u_grade, u_tell, u_gender)
 //		values(2, '홍길동', 'hongid', '1234', 1, '01088521142', '남' );
-		User authUser = new User(1, "관리자", "adminid", "1234", 1, "01044859948", "남" );
-		//User authUser = new User(2, "테스트", "test", "1234", 1, "01044859948", "남" );
-		//User authUser = new User(2, "홍길동", "hongid", "1234", 1, "01088521142", "남" );
+//		User authUser = new User(1, "관리자", "adminid", "1234", 1, "01044859948", "남" );
+//		User authUser = new User(2, "테스트", "test", "1234", 1, "01044859948", "남" );
+		User authUser = new User(2, "홍길동", "hongid", "1234", 1, "01088521142", "남" );
 		request.getSession().setAttribute("AUTHUSER", authUser); //원래 여기에 없는 코드. 추후 취합 시에 삭제 필요
 		
 		
@@ -140,7 +140,7 @@ public class QnaController {
 		
 
 		 List<QnaComment> qnaComm = qnaService.selectReply(no);
-		System.out.println("qnaComm@@@@@@@@@@@@@@@@"+qna.getQ_no());
+		System.out.println("qnaComm@@@@@@@@@@@@@@@@"+qnaComm);
 		
 		 //3.Model(비즈니스로직 수행결과)처리
 		 //릴레이용 pageNo=요청페이지&rowSize=1페이지당 게시글수
@@ -187,7 +187,13 @@ public class QnaController {
 		if(strPageNo!=null) {
 			pageNo=Integer.parseInt(strPageNo);
 		}
-		qnaService.addQnaWrite(qna);
+
+		if(qna.getQ_isopen()!=null) {
+			qnaService.qnaWriteWithPw(qna);
+		}else {
+			qnaService.addQnaWrite(qna);
+		}
+		
 
 		//model.addAttribute("newNoticeNo", newNoticeNo); 
 		model.addAttribute("rowSize", rowSize);
@@ -287,8 +293,8 @@ public class QnaController {
 	}
 	
 
-	@RequestMapping(value="/qna/modifyReply", method=RequestMethod.GET)
-	public String qnaSelectReply(Model model, HttpServletRequest request, QnaComment qnaComm,int q_no) throws Exception {
+	@RequestMapping(value="/qna/modifyReply", method=RequestMethod.POST)
+	public String qnaSelectReply(Model model, HttpServletRequest request, QnaComment qnaComm,@RequestParam("qr_orino") int orino, int qr_no) throws Exception {
 		
 		String strRowSize = request.getParameter("rowSize");
 		int rowSize = 5;
@@ -307,14 +313,88 @@ public class QnaController {
 		
 //		int orino = qnaComm.getQr_orino();
 		
+		System.out.println("orino******************************"+orino);
+		System.out.println("@#@#@#"+qnaComm);
+	
+		
 		qnaService.modifyReply(qnaComm);
 		
 		model.addAttribute("pageNo",pageNo);
 		model.addAttribute("rowSize",rowSize);	
 		
 		//return "redirect:/qna/read?no="+orino;
+		return "redirect:/qna/read?no="+orino;
+	}
+	
+	
+	@RequestMapping(value="/qna/deleteReply", method=RequestMethod.GET)
+	public String qnaDeleteReply(Model model, HttpServletRequest request, @RequestParam("qr_orino") int orino, int qr_no) throws Exception {
+		String strRowSize = request.getParameter("rowSize");
+		int rowSize = 5;
+		if(strRowSize!=null) {
+			rowSize = Integer.parseInt(strRowSize);			
+		}
+		
+		String strPageNo = request.getParameter("pageNo");//보고싶은 페이지
+		int pageNo = 1;
+		if(strPageNo!=null) {
+			pageNo=Integer.parseInt(strPageNo);
+		}
+		qnaService.DeleteReply(qr_no);
+		
+		model.addAttribute("pageNo",pageNo);
+		model.addAttribute("rowSize",rowSize);	
+		
+		
+		return "redirect:/qna/read?no="+orino;
+	}
+	
+	@RequestMapping(value="/qna/qnaStatus", method=RequestMethod.POST)
+	public String qnaReplyStatus(Model model, HttpServletRequest request,Qna qna, int q_no) throws Exception {
+		
+		qnaService.updateQnaStatus(qna);
+		
 		return "redirect:/qna/read?no="+q_no;
 	}
+	
+	
+	@RequestMapping(value="/qna/getReadwithpw", method= {RequestMethod.GET, RequestMethod.POST})
+	public String getReadwithpw(Model model, HttpServletRequest request,int no) throws Exception {
+		System.out.println("ReadNoticeHandler의 Process()호출성공");
+		
+	     System.out.println("@!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!@"+no);
+	     
+
+		 Qna qna =  qnaService.getQnaDetail(no, true);
+		
+	     System.out.println("@!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!@"+qna);
+
+				
+		 //3.Model(비즈니스로직 수행결과)처리
+		 //릴레이용 pageNo=요청페이지&rowSize=1페이지당 게시글수
+		 model.addAttribute("qna", qna);
+	
+		 //4.View지정
+		 return "qna/checkpw";
+	 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

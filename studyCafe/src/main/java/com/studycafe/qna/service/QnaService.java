@@ -29,9 +29,12 @@ public interface QnaService {
 	public List<QnaComment> selectReply(int orino) throws Exception;
 
 	public void modifyReply(QnaComment qnaComm) throws Exception;
-	
-	
 
+	void DeleteReply(int qr_no) throws Exception;
+
+	void updateQnaStatus(Qna qna) throws Exception;
+
+	void qnaWriteWithPw(Qna qna) throws Exception;
 	
 	
 }

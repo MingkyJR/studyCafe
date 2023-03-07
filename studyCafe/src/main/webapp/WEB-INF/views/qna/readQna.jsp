@@ -104,9 +104,7 @@
         	 		$("#frmModiReply"+rNoVal).hide();
         	 		//$("#frmModiReply"+rNoVal).toggle();
         	 	});
-        		
-        		
-
+    
         		
         	});
         	
@@ -153,7 +151,24 @@
        	        	location.href='<%=request.getContextPath()%>/qna/read?no=${qna.q_no}&pageNo=${pageNo}&rowSize=${rowSize}';
 
        	        }
-       	}
+       		}
+        	
+        	
+        	
+        	function deleteReplyConfirm(){
+         		 if (confirm("답글 삭제를 진행하시겠습니까?")) {
+         	            alert("답글 삭제가 완료되었습니다.");
+         	           $("#frmDelReply").submit();
+<%--          				location.href='<%=request.getContextPath()%>/qna/deleteReply?qr_no=&qr_orino=q_no'; --%>
+         	        } else {
+         	            alert("답글 삭제가 취소되었습니다.");
+         	        	location.href='<%=request.getContextPath()%>/qna/read?no=${qna.q_no}&pageNo=${pageNo}&rowSize=${rowSize}';
+
+         	        }
+          	}
+        	
+
+     
         	
 
         </script>
@@ -176,7 +191,9 @@
 </p>
  <hr/>
  	<c:if test="${AUTHUSER.u_id=='adminid'}">
-	 	<form name="qnaChkFrm" id="qnaChkFrm" action="<%=request.getContextPath()%>/qna/list" method="post">
+	 	<form name="qnaChkFrm" id="qnaChkFrm" action="<%=request.getContextPath()%>/qna/qnaStatus" method="post">
+	 	 <input type="hidden" name="q_no" id="q_no" value="${qna.q_no}"/>
+	 	
 		 	<table border="1" style="text-align:right; height:60px; margin-left:auto;">
 			 	<tr>
 			 		<th>답변 진행상태</th>
@@ -292,7 +309,13 @@
  <%-- c:if이용 댓글이 있는 경우 c:forEach이용 반복출력 --%>
  <%-- 등록한 답글 목록 보기 --%>
   <c:if test="${not empty qnaComm}">
- 	<c:forEach var="reply" items="${qnaComm}">			 
+ 	<c:forEach var="reply" items="${qnaComm}">		
+ 
+ <form name = "frmDelReply" id="frmDelReply" 
+ 		action="<%=request.getContextPath()%>/qna/deleteReply" method="Get">	
+ <input type="hidden" name="pageNo" id="pageNo${reply.qr_no}" value="${pageNo}"/>
+ <input type="hidden" name="qr_orino" id="qr_orino${reply.qr_no}" value="${qna.q_no}"/>
+ <input type="hidden" name="qr_no" id="qr_no${reply.qr_no}" value="${reply.qr_no}"/>
  	  <table border="1" id="rep2">
 	 <tbody>
 <!-- 		<tr style="height:50px;"> -->
@@ -302,7 +325,7 @@
 			 
 		<tr style="height:30px;">
 			 <th>답글 제목</th> <td colspan="3">${reply.qr_title}</td>
-			 <td rowspan="2" style="width:180px;"><Strong>답글 작성자</Strong><br/>${reply.qr_writer}<br/><br/><Strong>답글 작성일</Strong><br/>${reply.qr_regdate}</td>
+			 <td rowspan="2" style="width:180px;"><Strong>답글 작성자</Strong><br/>${reply.qr_writer}<br/><br/><Strong>답글 작성(수정)일</Strong><br/><fmt:formatDate pattern="yyyy.MM.dd. HH:mm:ss" type="date" value="${reply.qr_regdate}" /></td>
 		</tr>
 			 
 		<tr style="height:80px;">
@@ -312,21 +335,25 @@
 			 
 		<tr>
 			 <td colspan="5" class="center" style="text-align:center;">
-			 	<button type="button" id="btnReplyUpdate${reply.qr_no}" class="btnReplyU" id="btnReplyUpdate${reply.qr_no}" param="${reply.qr_no}">답글수정</button>
-			 	<button type="button" id="btnReplyDelete${reply.qr_no}" class="btnReplyD" id="btnReplyDelete${reply.qr_no}" param="${reply.qr_no}">답글삭제</button>
-
+			 	<button type="button" id="btnReplyUpdate${reply.qr_no}" class="btnReplyU" id="btnReplyUpdate${reply.qr_no}" param="${reply.qr_no}">답글수정 폼 보기</button>
+<%-- 			 	<button type="button" id="btnReplyDelete${reply.qr_no}" class="btnReplyD" id="btnReplyDelete${reply.qr_no}" param="${reply.qr_no}" onclick="location.href='<%=request.getContextPath()%>/qna/deleteReply?qr_no=${reply.qr_no}&qr_orino=${qna.q_no}';">답글삭제</button> --%>
+				<button type="button" id="btnReplyDelete${reply.qr_no}" class="btnReplyD" id="btnReplyDelete${reply.qr_no}" onclick="deleteReplyConfirm();">답글 삭제</button>
+<%-- onclick="deleteReplyConfirm(${reply.qr_no}, ${qna.q_no});  함수에 파라미터 2개 담아서 넘기기 형식--%>
 			 </td>
 		 </tr>
 	 </tbody>
- </table><br/>
+ </table>
+ </form>
+ <br/>
  <%-------------------답글 수정 폼 --------------------------- -------------%>
 <%-- forEach 반복문을 돌리기 때문에 id가 유니크 하려면 id 뒤에 ${reply.no}를 꼭 붙여 줘야한다. 각각의 댓글에 해당하는 id처럼  --%>
  <form name = "frmModiReply" id="frmModiReply${reply.qr_no}" 
- 		action="<%=request.getContextPath()%>/reply/modifyReply" method="post"
+ 		action="<%=request.getContextPath()%>/qna/modifyReply" method="post"
  		style ="display:none;">
  <input type="hidden" name="pageNo" id="pageNo${reply.qr_no}" value="${pageNo}"/>
- <input type="hidden" name="oriNo" id="oriNo${reply.qr_no}" value="${qna.q_no}"/>
- <input type="hidden" name="rNo" id="rNo${reply.qr_no}" value="${reply.qr_no}"/> 
+ <input type="hidden" name="qr_orino" id="qr_orino${reply.qr_no}" value="${qna.q_no}"/>
+ <input type="hidden" name="qr_no" id="qr_no${reply.qr_no}" value="${reply.qr_no}"/> 
+ 
  <table id="rep3" border="1">
 	 <tbody>
 		 <tr style="height:30px;">
@@ -345,8 +372,9 @@
 
 		<tr>
 			 <td colspan="4" class="center" style="text-align:center;">
-			 <button type="button" id="btnModiReply${reply.qr_no}" class="btnModiR" param="${reply.qr_no}" 
-			 	onclick="location.href='<%=request.getContextPath()%>/qna/modifyReply?q_no=${qna.q_no}';">댓글수정(처리)하기</button>
+<%-- 			 <button type="button" id="btnModiReply${reply.qr_no}" class="btnModiR" param="${reply.qr_no}"  --%>
+<%-- 			 	onclick="location.href='<%=request.getContextPath()%>/qna/modifyReply?q_no=${qna.q_no}';">답글 수정(처리)하기</button> --%>
+			 <input type="submit" id="btnModiReply${reply.qr_no}" class="btnModiR" param="${reply.qr_no}" value="답글 수정 하기"/>
 			 <button type="button" id="btnModiCancel${reply.qr_no}" class="btnModiC" param="${reply.qr_no}">댓글수정취소</button>
 			 </td>
 		</tr>
@@ -383,8 +411,7 @@
 		<tr style="height:150px;">
 			<th>답글 내용</th>
 			<td colspan="4">
-			<textarea name="qr_content" id="qr_content" cols="90" rows="10" required="required" style="resize: none;" placeholder="답변 내용을 입력해주세요.">
-			</textarea>
+			<textarea name="qr_content" id="qr_content" cols="90" rows="10" required="required" style="resize: none;" placeholder="답변 내용을 입력해주세요."></textarea>
 			</td>
 		</tr>
 

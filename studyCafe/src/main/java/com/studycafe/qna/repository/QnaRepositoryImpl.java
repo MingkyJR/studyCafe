@@ -70,6 +70,11 @@ public class QnaRepositoryImpl implements QnaRepository {
 	public void addQnaWrite(Qna qna) throws DataAccessException {
 		sqlSession.insert("mapper.qna.qnaWrite", qna);
 	}
+	
+	@Override
+	public void qnaWriteWithPw(Qna qna) throws DataAccessException {
+		sqlSession.insert("mapper.qna.qnaWriteWithPw", qna);
+	}
 
 	@Override
 	public void modifyQna(Qna qna) throws DataAccessException {
@@ -94,6 +99,17 @@ public class QnaRepositoryImpl implements QnaRepository {
 
 	@Override
 	public void modifyReply(QnaComment qnaComm) throws DataAccessException {
+		System.out.println("이겁니다"+qnaComm);
 		sqlSession.update("mapper.qna.qnaModifyReply", qnaComm);
 	}
+	
+	@Override
+	public void DeleteReply(int qr_no) throws DataAccessException {
+		sqlSession.update("mapper.qna.qnaDeleteReply", qr_no);
+	}
+	
+	public void updateQnaStatus(Qna qna) throws DataAccessException {
+		sqlSession.update("mapper.qna.updateQnaStatus", qna);
+	}
+
 }

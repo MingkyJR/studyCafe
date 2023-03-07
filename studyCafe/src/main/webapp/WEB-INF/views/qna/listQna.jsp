@@ -138,9 +138,40 @@
 	          }
  	          
 	    	}
+    	    
+    	    function name() {
+				
+			}
         
         </script>
     
+    <script type="text/javascript">
+    function getpw(pwpw) {
+    	   
+    	   var xmlhttp = new XMLHttpRequest();
+
+    	   //서버에서 응답 후 처리 로직.
+    	      xmlhttp.onreadystatechange = function(){
+    	      if(xmlhttp.readyState==4 && xmlhttp.status==200){
+    	         //alert("테스트");
+    	         //alert(xmlhttp.responseText);
+    	         var data = JSON.parse(xmlhttp.responseText);
+    	       	         
+    	        
+    	      }
+    	   };
+    	      
+    	      //get 방식으로 파라미터 보내는법...
+    	      xmlhttp.open("get" , "/qna/getReadpw?no="+pwpw); 
+    	      xmlhttp.send();
+    	   }
+    
+    function checkpassword(no) {
+    	var passwd = prompt('패스워드를 입력하세요');
+    		getpw(no);
+	}
+    
+    </script>
     
     
 
@@ -218,7 +249,7 @@ ${noticePage.content} <hr/><hr/><hr/> --%>
  			<th id="rd">작성일</th>
  			<th id="md">최종수정일</th>
  			<th id="ct">조회수</th>
- 			<th id="ca">비밀글</th>
+ 			<th id="ca">공개여부</th>
  			<th id="as">상태</th>
 <!--  			<th id="rf">첨부<br/>파일</th> -->
  		</tr>
@@ -261,12 +292,27 @@ ${noticePage.content} <hr/><hr/><hr/> --%>
  	<tr>
  		<td>${item.q_no}</td>
  		<td>${item.q_writer}</td>
- 		<td><a href="<%=request.getContextPath()%>/qna/read?no=${item.q_no}&pageNo=${qnaPage.currentPage}&rowSize=${rowSize}">${item.q_title}</a></td>
+ 		
+ 	<c:if test="${AUTHUSER.u_id =='adminid'}">
+ 		<td><a href="<%=request.getContextPath()%>/qna/read?no=${item.q_no}&pageNo=${qnaPage.currentPage}&rowSize=${rowSize}">${item.q_title}</a></td> 
+ 	</c:if>	
+ 	<c:if test="${AUTHUSER.u_id !='adminid'}">
+ 			<c:if test="${item.q_isopen=='Y'}">
+ 		 		<td><a href="<%=request.getContextPath()%>/qna/read?no=${item.q_no}&pageNo=${qnaPage.currentPage}&rowSize=${rowSize}">${item.q_title}</a></td>
+ 			</c:if>
+ 			<c:if test="${item.q_isopen=='N'}">
+ 		 		<td><a href="<%=request.getContextPath()%>/qna/getReadwithpw?no=${item.q_no}&pageNo=${qnaPage.currentPage}&rowSize=${rowSize}">${item.q_title}</a></td>  
+ 			</c:if>
+ 	</c:if>
+  		
+
  		<td><fmt:formatDate pattern="yyyy.MM.dd. HH:mm:ss" type="date" value="${item.q_regdate}" /></td>
  		<td><fmt:formatDate pattern="yyyy.MM.dd. HH:mm:ss" type="date" value="${item.q_moddate}" /></td>
  		<td>${item.q_cnt}</td>
  		<td>${item.q_isopen}</td>
- 		<td>${item.q_chk}</td>
+ 		<td><c:if test="${item.q_chk==1}">미답변</c:if>
+ 		<c:if test="${item.q_chk==2}">답변 준비중</c:if>
+ 		<c:if test="${item.q_chk==3}">답변 완료</c:if></td>
 <!--  		<td> -->
 <%--  		<c:forEach var="item2" items="${qnaFile}"> --%>
 <%-- 	 		<c:if test="${item2.q_no==item.q_no}"> --%>

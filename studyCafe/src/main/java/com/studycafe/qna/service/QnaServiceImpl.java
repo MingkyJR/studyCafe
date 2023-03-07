@@ -52,10 +52,16 @@ public class QnaServiceImpl implements QnaService {
 			return qna;
 		}
 		
+		@Override
 		public void addQnaWrite(Qna qna) {
 			qnaRepository.addQnaWrite(qna);
 		}
 
+		@Override
+		public void qnaWriteWithPw(Qna qna) throws Exception {
+			qnaRepository.qnaWriteWithPw(qna);			
+		}
+			
 		@Override
 		public void modifyQna(Qna qna) throws Exception {
 			qnaRepository.modifyQna(qna);
@@ -84,8 +90,17 @@ public class QnaServiceImpl implements QnaService {
 			
 		}
 		
+		@Override
+		public void DeleteReply(int qr_no) throws Exception{
+			qnaRepository.DeleteReply(qr_no);
+		}
 		
-		
+		@Override
+		public void updateQnaStatus(Qna qna) throws Exception{
+			qnaRepository.updateQnaStatus(qna);
+		}
+
+			
 }
 
 

@@ -39,4 +39,10 @@ public interface QnaRepository {
 
 	public void modifyReply(QnaComment qnaComm) throws DataAccessException;
 	
+	public void DeleteReply(int qr_no) throws DataAccessException;
+	
+	public void updateQnaStatus(Qna qna) throws DataAccessException;
+
+	void qnaWriteWithPw(Qna qna) throws DataAccessException;
+	
 }

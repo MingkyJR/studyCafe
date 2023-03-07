@@ -52,14 +52,70 @@
 	 	
     </style>
 	<script>
-        	function wrformSubmit(){
-        		$("#writeFrm").submit();
-        		alert("글 작성을 완료하였습니다.");
+//         	function wrformSubmit(){
+//         		$("#writeFrm").submit();
+//         		alert("글 작성을 완료하였습니다.");
 
-        	};
+//         	};
+            	
+        	  
+//         		$(function(){
+//         	        $(".q_isopen").click(function() {
+//         	            if ($("input[name=q_isopen]").is(":checked")) {
+//         	                $("#q_openpw").show();
+// //         	                $("#q_openpw").onblur="checkpw()"
+//         	            } else {
+//         	                $("#q_openpw").hide();
+//         	            }
+//         	        })
+        	 
+//         	    });	
+        	
+       	
+        	
+    	 	
+    	 	
 
-	</script>
+        	</script>
+		<script type="text/javascript">
+// 			function checkpw(){
+// 				var pw = document.getElementById("q_openpw").value;
+// 				if(pw.length==0){
+// 					alert("패스워드를 입력해주세요");
+// 				}
+// 			}
+			
+			function deletepw() {
+				  const element = document.getElementById('qna_pw');
+				  element.innerText = '';
+				} 
+			
+			function createpw(){
+				const element = document.getElementById('qna_pw');
+				 element.innerHTML ='<input type="password" id="q_openpw" name="q_openpw" required>';
+			}
 
+				
+			
+			document.addEventListener('DOMContentLoaded', function() {
+			    var checkboxes = document.querySelectorAll('input[type=checkbox][name=q_isopen]');
+			    for (var checkbox of checkboxes)
+			    {
+			        checkbox.addEventListener('change', function(event)
+			        {
+			            if (event.target.checked) {
+		                	createpw();
+			            }
+			            else {
+			            	deletepw();
+			            }
+			        });
+			    }
+			}, false);
+			
+			
+					
+			</script>
 </head>
 <body>
 
@@ -85,8 +141,7 @@
 
 <!--  <form name="writeFrm" id= "writeFrm" -->
 <%--  		method="post" action="<%=request.getContextPath()%>/notice/write.do"> --%>
- <form name="writeFrm" id= "writeFrm"
- 		method="post" action="<%=request.getContextPath()%>/qna/write">
+ <form name="writeFrm" id= "writeFrm" method="post" action="<%=request.getContextPath()%>/qna/write">
  <input type="hidden" id="rowSize" name="rowSize" value="${rowSize}"/>
  <input type="hidden" id="pageNo" name="pageNo" value="${pageNo}"/>
  <input type="hidden" name="u_number" id="u_number" value="${AUTHUSER.u_number}" />
@@ -104,7 +159,7 @@
  	 <tr style="height:60px;">
  		<th>제목<b style="color:red; font-weight: 500;">*</b></th>
  		<td><%-- ${noticeData.notice.title} --%>
- 		<input type="text" name="q_title" id="q_title" style="border:1px solid #CBCACA; width:480px; height:50px; border-radius:5px;" required="required" placeholder="제목을 입력하세요."/>
+ 		<input type="text" name="q_title" id="q_title" style="border:1px solid #CBCACA; width:480px; height:50px; border-radius:5px;" required placeholder="제목을 입력하세요."/>
  		<span class="error"></span>
  		</td>
  	</tr>
@@ -112,24 +167,26 @@
  	 <tr>
  		<th>내용<b style="color:red; font-weight: 500;">*</b></th>
  		<td>
- 		<textarea name="q_content" id="q_content" rows="20" cols="70" required="required" autofocus placeholder="내용을 입력하세요."></textarea>
+ 		<textarea name="q_content" id="q_content" rows="20" cols="70" required autofocus placeholder="내용을 입력하세요."></textarea>
  		
  		</td>
  	</tr>
 
-<!--  	<tr> -->
-<!--  		<th>첨부파일</th> -->
-<!--  		<td> -->
-<!-- 	    <input type="file" name="uploadFile"><br/><br/> -->
+ 	<tr>
+ 	
+ 		<th>비밀글 <input type="checkbox" class="q_isopen" name="q_isopen" id="q_isopen" value="y"></th>
+ 		<td>
+ 		<div id="qna_pw"></div>
+<!-- 	   	<input type="password" name="q_openpw" id="q_openpw"> -->	
+ 		</td>
  		
-<!--  		</td> -->
-<!--  	</tr> -->
+ 	</tr>
  	
  	
  	 <tr>
  		<td colspan="2" style="text-align:center;">
-<!--  		<input type="submit" id="wrb" value="글쓰기"/> -->
- 		<button type="button" id="wrb" onclick="wrformSubmit()">글쓰기</button>
+ 		<input type="submit" id="wrb" value="글쓰기"/>
+<!--  		<button type="button" id="wrb" onclick="wrformSubmit()">글쓰기</button> -->
  		</td>
  	</tr>
  	
@@ -137,7 +194,7 @@
  		<td colspan="2" style="text-align:center;">
 <%--  		<a href="<%=request.getContextPath()%>/notice/list.do?pageNo=1&rowSize=${rowSize}">목록보기</a> --%>
  		<button type="button" id="list" onclick="location.href='<%=request.getContextPath()%>/qna/list?pageNo=1&rowSize=5'">처음 목록보기</button>
- 		<button type="button" id="list" onclick="location.href='<%=request.getContextPath()%>/qna/list?pageNo=${pageNo}&rowSize=${rowSize}'">이전 목록보기</button>
+ 		<button type="button" id="list2" onclick="location.href='<%=request.getContextPath()%>/qna/list?pageNo=${pageNo}&rowSize=${rowSize}'">이전 목록보기</button>
 <%--  		<button type="button" id="list" onclick="location.href='<%=request.getContextPath()%>/notice/list.do?pageNo=${pageNo}&rowSize=${rowSize}'">목록보기</button> --%>
 <%--  		<a href="/notice/read.do?no=글번호&pageNo=1&rowSize=${rowSize}">글 상세조회(모델보면서 보완예정)</a> --%>
 <!--  		<a href="/notice/delete.do?no=글번호">글삭제(delete용)</a> -->
@@ -172,7 +229,7 @@ action="<%=request.getContextPath()%>/notice/write.do">
 
 
 <%-- <script src="${pageContext.request.contextPath}/resources/common/js/ckeditor.js"></script> --%>
-<script src="${pageContext.request.contextPath}/js/ckeditor.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/js/ckeditor.js"></script> --%>
 
 
 </body>

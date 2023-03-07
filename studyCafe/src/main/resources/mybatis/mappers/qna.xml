@@ -72,6 +72,13 @@
 	  ]]>
 	</insert>
 	
+	<insert id="qnaWriteWithPw" parameterType="com.studycafe.qna.domain.Qna">
+	  <![CDATA[
+		insert into qna_board (q_no, q_writer, q_title, q_content, q_regdate, q_moddate, q_cnt, q_isopen, q_openpw, q_isshow, q_chk, u_number)
+		values(qna_seq.NEXTVAL, #{q_writer}, #{q_title}, #{q_content}, sysdate, sysdate, 0, 'N', #{q_openpw}, 'Y', 1, #{u_number})
+	  ]]>
+	</insert>
+	
 	<update id="qnaModify" parameterType="com.studycafe.qna.domain.Qna">
 	  <![CDATA[
 		update qna_board
@@ -107,7 +114,14 @@
 		update qna_comment
 		set qr_title=#{qr_title}, qr_content=#{qr_content}
 		where qr_isshow='Y' and qr_no=#{qr_no}
-	  ]]>
+	  ]]>	 
 	</update>
-
+	
+	<update id = "qnaDeleteReply" parameterType="java.lang.Integer">
+		update qna_comment set qr_isshow='N' where qr_no=#{qr_no}
+	</update> 
+	
+	<update id = "updateQnaStatus" parameterType="com.studycafe.qna.domain.Qna">
+		update qna_board set q_chk =#{q_chk} where q_no=#{q_no}
+	</update>
 </mapper>
