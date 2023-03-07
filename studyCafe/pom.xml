@@ -230,6 +230,22 @@
 		    <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc6.jar</systemPath>
 		</dependency>
 		
+		<!-- tiles 라이브러리 -->
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-core</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-jsp</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-servlet</artifactId>
+			<version>2.2.2</version>
+		</dependency> 
 		<!-- JSON  
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -252,7 +268,6 @@
 		    <version>2.4</version>
 		    <classifier>jdk15</classifier>    
 		</dependency>
-		          
 	</dependencies>
 	<!-- build요소 : 빌드정보 -->
     <build>
