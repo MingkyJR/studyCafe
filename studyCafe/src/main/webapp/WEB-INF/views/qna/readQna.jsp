@@ -289,7 +289,6 @@
  </table>
  </c:if>
  
-<<<<<<< HEAD
  <%-- c:if이용 댓글이 있는 경우 c:forEach이용 반복출력 --%>
  <%-- 등록한 답글 목록 보기 --%>
   <c:if test="${not empty qnaComm}">
@@ -310,24 +309,7 @@
 			 <th>답글 내용</th>
 			 <td colspan="3" ><u:pre value="${reply.qr_content}"/></td>
 		</tr>
-=======
- <%-- 댓글등록 ----------------------------------%>
-<!--  <form name = "frmInsReply" id="frmInsReply"  -->
-<%--  		action="<%=request.getContextPath()%>/reply/writeReply.do" method="post"> --%>
-<%--  <input type="hidden" name="pageNo" id="pageNo" value="${pageNo}"/> --%>
-<%--  <input type="hidden" name="oriNo" id="oriNo" value="${reboard.no}"/> --%>
-<%--  <input type="hidden" name="writer" id="writer" value="${sessionScope.AUTHUSER.memberid}"/>  --%>
-<!--  <table border="1"> -->
-<!-- 	 <tbody> -->
-<!-- 		 <tr> -->
-<!-- 			<th>댓글제목</th> -->
-<!-- 			<td colspan="3"> -->
-<!-- 			<input type="text" name="qr_title" id="qr_title" onclick="loginChk()"/> -->
-<!-- 			</td> -->
-<!-- 		</tr> -->
->>>>>>> refs/remotes/origin/qnaboard
 			 
-<<<<<<< HEAD
 		<tr>
 			 <td colspan="5" class="center" style="text-align:center;">
 			 	<button type="button" id="btnReplyUpdate${reply.qr_no}" class="btnReplyU" id="btnReplyUpdate${reply.qr_no}" param="${reply.qr_no}">답글수정</button>
@@ -360,23 +342,7 @@
 			<textarea name="qr_content" id="qr_content${reply.qr_no}" cols="90" rows="10" onclick="loginChk()" placeholder="타인을 배려하는 마음을 담아 댓글을 작성해주세요.&#10;내용에 따라 이용약관 및 관련 법률에 의해 임의 조치를 수행 할 수 있습니다.">${reply.qr_content}</textarea>
 			</td>
 		</tr>
-=======
-<!-- 		<tr> -->
-<!-- 			<th>댓글내용</th> -->
-<!-- 			<td colspan="3"> -->
-<!-- 			<textarea name="qr_content" id="qr_content" cols="50" rows="10" onclick="loginChk()" placeholder="타인을 배려하는 마음을 담아 댓글을 작성해주세요.&#10;내용에 따라 이용약관 및 관련 법률에 의해 임의 조치를 수행 할 수 있습니다."></textarea> -->
-<!-- 			</td> -->
-<!-- 		</tr> -->
-			 
-<!-- 		<tr> -->
-<!-- 			 <th>비밀번호</th> -->
-<!-- 			 <td colspan="3"> -->
-<!-- 			 <input type="password" name="rPassword" id="rPassword" onclick="loginChk()"/> -->
-<!-- 			 </td> -->
-<!-- 		</tr> -->
->>>>>>> refs/remotes/origin/qnaboard
 
-<<<<<<< HEAD
 		<tr>
 			 <td colspan="4" class="center" style="text-align:center;">
 			 <button type="button" id="btnModiReply${reply.qr_no}" class="btnModiR" param="${reply.qr_no}" 
@@ -395,7 +361,7 @@
  
  
  
- <%---------------------------- 답글등록 폼 ----------------------------------%>
+ <%---------------------------- 답글등록 폼 -----------------------------------%>
 <c:if test="${AUTHUSER.u_id=='adminid'}">
  <form name = "frmInsReply" id="frmInsReply" 
  		action="<%=request.getContextPath()%>/qna/writeReply" method="post">
@@ -427,18 +393,11 @@
 			 <button type="submit" id="btnInsReply_ajax">답글쓰기</button>
 			 </td>
 		</tr>
-=======
-<!-- 		<tr> -->
-<!-- 			 <td colspan="4" class="center"> -->
-<!-- 			 <button type="button" id="btnInsReply_ajax">댓글쓰기(ajax)</button> -->
-<!-- 			 </td> -->
-<!-- 		</tr> -->
->>>>>>> refs/remotes/origin/qnaboard
 
-<!-- 	 </tbody> -->
-<!--  </table> -->
+	 </tbody>
+ </table>
  
-<!--  </form> -->
+ </form>
  
  </c:if>
  
