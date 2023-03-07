@@ -38,7 +38,7 @@
    <div class="room_wrap">
       <div class="room">
          <div class="room_img">
-         <a href="<%=request.getContextPath()%>/reservationDetail"><img alt="StrudyRoomA" 
+         <a href="<%=request.getContextPath()%>/reservationDetailA"><img alt="StrudyRoomA" 
          	src="<%=request.getContextPath()%>/resources/assets/images/reservation/room_a.jpg"
          	style="width:100%; height:100%;"></a>
          </div>
@@ -52,7 +52,7 @@
       </div>
       <div class="room">
          <div class="room_img">
-         <a href="<%=request.getContextPath()%>/reservationDetail"><img alt="StrudyRoomB" 
+         <a href="<%=request.getContextPath()%>/reservationDetailB"><img alt="StrudyRoomB" 
          	src="<%=request.getContextPath()%>/resources/assets/images/reservation/room_b.jpg"
          	style="width:100%; height:100%;"></a>
          </div>
@@ -68,7 +68,7 @@
    <div class="room_wrap">
       <div class="room">
          <div class="room_img">
-         <a href="<%=request.getContextPath()%>/reservationDetail"><img alt="StrudyRoomC" 
+         <a href="<%=request.getContextPath()%>/reservationDetailC"><img alt="StrudyRoomC" 
          	src="<%=request.getContextPath()%>/resources/assets/images/reservation/room_c.jpg"
          	style="width:100%; height:100%;"></a>
          </div>
@@ -82,7 +82,7 @@
       </div>
       <div class="room">
          <div class="room_img">
-         <a href="<%=request.getContextPath()%>/reservationDetail"><img alt="StrudyRoomD" 
+         <a href="<%=request.getContextPath()%>/reservationDetailD"><img alt="StrudyRoomD" 
          	src="<%=request.getContextPath()%>/resources/assets/images/reservation/room_d.jpg"
          	style="width:100%; height:100%;"></a>
          </div>

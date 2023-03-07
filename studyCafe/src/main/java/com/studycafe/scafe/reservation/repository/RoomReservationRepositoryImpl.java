@@ -37,9 +37,28 @@ public class RoomReservationRepositoryImpl implements RoomReservationRepository 
 			return list;
 		}
 		
-	//날짜별 예약가능 조회
-	public RoomReservation timeCheckA(String rs_date) throws DataAccessException{
-		return sqlSession.selectOne("mapper.roomreservation.timeCheckA", rs_date);
+	//날짜별 예약가능 조회 101
+	public List<RoomReservation> timeCheckA(String rs_date) throws DataAccessException{
+		List<RoomReservation> list = sqlSession.selectList("mapper.roomreservation.timeCheckA", rs_date);
+		return  list;
+	}
+	
+	//날짜별 예약가능 조회 102
+	public List<RoomReservation> timeCheckB(String rs_date) throws DataAccessException{
+		List<RoomReservation> list = sqlSession.selectList("mapper.roomreservation.timeCheckB", rs_date);
+		return  list;
+	}
+	
+	//날짜별 예약가능 조회 103
+	public List<RoomReservation> timeCheckC(String rs_date) throws DataAccessException{
+		List<RoomReservation> list = sqlSession.selectList("mapper.roomreservation.timeCheckC", rs_date);
+		return  list;
+	}
+	
+	//날짜별 예약가능 조회 104
+	public List<RoomReservation> timeCheckD(String rs_date) throws DataAccessException{
+		List<RoomReservation> list = sqlSession.selectList("mapper.roomreservation.timeCheckD", rs_date);
+		return  list;
 	}
 	
 }

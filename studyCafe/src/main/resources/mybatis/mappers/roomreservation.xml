@@ -64,21 +64,49 @@
   	]]>
 	</select>
 	
-	<!-- 날짜별 예약상황조회 -->
-	<!-- where to dare? to char? 파라미터 Date맞나?-->
+	<!-- 날짜별 예약상황조회 101번방 -->
 	<select id="timeCheckA"
 			resultMap="roomreservationResult"
 	        parameterType="String">
  	<![CDATA[	
-	select rs_time1,rs_time2,rs_time3,rs_time4,rs_time5,rs_time6 
+	select r_number, rs_time1,rs_time2,rs_time3,rs_time4,rs_time5,rs_time6 
 	from room_reservation
-	where rs_date = #{rs_date}
+	where rs_date = #{rs_date} and r_number=101
   	]]>
 	</select>
 	
+	<!-- 날짜별 예약상황조회 102번방 -->
+	<select id="timeCheckB"
+			resultMap="roomreservationResult"
+	        parameterType="String">
+ 	<![CDATA[	
+	select r_number, rs_time1,rs_time2,rs_time3,rs_time4,rs_time5,rs_time6 
+	from room_reservation
+	where rs_date = #{rs_date} and r_number=102
+  	]]>
+	</select>
 	
+ 	<!-- 날짜별 예약상황조회 103번방 -->
+	<select id="timeCheckC"
+			resultMap="roomreservationResult"
+	        parameterType="String">
+ 	<![CDATA[	
+	select r_number, rs_time1,rs_time2,rs_time3,rs_time4,rs_time5,rs_time6 
+	from room_reservation
+	where rs_date = #{rs_date} and r_number=103
+  	]]>
+	</select>
 	
- 
+	<!-- 날짜별 예약상황조회 104번방 -->
+	<select id="timeCheckD"
+			resultMap="roomreservationResult"
+	        parameterType="String">
+ 	<![CDATA[	
+	select r_number, rs_time1,rs_time2,rs_time3,rs_time4,rs_time5,rs_time6 
+	from room_reservation
+	where rs_date = #{rs_date} and r_number=104
+  	]]>
+	</select>
 </mapper>    
 
 
