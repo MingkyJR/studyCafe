@@ -20,7 +20,8 @@ u_pass      varchar2(50)    constraint nn_user_info_pass            not null,
 u_grade     number          constraint nn_user_info_grade           not null,        
 u_tell      varchar2(50)    constraint nn_user_info_tell            not null,          
 u_gender    varchar2(10)    constraint nn_user_info_gender          not null,   
-    u_credate   date	    DEFAULT SYSDATE
+u_credate   date	    DEFAULT SYSDATE,
+u_update    date	    DEFAULT SYSDATE
 );
 -- 시퀀스 삭제
 drop  sequence seq_user_info;
@@ -37,7 +38,8 @@ insert into user_info(u_number,u_name,u_id,u_pass,u_grade,u_tell,u_gender,u_cred
 values(seq_user_info.nextval,'홍','hongid','1234',1,'010-1111-1111','남',sysdate);
 insert into user_info(u_number,u_name,u_id,u_pass,u_grade,u_tell,u_gender,u_credate)
 values(seq_user_info.nextval,'빈','binid','1234',1,'010-2222-2222','여',sysdate);
-
+INSERT INTO user_info(u_number,u_name,u_id,u_pass,u_grade,u_tell,u_gender,u_credate)
+VALUES(seq_user_info.nextval,'류','ryuid','1234',1,'010-222-3333','여',sysdate);
 -- 더미데이터 삭제
 delete 
 from user_info
@@ -67,9 +69,19 @@ where u_id = 'hongid';
 select u_number,u_name,u_id,u_pass,u_grade,u_tell,u_gender,u_credate
 from user_info;
 
+
 -- 저장
 commit;
 
-SELECT u_name
+SELECT u_name,u_id,u_tell,u_gender,u_credate
 FROM user_info
-WHERE u_id = #{u_id} AND u_pass = #{u_pass};
+WHERE u_id = 'binid' AND u_pass = '1234';
+
+SELECT COUNT(*)
+FROM user_info
+WHERE u_id = #{u_id} AND u_pass = #{u_pass}
+		
+-- 회원상세조회(회원 정보 불러오기        
+SELECT u_number,u_name,u_id,u_tell,u_gender,u_credate, u_update
+FROM user_info
+WHERE u_id = 'binid'; 

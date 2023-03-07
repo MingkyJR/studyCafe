@@ -23,8 +23,8 @@ public class User_info_ServiceImpl implements User_info_Service {
 	
 	//02. 회원등록
 	@Override
-	public void User_insert(User_info user) {
-		user_info_repositoryImpl2.User_insert(user);
+	public void User_insert(User_info u_vo) {
+		user_info_repositoryImpl2.User_insert(u_vo);
 	}
 	 
 	//03회원정보 상세조회
@@ -34,6 +34,7 @@ public class User_info_ServiceImpl implements User_info_Service {
 	}
 		
 	//04수정
+	@Override
 	public void User_update(User_info u_update) {
 		user_info_repositoryImpl2.User_update(u_update);
 	}

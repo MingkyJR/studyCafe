@@ -26,12 +26,13 @@
          	  <td>${row.u_id}</td>
          		<!-- 회원정보 상세조회를 위한 a태그 -->
                <td><a href="<%=request.getContextPath()%>/user/info?u_id=${u_id}">${u_id}</a></td>
-               <td>${u_number}</td> <!-- 회원번호 -->
-        	   <td>${u_id}</td>  <!-- 아이디 -->
-        	   <td>${u_name}</td>  <!-- 이름 -->
-        	   <td>${u_tell}</td>  <!-- 전화번호 -->
-               <td>${u_gender}</td>  <!-- 성별 -->
-               <td>${u_credate}</td>  <!-- 회원가입일자 -->
+               <td>${row.u_number}</td> <!-- 회원번호 -->
+        	   <td>${row.u_id}</td>  <!-- 아이디 -->
+        	   <td>${row.u_name}</td>  <!-- 이름 -->
+        	   <td>${row.u_tell}</td>  <!-- 전화번호 -->
+               <td>${row.u_gender}</td>  <!-- 성별 -->
+               <td>${row.u_credate}</td>  <!-- 회원가입일자 -->
+               <td>${row.u_upDate}</td>
          </tr>
          </c:forEach>
    </table>

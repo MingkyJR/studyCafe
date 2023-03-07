@@ -21,6 +21,9 @@ public interface User_info_repository {
 		//회원 상세조회
 		public User_info User_view(String u_id);
 
+		//회원정보 수정 및 사겢?
+		boolean check_Pass(String u_id, String u_pass);
+
 
 		
 }

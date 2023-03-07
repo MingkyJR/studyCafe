@@ -7,51 +7,51 @@
  	<!-- 쿼리 들어가야됨 -->
  	
  	<!-- 01.회원목록 -->
- 		<select id="user_list" resultType="com.studycafe.userinfo.domain.User_info">
+ 		<select id="User_info_List" resultType="com.studycafe.userinfo.domain.User_info">
  			<![CDATA[
  			SELECT u_number,u_name,u_id,u_pass,u_grade,u_tell,u_gender,u_credate
-			FROM user_info;
+			FROM user_info
  			]]>
  		</select>
  	
  	
 	<!-- 02회원정보 등록 -->
-		<insert id="user_insert">
+		<insert id="User_insert">
 			<![CDATA[
-			INSERT INTO user_info(u_number,u_name,u_id,u_pass,u_grade,u_tell,u_gender)
-			VALUES(seq_user_info.nextval,#{u_name},#{u_id},#{u_pass},1,#{u_tell},#{u_gender});
+			INSERT INTO user_info(u_number,u_name,u_id,u_pass,u_grade,u_tell,u_gender,u_credate)
+			VALUES(seq_user_info.nextval,#{u_name},#{u_id},#{u_pass},1,#{u_tell},#{u_gender},sysdate)
 			]]>
 		</insert>
 	
 	<!-- 회원정보 상세조회(회원정보 불러오기) -->
-	<select id="user_view" resultType="com.studycafe.userinfo.domain.User_info">
+	<select id="User_view" resultType="com.studycafe.userinfo.domain.User_info">
  			<![CDATA[
- 			SELECT u_number,u_name,u_id,u_pass,u_grade,u_tell,u_gender,u_credate
+ 			SELECT u_number,u_name,u_id,u_tell,u_gender,u_credate, u_update
 			FROM user_info
 			WHERE u_id = #{u_id}
  			]]>
  		</select>
 	
 	<!-- 특정 회원조회 -->
-	<select id="u_number" 
+	<!-- <select id="u_number" 
 	        resultType="int"
 	        parameterType="int">
 	  <![CDATA[		
 		select u_number from user_info where u_number=#{no}
 	  ]]>
 	</select>
-
+ -->
+ 
 	<!-- 회원정보 수정 / 마이페이지-->
-	<update id="user_update">
+	<update id="User_update">
 		<![CDATA[
 		UPDATE user_info
-		SET 
+		SET
 		u_name = #{u_name},
 		u_pass = #{u_pass},
-		u_grade = #{u_grade},
 		u_tell = #{u_tell},
 		u_gender = #{u_gender},
-		u_update = SYSDATE
+		u_upDate = SYSDATE
 		WHERE
 		u_id = #{u_id}
 		]]>
@@ -59,31 +59,36 @@
 	
 	
 	<!-- 회원 탈퇴(삭제) -->
-	<delete id = "user_delete">
+	<delete id = "User_delete">
+	 <![CDATA[	
 		DELETE FROM user_info
 		WHERE u_id = #{u_id}
+		]]>
 	</delete>
 	
 	<!-- 비밀번호 체크 -->
 	<select id="check_Pass" resultType="int">
+	 <![CDATA[	
 		SELECT COUNT(*)
 		FROM user_info
 		WHERE u_id = #{u_id} AND u_pass = #{u_pass}
+		]]>
 	</select>
 	
 	
 	
 	
 	<!-- 로그인 관련 -->
-	<select id="loginCheck" resultType="String">
+	<!-- <select id="loginCheck" resultType="String">
 		 <![CDATA[	
 			SELECT u_name
 			FROM user_info
 			WHERE u_id = #{u_id} AND u_pass = #{u_pass}
 			]]>
-	</select>
+	</select> -->
 	
-	<select id="view_user" resultType="com.studycafe.userinfo.domain.User_info">
+	<!-- 아이디, 비밀번호 상세조회? -->
+	<!--  <select id="view_User" resultType="com.studycafe.userinfo.domain.User_info">
 		<![CDATA[	
 			SELECT
 			u_name,
@@ -95,7 +100,7 @@
 			WHERE u_id = #{user_id} AND u_pass = #{user_pass}
 		]]>
 	</select>
-	
+	 -->
  
  
  </mapper>

@@ -12,11 +12,3 @@
 	</c:otherwise>
 </c:choose>
 <hr>
-
-<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<!DOCTYPE html>
-<html><title>Home</title>
-<head>
-</head>
-<body> --%>

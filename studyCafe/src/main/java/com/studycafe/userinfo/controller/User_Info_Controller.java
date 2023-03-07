@@ -42,16 +42,16 @@ public class User_Info_Controller {
 	// 02_02 회원등록 처리 후 회원목록으로 리다이렉트
 	// ModelAttribute 폼에서 입력한 데이터 저장
 	@RequestMapping("user/user_insert.do")
-	public String user_insert(@ModelAttribute User_info user_vo) {
+	public String user_insert(@ModelAttribute User_info u_vo) {
 		
-		user_info_Service2.User_insert(user_vo);
+		user_info_Service2.User_insert(u_vo);
 		
 		return "redirect:/user/user_list.do";
 	}
 	
 	//03. 회원 상세정보 조회
 		@RequestMapping("user/user_view.do")
-		public String User_view(@RequestParam String u_id, Model model) {
+		public String user_view(@RequestParam String u_id, Model model) {
 			//회원정보 model에 저장
 			model.addAttribute("dto",user_info_Service2.User_view(u_id));
 			//클릭한 아이디 확인
@@ -76,7 +76,7 @@ public class User_Info_Controller {
 			u_vo.setU_upDate(u_vo2.getU_upDate()); //수정일
 			model.addAttribute("dto",u_vo);
 			model.addAttribute("msg","비밀번호가 일치하지 않습니다."); //mag : massage
-			return "redirect:/user/user_list.do";
+			return "redirect:/user/user_view";
 		}
 	}
 		
