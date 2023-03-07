@@ -9,14 +9,14 @@
 	<!-- 전체 음식 목록 조회 -->
 	<select id="listFood" resultType="food">
 	<![CDATA[
-		select * from food
+		select * from food order by food_no
 	]]>
 	</select>
 	
 	<!-- 특정 종류 조회 -->
 	<select id="listTypeFood" resultType="food" parameterType="int">
 	<![CDATA[
-		select * from food where type=#{type}
+		select * from food where type=#{type} order by food_no
 	]]>
 	</select>
 	
