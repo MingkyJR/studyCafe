@@ -1,6 +1,7 @@
 package com.studycafe.food.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,5 +62,23 @@ public class FoodServiceImpl implements FoodService {
 	@Override
 	public void deleteCart(Cart cart) throws Exception {
 		foodRepository.deleteCart(cart);
+	}
+	
+	//장바구니 상품 전부 삭제
+	@Override
+	public void deleteAllCart(int u_number) throws Exception {
+		foodRepository.deleteAllCart(u_number);
+	}
+	
+	//결제 완료 후 주문 추가
+	@Override
+	public void insertOrder(Map<String, Object> map) throws Exception {
+		foodRepository.insertOrder(map);
+	}
+	
+	//결제 완료 후 상세 주문 추가
+	@Override
+	public void insertDeatil(Map<String, Object> map) throws Exception {
+		foodRepository.insertDetail(map);
 	}
 }

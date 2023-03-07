@@ -1,9 +1,11 @@
 package com.studycafe.food.controller;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.studycafe.food.domain.Cart;
 import com.studycafe.food.domain.Food;
+import com.studycafe.food.domain.Order;
 import com.studycafe.food.service.FoodService;
 
 
@@ -44,6 +47,7 @@ public class FoodController {
 		model.addAttribute("list", list);
 		model.addAttribute("cartList", cartList);
 		model.addAttribute("type", type);
+		model.addAttribute("u_number", u_number);
 		return "/food/mainP";
 	}
 	
@@ -102,11 +106,24 @@ public class FoodController {
 		}
 	}
 	
-	@GetMapping("/food/success")
-	public String success() {
-		return "/food/success";
-	}
 	
+	@GetMapping("/food/order")
+	public String order(String order_no, int order_price, Model model) throws Exception {
+		int u_number = 1;
+		Map<String,Object> map = new HashMap<String, Object>();
+		List<Cart> cart = foodService.getCart(u_number);
+		map.put("order_no", order_no);
+		map.put("u_number", u_number);
+		map.put("order_price", order_price);
+		map.put("cart", cart);
+		foodService.insertOrder(map);
+		foodService.insertDeatil(map);
+		foodService.deleteAllCart(u_number);
+		model.addAttribute("order_no", order_no);
+		
+		return "/food/success";
+		
+	}
 	
 	
 	 

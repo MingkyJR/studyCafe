@@ -1,6 +1,7 @@
 package com.studycafe.food.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.studycafe.food.domain.Cart;
 import com.studycafe.food.domain.Food;
@@ -30,5 +31,15 @@ public interface FoodService {
 	
 	//장바구니 상품 삭제
 	public void deleteCart(Cart cart) throws Exception;
+	
+	//장바구니 상품 전부 삭제
+	public void deleteAllCart(int u_number) throws Exception;
+	
+	//결제 완료 후 주문 추가
+	public void insertOrder(Map<String, Object> map) throws Exception;
+	
+	//결제 완료 후 상세 주문 추가
+	public void insertDeatil(Map<String, Object> map) throws Exception;
+	
 	
 }

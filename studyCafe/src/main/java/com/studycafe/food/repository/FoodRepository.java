@@ -1,6 +1,7 @@
 package com.studycafe.food.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
@@ -32,4 +33,14 @@ public interface FoodRepository {
 	
 	//장바구니 상품 삭제
 	public void deleteCart(Cart cart) throws DataAccessException;
+	
+	//장바구니 상품 전부 삭제
+	public void deleteAllCart(int u_number) throws DataAccessException;
+	
+	//결제 완료 후 주문추가
+	public void insertOrder(Map<String, Object> map) throws DataAccessException;
+	
+	//결제 완료 후 상세 주문 추가
+	public void insertDetail(Map<String, Object> map) throws DataAccessException;
+	
 }

@@ -55,6 +55,16 @@
 </div>
 </div>
 <script>
+var time = new Date();
+var year = time.getFullYear(); // 년도
+var month = ('0' + (time.getMonth() + 1)).slice(-2);  // 월
+var date = ('0' + time.getDate()).slice(-2);
+var hours = ('0' + time.getHours()).slice(-2); 
+var minutes = ('0' + time.getMinutes()).slice(-2);
+var seconds = ('0' + time.getSeconds()).slice(-2);
+
+var orderTime = year+month+date+hours+minutes+seconds;
+
 const IMP = window.IMP; // 생략 가능
 IMP.init("imp86313206");
   
@@ -87,7 +97,7 @@ function requestPayKakao() {
     IMP.request_pay({ // param
         pg: "kakaopay",
         pay_method: "card",
-        merchant_uid: "USDK177123",
+        merchant_uid: "SC"+orderTime+"${u_number}",
         name: "스터디카페 햇반",
         amount: "${total}",
         buyer_email: "gildong@gmail.com",
@@ -98,8 +108,8 @@ function requestPayKakao() {
     }, function (rsp) { // callback
         if (rsp.success) {
             // 결제 성공 시 로직
-        	var msg = '결제가 완료되었습니다.';
-            location.href='http://localhost:8081/scafe/food/success';
+            alert("결제가 완료되었습니다.");
+            location.href='http://localhost:8081/scafe/food/order?order_no='+rsp.merchant_uid+'&order_price='+${total};
         } else {
             // 결제 실패 시 로직
             

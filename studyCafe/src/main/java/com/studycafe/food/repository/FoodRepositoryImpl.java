@@ -1,6 +1,7 @@
 package com.studycafe.food.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,5 +67,23 @@ public class FoodRepositoryImpl implements FoodRepository{
 	@Override
 	public void deleteCart(Cart cart) throws DataAccessException {
 		sqlSession.delete("mapper.food.deleteCart", cart);
+	}
+	
+	//장바구니 상품 전부 삭제
+	@Override
+	public void deleteAllCart(int u_number) throws DataAccessException {
+		sqlSession.delete("mapper.food.deleteAllCart", u_number);
+	}
+	
+	//결제 완료 후 주문추가
+	@Override
+	public void insertOrder(Map<String, Object> map) throws DataAccessException {
+		sqlSession.insert("mapper.food.insertOrder", map);
+	}
+	
+	//결제 완료 후 상세 주문 추가
+	@Override
+	public void insertDetail(Map<String, Object> map) throws DataAccessException {
+		sqlSession.insert("mapper.food.insertDetail", map);
 	}
 }
