@@ -319,7 +319,7 @@
 		 </tr>
 	 </tbody>
  </table><br/>
- <%-------------------답글 수정 폼 --------------------------------------%>
+ <%-------------------답글 수정 폼 ---------------------------------------%>
 <%-- forEach 반복문을 돌리기 때문에 id가 유니크 하려면 id 뒤에 ${reply.no}를 꼭 붙여 줘야한다. 각각의 댓글에 해당하는 id처럼  --%>
  <form name = "frmModiReply" id="frmModiReply${reply.qr_no}" 
  		action="<%=request.getContextPath()%>/reply/modifyReply" method="post"
