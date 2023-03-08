@@ -346,7 +346,7 @@
 		<tr>
 			 <td colspan="4" class="center" style="text-align:center;">
 			 <button type="button" id="btnModiReply${reply.qr_no}" class="btnModiR" param="${reply.qr_no}" 
-			 	onclick="location.href='<%=request.getContextPath()%>/qna/modifyReply?q_no=${qna.q_no}';">댓글수정(처리)하기</button>
+			 	onclick="location.href='<%=request.getContextPath()%>/qna/modifyReply?no=${qna.q_no}';">댓글수정(처리)하기</button>
 			 <button type="button" id="btnModiCancel${reply.qr_no}" class="btnModiC" param="${reply.qr_no}">댓글수정취소</button>
 			 </td>
 		</tr>
