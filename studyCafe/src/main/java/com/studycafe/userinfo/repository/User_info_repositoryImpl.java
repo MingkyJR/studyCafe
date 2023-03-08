@@ -1,16 +1,13 @@
 package com.studycafe.userinfo.repository;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Repository;//dao
 
-import com.studycafe.userinfo.domain.User_info;
+import com.studycafe.userinfo.domain.User_info; //dto
 
 //현재 클래스를 DAO bean으로 등록
 @Repository
@@ -43,25 +40,17 @@ public class User_info_repositoryImpl implements User_info_repository{
 	public void User_update(User_info u_update) throws Exception{
 		sqlSession.update("User_update",u_update);
 	}
+	 //삭제
+	 @Override public void User_delete(String u_delete) {
+	  sqlSession.delete("User_delete",u_delete); }
 
-	//삭제
+
+	//로그인
 	@Override
-	public void User_delete(String u_delete) {
-		sqlSession.delete("User_delete",u_delete);
+	public User_info User_login(User_info u_vo)throws Exception{
+		System.out.printf("Repository 로그인 : ",u_vo);
+		return sqlSession.selectOne("User_login",u_vo);
 	}
 	
-	//회원정보 수정 및 삭제를 위한 비밀번호 체크
-	@Override
-	public boolean check_Pass(String u_id, String u_pass) {
-		boolean result = false;
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("u_id",u_id);
-		map.put("u_pass",u_pass);
-		int count = sqlSession.selectOne("user.check_Pass",map);
-		if(count == 1) result = true;
-		return result;
-	}
-
-			
 		
 }//class의 끝

@@ -5,10 +5,7 @@ import javax.servlet.http.HttpSession;
 import com.studycafe.userinfo.domain.User_info;
 
 public interface User_login_repository {
-//dao역할 수행
-	
-	//회원 로그인체크
-	//public boolean loginCheck(User_info user_vo);
+//dao(vo)역할 수행
 	
 	//회원 로그인체크
 	public String loginCheck(User_info user_vo);

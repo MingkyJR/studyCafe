@@ -18,11 +18,12 @@ public interface User_info_Service {
 			//회원정보 수정
 			public void User_update(User_info u_vo) throws Exception;
 
-			//회원 삭제
-			public void User_delete(String u_vo);
 			
-			//비밀번호 체크
-			public boolean check_Pass(String u_id, String u_pass);
+			 //회원 삭제
+			public void User_delete(String u_vo) throws Exception;
+		
+			//로그인
+			public User_info User_login(User_info u_vo) throws Exception;
 
 
 }//interface의 끝

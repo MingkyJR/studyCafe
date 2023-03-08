@@ -18,18 +18,10 @@ public class User_login_repositoryImpl implements User_login_repository{
 	SqlSession sqlSession; //mybatis 실행객체 /SqlSession 의존관계 주입
 	
 	//회원 로그인 체크
-//	@Override
-//	public boolean loginCheck(User_info user_vo) {
-//		String name = sqlSession.selectOne("user.logincheck",user_vo);
-//		return (name == null) ? false : true;
-//	}
-	
-	//회원 로그인 체크
 	@Override
 	public String loginCheck(User_info user_vo) {
 		return sqlSession.selectOne("loginCheck",user_vo);
 	}
-
 	
 	//회원 로그인 정보
 	@Override

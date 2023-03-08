@@ -39,18 +39,18 @@ public class User_info_ServiceImpl implements User_info_Service {
 		user_info_repositoryImpl.User_update(u_update);
 	}
 
-	//05삭제
-	@Override
-	public void User_delete(String u_vo) {
-		user_info_repositoryImpl.User_delete(u_vo);
-		}
-		
-	//회원정보 수정 및 삭제를 위한 비밀번호 체크
-	@Override
-	public boolean check_Pass(String u_id, String u_pass) {
-		return user_info_repositoryImpl.check_Pass(u_id,u_pass);
+	  //05삭제
+	 @Override
+	 public void User_delete(String u_vo) throws Exception{
+	 user_info_repositoryImpl.User_delete(u_vo); 
+	 }
+	 
+	//로그인
+	 @Override
+	public User_info User_login(User_info u_vo) throws Exception{
+		 System.out.printf("Service 로그인 : ",u_vo);
+		return user_info_repositoryImpl.User_login(u_vo);
 	}
-
 
 	
 

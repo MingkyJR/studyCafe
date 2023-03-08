@@ -49,26 +49,25 @@
 	
 	
 	<!-- 회원 탈퇴(삭제) -->
-	<delete id = "User_delete">
+<!-- 	<delete id = "User_delete">
 	 <![CDATA[	
 		DELETE FROM user_info
 		WHERE u_id = #{u_id}
 		]]>
 	</delete>
-	
+	 -->
 	<!-- 비밀번호 체크 -->
-	<select id="check_Pass" resultType="int">
+	<!-- <select id="check_Pass" resultType="int">
 	 <![CDATA[	
 		SELECT COUNT(*)
 		FROM user_info
 		WHERE u_id = #{u_id} AND u_pass = #{u_pass}
 		]]>
-	</select>
+	</select> -->
 	
 	
 	
-	
-	<!-- 로그인 관련 -->
+	<!-- 로그인 -->
 	<!-- <select id="loginCheck" resultType="String">
 		 <![CDATA[	
 			SELECT u_name
@@ -77,20 +76,16 @@
 			]]>
 	</select> -->
 	
-	<!-- 아이디, 비밀번호 상세조회? -->
-	<!--  <select id="view_User" resultType="com.studycafe.userinfo.domain.User_info">
-		<![CDATA[	
-			SELECT
-			u_name,
-			u_id,
-			u_tell,
-			u_gender,
-			u_credate
+	<!-- 로그인 -->
+	<select id="User_login" resultType="com.studycafe.userinfo.domain.User_info">
+		 <![CDATA[	
+			SELECT u_id,u_pass
 			FROM user_info
-			WHERE u_id = #{user_id} AND u_pass = #{user_pass}
-		]]>
+			WHERE u_id = #{u_id,} AND u_pass = #{u_pass}
+			]]>
 	</select>
-	 -->
+	
+	
  
  
  </mapper>
