@@ -3,20 +3,22 @@ package com.studycafe.article.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.studycafe.article.domain.Article;
 import com.studycafe.article.domain.ArticleComment;
 import com.studycafe.article.domain.ArticlePage;
-import com.studycafe.article.domain.Login;
 import com.studycafe.article.domain.Page;
 import com.studycafe.article.service.ArticleService;
+import com.studycafe.user.domain.User;
 
 @Controller
 public class ArticleController {
@@ -24,22 +26,7 @@ public class ArticleController {
 	@Autowired
 	ArticleService articleService;
 	
-	@GetMapping("/login")
-	public String login(Model model) throws Exception {
-		return "example/login";
-	}
-	@GetMapping("/logined")
-	public String logined(Login login,Model model,HttpServletRequest request) throws Exception {
-		Login loginUser = articleService.getLogin(login);
-		if(loginUser==null) {
-			return null;
-		}
-		HttpSession session = request.getSession();
-		session.setAttribute("AUTHUSER", loginUser);
-		return "forward:/article/articleList";
-	}
-	
-	
+
 	//게시글전체조회
 	@GetMapping("/article/articleList")
 	public String articleList(Model model,HttpServletRequest request) throws Exception {

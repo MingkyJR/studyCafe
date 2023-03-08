@@ -39,23 +39,23 @@
 /* 		border: 1px solid #EFEFEF; */
 	 	}
 	 	
-	 	#nu{ width:50px; background: #C5CAD7;
+	 	#nu{ width:50px; background: #BACEC1;
 	 	}
-	 	#ti{ width:230px; background: #C5CAD7;
+	 	#ti{ width:230px; background: #BACEC1;
 	 	}
-	 	#wr{ width:90px; background: #C5CAD7;
+	 	#wr{ width:90px; background: #BACEC1;
 	 	}
-	 	#rd{ width:150px; background: #C5CAD7;
+	 	#rd{ width:150px; background: #BACEC1;
 	 	}
-	 	#md{ width:230px; background: #C5CAD7;
+	 	#md{ width:230px; background: #BACEC1;
 	 	}
-	 	#ct{ width:60px; background: #C5CAD7;
+	 	#ct{ width:60px; background: #BACEC1;
 	 	}
-	 	#ca{ width:60px; background: #C5CAD7;
+	 	#ca{ width:60px; background: #BACEC1;
 	 	}
-	 	#as{ width:60px; background: #C5CAD7;
+	 	#as{ width:60px; background: #BACEC1;
 	 	}
-	 	#rf{ width:60px; background: #C5CAD7;
+	 	#rf{ width:60px; background: #BACEC1;
 	 	}
 	 	
 	 	td {
@@ -83,16 +83,12 @@
 	 	}
 	 	
 	 	#wri{
-	 	  color: white;
 		  text-align: center;
-		  background: #7C8EBF;
 		  border: solid 1px #191970;
 		  border-radius: 3px;
 	 	}
 	 	#sumbit{
-	 	  color: white;
 		  text-align: center;
-		  background: #7C8EBF;
 		  border: solid 1px #191970;
 		  border-radius: 3px;
 	 	}
@@ -135,9 +131,11 @@
 </head>
 <body>
 	<h2 style="text-align:center;">공지사항</h2>
+	<c:if test="${AUTHUSER.u_grade eq 999}">
 	<div>
 		<input type="button" value="글쓰기" id="wri" name="btn1" style="margin-left:1100px;" />
 	</div>
+	</c:if>
 	<br/>
 	<table class="t1" border="1" style="table-layout: fixed;">
 		<tr>
@@ -167,18 +165,24 @@
 	 <div style="text-align:center;">
      <%-- JSTL if조건문: 이전출력 --%>
      <c:if test="${searchArticlePage.startPage>5}">
-       <a href="${cp}/article/searchTitle?pageNo=${searchArticlePage.startPage-5}&searchTitle=${searchTitle}">prev</a>
+	 <div class="paging">
+       <a href="${cp}/article/searchTitle?pageNo=${searchArticlePage.startPage-5}&searchTitle=${searchTitle}">&laquo;</a>
+       </div>
      </c:if>  
      <%-- JSTL forEch조건문: 페이지번호출력 --%>  
      <c:forEach var="pNo"                       
      			begin="${searchArticlePage.startPage}" 
      			end="${searchArticlePage.endPage}">
+	 <div class="paging">
       <a href="${cp}/article/searchTitle?pageNo=${pNo}&searchTitle=${searchTitle}">${pNo}</a> 
+      </div>
      </c:forEach>  
                                       
      <%-- JSTL if조건문: 다음출력 --%>  
      <c:if test="${searchArticlePage.endPage<searchArticlePage.totalPages}">
-       <a href="${cp}/article/searchTitle?pageNo=${searchArticlePage.startPage+5}&searchTitle=${searchTitle}">next</a>
+     	 <div class="paging">
+       <a href="${cp}/article/searchTitle?pageNo=${searchArticlePage.startPage+5}&searchTitle=${searchTitle}">&raquo;</a>
+       </div>
      </c:if> 
       </div>
       <br/>

@@ -18,7 +18,7 @@
 	 	th {
 	    text-align: center;
 /* 	    border: 1px solid #EFEFEF; */
-	    background: #C5CAD7
+	    background: #BACEC1
 	 	}
 /* 	 	textarea{ width:98%; border:1px solid #CBCACA; border-radius:4px; resize: none;} */
 	 	textarea{ width:97%;
@@ -71,16 +71,12 @@
 	 	
 	 	
 	 	#btn1{
-	 	  color: white;
 		  text-align: center;
-		  background: #7C8EBF;
 		  border: solid 1px #191970;
 		  border-radius: 3px;
 	 	}
 	 	#btn2{
-	 	  color: white;
 		  text-align: center;
-		  background: #7C8EBF;
 		  border: solid 1px #191970;
 		  border-radius: 3px;
 	 	}

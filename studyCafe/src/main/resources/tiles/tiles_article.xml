@@ -9,9 +9,7 @@
 	 -->
 
 <tiles-definitions>
-	<definition name="example/login" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/views/example/login.jsp"/>
-	</definition>
+
 	<definition name="article/articleList" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/views/article/articleList.jsp"/>
 	</definition>

@@ -1,6 +1,6 @@
-package com.studycafe.article.domain;
+package com.studycafe.user.domain;
 
-public class Login {
+public class User {
 
 	private int u_number;
 	private String u_name;
@@ -10,8 +10,8 @@ public class Login {
 	private String u_tell;
 	private String u_gender;
 	
-	public Login() {}
-	public Login(int u_number, String u_name, String u_id, String u_pass, int u_grade, String u_tell, String u_gender) {
+	public User() {}
+	public User(int u_number, String u_name, String u_id, String u_pass, int u_grade, String u_tell, String u_gender) {
 		this.u_number = u_number;
 		this.u_name = u_name;
 		this.u_id = u_id;

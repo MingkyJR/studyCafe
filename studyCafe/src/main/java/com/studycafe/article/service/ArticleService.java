@@ -5,8 +5,8 @@ import java.util.List;
 import com.studycafe.article.domain.Article;
 import com.studycafe.article.domain.ArticleComment;
 import com.studycafe.article.domain.ArticlePage;
-import com.studycafe.article.domain.Login;
 import com.studycafe.article.domain.Page;
+import com.studycafe.user.domain.User;
 
 public interface ArticleService {
 	
@@ -26,7 +26,7 @@ public interface ArticleService {
 
 	public void addComment(ArticleComment articleComment) throws Exception;
 	
-	public Login getLogin(Login login) throws Exception;
+
 
 	public ArticleComment getComment(int ac_no) throws Exception;
 

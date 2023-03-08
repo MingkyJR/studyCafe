@@ -41,9 +41,13 @@ u_id varchar2(50),
 CONSTRAINT fk_article_number foreign key(u_number) references user_info(u_number),
 CONSTRAINT fk_article_id foreign key(u_id) references user_info(u_id)
 );
+insert into article_comment(a_no,a_title,a_content,a_regdate,a_modidate,a_cnt,a_isshow,u_number,u_id)
+values (seq_article.nextval,'테스트','테스트',sysdate,sysdate,0,'Y',1,'hongId');
 
-
-)
+insert into article(a_no,a_title,a_content,a_regdate,a_modidate,a_cnt,a_isshow,u_number,u_id)
+values (seq_article.nextval,'테스트','테스트',sysdate,sysdate,0,'Y',1,'hongId');
+com
+mit;
 drop table article_comment;
 
 
@@ -92,8 +96,8 @@ values (seq_article.nextval,'제목2','내용2',sysdate,sysdate,0,'Y',1);
 insert into article(a_no,a_title,a_content,a_regdate,a_modidate,a_cnt,a_isshow,u_number)
 values (seq_article.nextval,'제목3','내용3',sysdate,sysdate,0,'Y',1);
 
-insert into article_comment(a_no,a_title,a_content,a_regdate,a_modidate,a_cnt,a_isshow,u_number)
-values (seq_article.nextval,'테스트','테스트',sysdate,sysdate,0,'Y',1);
+insert into article_comment(a_no,a_title,a_content,a_regdate,a_modidate,a_cnt,a_isshow,u_number,u_id)
+values (seq_article.nextval,'테스트','테스트',sysdate,sysdate,0,'Y',1,'hongId');
 
 
 insert into user_info(u_number,u_name,u_id,u_pass,u_grade,u_tell,u_gender)

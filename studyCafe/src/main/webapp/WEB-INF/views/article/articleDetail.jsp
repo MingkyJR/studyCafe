@@ -24,7 +24,7 @@
 	 	th {
 	    text-align: center;
 /* 	    border: 1px solid #EFEFEF; */
-	    background: #C5CAD7;
+	    background: #BACEC1;
 	    width : 190px;
 	 	}
 	 	#th1{
@@ -69,9 +69,7 @@
 		  border-radius: 3px;
 	 	}
 	 	#btn1,#btn2,#btn3,#btn4,#btn5,#btn6,#btn7,#btn8{
-	 	  color: white;
 		  text-align: center;
-		  background: #7C8EBF;
 		  border: solid 1px #191970;
 		  border-radius: 3px;
 	 	}

@@ -8,8 +8,8 @@ import org.springframework.dao.DataAccessException;
 import com.studycafe.article.domain.Article;
 import com.studycafe.article.domain.ArticleComment;
 import com.studycafe.article.domain.ArticlePage;
-import com.studycafe.article.domain.Login;
 import com.studycafe.article.domain.Page;
+import com.studycafe.user.domain.User;
 
 public interface ArticleRepository {
 
@@ -31,7 +31,7 @@ public interface ArticleRepository {
 
 	public void addComment(ArticleComment articleComment) throws DataAccessException;
 
-	public Login getLogin(Login login) throws DataAccessException;
+
 
 	public ArticleComment getComment(int ac_no) throws DataAccessException;
 
