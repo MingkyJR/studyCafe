@@ -27,7 +27,7 @@ public class User_login_repositoryImpl implements User_login_repository{
 	//회원 로그인 체크
 	@Override
 	public String loginCheck(User_info user_vo) {
-		return sqlSession.selectOne("user.login_check",user_vo);
+		return sqlSession.selectOne("loginCheck",user_vo);
 	}
 
 	

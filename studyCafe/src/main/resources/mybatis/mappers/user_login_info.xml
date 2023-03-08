@@ -3,7 +3,7 @@
           "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
           
           
- <mapper namespace="mapper.user_login_info">
+ <mapper namespace="mapper.user_login">
  
 	<!-- 로그인 -->
 	<select id="loginCheck" resultType="String">
@@ -16,7 +16,7 @@
 	
 	
 	<!--유저 정보 조회 -->
-	 <select id="view_User" resultType="com.studycafe.userinfo.domain.User_info">
+	<!--  <select id="view_User" resultType="com.studycafe.userinfo.domain.User_info">
 		<![CDATA[	
 			SELECT
 			u_name,
@@ -27,6 +27,6 @@
 			FROM user_info
 			WHERE u_id = #{user_id} AND u_pass = #{user_pass}
 		]]>
-	</select>
+	</select> -->
 	
 </mapper>

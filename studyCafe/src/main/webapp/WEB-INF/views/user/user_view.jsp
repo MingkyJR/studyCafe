@@ -29,14 +29,9 @@
 </head>
 <body>
 <%@ include file="../include/user_menu.jsp" %>
-		<h2>회원정보 상세</h2>
+		<h2>마이페이지</h2>
 		<form name="form1" method="post">
 			<table border="1">
-			<tr>
-					<td>회원번호</td>
-					<!-- readonly : 회원번호 수정불가처리 -->
-					<td><input name="u_number" value="${dto.u_number}" readonly="readonly"></td>
-				</tr>
 				<tr>
 					<td>아이디</td>
 					<!-- readonly : 회원 아이디 수정불가처리 -->

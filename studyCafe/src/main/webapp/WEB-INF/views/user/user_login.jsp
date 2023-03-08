@@ -12,20 +12,20 @@
 <%@ include file="../include/header.jsp" %>  
 <script>
 $(function(){
-$("#btnlogin").click(function(){
-	user_id=$("user_id").val();
-	var pass = $("#pass").val(); 
-	if(user_id == ""){
-		alert("아이디를 입력하세요.");
-		$("#userid").focus();//입력 포커스 이동
+	$("#btnlogin").click(function(){
+	 u_id=$("#u_id").val();
+	 var u_pass=$("#u_pass").val(); 
+	 if(u_id == ""){
+	  alert("아이디를 입력하세요");
+	  $("#u_id").focus(); //입력포커스 이동
 		
 		return; //함수 종료
 		}
-	if(pass ==""){
-		alert("비밀번호를 입력하세요.");
-		$("#pass").focus();
-		return;
-	}
+	 if(u_pass==""){
+		 alert("비밀번호를 입력하세요"); 
+		 $("#u_pass").focus();
+		  return;
+		}
 	//폼 내부의 데이터를 전송할 주소
 	document.form1.action = "${path}/user/login_check.do";
 	document.form1.submit();//제출
@@ -51,8 +51,8 @@ $("#btnlogin").click(function(){
 	<td colspan="2" align="center">
 	<button type = "submit" id ="btnlogin">로그인</button>
 	<c:if test="${message == 'error'}">
-	<div style = "color:red;"> 아이디 또는 비밀번호가 일치하지 않습니다
-	</div>
+ 	<div style="color:red;"> 아이디 또는 비밀번호가 일치하지 않습니다.
+ 	</div>
 	</c:if>
 	<c:if test = "${message = 'logout' }">
 	<div style="color:red;">로그아웃 되었습니다.

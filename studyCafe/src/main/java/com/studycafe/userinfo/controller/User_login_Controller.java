@@ -38,16 +38,16 @@ import com.studycafe.userinfo.service.User_login_Service;
 				//로그인 실패시
 				else {
 					mav.setViewName("user/user_login");
-					mav.addObject("massage","error");
-				}
-				return mav;
+					mav.addObject("message","error");
+			     }
+			     return mav;
 		}
 		
 		@RequestMapping("logout.do")
 		public ModelAndView logout(HttpSession session, ModelAndView mav) {
 			user_login_Service.logout(session);
 			mav.setViewName("user/user_login");
-			mav.addObject("massage","logout");
+			mav.addObject("message","logout");
 			return mav;
 		}
 		

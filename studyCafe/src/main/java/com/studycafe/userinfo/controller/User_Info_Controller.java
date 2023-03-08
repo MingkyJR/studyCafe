@@ -51,7 +51,7 @@ public class User_Info_Controller {
 	
 	//03. 회원 상세정보 조회
 		@RequestMapping("user/user_view.do")
-		public String user_view(@RequestParam String u_id, Model model) {
+		public String user_view(@RequestParam(value="u_id", required=false) String u_id, Model model) {
 			//회원정보 model에 저장
 			model.addAttribute("dto",user_info_Service2.User_view(u_id));
 			//클릭한 아이디 확인
