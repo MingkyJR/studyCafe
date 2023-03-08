@@ -13,16 +13,24 @@
 integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 <style>
 aside {
-	width: 205px; float: right;
-	position: sticky; top: 0;
+   width: 300px; 
+   float: right;
+   position: sticky; top: 0;
 }
 
 .right{
- text-align: right;
+    text-align: right;
 }
 
 .cartTable{
- width:100%;
+    width:100%;
+}
+.payBtn {
+   float: right;
+   height: 80px;
+   border: none;
+   background-color: #666699;
+   color: #FFE08C;
 }
 </style>
 </head>

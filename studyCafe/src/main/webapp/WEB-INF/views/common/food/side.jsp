@@ -14,7 +14,7 @@
 <br/>
 <br/>
 <div style="border: solid black 1px;">
-	<h3>주문 목록</h3>
+	<div style="padding: 7px; border-bottom: 1px solid black; background-color: #666699; color: white;"><h4 style="margin:0; text-align: center;">주문 목록</h4></div>
 	<div>
 	<c:if test="${empty cartList}">
 	주문 목록이 비어있습니다
@@ -50,7 +50,10 @@
 	<c:set var="total" value="${total+cartList.food_price * cartList.quantity}"/>
 </c:forEach>
 </table>
-<button onclick="requestPayKakao()">결제하기</button> 합계 :<c:out value="${total}"/>원
+<div>
+	<button class="payBtn" onclick="requestPayKakao()">결제하기</button>
+</div>
+<div style="height: 80px; line-height: 80px;"><span style="margin-left: 10px;">합계 :<c:out value="${total}"/>원</span></div>
 </c:if>
 </div>
 </div>

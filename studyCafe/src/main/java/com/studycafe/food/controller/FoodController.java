@@ -97,8 +97,12 @@ public class FoodController {
 	@GetMapping("/food/deleteCart")
 	public void deleteCart(int food_no,int type, HttpServletResponse res) throws Exception {
 		int u_number = 1;
-		Cart cart = new Cart(u_number, food_no);
-		foodService.deleteCart(cart);
+		if(food_no == 0) {
+			foodService.deleteAllCart(u_number);
+		}else {
+			Cart cart = new Cart(u_number, food_no);
+			foodService.deleteCart(cart);
+		}
 		if(type==0) {
 			res.sendRedirect("/scafe/food/main");
 		}else {
