@@ -17,9 +17,8 @@ import com.studycafe.userinfo.domain.User_info;
 public class User_info_repositoryImpl implements User_info_repository{
 
 	@Inject
+	SqlSession sqlSession;
 	
-	@Autowired
-	private SqlSession sqlSession;
 	
 	//01 회원목록
 	@Override
@@ -29,7 +28,7 @@ public class User_info_repositoryImpl implements User_info_repository{
 	
 	//02.회원등록
 	@Override
-	public void User_insert(User_info user_info) {
+	public void User_insert(User_info user_info) throws Exception{
 		sqlSession.insert("User_insert",user_info);
 	}
 	
@@ -39,16 +38,16 @@ public class User_info_repositoryImpl implements User_info_repository{
 		return sqlSession.selectOne("User_view",u_id);
 	}
 	
-	//수정
+	//회원정보 수정(마이페이지)
 	@Override
-	public void User_update(User_info u_update) {
+	public void User_update(User_info u_update) throws Exception{
 		sqlSession.update("User_update",u_update);
 	}
 
 	//삭제
 	@Override
-	public void User_delete(String u_vo) {
-		sqlSession.delete("User_delete",u_vo);
+	public void User_delete(String u_delete) {
+		sqlSession.delete("User_delete",u_delete);
 	}
 	
 	//회원정보 수정 및 삭제를 위한 비밀번호 체크

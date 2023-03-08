@@ -29,4 +29,19 @@
 		]]>
 	</select> -->
 	
+	<!-- 회원정보 수정 / 마이페이지-->
+	<update id="User_update">
+		<![CDATA[
+		UPDATE user_info
+		SET
+		u_name = #{u_name},
+		u_pass = #{u_pass},
+		u_tell = #{u_tell},
+		u_gender = #{u_gender},
+		u_upDate = SYSDATE
+		WHERE
+		u_id = #{u_id}
+		]]>
+	</update>
+	
 </mapper>

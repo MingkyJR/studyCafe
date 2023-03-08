@@ -32,16 +32,6 @@
  			]]>
  		</select>
 	
-	<!-- 특정 회원조회 -->
-	<!-- <select id="u_number" 
-	        resultType="int"
-	        parameterType="int">
-	  <![CDATA[		
-		select u_number from user_info where u_number=#{no}
-	  ]]>
-	</select>
- -->
- 
 	<!-- 회원정보 수정 / 마이페이지-->
 	<update id="User_update">
 		<![CDATA[
