@@ -112,7 +112,7 @@
 	<update id="qnaModifyReply" parameterType="com.studycafe.qna.domain.QnaComment">
 	  <![CDATA[
 		update qna_comment
-		set qr_title=#{qr_title}, qr_content=#{qr_content}
+		set qr_title=#{qr_title}, qr_content=#{qr_content}, qr_regdate=sysdate
 		where qr_isshow='Y' and qr_no=#{qr_no}
 	  ]]>	 
 	</update>
