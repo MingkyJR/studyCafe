@@ -333,6 +333,7 @@
 			 <td colspan="3" ><u:pre value="${reply.qr_content}"/></td>
 		</tr>
 			 
+			 <c:if test="${AUTHUSER.u_id=='adminid'}">
 		<tr>
 			 <td colspan="5" class="center" style="text-align:center;">
 			 	<button type="button" id="btnReplyUpdate${reply.qr_no}" class="btnReplyU" id="btnReplyUpdate${reply.qr_no}" param="${reply.qr_no}">답글수정 폼 보기</button>
@@ -341,6 +342,7 @@
 <%-- onclick="deleteReplyConfirm(${reply.qr_no}, ${qna.q_no});  함수에 파라미터 2개 담아서 넘기기 형식--%>
 			 </td>
 		 </tr>
+			</c:if>
 	 </tbody>
  </table>
  </form>

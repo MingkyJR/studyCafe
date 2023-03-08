@@ -35,8 +35,8 @@ public class QnaController {
 //		values(1, '관리자', 'adminid', '1234', 5, '01042485278', '남' );
 //		insert into user_info(u_number, u_name, u_id, u_pass, u_grade, u_tell, u_gender)
 //		values(2, '홍길동', 'hongid', '1234', 1, '01088521142', '남' );
-		User authUser = new User(1, "관리자", "adminid", "1234", 1, "01044859948", "남" );
-//		User authUser = new User(2, "테스트", "test", "1234", 1, "01044859948", "남" );
+//		User authUser = new User(1, "관리자", "adminid", "1234", 1, "01044859948", "남" );
+		User authUser = new User(2, "테스트", "test", "1234", 1, "01044859948", "남" );
 //		User authUser = new User(2, "홍길동", "hongid", "1234", 1, "01088521142", "남" );
 		request.getSession().setAttribute("AUTHUSER", authUser); //원래 여기에 없는 코드. 추후 취합 시에 삭제 필요
 		
@@ -360,6 +360,19 @@ public class QnaController {
 	
 	@RequestMapping(value="/qna/getReadwithpw", method= {RequestMethod.GET, RequestMethod.POST})
 	public String getReadwithpw(Model model, HttpServletRequest request,int no) throws Exception {
+		
+		String strPageNo = request.getParameter("pageNo");//보고싶은 페이지
+		int pageNo = 1;
+		if(strPageNo!=null) {
+			pageNo=Integer.parseInt(strPageNo);
+		}
+
+		String strRowSize = request.getParameter("rowSize");//한페이지당 보여지는 게시물 수
+		int rowSize = 5;
+		if(strRowSize!=null) {
+			rowSize = Integer.parseInt(strRowSize);			
+		}
+		
 		System.out.println("ReadNoticeHandler의 Process()호출성공");
 		
 	     System.out.println("@!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!@"+no);
@@ -373,6 +386,8 @@ public class QnaController {
 		 //3.Model(비즈니스로직 수행결과)처리
 		 //릴레이용 pageNo=요청페이지&rowSize=1페이지당 게시글수
 		 model.addAttribute("qna", qna);
+	     model.addAttribute("pageNo",pageNo);
+		 model.addAttribute("rowSize",rowSize);	
 	
 		 //4.View지정
 		 return "qna/checkpw";
