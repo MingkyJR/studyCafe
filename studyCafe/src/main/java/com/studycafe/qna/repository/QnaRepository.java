@@ -43,6 +43,8 @@ public interface QnaRepository {
 	
 	public void updateQnaStatus(Qna qna) throws DataAccessException;
 
-	void qnaWriteWithPw(Qna qna) throws DataAccessException;
+	public void qnaWriteWithPw(Qna qna) throws DataAccessException;
+
+	public void qnaModifyWithPw(Qna qna) throws DataAccessException;
 	
 }

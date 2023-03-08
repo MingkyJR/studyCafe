@@ -202,7 +202,6 @@ ${noticePage.content} <hr/><hr/><hr/> --%>
 
 <%-- ${keyword} --%>
 
-
 <p class="home" style="margin:0 auto; max-width: 950px;">
 <a href="<%=request.getContextPath()%>/qna/list">HOME</a>
 </p>
@@ -292,10 +291,11 @@ ${noticePage.content} <hr/><hr/><hr/> --%>
  		<td>${item.q_no}</td>
  		<td>${item.q_writer}</td>
  		
- 	<c:if test="${AUTHUSER.u_id =='adminid'}">
+ 	<c:if test="${AUTHUSER.u_grade==999}">
  		<td><a href="<%=request.getContextPath()%>/qna/read?no=${item.q_no}&pageNo=${qnaPage.currentPage}&rowSize=${rowSize}">${item.q_title}</a></td> 
  	</c:if>	
- 	<c:if test="${AUTHUSER.u_id !='adminid'}">
+ 	
+ 	<c:if test="${AUTHUSER.u_grade!=999}">
  			<c:if test="${item.q_isopen=='Y'}">
  		 		<td><a href="<%=request.getContextPath()%>/qna/read?no=${item.q_no}&pageNo=${qnaPage.currentPage}&rowSize=${rowSize}">${item.q_title}</a></td>
  			</c:if>
@@ -304,21 +304,21 @@ ${noticePage.content} <hr/><hr/><hr/> --%>
  			</c:if>
  	</c:if>
   		
-
  		<td><fmt:formatDate pattern="yyyy.MM.dd. HH:mm:ss" type="date" value="${item.q_regdate}" /></td>
  		<td><fmt:formatDate pattern="yyyy.MM.dd. HH:mm:ss" type="date" value="${item.q_moddate}" /></td>
  		<td>${item.q_cnt}</td>
- 		<td>${item.q_isopen}</td>
+ 		<td>
+ 		<c:if test="${item.q_isopen=='Y'}">
+ 		<img class="file-img" src="<%=request.getContextPath()%>/resources/assets/images/qna/unlock.png" width="20px" height="30px"/>
+ 		</c:if>
+ 		<c:if test="${item.q_isopen=='N'}">
+ 		<img class="file-img" src="<%=request.getContextPath()%>/resources/assets/images/qna/lock.png" width="20px" height="30px"/>
+ 		</c:if>
+ 		</td>
  		<td><c:if test="${item.q_chk==1}">미답변</c:if>
  		<c:if test="${item.q_chk==2}">답변 준비중</c:if>
  		<c:if test="${item.q_chk==3}">답변 완료</c:if></td>
-<!--  		<td> -->
-<%--  		<c:forEach var="item2" items="${qnaFile}"> --%>
-<%-- 	 		<c:if test="${item2.q_no==item.q_no}"> --%>
-<!-- 	 			<img class="file-img" src="../assets/images/clip2.png" width="20px" height="20px"/> -->
-<%-- 	 		</c:if>  --%>
-<%-- 		</c:forEach> --%>
-<!--  		</td> -->
+
  	</tr>
  	</c:forEach>
  	</c:if>

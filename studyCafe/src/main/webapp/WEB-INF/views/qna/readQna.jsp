@@ -190,11 +190,11 @@
 <a href="<%=request.getContextPath()%>/qna/list">HOME</a>
 </p>
  <hr/>
- 	<c:if test="${AUTHUSER.u_id=='adminid'}">
+ 	<c:if test="${AUTHUSER.u_grade==999}">
 	 	<form name="qnaChkFrm" id="qnaChkFrm" action="<%=request.getContextPath()%>/qna/qnaStatus" method="post">
 	 	 <input type="hidden" name="q_no" id="q_no" value="${qna.q_no}"/>
 	 	
-		 	<table border="1" style="text-align:right; height:60px; margin-left:auto;">
+		 	<table border="1" style="text-align:right; height:60px; margin:0 auto;">
 			 	<tr>
 			 		<th>답변 진행상태</th>
 						<td>

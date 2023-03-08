@@ -99,7 +99,6 @@ public class QnaRepositoryImpl implements QnaRepository {
 
 	@Override
 	public void modifyReply(QnaComment qnaComm) throws DataAccessException {
-		System.out.println("이겁니다"+qnaComm);
 		sqlSession.update("mapper.qna.qnaModifyReply", qnaComm);
 	}
 	
@@ -110,6 +109,12 @@ public class QnaRepositoryImpl implements QnaRepository {
 	
 	public void updateQnaStatus(Qna qna) throws DataAccessException {
 		sqlSession.update("mapper.qna.updateQnaStatus", qna);
+	}
+
+	@Override
+	public void qnaModifyWithPw(Qna qna) throws DataAccessException {
+		sqlSession.update("mapper.qna.qnaModifyWithPw", qna);
+		
 	}
 
 }

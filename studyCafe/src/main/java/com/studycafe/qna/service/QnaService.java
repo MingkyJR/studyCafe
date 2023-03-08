@@ -30,11 +30,13 @@ public interface QnaService {
 
 	public void modifyReply(QnaComment qnaComm) throws Exception;
 
-	void DeleteReply(int qr_no) throws Exception;
+	public void DeleteReply(int qr_no) throws Exception;
 
-	void updateQnaStatus(Qna qna) throws Exception;
+	public void updateQnaStatus(Qna qna) throws Exception;
 
-	void qnaWriteWithPw(Qna qna) throws Exception;
+	public void qnaWriteWithPw(Qna qna) throws Exception;
+	
+	public void qnaModifyWithPw(Qna qna) throws Exception;
 	
 	
 }

@@ -14,11 +14,11 @@
 		//alert(obj);
 		
 		if(obj== ${qna.q_openpw}){
-			alert("일치");
+			alert("문의글 열람 성공");
 <%-- 			location.href='<%=request.getContextPath()%>/qna/read?pageNo=${pageNo}&rowSize=${rowSize}'; --%>
 			location.href='<%=request.getContextPath()%>/qna/read?no=${qna.q_no}&pageNo=${pageNo}&rowSize=${rowSize}';
 		}else{
-			alert("불일치");
+			alert("비밀번호가 일치하지 않습니다.");
 			obj="";
 		}
 			
@@ -31,7 +31,6 @@
 	<h3></h3>
 	<hr/>
 	<br/><br/><br/>
-	 ${qna.q_openpw}
 <form name="secPwFrm" id="secPwFrm" action="<%=request.getContextPath()%>/qna/read" method="post">
  <input type="hidden" name="pageNo" id="pageNo" value="${pageNo}"/>
  <input type="hidden" name="rowSize" id="rowSize" value="${rowSize}"/> 
@@ -45,7 +44,7 @@
 		 <tr style="height:25px;">
 			<th>비밀글 비밀번호 입력</th>
 			<td style="width:width:180px;">
-			<input type="text" name="q_openpw" id="q_openpw" style="height:30px;" required="required" placeholder="비밀글 열람을 위한 비밀번호 입력."/>
+			<input type="password" name="q_openpw" id="q_openpw" style="height:30px;" required="required" placeholder="비밀글 열람을 위한 비밀번호 입력."/>
 			</td>
 		</tr>
 

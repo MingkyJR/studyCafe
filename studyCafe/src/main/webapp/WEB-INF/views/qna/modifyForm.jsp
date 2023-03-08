@@ -142,6 +142,83 @@
 
 
         </script>
+        
+		<script type="text/javascript">
+// 			function checkpw(){
+// 				var pw = document.getElementById("q_openpw").value;
+// 				if(pw.length==0){
+// 					alert("패스워드를 입력해주세요");
+// 				}
+// 			}
+			
+			function deletepw() {
+				  const element = document.getElementById('qna_pw');
+				  element.innerText = '';
+				} 
+			
+			function createpw(){
+				const element = document.getElementById('qna_pw');
+				 element.innerHTML ='<input type="password" id="q_openpw" name="q_openpw" required>';
+			}
+
+				
+			
+			document.addEventListener('DOMContentLoaded', function() {
+			    var checkboxes = document.querySelectorAll('input[type=checkbox][name=q_isopen]');
+			    for (var checkbox of checkboxes)
+			    {
+			        checkbox.addEventListener('change', function(event)
+			        {
+			            if (event.target.checked) {
+		                	createpw();
+			            }
+			            else {
+			            	deletepw();
+			            }
+			        });
+			    }
+			}, false);
+			
+			
+        	function mdformSubmit(){
+        		
+        		const title = document.getElementById('q_title');
+        		const content = document.getElementById('q_content');
+			    const checkboxes = document.getElementById('q_isopen');
+			    const pw = document.getElementById('q_openpw');
+        		
+        		if(title.value.length == 0){
+        			alert("제목을 입력해주세요");
+        		}else{
+        			if(content.value.length == 0){
+        				alert("내용을 입력해주세요");
+        			}else{
+        				if(checkboxes.checked == false){
+        					$("#modifyFrm").submit();
+                    		alert("글 작성을 완료하였습니다.");
+        				}else{
+        					if(pw.value.length == 0){
+        						alert("패스워드를 입력해주세요");
+        					}else{
+        						$("#modifyFrm").submit();
+                        		alert("글 작성을 완료하였습니다.");
+        					}
+        				}
+        				
+       				}
+        		}		
+			
+			
+			
+        	};
+			
+			
+			
+			</script>
+        
+        
+        
+        
 </head>
 <body>
 
@@ -206,10 +283,22 @@ ${modReq}<br/><br/><br/><br/>
  		</td>
  	</tr>
  	
+ 	
+ 	 <tr>
+ 	
+ 		<th>비밀글 <input type="checkbox" class="q_isopen" name="q_isopen" id="q_isopen" value="y"></th>
+ 		<td>
+ 		<div id="qna_pw"></div>
+<!-- 	   	<input type="password" name="q_openpw" id="q_openpw"> -->	
+ 		</td>
+ 		
+ 	</tr>
+ 	
+ 	
  	 <tr style="height:50px;">
  		<td colspan="2" style="text-align:center;">
 <!--  		<input type="submit" id="ism" value="수정하기"/> -->
- 		<button type="button" id="bsm" onclick="formSubmit();">수정하기</button>
+ 		<button type="button" id="bsm" onclick="mdformSubmit();">수정하기</button>
  		</td>
  	</tr>
  	

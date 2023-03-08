@@ -114,6 +114,38 @@
 			}, false);
 			
 			
+        	function wrformSubmit(){
+        		
+        		const title = document.getElementById('q_title');
+        		const content = document.getElementById('q_content');
+			    const checkboxes = document.getElementById('q_isopen');
+			    const pw = document.getElementById('q_openpw');
+        		
+        		if(title.value.length == 0){
+        			alert("제목을 입력해주세요");
+        		}else{
+        			if(content.value.length == 0){
+        				alert("내용을 입력해주세요");
+        			}else{
+        				if(checkboxes.checked == false){
+        					$("#writeFrm").submit();
+                    		alert("글 작성을 완료하였습니다.");
+        				}else{
+        					if(pw.value.length == 0){
+        						alert("패스워드를 입력해주세요");
+        					}else{
+        						$("#writeFrm").submit();
+                        		alert("글 작성을 완료하였습니다.");
+        					}
+        				}
+        				
+       				}
+        		}
+
+        		
+        
+
+    	};
 					
 			</script>
 </head>
@@ -159,22 +191,21 @@
  	 <tr style="height:60px;">
  		<th>제목<b style="color:red; font-weight: 500;">*</b></th>
  		<td><%-- ${noticeData.notice.title} --%>
- 		<input type="text" name="q_title" id="q_title" style="border:1px solid #CBCACA; width:480px; height:50px; border-radius:5px;" required placeholder="제목을 입력하세요."/>
- 		<span class="error"></span>
+ 		<input type="text" name="q_title" id="q_title" style="border:1px solid #CBCACA; width:480px; height:50px; border-radius:5px;" placeholder="제목을 입력하세요.">
  		</td>
  	</tr>
  	
  	 <tr>
  		<th>내용<b style="color:red; font-weight: 500;">*</b></th>
  		<td>
- 		<textarea name="q_content" id="q_content" rows="20" cols="70" required autofocus placeholder="내용을 입력하세요."></textarea>
+ 		<textarea name="q_content" id="q_content" rows="20" cols="70" autofocus placeholder="내용을 입력하세요."></textarea>
  		
  		</td>
  	</tr>
 
  	<tr>
- 	
- 		<th>비밀글 <input type="checkbox" class="q_isopen" name="q_isopen" id="q_isopen" value="y"></th>
+ 		<th>비밀글 <input type="checkbox" class="q_isopen" name="q_isopen" id="q_isopen"></th>
+<!--  		<th>비밀글 <input type="checkbox" class="q_isopen" name="q_isopen" id="q_isopen" value="y"></th> -->
  		<td>
  		<div id="qna_pw"></div>
 <!-- 	   	<input type="password" name="q_openpw" id="q_openpw"> -->	
@@ -185,8 +216,8 @@
  	
  	 <tr>
  		<td colspan="2" style="text-align:center;">
- 		<input type="submit" id="wrb" value="글쓰기"/>
-<!--  		<button type="button" id="wrb" onclick="wrformSubmit()">글쓰기</button> -->
+<!--  		<input type="submit" id="wrb" value="글쓰기"/> -->
+ 		<button type="button" id="wrb" onclick="wrformSubmit()">글쓰기</button>
  		</td>
  	</tr>
  	
@@ -195,10 +226,6 @@
 <%--  		<a href="<%=request.getContextPath()%>/notice/list.do?pageNo=1&rowSize=${rowSize}">목록보기</a> --%>
  		<button type="button" id="list" onclick="location.href='<%=request.getContextPath()%>/qna/list?pageNo=1&rowSize=5'">처음 목록보기</button>
  		<button type="button" id="list2" onclick="location.href='<%=request.getContextPath()%>/qna/list?pageNo=${pageNo}&rowSize=${rowSize}'">이전 목록보기</button>
-<%--  		<button type="button" id="list" onclick="location.href='<%=request.getContextPath()%>/notice/list.do?pageNo=${pageNo}&rowSize=${rowSize}'">목록보기</button> --%>
-<%--  		<a href="/notice/read.do?no=글번호&pageNo=1&rowSize=${rowSize}">글 상세조회(모델보면서 보완예정)</a> --%>
-<!--  		<a href="/notice/delete.do?no=글번호">글삭제(delete용)</a> -->
-<!--  		<a href="/notice/delete2.do?no=글번호">글삭제(update용)</a> -->
  		</td>
  	</tr>
  	

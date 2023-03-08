@@ -100,6 +100,12 @@ public class QnaServiceImpl implements QnaService {
 			qnaRepository.updateQnaStatus(qna);
 		}
 
+		@Override
+		public void qnaModifyWithPw(Qna qna) throws Exception {
+			qnaRepository.qnaModifyWithPw(qna);			
+			
+		}
+
 			
 }
 
