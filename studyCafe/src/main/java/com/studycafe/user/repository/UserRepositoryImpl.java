@@ -18,4 +18,10 @@ public class UserRepositoryImpl implements UserRepository {
 	public User getLogin(User user) throws DataAccessException {
 		return sqlSession.selectOne("mapper.user.getLogin",user);
 	}
+	
+	//회원가입
+	@Override
+	public void insertUser(User user) throws DataAccessException {
+		sqlSession.insert("mapper.user.insertUser", user);
+	}
 }
