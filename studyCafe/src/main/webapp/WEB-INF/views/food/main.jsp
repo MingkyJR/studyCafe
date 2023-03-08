@@ -42,26 +42,85 @@ div.product {
 		text-decoration: none;
 		color: white;
 	}
+	.smenu {
+		display: inline-block;
+		margin: 15px;
+		width: 130px;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		border-radius: 20px;
+		background-color: #FFE08C;
+	}
+	.smenu a {
+		text-decoration: none;
+		color: black;
+	}
 </style>
 </head>
 <body>
 	<div class="summary">
 	<h3 style="text-align: center;">스터디카페 먹거리 주문</h3>
-	<div class="menu" style="background-color: #FFE08C">
-		<a href="${contextPath}/food/main" style="color: black;">전체</a>
-	</div>
+	<c:choose>
+		<c:when test="${type == 0}">
+			<div class="smenu">
+				<a href="${contextPath}/food/main">전체</a>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div class="menu">
+				<a href="${contextPath}/food/main">전체</a>
+			</div>
+		</c:otherwise>
+	</c:choose>
+	<c:choose>
+		<c:when test="${type == 1}">
+			<div class="smenu">
+				<a href="${contextPath}/food/main?type=1">식사류</a>
+			</div>
+		</c:when>
+		<c:otherwise>
 	<div class="menu">
 		<a href="${contextPath}/food/main?type=1">식사류</a>
 	</div>
-	<div class="menu">
-		<a href="${contextPath}/food/main?type=2">라면류</a>
-	</div>
-	<div class="menu">
-		<a href="${contextPath}/food/main?type=3">음료(캔)</a>
-	</div>
-	<div class="menu">
-		<a href="${contextPath}/food/main?type=4">음료(카페)</a>
-	</div>
+	</c:otherwise>
+	</c:choose>
+	<c:choose>
+		<c:when test="${type == 2}">
+			<div class="smenu">
+				<a href="${contextPath}/food/main?type=2">라면류</a>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div class="menu">
+				<a href="${contextPath}/food/main?type=2">라면류</a>
+			</div>
+		</c:otherwise>
+	</c:choose>
+	<c:choose>
+		<c:when test="${type == 3}">
+			<div class="smenu">
+				<a href="${contextPath}/food/main?type=3">음료(캔)</a>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div class="menu">
+				<a href="${contextPath}/food/main?type=3">음료(캔)</a>
+			</div>
+		</c:otherwise>
+	</c:choose>
+	<c:choose>
+		<c:when test="${type == 4}">
+			<div class="smenu">
+				<a href="${contextPath}/food/main?type=4">음료(카페)</a>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div class="menu">
+				<a href="${contextPath}/food/main?type=4">음료(카페)</a>
+			</div>
+		</c:otherwise>
+	</c:choose>
 	</div>
 	<div class="summary">
 	<c:forEach var="list" items="${list}">
