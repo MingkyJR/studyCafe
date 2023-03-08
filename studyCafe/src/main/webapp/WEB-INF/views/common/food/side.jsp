@@ -32,9 +32,14 @@
 	</tr>
 	<tr>
 		<td>
-		<a href="${conPath}/food/changeQ?pm=0&food_no=${cartList.food_no}&type=${type}">
-		<img src="${conPath}/resources/assets/icon/food/dash-square.svg"/> <!-- -버튼 -->
-		</a>
+		<c:if test="${cartList.quantity == 1}">
+			<img src="${conPath}/resources/assets/icon/food/dash-square.svg"/> <!-- -버튼 -->
+		</c:if>
+		<c:if test="${cartList.quantity != 1}">
+			<a href="${conPath}/food/changeQ?pm=0&food_no=${cartList.food_no}&type=${type}">
+				<img src="${conPath}/resources/assets/icon/food/dash-square.svg"/> <!-- -버튼 -->
+			</a>
+		</c:if>
 		 ${cartList.quantity} 
 		<a href="${conPath}/food/changeQ?pm=1&food_no=${cartList.food_no}&type=${type}">
 		<img src="${conPath}/resources/assets/icon/food/plus-square.svg"/> <!-- +버튼 -->
@@ -46,13 +51,23 @@
 </c:forEach>
 </table>
 <div>
-	<button class="payBtn" onclick="requestPayKG()">결제하기</button>
+	<button class="payBtn" onclick="requestPayKakao()">결제하기</button>
 </div>
 <div style="height: 80px; line-height: 80px;"><span style="margin-left: 10px;">합계 :<c:out value="${total}"/>원</span></div>
 </c:if>
 </div>
 </div>
 <script>
+var time = new Date();
+var year = time.getFullYear(); // 년도
+var month = ('0' + (time.getMonth() + 1)).slice(-2);  // 월
+var date = ('0' + time.getDate()).slice(-2);
+var hours = ('0' + time.getHours()).slice(-2); 
+var minutes = ('0' + time.getMinutes()).slice(-2);
+var seconds = ('0' + time.getSeconds()).slice(-2);
+
+var orderTime = year+month+date+hours+minutes+seconds;
+
 const IMP = window.IMP; // 생략 가능
 IMP.init("imp86313206");
   
@@ -61,10 +76,10 @@ function requestPayKG() {
     IMP.request_pay({ // param
         pg: "html5_inicis",
         pay_method: "card",
-        merchant_uid: "4",
+        merchant_uid: "SC"+orderTime+"${u_number}",
         name: "스터디카페 햇반",
-        amount: 1000,
-        buyer_email: "gildong@gmail.com",
+        amount: "${total}",
+        buyer_email: "",
         buyer_name: "홍길동",
         buyer_tel: "010-4242-4242",
         buyer_addr: "서울특별시 강남구 신사동",
@@ -72,10 +87,35 @@ function requestPayKG() {
     }, function (rsp) { // callback
         if (rsp.success) {
             // 결제 성공 시 로직
-        	var msg = '결제가 완료되었습니다.';
-            location.href='/food/success';
+        	alert("결제가 완료되었습니다.");
+            location.href='http://localhost:8081/scafe/food/order?order_no='+rsp.merchant_uid+'&order_price='+${total};
         } else {
             // 결제 실패 시 로직
+            
+        }
+    });
+  }
+function requestPayKakao() {
+    // IMP.request_pay(param, callback) 결제창 호출
+    IMP.request_pay({ // param
+        pg: "kakaopay",
+        pay_method: "card",
+        merchant_uid: "SC"+orderTime+"${u_number}",
+        name: "스터디카페 햇반",
+        amount: "${total}",
+        buyer_email: "",
+        buyer_name: "홍길동",
+        buyer_tel: "010-4242-4242",
+        buyer_addr: "서울특별시 강남구 신사동",
+        buyer_postcode: "01181"
+    }, function (rsp) { // callback
+        if (rsp.success) {
+            // 결제 성공 시 로직
+            alert("결제가 완료되었습니다.");
+            location.href='http://localhost:8081/scafe/food/order?order_no='+rsp.merchant_uid+'&order_price='+${total};
+        } else {
+            // 결제 실패 시 로직
+            alert("결제가 취소되었습니다.");
             
         }
     });

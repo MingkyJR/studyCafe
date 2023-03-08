@@ -9,14 +9,14 @@
 	<!-- 전체 음식 목록 조회 -->
 	<select id="listFood" resultType="food">
 	<![CDATA[
-		select * from food
+		select * from food order by food_no
 	]]>
 	</select>
 	
 	<!-- 특정 종류 조회 -->
 	<select id="listTypeFood" resultType="food" parameterType="int">
 	<![CDATA[
-		select * from food where type=#{type}
+		select * from food where type=#{type} order by food_no
 	]]>
 	</select>
 	
@@ -73,7 +73,38 @@
 	]]>
 	</delete>
 	
+	<!-- 장바구니 상품 삭제 -->
+	<delete id="deleteAllCart" parameterType="cart">
+	<![CDATA[
+		delete from cart
+		where u_number = #{u_number}
+	]]>
+	</delete>
 	
+	<!-- 주문추가 -->
+	<insert id="insertOrder" parameterType="Map">
+	<![CDATA[
+		insert into orders(order_no,u_number,order_time,order_price,call_no)
+		values (#{order_no}, #{u_number}, sysdate, #{order_price},orders_seq.nextval)
+	]]>
+	</insert>
+	
+	<insert id="insertDetail" parameterType="Map">
+	insert into order_detail(od_no,order_no,food_no,quantity)
+	select order_detail_seq.nextval, A.*from(
+	<foreach item="item" collection="cart" separator="UNION ALL" >
+		select #{order_no} as order_no,
+			   #{item.food_no} as food_no,
+			   #{item.quantity} as quantity
+		from dual
+	</foreach>) A
+	</insert>
+	
+	<select id="getOrderByNo" parameterType="String" resultType="order">
+	<![CDATA[
+		select * from orders where order_no = #{order_no}
+	]]>
+	</select>
 </mapper>    
 
 

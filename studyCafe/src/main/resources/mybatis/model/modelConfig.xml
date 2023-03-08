@@ -10,5 +10,8 @@
 	
 	  <typeAlias type="com.studycafe.food.domain.Cart"    
 	                                     alias="cart"/>
+	                                     
+	  <typeAlias type="com.studycafe.food.domain.Order"    
+	                                     alias="order"/>
 	</typeAliases>
 </configuration>

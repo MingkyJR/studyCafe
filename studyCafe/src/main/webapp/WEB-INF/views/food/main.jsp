@@ -70,7 +70,7 @@ div.product {
 	    		<img src="${contextPath}/resources/assets/images/food/${list.fileName}" alt="food image" width="600" height="300">
 	 		</a>
 		<div class="desc">${list.food_name}</div>
-		<div class="desc">${list.food_price}</div>
+		<div class="desc">${list.food_price}원</div>
 		</div>
 	</c:forEach>
 	</div>
