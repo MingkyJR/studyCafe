@@ -177,7 +177,6 @@
 
 </head>
 <body>
-${AUTHUSER.u_id}
 <%-- 컨트롤러에 의해서 아래와 같이 Model을 받았다   23.01.13. 받는 모델을 변경!!!!! listNotice에서 NoticePage로
 List<Notice> listNotice=~~~~;
  request.setAttribute("listNotice", listNotice); 
