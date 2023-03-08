@@ -73,10 +73,10 @@ function requestPayKG() {
     IMP.request_pay({ // param
         pg: "html5_inicis",
         pay_method: "card",
-        merchant_uid: "USDK123123",
+        merchant_uid: "SC"+orderTime+"${u_number}",
         name: "스터디카페 햇반",
         amount: "${total}",
-        buyer_email: "gildong@gmail.com",
+        buyer_email: "",
         buyer_name: "홍길동",
         buyer_tel: "010-4242-4242",
         buyer_addr: "서울특별시 강남구 신사동",
@@ -84,8 +84,8 @@ function requestPayKG() {
     }, function (rsp) { // callback
         if (rsp.success) {
             // 결제 성공 시 로직
-        	var msg = '결제가 완료되었습니다.';
-            location.href='scafe/food/success';
+        	alert("결제가 완료되었습니다.");
+            location.href='http://localhost:8081/scafe/food/order?order_no='+rsp.merchant_uid+'&order_price='+${total};
         } else {
             // 결제 실패 시 로직
             
@@ -100,7 +100,7 @@ function requestPayKakao() {
         merchant_uid: "SC"+orderTime+"${u_number}",
         name: "스터디카페 햇반",
         amount: "${total}",
-        buyer_email: "gildong@gmail.com",
+        buyer_email: "",
         buyer_name: "홍길동",
         buyer_tel: "010-4242-4242",
         buyer_addr: "서울특별시 강남구 신사동",
@@ -112,6 +112,7 @@ function requestPayKakao() {
             location.href='http://localhost:8081/scafe/food/order?order_no='+rsp.merchant_uid+'&order_price='+${total};
         } else {
             // 결제 실패 시 로직
+            alert("결제가 취소되었습니다.");
             
         }
     });

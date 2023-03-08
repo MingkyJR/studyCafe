@@ -119,7 +119,8 @@ public class FoodController {
 		foodService.insertOrder(map);
 		foodService.insertDeatil(map);
 		foodService.deleteAllCart(u_number);
-		model.addAttribute("order_no", order_no);
+		Order order = foodService.getOrderByNo(order_no);
+		model.addAttribute("order", order);
 		
 		return "/food/success";
 		

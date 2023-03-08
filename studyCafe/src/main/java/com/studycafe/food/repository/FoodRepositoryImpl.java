@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.studycafe.food.domain.Cart;
 import com.studycafe.food.domain.Food;
+import com.studycafe.food.domain.Order;
 
 @Repository
 public class FoodRepositoryImpl implements FoodRepository{
@@ -85,5 +86,11 @@ public class FoodRepositoryImpl implements FoodRepository{
 	@Override
 	public void insertDetail(Map<String, Object> map) throws DataAccessException {
 		sqlSession.insert("mapper.food.insertDetail", map);
+	}
+	
+	//주문번호로 주문정보 가져오기
+	@Override
+	public Order getOrderByNo(String order_no) throws DataAccessException {
+		return sqlSession.selectOne("mapper.food.getOrderByNo", order_no);
 	}
 }

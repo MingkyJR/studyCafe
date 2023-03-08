@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.studycafe.food.domain.Cart;
 import com.studycafe.food.domain.Food;
+import com.studycafe.food.domain.Order;
 
 public interface FoodRepository {
 	
@@ -42,5 +43,8 @@ public interface FoodRepository {
 	
 	//결제 완료 후 상세 주문 추가
 	public void insertDetail(Map<String, Object> map) throws DataAccessException;
+
+	//주문번호로 주문정보 가져오기
+	public Order getOrderByNo(String order_no) throws DataAccessException;
 	
 }

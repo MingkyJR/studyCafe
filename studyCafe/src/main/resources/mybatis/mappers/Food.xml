@@ -100,6 +100,11 @@
 	</foreach>) A
 	</insert>
 	
+	<select id="getOrderByNo" parameterType="String" resultType="order">
+	<![CDATA[
+		select * from orders where order_no = #{order_no}
+	]]>
+	</select>
 </mapper>    
 
 

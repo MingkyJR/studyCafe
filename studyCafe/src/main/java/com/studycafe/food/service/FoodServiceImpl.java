@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.studycafe.food.domain.Cart;
 import com.studycafe.food.domain.Food;
+import com.studycafe.food.domain.Order;
 import com.studycafe.food.repository.FoodRepository;
 
 @Service
@@ -80,5 +81,11 @@ public class FoodServiceImpl implements FoodService {
 	@Override
 	public void insertDeatil(Map<String, Object> map) throws Exception {
 		foodRepository.insertDetail(map);
+	}
+	
+	//주문번호로 주문정보 가져오기
+	@Override
+	public Order getOrderByNo(String order_no) throws Exception {
+		return foodRepository.getOrderByNo(order_no);
 	}
 }
