@@ -28,16 +28,40 @@ div.product {
 		padding: 2px;
 		text-align: center;
 	}
+	.menu {
+		display: inline-block;
+		margin: 15px;
+		width: 130px;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		border-radius: 20px;
+		background-color: #aaa;
+	}
+	.menu a {
+		text-decoration: none;
+		color: white;
+	}
 </style>
 </head>
 <body>
 	<div class="summary">
-	<h3>스터디카페 먹거리 주문</h3>
-	<a href="${contextPath}/food/main">전체</a>
-	<a href="${contextPath}/food/main?type=1">식사류</a>
-	<a href="${contextPath}/food/main?type=2">라면류</a>
-	<a href="${contextPath}/food/main?type=3">음료(캔)</a>
-	<a href="${contextPath}/food/main?type=4">음료(카페)</a>
+	<h3 style="text-align: center;">스터디카페 먹거리 주문</h3>
+	<div class="menu" style="background-color: #FFE08C">
+		<a href="${contextPath}/food/main" style="color: black;">전체</a>
+	</div>
+	<div class="menu">
+		<a href="${contextPath}/food/main?type=1">식사류</a>
+	</div>
+	<div class="menu">
+		<a href="${contextPath}/food/main?type=2">라면류</a>
+	</div>
+	<div class="menu">
+		<a href="${contextPath}/food/main?type=3">음료(캔)</a>
+	</div>
+	<div class="menu">
+		<a href="${contextPath}/food/main?type=4">음료(카페)</a>
+	</div>
 	</div>
 	<div class="summary">
 	<c:forEach var="list" items="${list}">
