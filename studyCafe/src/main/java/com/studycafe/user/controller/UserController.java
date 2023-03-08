@@ -66,6 +66,7 @@ public class UserController {
 			return "user/join";
 		}
 		userService.insertUser(user);
+		model.addAttribute("user", user);
 		return "user/success";
 	}
 	
