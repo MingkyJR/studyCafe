@@ -33,6 +33,15 @@
 					return false;
 				}
 			});
+			
+/* 			var patt = new RegExp("[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}");
+			var res = patt.test( $("#u_tell").val());
+
+			if( !patt.test( $("#u_tell").val()) ){
+			    alert("전화번호를 정확히 입력하여 주십시오.");
+			    return false;
+			} */
+
 		})//함수종료
 	</script>
 	<body>
@@ -42,25 +51,27 @@
 		<table border="1">
 			<tr>
 				<td>아이디</td>
-				<td><input name="u_id"></td>
+				<td><input name="u_id" required></td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td><input type="password" name="u_pass"></td>
+				<td><input type="password" name="u_pass" required></td>
 			</tr>
 			<tr>
 				<td>이름</td>
-				<td><input name="u_name"></td>
+				<td><input name="u_name" required></td>
 			</tr>
 			<tr>
 				<td>성별</td>
-					<td><label><input type="radio" name="u_gender" value="men"> 남</label>
-					<label><input type="radio" name="u_gender" value="women"> 여</label></td>
+					<td><label><input type="radio" name="u_gender" value="men" required> 남</label>
+					<label><input type="radio" name="u_gender" value="women" required> 여</label></td>
 			</tr>
 			<tr>
 				<td>전화번호</td>
-				<td><input name="u_tell"></td>
-			</tr>
+				<td>
+				<input type="tel" name="u_tell" id="u_tell" title="전화번호를 입력하세요." placeholder="010-1234-5678" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}" maxlength="13" required>
+				</td>
+			</tr> 
 			<tr>
 				<td colspan="2" align="center">
 					<input type="submit" value="회원가입">
