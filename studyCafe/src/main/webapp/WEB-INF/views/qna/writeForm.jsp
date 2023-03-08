@@ -21,7 +21,7 @@
 	 	th {
 	    text-align: center;
 /* 	    border: 1px solid #EFEFEF; */
-	    background: #C5CAD7;
+	    background: #BACEC1;
 	   
 	 	}
 /* 	 	textarea{ width:98%; border:0; resize: none;} */
@@ -34,17 +34,17 @@
 	 	
 	 	
 	 	#wrb{
-	 	  color: white;
+/* 	 	  color: white; */
 		  text-align: center;
-		  background: #7C8EBF;
+/* 		  background: #7C8EBF; */
 		  border: solid 1px #191970;
 		  border-radius: 3px;
 	 	}
 	 	
 	 	#list{
-	 	  color: white;
+/* 	 	  color: white; */
 		  text-align: center;
-		  background: #7C8EBF;
+/* 		  background: #7C8EBF; */
 		  border: solid 1px #191970;
 		  border-radius: 3px;
 	 	}

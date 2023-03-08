@@ -30,25 +30,25 @@
 /* 		border: 1px solid #EFEFEF; */
 	 	}
 	 	
-	 	#nu{ width:50px; background: #C5CAD7;
+	 	#nu{ width:50px; background: #BACEC1;
 	 	}
-	 	#ti{ width:230px; background: #C5CAD7;
+	 	#ti{ width:230px; background: #BACEC1;
 	 	}
-	 	#wr{ width:90px; background: #C5CAD7;
+	 	#wr{ width:90px; background: #BACEC1;
 	 	}
-	 	#rd{ width:150px; background: #C5CAD7;
+	 	#rd{ width:150px; background: #BACEC1;
 	 	}
-	 	#md{ width:230px; background: #C5CAD7;
+	 	#md{ width:230px; background: #BACEC1;
 	 	}
-	 	#ct{ width:60px; background: #C5CAD7;
+	 	#ct{ width:60px; background: #BACEC1;
 	 	}
-	 	#ca{ width:60px; background: #C5CAD7;
+	 	#ca{ width:60px; background: #BACEC1;
 	 	}
-	 	#as{ width:60px; background: #C5CAD7;
+	 	#as{ width:60px; background: #BACEC1;
 	 	}
-	 	#rf{ width:60px; background: #C5CAD7;
+	 	#rf{ width:60px; background: #BACEC1;
 	 	}
-	 	
+ /*background: #C5CAD7; 원본색상 */
 	 	td {
 	    width: 120px;
 /*   	    border: 1px solid #bcbcbc; */
@@ -66,25 +66,25 @@
 		#bwr {margin:0 auto; max-width:1150px; inline-block;}
 		#sch {margin:0 auto; max-width:1150px; inline-block;} 
 	 	#sub{
-	 	  color: white;
+/* 	 	  color: white; */
 		  text-align: center;
-		  background: #7C8EBF;
+/* 		  background: #7C8EBF; */
 		  border: solid 1px #191970;
 		  border-radius: 3px;
 	 	}
 	 	
 	 	#wri{
-	 	  color: white;
+/* 	 	  color: white; */
 		  text-align: center;
-		  background: #7C8EBF;
+/* 		  background: #7C8EBF; */
 		  border: solid 1px #191970;
 		  border-radius: 3px;
 	 	}
 		
 		#list{
-	 	  color: white;
+/* 	 	  color: white; */
 		  text-align: center;
-		  background: #7C8EBF;
+/* 		  background: #7C8EBF; */
 		  border: solid 1px #191970;
 		  border-radius: 3px;
 	 	}
