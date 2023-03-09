@@ -86,30 +86,18 @@ body{
 }
 
 
-.footer{
-	display: flex;
-	width:100%;
-	gap:10px;
+.footer1{
+	text-align : center;
 }
 
-.footer input[type=submit]{
-	background-color: #515e93;
+.sub{
+	background-color: #c0c0c0;
 	border:1px solid #dadada;
-	padding: 15px;
-	color:#fff;
-	width: 50%;
+	padding: 5px;
+	width: 39%;
 	cursor: pointer;
 }
 
-
-.footer input[type=reset]{
-	background-color: #ebad34;
-	border:1px solid #dadada;
-	padding: 15px;
-	color:#fff;
-	width: 50%;
-	cursor: pointer;
-}
 
 #footertxt{
  text-align: center;

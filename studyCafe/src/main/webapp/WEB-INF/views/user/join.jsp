@@ -46,7 +46,10 @@
     </div>
     </div>
 	<input type="hidden" name="u_grade" value="1"/>
-	<input type="submit">
+	<div class="footer1">
+					<input class="sub" type="submit" value="등록">
+				</div>
+				<h3  id="footertxt" ><a href="${conPath}">메인 페이지로</a></h3>
     </form>
 </body>
 </html>
