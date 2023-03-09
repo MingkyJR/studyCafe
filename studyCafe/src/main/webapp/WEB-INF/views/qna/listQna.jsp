@@ -202,9 +202,9 @@ ${noticePage.content} <hr/><hr/><hr/> --%>
 
 <%-- ${keyword} --%>
 
-<p class="home" style="margin:0 auto; max-width: 950px;">
-<a href="<%=request.getContextPath()%>/qna/list">HOME</a>
-</p>
+<!-- <p class="home" style="margin:0 auto; max-width: 950px;"> -->
+<%-- <a href="<%=request.getContextPath()%>/qna/list">HOME</a> --%>
+<!-- </p> -->
 <hr/>
 <%--  ${qnaPage.keyword} --%>
 <%--  ${param.keyword} --%>

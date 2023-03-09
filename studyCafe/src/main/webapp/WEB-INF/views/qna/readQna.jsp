@@ -186,9 +186,9 @@
 *1페이지당 게시글수:${rowSize}<br/><br/>--%>
 
 
-<p class="home" style="margin:0 auto; max-width: 950px;">
-<a href="<%=request.getContextPath()%>/qna/list">HOME</a>
-</p>
+<!-- <p class="home" style="margin:0 auto; max-width: 950px;"> -->
+<%-- <a href="<%=request.getContextPath()%>/qna/list">HOME</a> --%>
+<!-- </p> -->
  <hr/>
  	<c:if test="${AUTHUSER.u_grade==999}">
 	 	<form name="qnaChkFrm" id="qnaChkFrm" action="<%=request.getContextPath()%>/qna/qnaStatus" method="post">
