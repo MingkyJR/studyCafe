@@ -33,7 +33,7 @@ const config = {
         	$("input:checkbox").prop("checked", false);
        	$.ajax({
         		type:'POST',
-        		url: '${conPath}/timeCheckD',
+        		url: '${conPath}/timeCheckB',
         	    data:{rs_date:dateText},//서버로 전송할 데이터. 예){name:"홍GD"}
         	    success:function(data,status,xhr){//정상응답후 호출되는 함수
         	         //data: 서버로부터 응답받은 내용

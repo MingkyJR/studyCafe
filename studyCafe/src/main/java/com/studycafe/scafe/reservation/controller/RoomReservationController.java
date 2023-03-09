@@ -41,7 +41,7 @@ public class RoomReservationController {
 	
 	//A룸 조회
 	@GetMapping("/reservationDetailA")
-	public String getReservationDetailA(Model model, HttpServletRequest request) throws Exception {
+	public String getReservationDetailA(Model model) throws Exception {
 		return "reservationDetailA";
 	}
 	
@@ -87,7 +87,6 @@ public class RoomReservationController {
    if(rs_date==null)
        return null;
     
-    //리턴      List<RoomReservation> : 책이름 목록
    List<RoomReservation> roomReservation = roomReservationService.timeCheckA(rs_date);
     
    JSONObject jsonObject = new JSONObject();
