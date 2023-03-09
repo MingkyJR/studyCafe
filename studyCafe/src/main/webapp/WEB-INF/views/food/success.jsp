@@ -26,6 +26,7 @@
       display: inline-block;
       width: 100px;
       height: 30px;
+      cursor: pointer;
    }
    .successBtn button {
       width: 100%;
