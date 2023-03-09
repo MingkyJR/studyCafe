@@ -46,7 +46,7 @@ public class UserController {
 	@GetMapping("/logout")
 	public String logout(Model model,HttpSession session) throws Exception {
 		session.invalidate();
-		return "user/login";
+		return "main";
 	}
 	
 	@GetMapping("/join")
