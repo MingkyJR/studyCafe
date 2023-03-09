@@ -238,9 +238,9 @@ ${modReq}<br/><br/><br/><br/>
 
 <%--  <a href="<%=request.getContextPath()%>/index.jsp">HOME</a> --%>
 <!-- <p class="home" style="text-align: left; margin-left:150px;"> -->
-<p class="home" style="margin:0 auto; max-width: 950px;">
-<a href="<%=request.getContextPath()%>/qna/list">HOME</a>
-</p>
+<!-- <p class="home" style="margin:0 auto; max-width: 950px;"> -->
+<%-- <a href="<%=request.getContextPath()%>/qna/list">HOME</a> --%>
+<!-- </p> -->
  <hr/>
   
 <br/><br/>
