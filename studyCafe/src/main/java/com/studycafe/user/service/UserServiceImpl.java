@@ -16,4 +16,10 @@ public class UserServiceImpl implements UserService {
 	public User getLogin(User user) throws Exception {
 		return userRepository.getLogin(user);
 	}
+	
+	//회원가입
+	@Override
+	public void insertUser(User user) throws Exception {
+		userRepository.insertUser(user);
+	}
 }
