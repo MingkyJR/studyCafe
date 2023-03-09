@@ -34,7 +34,7 @@
 					<span><a href="<%=request.getContextPath()%>/article/articleList">공지사항</a></span><span style="color: gray; font-weight: normal;">|</span>
 					<span><a href="#">문의사항</a></span><span style="color: gray; font-weight: normal;">|</span>
 					<span><a href="#">음식 주문</a></span><span style="color: gray; font-weight: normal;">|</span>
-					<span><a href="#">좌석 예약</a></span><span style="color: gray; font-weight: normal;">|</span>
+					<span><a href="<%=request.getContextPath()%>/studycafe/seatSelect?userNo=${AUTHUSER.u_number}">좌석 예약</a></span><span style="color: gray; font-weight: normal;">|</span>
 					<span><a href="<%=request.getContextPath()%>/reservationMain">스터디룸 예약</a></span><span style="color: gray; font-weight: normal;">|</span>
 					<span><a href="<%=request.getContextPath()%>/reservationConfirm">예약 확인</a></span>
 				</div>
