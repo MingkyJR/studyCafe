@@ -103,7 +103,7 @@
 			<td>${item.h_userId}</td>	
 			<td>${item.h_grade}</td>
 			<td><fmt:formatNumber value="${item.h_wallet}" pattern="###,###"/>원</td>
-			<td>${item.isUsing}</td>
+			<td>${item.h_isUsing}</td>
 			<td>
 			<input type="button" value="좌석정보변경" onclick="location.href='<%=request.getContextPath()%>/studycafe/seatSelect2?userNo=${userNo}&hno=${item.h_number}'">
 			<input type="button" value="금액충전하기" onclick="location.href='<%=request.getContextPath()%>/studycafe/chargeMoney999?userNo=${userNo}&hno=${item.h_number}'">

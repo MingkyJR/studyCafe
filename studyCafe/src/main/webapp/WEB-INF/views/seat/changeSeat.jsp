@@ -135,34 +135,34 @@ body{
 	<h1> 좌석 변경하기 </h1><a href="<%=request.getContextPath()%>/studycafe/historyList?userNo=${userNo}" style="text-align:right;">목록으로 돌아가기</a><hr/>
 	
 	<c:forEach var="item" items="${seat}" begin="0" end="4">
-	<span style="display:inline-block;  width:250px;" >
+	<span style="display:inline-block;  width:200px;" >
 	<button class="seatBtn ${item.s_isusing == 1 ? 'reserved' : ''}" name="chkBtn" value="${item.s_number},${item.s_isusing},${history.h_number}">${item.s_number}</button>
 	<c:choose>
-	<c:when test="${item.s_number == history.isUsing}">${history.h_userId}</c:when>
-	<c:when test="${item.s_number != history.isUsing && item.s_isusing==0}">현재 사용가능</c:when>
-	<c:otherwise>현재 이용중</c:otherwise>
+	<c:when test="${item.s_number == history.h_isUsing}">${history.h_userId}</c:when>
+	<c:when test="${item.s_number != history.h_isUsing && item.s_isusing==0}">사용 가능</c:when>
+	<c:otherwise>사용 중</c:otherwise>
 	</c:choose>
 	</span>
 	</c:forEach><br/><br/>
 	<br/>
 	<c:forEach var="item" items="${seat}" begin="5" end="9">
-	<span style="display:inline-block; width:250px;">
+	<span style="display:inline-block; width:200px;">
 	<button class="seatBtn ${item.s_isusing == 1 ? 'reserved' : ''}" name="chkBtn" value="${item.s_number},${item.s_isusing},${history.h_number}">${item.s_number}</button>
 	<c:choose>
-	<c:when test="${item.s_number == history.isUsing}">${history.h_userId}</c:when>
-	<c:when test="${item.s_number != history.isUsing && item.s_isusing==0}">현재 사용가능</c:when>
-	<c:otherwise>현재 이용중</c:otherwise>
+	<c:when test="${item.s_number == history.h_isUsing}">${history.h_userId}</c:when>
+	<c:when test="${item.s_number != history.h_isUsing && item.s_isusing==0}">사용 가능</c:when>
+	<c:otherwise>사용 중</c:otherwise>
 	</c:choose>
 	</span>
 	</c:forEach><br/><br/>
 	<br/>
 	<c:forEach var="item" items="${seat}" begin="10" end="14">
-	<span style="display:inline-block; width:250px;" >
+	<span style="display:inline-block; width:200px;" >
 	<button class="seatBtn ${item.s_isusing == 1 ? 'reserved' : ''}" name="chkBtn" value="${item.s_number},${item.s_isusing},${history.h_number}">${item.s_number}</button>
 	<c:choose>
-	<c:when test="${item.s_number == history.isUsing}">${history.h_userId}</c:when>
-	<c:when test="${item.s_number != history.isUsing && item.s_isusing==0}">현재 사용가능</c:when>
-	<c:otherwise>현재 이용중</c:otherwise>
+	<c:when test="${item.s_number == history.h_isUsing}">${history.h_userId}</c:when>
+	<c:when test="${item.s_number != history.h_isUsing && item.s_isusing==0}">사용 가능</c:when>
+	<c:otherwise>사용 중</c:otherwise>
 	</c:choose>
 	</span>
 	</c:forEach>

@@ -14,10 +14,11 @@ public class HistoryRepositoryImpl implements HistoryRepository{
 	@Autowired
 	private SqlSession sqlSession;
 	
-	
-	
 	public Integer addSeatHistory(History history) throws Exception {
-		return (Integer)sqlSession.update("mapper.seat.addUpdateHistory", history);
+		
+		System.out.println("historyisusing"+ history.getH_isUsing());
+		
+		return (Integer)sqlSession.update("mapper.seat.addUpdateHistory",history);
 	}
 	
 	public void removeSeatHistory(History history) throws Exception{

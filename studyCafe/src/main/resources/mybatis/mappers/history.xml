@@ -3,7 +3,7 @@
 <mapper namespace="mapper.history">
 	
 	<select id="hisList" resultType="com.studycafe.seat.domain.History">
-		<![CDATA[select * from history where isusing>0]]>
+		<![CDATA[select * from history where h_isusing>0]]>
 	</select>
 	
 	<update id="insertMoney" parameterType="com.studycafe.seat.domain.History">

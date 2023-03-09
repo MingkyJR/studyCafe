@@ -46,14 +46,14 @@ h1 {
   margin-top: 50px;
 }
 
-a {
+.at {
   color: #2196f3;
   text-decoration: none;
   font-weight: bold;
  
 }
 
-a:hover {
+.at:hover {
   text-decoration: underline;
 }
 
@@ -152,44 +152,43 @@ body{
 <body>
 	<h1> 좌석 선택하기 </h1>	
 	<c:if test="${history.h_grade == 999}">
-	<button class="usingMember" onclick="usingMember()">이용중인 회원</button><a href="<%=request.getContextPath()%>/studycafe/historyList?userNo=${history.h_number}">이용중인 회원</a>
+	<a href="<%=request.getContextPath()%>/studycafe/historyList?userNo=${history.h_number}" class="at">이용중인 회원</a>
 	<br/>
 	</c:if>
 	사용 가능<input type="button" name="do" class="noti1"> 이용 중<input type="button" name="not" class="noti2">	
 	
 	<c:if test="${history.h_grade ==1}">
-	<a href="<%=request.getContextPath()%>/studycafe/chargeMoney?userNo=${history.h_number}" style="text-align:right">금액 충전하기</a>
+	<a href="<%=request.getContextPath()%>/studycafe/chargeMoney?userNo=${history.h_number}" style="text-align:right" class="at">금액 충전하기</a>
 	</c:if><hr/>
 	
 	<c:forEach var="item" items="${seat}" begin="0" end="4">
-	<span style="display:inline-block;  width:250px;" >
+	<span style="display:inline-block;  width:200px;" >
 	<button class="seatBtn ${item.s_isusing == 1 ? 'reserved' : ''}" name="chkBtn" value="${item.s_number},${item.s_isusing},${history.h_number}">${item.s_number}</button>
 	<c:choose>
-	<c:when test="${item.s_number == history.isUsing}">${history.h_userId}</c:when>
-	<c:when test="${item.s_number != history.isUsing && item.s_isusing==0}">사용 가능</c:when>
+	<c:when test="${item.s_number == history.h_isUsing}">${history.h_userId}</c:when>
+	<c:when test="${item.s_number != history.h_isUsing && item.s_isusing==0}">사용 가능</c:when>
 	<c:otherwise> 사용 중</c:otherwise>
 	</c:choose>
 	</span>
 	</c:forEach><br/><br/>
 	<br/>
 	<c:forEach var="item" items="${seat}" begin="5" end="9">
-	<span style="display:inline-block; width:250px;">
+	<span style="display:inline-block; width:200px;">
 	<button class="seatBtn ${item.s_isusing == 1 ? 'reserved' : ''}" name="chkBtn" value="${item.s_number},${item.s_isusing},${history.h_number}">${item.s_number}</button>
-	<%-- <input type="button" class="seatBtn ${item.s_isusing == 1 ? 'reserved' : ''}" name="chkBtn" value="${item.s_number},${item.s_isusing},${history.h_number}"> --%>
 	<c:choose>
-	<c:when test="${item.s_number == history.isUsing}">${history.h_userId}</c:when>
-	<c:when test="${item.s_number != history.isUsing && item.s_isusing==0}">사용 가능</c:when>
+	<c:when test="${item.s_number == history.h_isUsing}">${history.h_userId}</c:when>
+	<c:when test="${item.s_number != history.h_isUsing && item.s_isusing==0}">사용 가능</c:when>
 	<c:otherwise> 사용 중</c:otherwise>
 	</c:choose>
 	</span>
 	</c:forEach><br/><br/>
 	<br/>
 	<c:forEach var="item" items="${seat}" begin="10" end="14">
-	<span style="display:inline-block; width:250px;">
+	<span style="display:inline-block; width:200px;">
 	<button class="seatBtn ${item.s_isusing == 1 ? 'reserved' : ''}" name="chkBtn" value="${item.s_number},${item.s_isusing},${history.h_number}">${item.s_number}</button>
 	<c:choose>
-	<c:when test="${item.s_number == history.isUsing}">${history.h_userId}</c:when>
-	<c:when test="${item.s_number != history.isUsing && item.s_isusing==0}">사용 가능</c:when>
+	<c:when test="${item.s_number == history.h_isUsing}">${history.h_userId}</c:when>
+	<c:when test="${item.s_number != history.h_isUsing && item.s_isusing==0}">사용 가능</c:when>
 	<c:otherwise> 사용 중</c:otherwise>
 	</c:choose>
 	</span>

@@ -3,12 +3,12 @@ package com.studycafe.seat.service;
 import java.util.List;
 
 import com.studycafe.seat.domain.History;
-import com.studycafe.seat.domain.Member;
 import com.studycafe.seat.domain.Seat;
+import com.studycafe.user.domain.User;
 
 public interface SeatService {
 
-		public Member showLoginUser(String userId)throws Exception;
+		public User showLoginUser(String userId)throws Exception;
 		
 		public List<Seat> showSeat()throws Exception;
 		

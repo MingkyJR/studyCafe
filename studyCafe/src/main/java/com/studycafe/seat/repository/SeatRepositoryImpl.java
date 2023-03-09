@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.studycafe.seat.domain.History;
-import com.studycafe.seat.domain.Member;
 import com.studycafe.seat.domain.Seat;
+import com.studycafe.user.domain.User;
 
 @Repository
 public class SeatRepositoryImpl {
@@ -16,7 +16,7 @@ public class SeatRepositoryImpl {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public Member showLoginUser(String id) {
+	public User showLoginUser(String id) {
 		return sqlSession.selectOne("mapper.seat.userInfo",id);
 	}
 	

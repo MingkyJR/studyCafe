@@ -95,7 +95,7 @@
 			<td>${history.h_userId}</td>	
 			<td>${history.h_grade}</td>
 			<td>${history.h_wallet}</td>
-			<td>${history.isUsing}</td>
+			<td>${history.h_isUsing}</td>
 			<td>
 			<input type="button" value="금액충전하기" onclick="location.href='<%=request.getContextPath()%>/studycafe/chargeMoney999?userNo=${history.h_number}&hno=${history.h_number}'">
 			<input type="button" value="취소하기" onclick="location.href='<%=request.getContextPath()%>/studycafe/historyList?userNo=${userNo}'">

@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.studycafe.seat.domain.History;
-import com.studycafe.seat.domain.Member;
 import com.studycafe.seat.domain.Seat;
 import com.studycafe.seat.service.SeatServiceImpl;
+import com.studycafe.user.domain.User;
 
 
 
@@ -28,29 +28,7 @@ public class SeatController {
 	@Autowired
 	SeatServiceImpl seatService;
 	
-	@GetMapping("member/login")
-	public String login(Model model) {
-	System.out.println("컨트롤러 진입하니?");
-		return "/member/login";
-	}
-	
-	@PostMapping("member/login")
-	public String requestLogin(String userId,String userPwd,Model model,HttpServletRequest request) throws Exception {
-			
-			System.out.println(userId);
-			System.out.println(userPwd);
-			
-			Member member=seatService.showLoginUser(userId);
-		
-			HttpSession session=request.getSession();
-				
-			session.setAttribute("userId",userId);
-			
-			model.addAttribute("member",member);
-		
-		return "main";
-	}
-	
+
 	//===================================================================================
 	//좌석 보여줘
 	@GetMapping("studycafe/seatSelect")
@@ -68,8 +46,7 @@ public class SeatController {
 	  @PostMapping("studycafe/choiceSeat")
 	  @ResponseBody
 	  public Map<String, Object> choiceSeat(@RequestParam int seatNumber, @RequestParam int hno) {
-		System.out.println("seatNumber"+seatNumber);
-		System.out.println("회원번호"+hno);
+		
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 	    try {
@@ -138,7 +115,7 @@ public class SeatController {
 	      
 	      if (!success) {
 	    	  History history=seatService.showUser(hno);
-	    	  if(history.getIsUsing()>0) {
+	    	  if(history.getH_isUsing()>0) {
 	    	
 	    	  result.put("message", "이미 예약중입니다.");}
 	      }

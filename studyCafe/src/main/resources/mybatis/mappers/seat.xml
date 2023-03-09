@@ -4,7 +4,7 @@
 <mapper namespace="mapper.seat">
 
 	<!--  전체 게시물 수 조회 -->
-	<select id="userInfo" resultType="com.studycafe.seat.domain.Member" parameterType="java.lang.String">
+	<select id="userInfo" resultType="com.studycafe.user.domain.User" parameterType="java.lang.String">
 		<![CDATA[select * from user_info where u_id = #{id}]]>
 	</select>
 	
@@ -29,11 +29,11 @@
 	</select>
 	
 	<update id="addUpdateHistory" parameterType="com.studycafe.seat.domain.History">
-		<![CDATA[update history set isusing=#{isUsing} where h_number=#{h_number}]]>
+		<![CDATA[update history set h_isusing=${h_isUsing} where h_number=#{h_number}]]>
 	</update>
 	
 	<update id="removeUpdateHistory" parameterType="com.studycafe.seat.domain.History">
-		<![CDATA[update history set isusing=${isUsing} where h_number=#{h_number}]]>
+		<![CDATA[update history set h_isusing=${h_isUsing} where h_number=#{h_number}]]>
 	</update>
 
 </mapper>

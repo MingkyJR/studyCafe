@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.studycafe.seat.domain.History;
-import com.studycafe.seat.domain.Member;
 import com.studycafe.seat.domain.Seat;
 import com.studycafe.seat.repository.HistoryRepositoryImpl;
 import com.studycafe.seat.repository.SeatRepositoryImpl;
+import com.studycafe.user.domain.User;
 
 
 @Service
@@ -23,9 +23,9 @@ public class SeatServiceImpl {
 	HistoryRepositoryImpl historyRepository;
 	
 	
-	public Member showLoginUser(String userId)throws Exception{
+	public User showLoginUser(String userId)throws Exception{
 		System.out.println("서비스"+userId);
-		Member member =seatRepository.showLoginUser(userId);
+		User member =seatRepository.showLoginUser(userId);
 		
 		return member;
 	}
@@ -49,13 +49,13 @@ public class SeatServiceImpl {
     		System.out.println("hno"+hno);
     	
     		History history = new History();
-    		history.setIsUsing(seatNumber);
+    		history.setH_isUsing(seatNumber);
     		history.setH_number(hno);
-    		System.out.println(history);
+    		System.out.println("서비스impl"+history);
     		
     		History his=seatRepository.showUser(hno);
     		System.out.println("his"+his);
-    		if(his.getIsUsing()!=0 || his.getH_wallet()<3000) {	
+    		if(his.getH_isUsing()!=0 || his.getH_wallet()<3000) {	
     			return false;
     		
     		}else{
@@ -87,7 +87,7 @@ public class SeatServiceImpl {
  
     public void cancelSeat(int seatNumber,int hno) throws Exception {
     	History history = new History();
-		history.setIsUsing(0);
+		history.setH_isUsing(0);
 		history.setH_number(hno);
     	
 		historyRepository.removeSeatHistory(history);
@@ -118,13 +118,13 @@ public class SeatServiceImpl {
 		System.out.println("hno"+hno);
 	
 		History history = new History();
-		history.setIsUsing(seatNumber);
+		history.setH_isUsing(seatNumber);
 		history.setH_number(hno);
 		System.out.println(history);
 		
 		History his=seatRepository.showUser(hno);
 		System.out.println("his"+his);
-		if(his.getIsUsing()!=0) {	
+		if(his.getH_isUsing()!=0) {	
 			return false;
 		
 		}else{
@@ -150,7 +150,7 @@ public class SeatServiceImpl {
     
     public void cancelSeat2(int seatNumber,int hno) throws Exception {
     	History history = new History();
-		history.setIsUsing(0);
+		history.setH_isUsing(0);
 		history.setH_number(hno);
     	
 		historyRepository.removeSeatHistory(history);
