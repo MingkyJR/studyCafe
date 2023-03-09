@@ -34,7 +34,7 @@
 <h2  style="padding-bottom: 20px; padding-top: 20px;"> Notice </h2>
 <h3> 결제는 현장에서 진행됩니다. </h3>
 
-<div class="main" onclick="location.href='<%=request.getContextPath()%>'"  >
+<div class="main" onclick="location.href='<%=request.getContextPath()%>'"   >
 Main
 </div>
 
