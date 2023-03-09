@@ -31,7 +31,7 @@ public class SeatController {
 
 	//===================================================================================
 	//좌석 보여줘
-	@GetMapping("studycafe/seatSelect")
+	@GetMapping("/studycafe/seatSelect")
 	public String showSeat(@RequestParam("userNo") int hno,Model model) throws Exception {
 		//user의 이용내역을 보여주는 history 불러오기
 		History history=seatService.showUser(hno);
@@ -43,7 +43,7 @@ public class SeatController {
 		return "seat/seatSelect";
 	}
 
-	  @PostMapping("studycafe/choiceSeat")
+	  @PostMapping("/studycafe/choiceSeat")
 	  @ResponseBody
 	  public Map<String, Object> choiceSeat(@RequestParam int seatNumber, @RequestParam int hno) {
 		
@@ -69,7 +69,7 @@ public class SeatController {
 	    return result;
 	  }
 	  
-	  @PostMapping("studycafe/cancelSeat")
+	  @PostMapping("/studycafe/cancelSeat")
 	  @ResponseBody
 	  public Map<String, Object> cancelSeat(@RequestParam("seatNumber") int seatNumber,@RequestParam int hno) {
 		 Map<String, Object> result = new HashMap<String, Object>();
@@ -87,7 +87,7 @@ public class SeatController {
 	    return result;
 	  }
 	  
-		@GetMapping("studycafe/seatSelect2")
+		@GetMapping("/studycafe/seatSelect2")
 		public String showSeat2(@RequestParam("hno") int hno,int userNo,Model model) throws Exception {
 			//user의 이용내역을 보여주는 history 불러오기
 			History history=seatService.showUser(hno);
@@ -99,7 +99,7 @@ public class SeatController {
 			return "seat/changeSeat";
 		}
 	  
-	  @PostMapping("studycafe/choiceSeat2")
+	  @PostMapping("/studycafe/choiceSeat2")
 	  @ResponseBody
 	  public Map<String, Object> choiceSeat2(@RequestParam int seatNumber, @RequestParam int hno) {
 		System.out.println("seatNumber"+seatNumber);
@@ -127,7 +127,7 @@ public class SeatController {
 	  }
 	  
 	  
-	  @PostMapping("studycafe/cancelSeat2")
+	  @PostMapping("/studycafe/cancelSeat2")
 	  @ResponseBody
 	  public Map<String, Object> cancelSeat2(@RequestParam("seatNumber") int seatNumber,@RequestParam int hno) {
 		 Map<String, Object> result = new HashMap<String, Object>();
