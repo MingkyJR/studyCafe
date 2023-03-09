@@ -76,6 +76,10 @@
 				<mapping path="/reservationDetailD"/> -->
 				<beans:bean id="ReservInterceptor"  class="com.studycafe.scafe.interceptor.ReservInterceptor"></beans:bean>
 			</interceptor>
+			<interceptor>
+				<mapping path="/food/**"/>
+				<beans:bean id="FoodInterceptor"  class="com.studycafe.scafe.interceptor.FoodInterceptor"></beans:bean>
+			</interceptor>
 	</interceptors>
 	
 	
