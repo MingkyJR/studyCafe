@@ -195,13 +195,13 @@
         			}else{
         				if(checkboxes.checked == false){
         					$("#modifyFrm").submit();
-                    		alert("글 작성을 완료하였습니다.");
+                    		alert("글 수정을 완료하였습니다.");
         				}else{
         					if(pw.value.length == 0){
         						alert("패스워드를 입력해주세요");
         					}else{
         						$("#modifyFrm").submit();
-                        		alert("글 작성을 완료하였습니다.");
+                        		alert("글 수정을 완료하였습니다.");
         					}
         				}
         				

@@ -379,7 +379,7 @@
 <%-- 			 <button type="button" id="btnModiReply${reply.qr_no}" class="btnModiR" param="${reply.qr_no}"  --%>
 <%-- 			 	onclick="location.href='<%=request.getContextPath()%>/qna/modifyReply?q_no=${qna.q_no}';">답글 수정(처리)하기</button> --%>
 			 <input type="submit" id="btnModiReply${reply.qr_no}" class="btnModiR" param="${reply.qr_no}" value="답글 수정 하기"/>
-			 <button type="button" id="btnModiCancel${reply.qr_no}" class="btnModiC" param="${reply.qr_no}">댓글수정취소</button>
+			 <button type="button" id="btnModiCancel${reply.qr_no}" class="btnModiC" param="${reply.qr_no}">답글수정취소</button>
 			 </td>
 		</tr>
 	 </tbody>

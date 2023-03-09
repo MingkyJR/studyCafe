@@ -36,7 +36,7 @@ public class QnaController {
 //		insert into user_info(u_number, u_name, u_id, u_pass, u_grade, u_tell, u_gender)
 //		values(2, '홍길동', 'hongid', '1234', 1, '01088521142', '남' );
 		User authUser = new User(1, "관리자", "adminid", "1234", 999, "01044859948", "남" );
-//		User authUser = new User(2, "테스트", "test", "1234", 1, "01044859948", "남" );
+//		User authUser = new User(2, "은하수", "eunid", "1234", 1, "01044859948", "남" );
 //		User authUser = new User(2, "홍길동", "hongid", "1234", 1, "01088521142", "남" );
 		request.getSession().setAttribute("AUTHUSER", authUser); //원래 여기에 없는 코드. 추후 취합 시에 삭제 필요
 		
