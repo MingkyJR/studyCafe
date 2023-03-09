@@ -4,9 +4,9 @@ public class Food {
 	
 	private int food_no;
 	private String food_name;
-	private String food_content;
 	private int food_price;
 	private String fileName;
+	private String type;
 	
 	public Food() {}
 
@@ -26,14 +26,6 @@ public class Food {
 		this.food_name = food_name;
 	}
 
-	public String getFood_content() {
-		return food_content;
-	}
-
-	public void setFood_content(String food_content) {
-		this.food_content = food_content;
-	}
-
 	public int getFood_price() {
 		return food_price;
 	}
@@ -51,12 +43,21 @@ public class Food {
 		this.fileName = fileName;
 	}
 
-	@Override
-	public String toString() {
-		return "Food [food_no=" + food_no + ", food_name=" + food_name + ", food_content=" + food_content
-				+ ", food_price=" + food_price + ", fileName=" + fileName + "]";
+	public String getType() {
+		return type;
 	}
 
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	@Override
+	public String toString() {
+		return "Food [food_no=" + food_no + ", food_name=" + food_name + ", food_price=" + food_price + ", fileName="
+				+ fileName + ", type=" + type + "]";
+	}
+
+	
 	
 	
 

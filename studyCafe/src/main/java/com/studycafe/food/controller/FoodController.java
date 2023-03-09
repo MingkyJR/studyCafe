@@ -1,7 +1,6 @@
 package com.studycafe.food.controller;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,8 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.studycafe.food.domain.Cart;
 import com.studycafe.food.domain.Food;
@@ -31,54 +31,48 @@ public class FoodController {
 	@Autowired
 	FoodService foodService;
 	
-	//main페이지 호출
-	@GetMapping("/food/main")
-	public String reqMain(Model model,@RequestParam(name="type",required = false,defaultValue = "0")int type) throws Exception {
-		List<Food> list = null;
-		int u_number = 1;
-		List<Cart> cartList = foodService.getCart(u_number);
-		if(type==0) {
-			list = foodService.getFoodList();
-		}else {
-			list = foodService.getTypeFoodList(type);
-		}
-				
-		
-		model.addAttribute("list", list);
-		model.addAttribute("cartList", cartList);
-		model.addAttribute("type", type);
-		model.addAttribute("u_number", u_number);
+	@GetMapping(value="/food/main")
+	public String reqMain() {
 		return "/food/mainP";
+	}
+	
+	//main페이지 호출
+	@RequestMapping(value="/food/mainC", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> reqMainC() throws Exception {
+		System.out.println("reqMainC");
+		Map<String, Object> map = new HashMap<String, Object>();
+		int u_number = 1; //session으로 변환 예정
+		List<Food> list = foodService.getFoodList();
+		List<Cart> cartList = foodService.getCart(u_number);
+		System.out.println(list);
+		System.out.println(cartList);
+		map.put("list", list);
+		map.put("cartList", cartList);
+		map.put("u_number", u_number);
+		return map;
 	}
 	
 	//장바구니에 상품 추가
 	@GetMapping("/food/addCart")
-	public void addCart(int food_no,int type, HttpServletResponse res) throws Exception {
+	public void addCart(int food_no,HttpServletResponse res) throws Exception {
 		int u_number = 1;
 		Cart cart = new Cart(u_number, food_no);
 		Cart check = foodService.existCart(cart);
 		if(check != null) {
 			res.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = res.getWriter();
-			if(type==0) {
-	            out.println("<script>alert('이미 주문 목록에 있습니다.'); location.href='/scafe/food/main';</script>");
-			}else {
-	            out.println("<script>alert('이미 주문 목록에 있습니다.'); location.href='/scafe/food/main?type="+type+"';</script>");
-			}
+	        out.println("<script>alert('이미 주문 목록에 있습니다.'); location.href='/scafe/food/main';</script>");
 			out.flush();
 		}else{
 			foodService.addCart(cart);
-			if(type==0) {
-				res.sendRedirect("/scafe/food/main");
-			}else {
-				res.sendRedirect("/scafe/food/main?type="+type);
-			}
+			res.sendRedirect("/scafe/food/main");
 		}
 	}
 	
 	//장바구니 수량 변경
 	@GetMapping("/food/changeQ")
-	public void changeQuantity(int pm, int food_no,int type, HttpServletResponse res) throws Exception {
+	public void changeQuantity(int pm, int food_no,HttpServletResponse res) throws Exception {
 		int u_number = 1;
 		Cart cart = new Cart(u_number, food_no);
 		if(pm == 1) {
@@ -87,15 +81,11 @@ public class FoodController {
 			foodService.downQuantity(cart);
 		}
 		
-		if(type==0) {
-			res.sendRedirect("/scafe/food/main");
-		}else {
-			res.sendRedirect("/scafe/food/main?type="+type);
-		}
+		res.sendRedirect("/scafe/food/main");
 	}
 	
 	@GetMapping("/food/deleteCart")
-	public void deleteCart(int food_no,int type, HttpServletResponse res) throws Exception {
+	public void deleteCart(int food_no, HttpServletResponse res) throws Exception {
 		int u_number = 1;
 		if(food_no == 0) {
 			foodService.deleteAllCart(u_number);
@@ -103,11 +93,7 @@ public class FoodController {
 			Cart cart = new Cart(u_number, food_no);
 			foodService.deleteCart(cart);
 		}
-		if(type==0) {
-			res.sendRedirect("/scafe/food/main");
-		}else {
-			res.sendRedirect("/scafe/food/main?type="+type);
-		}
+		res.sendRedirect("/scafe/food/main");
 	}
 	
 	
