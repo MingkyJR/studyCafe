@@ -14,7 +14,6 @@
 		<typeAlias type="com.studycafe.article.domain.Page" alias="page"/>
 		<typeAlias type="com.studycafe.article.domain.ArticleComment" alias="comment"/>
 		<typeAlias type="com.studycafe.user.domain.User" alias="user"/>
-		<typeAliases>
 	  <typeAlias type="com.studycafe.food.domain.Food"    
 	                                     alias="food"/>
 	
@@ -23,6 +22,5 @@
 	                                     
 	  <typeAlias type="com.studycafe.food.domain.Order"    
 	                                     alias="order"/>
-	</typeAliases>
-	</typeAliases>
+</typeAliases>
 </configuration>
