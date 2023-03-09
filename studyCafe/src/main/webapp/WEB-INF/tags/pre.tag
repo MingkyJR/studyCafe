@@ -9,5 +9,6 @@ value.replace("\r\n","<br>");
 value.replace("&", "&amp;");
 value.replace("<", "&lt;");
 value.replace(">", "&gt;");
+value=value.replace(" ","&nbsp;");
 %>
 <%=value %>

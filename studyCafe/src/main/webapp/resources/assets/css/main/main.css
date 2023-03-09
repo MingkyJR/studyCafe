@@ -36,12 +36,21 @@ html, body{
       line-height: 72px;
       text-align: right;
    }
+   .inline_section_right a:hover{
+   	  font-size: 17px;
+   	  font-weight: bold;
+   	  color: #999;
+   }
    .naviVar{
       margin-top: 5px;
       height: 70px;
       line-height: 70px;
       text-align: center;
       font-weight: bold;
+   }
+   .naviVar a:hover{
+   	  font-size: 17px;
+   	  color: #999;
    }
    a{
       text-decoration: none;
@@ -52,7 +61,7 @@ html, body{
       margin: 0 10px;
    }
    .banner_wrap{
-      margin-top: 10px;
+      margin-top: 20px;
       height: 350px;
    }
    .banner{
@@ -78,6 +87,10 @@ html, body{
       border: 1px solid black;
       border-radius: 40px;
       background-color: #1D3124;
+   }
+   .btn1:hover{
+   	  cursor: pointer;
+   	  box-shadow: 1.5px 1.5px 1.5px 1.5px gray;
    }
    .summary{
       margin: 10px auto;
