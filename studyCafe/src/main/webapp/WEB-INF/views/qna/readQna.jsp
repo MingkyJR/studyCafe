@@ -189,7 +189,6 @@
 <!-- <p class="home" style="margin:0 auto; max-width: 950px;"> -->
 <%-- <a href="<%=request.getContextPath()%>/qna/list">HOME</a> --%>
 <!-- </p> -->
- <hr/>
  	<c:if test="${AUTHUSER.u_grade==999}">
 	 	<form name="qnaChkFrm" id="qnaChkFrm" action="<%=request.getContextPath()%>/qna/qnaStatus" method="post">
 	 	 <input type="hidden" name="q_no" id="q_no" value="${qna.q_no}"/>

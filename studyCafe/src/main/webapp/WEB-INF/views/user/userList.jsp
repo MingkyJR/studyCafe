@@ -98,9 +98,9 @@
 			<td>${User.u_tell}</td>
 			<td>${User.u_grade}</td>
 			<td><input type="button" value="수정" 
-							onclick="location.href='${cp}/adminModiUserForm?no=${User.u_number}'"></td>
+							onclick="location.href='${cp}/user/adminModiUserForm?no=${User.u_number}'"></td>
 			<td><input type="button" value="삭제" id="btn2"
-							onclick="location.href='${cp}/adminDeleteUser?no=${User.u_number}'"></td>
+							onclick="location.href='${cp}/user/adminDeleteUser?no=${User.u_number}'"></td>
 		</tr>
 	</c:forEach>
 	</table>
@@ -110,20 +110,20 @@
 	 <div style="text-align:center;">
      <c:if test="${userPage.startPage>5}">
      <div class="paging">
-       <a href="${cp}/userList?pageNo=${userPage.startPage-5}">&laquo;</a>
+       <a href="${cp}/user/userList?pageNo=${userPage.startPage-5}">&laquo;</a>
       </div>
      </c:if>  
      <c:forEach var="pNo"                       
      			begin="${userPage.startPage}" 
      			end="${userPage.endPage}">
 		<div class="paging">
-      <a href="${cp}/userList?pageNo=${pNo}">${pNo}</a> 
+      <a href="${cp}/user/userList?pageNo=${pNo}">${pNo}</a> 
       </div>
      </c:forEach>  
                                       
      <c:if test="${userPage.endPage<userPage.totalPages}">
      <div class="paging">
-       <a href="${cp}/userList?pageNo=${userPage.startPage+5}">&raquo;</a>
+       <a href="${cp}/user/userList?pageNo=${userPage.startPage+5}">&raquo;</a>
       </div> 
      </c:if> 
    </div>

@@ -96,6 +96,10 @@
 				<beans:bean id="ArticleInterceptor"  class="com.studycafe.scafe.interceptor.ArticleInterceptor"></beans:bean>
 			</interceptor>
 			<interceptor>
+				<mapping path="/user/**"/>
+				<beans:bean id="UserInterceptor"  class="com.studycafe.scafe.interceptor.UserInterceptor"></beans:bean>
+			</interceptor>
+			<interceptor>
 				<mapping path="/studycafe/**"/>
 				<beans:bean id="SeatInterceptor"  class="com.studycafe.scafe.interceptor.SeatInterceptor"></beans:bean>
 			</interceptor>

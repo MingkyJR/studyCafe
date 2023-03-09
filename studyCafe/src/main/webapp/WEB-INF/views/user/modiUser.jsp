@@ -141,7 +141,7 @@ $(document).ready( function(){
 <body>
 <h1 class="ht">회원정보수정</h1>
 
-<form action="<%=request.getContextPath() %>/modiUser" method="post" class="login-form" name="loginFrm">
+<form action="<%=request.getContextPath() %>/user/modiUser" method="post" class="login-form" name="loginFrm">
 	
 	<input type="hidden" id="u_number" name="u_number" value="${AUTHUSER.u_number}" />
 	아이디	<input type="text" name="u_id" id="u_id" readonly value="${AUTHUSER.u_id }"><br/>

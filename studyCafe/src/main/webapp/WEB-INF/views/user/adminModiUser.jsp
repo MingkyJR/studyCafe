@@ -135,7 +135,7 @@ $(document).ready( function(){
 </script>
 <body>
 <h1 class="ht">회원정보수정</h1>
-<form action="<%=request.getContextPath() %>/adminModiUser" method="post" class="login-form" name="loginFrm">
+<form action="<%=request.getContextPath() %>/user/adminModiUser" method="post" class="login-form" name="loginFrm">
 	
 	회원번호 	<input type="text" id="u_number" name="u_number" readonly value="${detailUser.u_number}" /><br/>
 	아이디	<input type="text" name="u_id" id="u_id" readonly value="${detailUser.u_id }"><br/>

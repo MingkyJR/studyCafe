@@ -20,10 +20,10 @@
 					<c:if test="${AUTHUSER.u_id ne null}">
 						<span>${AUTHUSER.u_name}님  </span>|
 						<c:if test="${AUTHUSER.u_grade ne 999}">
-						<span><a href="<%=request.getContextPath() %>/modiUserForm">회원정보수정 </a></span>|
+						<span><a href="<%=request.getContextPath() %>/user/modiUserForm">회원정보수정 </a></span>|
 						</c:if>
 						<c:if test="${AUTHUSER.u_grade eq 999}">
-						<span><a href="<%=request.getContextPath() %>/userList">회원관리 </a></span>|
+						<span><a href="<%=request.getContextPath() %>/user/userList">회원관리 </a></span>|
 						</c:if>
 						<span><a href="<%=request.getContextPath() %>/logout">로그아웃</a></span>
 					</c:if>
