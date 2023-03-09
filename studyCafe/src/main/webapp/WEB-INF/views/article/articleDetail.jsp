@@ -96,12 +96,12 @@
 	});
 
 	$(document).ready(function(){
-		$("#btn6").click(function(){
+		$(".btn6").click(function(){
 			alert("자신글만 수정 가능합니다.");
 		});
 	});
 	$(document).ready(function(){
-		$("#btn7").click(function(){
+		$(".btn7").click(function(){
 			alert("자신글만 삭제 가능합니다.");
 		});
 	});
@@ -177,16 +177,17 @@
 					<td ><u:pre value="${commemt.ac_content}"/></td>
 					<td>${commemt.u_id}</td>
 					<td><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${commemt.ac_modidate}" /></td>
-					<c:if test="${AUTHUSER.u_id eq commemt.u_id}">
+					<c:if test="${AUTHUSER.u_id eq commemt.u_id or AUTHUSER.u_grade eq 999}">
 					<td><input type="button" value="수정" id="btn4"
 					onclick="location.href='${cp}/article/modiCommentForm?no=${article.a_no}&ac_no=${commemt.ac_no}'"/>
 					 </td>
 					<td><input type="button" value="삭제" id="btn5" 
 					onclick="location.href='${cp}/article/deleteComment?no=${article.a_no}&ac_no=${commemt.ac_no}'"/></td>
 					</c:if>
-					<c:if test="${AUTHUSER.u_id ne commemt.u_id}">
-					<td><input type="button" value="수정" id="btn6" /></td>
-					<td><input type="button" value="삭제" id="btn7" /></td>
+					
+					<c:if test="${AUTHUSER.u_id ne commemt.u_id and AUTHUSER.u_grade ne 999}">
+					<td><input type="button" value="수정" id="btn6" class="btn6"/></td>
+					<td><input type="button" value="삭제" id="btn7" class="btn7"/></td>
 					</c:if>
 				</tr>
 			</c:forEach>
