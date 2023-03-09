@@ -170,11 +170,11 @@
 		
 		<!-- mysql연동 -->
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-		<dependency>
+<!-- 		<dependency>
 		    <groupId>mysql</groupId>
 		    <artifactId>mysql-connector-java</artifactId>
 		    <version>8.0.24</version>
-		</dependency>
+		</dependency> -->
 		
 		<!-- JDBC 연동을 위한 라이브러리  -->
 		<dependency>
@@ -247,7 +247,29 @@
 			<version>2.2.2</version>
 		</dependency> 
 		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<version>2.13.3</version>
+		</dependency>
+<!--
+ https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind 
+-->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>2.13.3</version>
+		</dependency>
+<!--
+ https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations 
+-->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-annotations</artifactId>
+				<version>2.13.3</version>
+		</dependency>
 	</dependencies>
+	
 	<!-- build요소 : 빌드정보 -->
     <build>
         <plugins>
