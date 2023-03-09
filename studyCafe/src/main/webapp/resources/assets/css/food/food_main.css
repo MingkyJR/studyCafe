@@ -8,9 +8,10 @@
   width: 270px;
   text-align: center;
   margin: 5px 5px;
-  display: block; /* Hidden by default */
+  display: none; /* Hidden by default */
   border: 1px solid #ccc;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 div.filterDiv:hover {

@@ -59,7 +59,7 @@ function requestPayKG() {
         if (rsp.success) {
             // 결제 성공 시 로직
         	alert("결제가 완료되었습니다.");
-            location.href='http://localhost:8081/scafe/food/order?order_no='+rsp.merchant_uid+'&order_price='+${total};
+            location.href='http://localhost:8081/scafe/food/order?order_no='+rsp.merchant_uid;
         } else {
             // 결제 실패 시 로직
             
@@ -83,7 +83,7 @@ function requestPayKakao() {
         if (rsp.success) {
             // 결제 성공 시 로직
             alert("결제가 완료되었습니다.");
-            location.href='http://localhost:8081/scafe/food/order?order_no='+rsp.merchant_uid+'&order_price='+${total};
+            location.href='http://localhost:8081/scafe/food/order?order_no='+rsp.merchant_uid;
         } else {
             // 결제 실패 시 로직
             alert("결제가 취소되었습니다.");
