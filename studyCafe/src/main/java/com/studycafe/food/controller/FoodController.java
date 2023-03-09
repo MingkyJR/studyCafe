@@ -32,7 +32,9 @@ public class FoodController {
 	FoodService foodService;
 	
 	@GetMapping(value="/food/main")
-	public String reqMain() {
+	public String reqMain(Model model) throws Exception {
+		List<Food> list = foodService.getFoodList();
+		model.addAttribute("list", list);
 		return "/food/mainP";
 	}
 	
@@ -43,36 +45,31 @@ public class FoodController {
 		System.out.println("reqMainC");
 		Map<String, Object> map = new HashMap<String, Object>();
 		int u_number = 1; //session으로 변환 예정
-		List<Food> list = foodService.getFoodList();
 		List<Cart> cartList = foodService.getCart(u_number);
-		System.out.println(list);
 		System.out.println(cartList);
-		map.put("list", list);
 		map.put("cartList", cartList);
 		map.put("u_number", u_number);
 		return map;
 	}
 	
 	//장바구니에 상품 추가
-	@GetMapping("/food/addCart")
-	public void addCart(int food_no,HttpServletResponse res) throws Exception {
+	@RequestMapping(value="/food/addCart", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> addCart(int food_no) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
 		int u_number = 1;
 		Cart cart = new Cart(u_number, food_no);
-		Cart check = foodService.existCart(cart);
-		if(check != null) {
-			res.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = res.getWriter();
-	        out.println("<script>alert('이미 주문 목록에 있습니다.'); location.href='/scafe/food/main';</script>");
-			out.flush();
-		}else{
-			foodService.addCart(cart);
-			res.sendRedirect("/scafe/food/main");
-		}
+		foodService.addCart(cart);
+		List<Cart> cartList = foodService.getCart(u_number);
+		map.put("cartList", cartList);
+		return map;
 	}
 	
 	//장바구니 수량 변경
-	@GetMapping("/food/changeQ")
-	public void changeQuantity(int pm, int food_no,HttpServletResponse res) throws Exception {
+	@RequestMapping(value="/food/changeQ", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> changeQuantity(int pm, int food_no) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
 		int u_number = 1;
 		Cart cart = new Cart(u_number, food_no);
 		if(pm == 1) {
@@ -80,12 +77,16 @@ public class FoodController {
 		}else {
 			foodService.downQuantity(cart);
 		}
+		List<Cart> cartList = foodService.getCart(u_number);
+		map.put("cartList", cartList);
+		return map;
 		
-		res.sendRedirect("/scafe/food/main");
 	}
 	
-	@GetMapping("/food/deleteCart")
-	public void deleteCart(int food_no, HttpServletResponse res) throws Exception {
+	@RequestMapping(value="/food/deleteCart", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deleteCart(int food_no) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
 		int u_number = 1;
 		if(food_no == 0) {
 			foodService.deleteAllCart(u_number);
@@ -93,7 +94,9 @@ public class FoodController {
 			Cart cart = new Cart(u_number, food_no);
 			foodService.deleteCart(cart);
 		}
-		res.sendRedirect("/scafe/food/main");
+		List<Cart> cartList = foodService.getCart(u_number);
+		map.put("cartList", cartList);
+		return map;
 	}
 	
 	

@@ -23,8 +23,19 @@
   <button class="btn" onclick="filterSelection('candrinks')"> 음료(캔)</button>
   <button class="btn" onclick="filterSelection('cafedrinks')"> 음료(카페)</button>
 	</div>
+	<button class="deleteCart"> test</button>
+	<button class="test"> test</button>
 	<div class="container">
-	<div id="foodList"></div>
+	<c:forEach var="list" items="${list}">
+		<div class="filterDiv ${list.type}" >
+			<button class="addcart" data-food-no="${list.food_no}"> add to cart</button>
+	  		<a href="${contextPath}/food/addCart?food_no=${list.food_no}">
+	    		<img src="${contextPath}/resources/assets/images/food/${list.fileName}" alt="food image" width="600" height="300">
+	 		</a>
+		<div class="desc">${list.food_name}</div>
+		<div class="desc">${list.food_price}원</div>
+		</div>
+	</c:forEach>
 	</div>
 	</div>
 <script>
@@ -33,33 +44,22 @@ $(document).ready(function() {
 	    url: "${contextPath}/food/mainC",
 	    method: "POST",
 	    success: function(data) {
-	        var list = data.list;
 	        var cartList = data.cartList;
 	        var u_number = data.u_number;
 	        var html = "";
-	        for (var i = 0; i < list.length; i++) {
-	          html += "<div class='filterDiv " + list[i].type + "'>";
-	          html += "<a href='${contextPath}/food/addCart?food_no=" + list[i].food_no + "'>";
-	          html += "<img src='${contextPath}/resources/assets/images/food/" + list[i].fileName + "' alt='food image' width='600' height='300'>";
-	          html += "</a>";
-	          html += "<div class='desc'>" + list[i].food_name + "</div>";
-	          html += "<div class='desc'>" + list[i].food_price + "원</div>";
-	          html += "</div>";
-	        }
-	        $("#foodList").html(html);
 	        
 	     // display cart items
 	        html = "";
 	        for (var i = 0; i < cartList.length; i++) {
-	          html += "<tr>";
+	          html += "<tr style='width : 100%;'>";
 	          html += "<td>" + cartList[i].food_name + "</td>";
 	          html += "<td class='right'>";
-	          html += "<a href='${contextPath}/food/deleteCart?food_no=" + cartList[i].food_no + "'>";
+	          html += "<span class='deleteCart' data-food-no='"+ cartList[i].food_no + "'>";
 	          html += "<img src='${contextPath}/resources/assets/icon/food/x-lg.svg'/>";
-	          html += "</a>";
+	          html += "</span>";
 	          html += "</td>";
 	          html += "</tr>";
-	          html += "<tr>";
+	          html += "<tr style='width : 100%;'>";
 	          html += "<td>";
 	          if (cartList[i].quantity == 1) {
 	            html += "<img src='${contextPath}/resources/assets/icon/food/dash-square.svg'/>";
@@ -89,7 +89,116 @@ $(document).ready(function() {
 	    	alert("error")
 	    }
 	});
+	
+	
 });
+
+	$('.addcart').on('click', function() {
+	    var food_no = $(this).data('food-no');
+	    $.ajax({
+	      url: '${contextPath}/food/addCart',
+	      type: 'POST',
+	      data: {
+	        food_no: food_no
+	      },
+	      success: function(result) {
+	        var cartList = result.cartList;
+	        var html = "";
+	        for (var i = 0; i < cartList.length; i++) {
+		          html += "<tr>";
+		          html += "<td>" + cartList[i].food_name + "</td>";
+		          html += "<td class='right'>";
+		          html += "<span class='deleteCart' data-food-no='"+ cartList[i].food_no + "'>";
+		          html += "<img src='${contextPath}/resources/assets/icon/food/x-lg.svg'/>";
+		          html += "</span>";
+		          html += "</td>";
+		          html += "</tr>";
+		          html += "<tr>";
+		          html += "<td>";
+		          if (cartList[i].quantity == 1) {
+		            html += "<img src='${contextPath}/resources/assets/icon/food/dash-square.svg'/>";
+		          } else {
+		            html += "<a href='${contextPath}/food/changeQ?pm=0&food_no=" + cartList[i].food_no + "'>";
+		            html += "<img src='${contextPath}/resources/assets/icon/food/dash-square.svg'/>";
+		            html += "</a>";
+		          }
+		          html += cartList[i].quantity;
+		          html += "<a href='${contextPath}/food/changeQ?pm=1&food_no=" + cartList[i].food_no + "'>";
+		          html += "<img src='${contextPath}/resources/assets/icon/food/plus-square.svg'/>";
+		          html += "</a>";
+		          html += "</td>";
+		          html += "<td class='right'>" + (cartList[i].food_price * cartList[i].quantity) + "</td>";
+		          html += "</tr>";
+		        }
+		        $("#cartList").html(html);
+		        
+		     // display total price
+		        var total = 0;
+		        for (var i = 0; i < cartList.length; i++) {
+		          total += cartList[i].food_price * cartList[i].quantity;
+		        }
+		        $("#totalPrice").text(total);
+	      },
+	      error: function(xhr, status, error) {
+	        alert('장바구니에 추가하지 못했습니다.');
+	      }
+	    });
+	  });
+	
+	
+	/* 삭제 */
+	$(document).on('click','.deleteCart', function() {
+		alert('nonono');
+	    var food_no = $(this).data('food-no');
+	    $.ajax({
+	      url: '${contextPath}/food/deleteCart',
+	      type: 'POST',
+	      data: {
+	        food_no: food_no
+	      },
+	      success: function(result) {
+	        var cartList = result.cartList;
+	        var html = "";
+	        for (var i = 0; i < cartList.length; i++) {
+		          html += "<tr>";
+		          html += "<td>" + cartList[i].food_name + "</td>";
+		          html += "<td class='right'>";
+		          html += "<a href='#' class='deleteCart' data-food-no='"+ cartList[i].food_no + "'>";
+		          html += "<img src='${contextPath}/resources/assets/icon/food/x-lg.svg'/>";
+		          html += "</a>";
+		          html += "</td>";
+		          html += "</tr>";
+		          html += "<tr>";
+		          html += "<td>";
+		          if (cartList[i].quantity == 1) {
+		            html += "<img src='${contextPath}/resources/assets/icon/food/dash-square.svg'/>";
+		          } else {
+		            html += "<a href='${contextPath}/food/changeQ?pm=0&food_no=" + cartList[i].food_no + "'>";
+		            html += "<img src='${contextPath}/resources/assets/icon/food/dash-square.svg'/>";
+		            html += "</a>";
+		          }
+		          html += cartList[i].quantity;
+		          html += "<a href='${contextPath}/food/changeQ?pm=1&food_no=" + cartList[i].food_no + "'>";
+		          html += "<img src='${contextPath}/resources/assets/icon/food/plus-square.svg'/>";
+		          html += "</a>";
+		          html += "</td>";
+		          html += "<td class='right'>" + (cartList[i].food_price * cartList[i].quantity) + "</td>";
+		          html += "</tr>";
+		        }
+		        $("#cartList").html(html);
+		        
+		     // display total price
+		        var total = 0;
+		        for (var i = 0; i < cartList.length; i++) {
+		          total += cartList[i].food_price * cartList[i].quantity;
+		        }
+		        $("#totalPrice").text(total);
+	      },
+	      error: function(xhr, status, error) {
+	        alert('삭제하지 못했습니다.');
+	      }
+	    });
+	  });
 </script>
 <script>
 filterSelection("all")
@@ -139,9 +248,7 @@ for (var i = 0; i < btns.length; i++) {
     this.className += " active";
   });
 }
-window.onload = function() {
-	  document.querySelector(".btn.active").click();
-	};
+
 </script>
 
 </body>

@@ -20,6 +20,7 @@ aside {
 }
 
 .right{
+	float : right;
     text-align: right;
 }
 
