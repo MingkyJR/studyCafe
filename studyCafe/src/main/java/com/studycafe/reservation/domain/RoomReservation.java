@@ -1,4 +1,4 @@
-package com.studycafe.scafe.reservation.domain;
+package com.studycafe.reservation.domain;
 
 
 public class RoomReservation {

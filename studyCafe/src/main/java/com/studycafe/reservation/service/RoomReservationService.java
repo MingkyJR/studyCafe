@@ -1,10 +1,9 @@
-package com.studycafe.scafe.reservation.service;
+package com.studycafe.reservation.service;
 
 import java.util.Date;
 import java.util.List;
 
-
-import com.studycafe.scafe.reservation.domain.RoomReservation;
+import com.studycafe.reservation.domain.RoomReservation;
 
 public interface RoomReservationService {
 
