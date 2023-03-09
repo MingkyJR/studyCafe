@@ -13,22 +13,22 @@
 			<div class="banner_image">
 				<img src="<%=request.getContextPath()%>/resources/assets/images/main/studycafe3.jpg">
 			</div>
-			<div class="btn1"><a href="<%=request.getContextPath()%>/studycafe/seatSelect?userNo=${member.user_number}" style="color: #F6F4E8">예약하러가기</a></div>
+			<div class="btn1"><a href="<%=request.getContextPath()%>/reservationMain" style="color: #F6F4E8">예약하러가기</a></div>
 		</div>
 	</div>
 	<div class="summary">
-		<div style="display: inline-block; border-bottom: 2px solid black;"><h3 style="display: inline-block;">스터디룸 예약</h3></div>
+		<div style="display: inline-block; border-bottom: 2px solid white;"><h3 style="display: inline-block;">스터디룸 예약</h3></div>
 	</div>
 	<div class="summary">
 		<h4>홈페이지 예약제(전화예약 불가)</h4>
-		<p>▲ 위 '예약하러가기' 버튼 클릭 하시면 예약 가능한 시간대를 확인할 수 있습니다.</p>
+		<!-- <p>▲ 위 '예약하러가기' 버튼 클릭 하시면 예약 가능한 시간대를 확인할 수 있습니다.</p> -->
 	</div>
-	<div class="summary" style="padding-bottom: 13px;">
+	<!-- <div class="summary" style="padding-bottom: 13px;">
 		<ul>
 			<li style="color: #aaa;"><span style="color: black;">지금부터 3시간 후 시간대 부터 예약 가능합니다.</span></li>
-			<li style="color: #aaa;"><span style="color: black;">결제 시 예약이 바로 확정됩니다.</span></li>
-		</ul>
-	</div>
+			<li style="color: #aaa;"><span style="color: black;">결제 시 예약이 바로 확정됩니다.</span></li> 
+		</ul> 
+	</div> -->
 	<br /><br /><br />
 	<div class="summary">
 		<div style="display: inline-block; border-bottom: 2px solid black;"><h3 style="display: inline-block;">공간 소개</h3></div>

@@ -170,11 +170,11 @@
 		
 		<!-- mysql연동 -->
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-<!-- 		<dependency>
+		<dependency>
 		    <groupId>mysql</groupId>
 		    <artifactId>mysql-connector-java</artifactId>
 		    <version>8.0.24</version>
-		</dependency> -->
+		</dependency>
 		
 		<!-- JDBC 연동을 위한 라이브러리  -->
 		<dependency>
@@ -246,7 +246,23 @@
 			<artifactId>tiles-servlet</artifactId>
 			<version>2.2.2</version>
 		</dependency> 
-		
+		<!-- JSON  
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.5.4</version>
+		</dependency>--> 
+		<!-- JSON을 Java Object로 변환,Java Object를  JSON형태로 변환 라이브러리
+			jackson-annotations라이브러리 &
+			jackson-core라이브러리에 의존
+		-->
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+		    <groupId>net.sf.json-lib</groupId>
+		    <artifactId>json-lib</artifactId>
+		    <version>2.4</version>
+		    <classifier>jdk15</classifier>    
+		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 				<artifactId>jackson-core</artifactId>
@@ -269,7 +285,6 @@
 				<version>2.13.3</version>
 		</dependency>
 	</dependencies>
-	
 	<!-- build요소 : 빌드정보 -->
     <build>
         <plugins>
