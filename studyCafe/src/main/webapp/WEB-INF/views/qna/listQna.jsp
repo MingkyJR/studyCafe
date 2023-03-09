@@ -36,15 +36,15 @@
 	 	}
 	 	#wr{ width:90px; background: #BACEC1;
 	 	}
-	 	#rd{ width:150px; background: #BACEC1;
+	 	#rd{ width:180px; background: #BACEC1;
 	 	}
-	 	#md{ width:230px; background: #BACEC1;
+	 	#md{ width:180px; background: #BACEC1;
 	 	}
 	 	#ct{ width:60px; background: #BACEC1;
 	 	}
 	 	#ca{ width:60px; background: #BACEC1;
 	 	}
-	 	#as{ width:60px; background: #BACEC1;
+	 	#as{ width:90px; background: #BACEC1;
 	 	}
 	 	#rf{ width:60px; background: #BACEC1;
 	 	}

@@ -286,6 +286,8 @@
  		<%--수정과 삭제기능은 로그인한 유저의 id와 작성자의 id가 일치하는 경우에만 노출하도록 한다. --%>
  		<c:if test="${AUTHUSER.u_id==qna.q_writer}">
  		<button type="button" id="mod" onclick="location.href='<%=request.getContextPath()%>/qna/modifyForm?no=${qna.q_no}&pageNo=${pageNo}&rowSize=${rowSize}';">게시글 수정</button>
+ 		</c:if>
+ 		<c:if test="${AUTHUSER.u_id==qna.q_writer || AUTHUSER.u_grade==999}">
 		<button type="button" id="del" onclick="deleteConfirm()">게시글 삭제</button>
  		</c:if>
  		</td>
