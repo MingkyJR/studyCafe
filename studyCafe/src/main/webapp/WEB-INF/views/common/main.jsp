@@ -13,7 +13,7 @@
 			<div class="banner_image">
 				<img src="<%=request.getContextPath()%>/resources/assets/images/main/studycafe3.jpg">
 			</div>
-			<div class="btn1"><a href="<%=request.getContextPath()%>/reservationMain" style="color: #F6F4E8">예약하러가기</a></div>
+			<div class="btn1" onclick="location.href='<%=request.getContextPath()%>/reservationMain'"><a href="<%=request.getContextPath()%>/reservationMain" style="color: #F6F4E8">예약하러가기</a></div>
 		</div>
 	</div>
 	<div class="summary">
