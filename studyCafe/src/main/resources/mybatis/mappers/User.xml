@@ -3,11 +3,18 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.user" >
 
-	<select id="getLogin" resultType="com.studycafe.user.domain.User" parameterType="com.studycafe.user.domain.User">
+	<select id="getLogin" resultType="user" parameterType="user">
 		<![CDATA[
 			select * from user_info where u_id=#{u_id} and u_pass=#{u_pass}
 		]]>
 	</select>
+	
+	<insert id="insertUser" parameterType="user">
+		<![CDATA[
+			insert into user_info(u_number,u_name,u_id,u_pass,u_grade,u_tell,u_gender)
+			values (user_seq.nextval,#{u_name},#{u_id},#{u_pass},#{u_grade},#{u_tell},#{u_gender})
+		]]>
+	</insert>
 	
 	<update id="modiUser" parameterType="com.studycafe.user.domain.User">
 		update user_info

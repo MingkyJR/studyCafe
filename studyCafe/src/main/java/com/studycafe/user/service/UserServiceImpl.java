@@ -50,4 +50,10 @@ public class UserServiceImpl implements UserService {
 		userRepository.adminDeleteUser(u_number);
 		
 	}
+	
+	//회원가입
+	@Override
+	public void insertUser(User user) throws Exception {
+		userRepository.insertUser(user);
+	}
 }

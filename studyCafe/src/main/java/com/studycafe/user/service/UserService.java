@@ -18,4 +18,7 @@ public interface UserService {
 
 	public void adminDeleteUser(int u_number) throws Exception;
 	
+	
+	//회원가입
+	public void insertUser(User user) throws Exception;
 }

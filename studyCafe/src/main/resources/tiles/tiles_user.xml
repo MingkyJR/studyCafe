@@ -21,5 +21,11 @@
     <definition name="user/adminModiUser" extends="baseLayout">
 		<put-attribute name="body" value="/WEB-INF/views/user/adminModiUser.jsp"/>
 	</definition>
+	<definition name="user/join" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/join.jsp"/>
+	</definition>
+	<definition name="user/success" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/user/success.jsp"/>
+	</definition>
 
 </tiles-definitions>

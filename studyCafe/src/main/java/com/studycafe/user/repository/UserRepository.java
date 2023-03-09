@@ -22,4 +22,7 @@ public interface UserRepository {
 	public void adminModiUser(User user) throws DataAccessException;
 
 	public void adminDeleteUser(int u_number) throws DataAccessException;
+
+	//회원가입
+	public void insertUser(User user) throws DataAccessException;
 }

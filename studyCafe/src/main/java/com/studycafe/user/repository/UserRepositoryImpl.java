@@ -53,4 +53,10 @@ public class UserRepositoryImpl implements UserRepository {
 		sqlSession.delete("mapper.user.adminDeleteUser",u_number);
 		
 	}
+	
+	//회원가입
+	@Override
+	public void insertUser(User user) throws DataAccessException {
+		sqlSession.insert("mapper.user.insertUser", user);
+	}
 }
