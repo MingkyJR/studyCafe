@@ -156,12 +156,12 @@ function check() {
 	</div>
 	<div class="contant">
 	<form action="${contextPath}/scafe/reservationSuccess" method="post" name="form" onsubmit="return check()" >
-	<!-- 회원세션을 아직 안받아와서 히든으로 임시 파라미터 주는중  -->
-	<input type="hidden" name="user_number" value="999"/>
+	
+	<input type="hidden" name="u_number" value="${AUTHUSER.u_number}"/>
 	<input type="hidden" name="r_number" value="102"/>
-	<input type="hidden" name="u_name" value="관리자"/>
+	<input type="hidden" name="u_name" value="${AUTHUSER.u_name}"/>
 	<input type="hidden" name="r_price" value="10000"/>
-	<input type="hidden" name="u_tell" value="010-1234-5678"/>
+	<input type="hidden" name="u_tell" value="${AUTHUSER.u_tell}"/>
 	
 	<div class="date"> 
 	<h3>날짜 선택</h3>

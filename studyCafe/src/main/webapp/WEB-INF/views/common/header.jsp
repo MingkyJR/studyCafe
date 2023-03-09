@@ -23,7 +23,7 @@
 				</div>
 			</div>
 			<div class="naviVar">
-					<c:if test="${AUTHUSER.u_id ne null}">
+					<c:if test="${AUTHUSER.u_id eq null}">
 				<div>
 					<span><a href="<%=request.getContextPath()%>/article/articleList">공지사항</a></span>
 					<span><a href="#">문의사항</a></span>

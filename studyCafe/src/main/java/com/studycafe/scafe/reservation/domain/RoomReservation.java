@@ -4,7 +4,7 @@ package com.studycafe.scafe.reservation.domain;
 public class RoomReservation {
 
 	private int rs_number;
-	private int user_number;
+	private int u_number;
 	private int r_number;
 	private String rs_date;
 	private String rs_time1;
@@ -24,11 +24,11 @@ public class RoomReservation {
 	public void setRs_number(int rs_number) {
 		this.rs_number = rs_number;
 	}
-	public int getUser_number() {
-		return user_number;
+	public int getU_number() {
+		return u_number;
 	}
-	public void setUser_number(int user_number) {
-		this.user_number = user_number;
+	public void setU_number(int u_number) {
+		this.u_number = u_number;
 	}
 	public int getR_number() {
 		return r_number;
@@ -105,7 +105,7 @@ public class RoomReservation {
 	
 	@Override
 	public String toString() {
-		return "RoomReservation [rs_number=" + rs_number + ", user_number=" + user_number + ", r_number=" + r_number
+		return "RoomReservation [rs_number=" + rs_number + ", u_number=" + u_number + ", r_number=" + r_number
 				+ ", rs_date=" + rs_date + ", rs_time1=" + rs_time1 + ", rs_time2=" + rs_time2 + ", rs_time3="
 				+ rs_time3 + ", rs_time4=" + rs_time4 + ", rs_time5=" + rs_time5 + ", rs_time6=" + rs_time6
 				+ ", u_name=" + u_name + ", r_price=" + r_price + ", rs_price=" + rs_price + ", u_tell=" + u_tell + "]";

@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.studycafe.scafe.reservation.domain.RoomReservation;
 import com.studycafe.scafe.reservation.service.RoomReservationService;
+import com.studycafe.user.domain.User;
 
 import net.sf.json.JSONObject;
 
@@ -32,36 +33,30 @@ public class RoomReservationController {
 	@Autowired
 	RoomReservationService roomReservationService;
 	
+	//예약 메인페이지 연결
 	@GetMapping("/reservationMain")
 	public String reservation() {
 		return "reservationMain";
 	}
 	
+	//A룸 조회
 	@GetMapping("/reservationDetailA")
-	public String getReservationDetailA(Model model) throws Exception {
-		List<RoomReservation> list = roomReservationService.getReservationDetail(999);
-		model.addAttribute("list", list);
+	public String getReservationDetailA(Model model, HttpServletRequest request) throws Exception {
 		return "reservationDetailA";
 	}
 	
 	@GetMapping("/reservationDetailB")
 	public String getReservationDetailB(Model model) throws Exception {
-		List<RoomReservation> list = roomReservationService.getReservationDetail(999);
-		model.addAttribute("list", list);
 		return "reservationDetailB";
 	}
 	
 	@GetMapping("/reservationDetailC")
 	public String getReservationDetailC(Model model) throws Exception {
-		List<RoomReservation> list = roomReservationService.getReservationDetail(999);
-		model.addAttribute("list", list);
 		return "reservationDetailC";
 	}
 	
 	@GetMapping("/reservationDetailD")
 	public String getReservationDetailD(Model model) throws Exception {
-		List<RoomReservation> list = roomReservationService.getReservationDetail(999);
-		model.addAttribute("list", list);
 		return "reservationDetailD";
 	}
 	
@@ -73,38 +68,15 @@ public class RoomReservationController {
 	}
 	
 	@GetMapping("/reservationConfirm")
-	public String getReservationConfirm(Model model) throws Exception {
+	public String getReservationConfirm(HttpServletRequest request, Model model) throws Exception {
 		
-		 List<RoomReservation> list 
-		 = roomReservationService.getReservationDetail(999); model.addAttribute("list",
-		 list);
-
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("AUTHUSER");
+		List<RoomReservation> list = roomReservationService.getReservationDetail(user.getU_number()); 
+		model.addAttribute("list",list);
 		return "reservationConfirm";
 	}
 	
-	/*
-	 * @RequestMapping(value="/timeCheck", method=RequestMethod.POST,
-	 * produces="application/text;charset=utf8")
-	 * 
-	 * @ResponseBody public String keywordSearch(@RequestParam("rs_date") String
-	 * rs_date) throws Exception {
-	 * 
-	 * if(rs_date==null) return null;
-	 * 
-	 * //리턴 List<RoomReservation> : 
-	 * 책이름 목록 RoomReservation roomReservation =
-	 * roomReservationService.timeCheckA(rs_date);
-	 * 
-	 * //JSONObject객체생성 
-	 * JSONObject jsonObject = new JSONObject();
-	 * jsonObject.put("list",roomReservation); 
-	 * System.out.println(roomReservation);
-	 * 
-	 * 
-	 * //JSONObject객체를 문자열로 변환 String jsonInfo = jsonObject.toString();
-	 * 
-	 * return jsonInfo; //클라이언트에게 응답 }
-	 */
 	
    @RequestMapping(value="/timeCheckA",
    method=RequestMethod.POST,
@@ -134,7 +106,6 @@ public class RoomReservationController {
    if(rs_date==null)
        return null;
     
-    //리턴      List<RoomReservation> : 책이름 목록
    List<RoomReservation> roomReservation = roomReservationService.timeCheckB(rs_date);
     
    JSONObject jsonObject = new JSONObject();
@@ -153,7 +124,7 @@ public class RoomReservationController {
    if(rs_date==null)
        return null;
     
-    //리턴      List<RoomReservation> : 책이름 목록
+
    List<RoomReservation> roomReservation = roomReservationService.timeCheckC(rs_date);
     
    JSONObject jsonObject = new JSONObject();
@@ -172,7 +143,7 @@ public class RoomReservationController {
    if(rs_date==null)
        return null;
     
-    //리턴      List<RoomReservation> : 책이름 목록
+
    List<RoomReservation> roomReservation = roomReservationService.timeCheckD(rs_date);
     
    JSONObject jsonObject = new JSONObject();

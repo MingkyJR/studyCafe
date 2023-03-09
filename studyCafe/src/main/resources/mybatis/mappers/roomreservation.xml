@@ -7,7 +7,7 @@
 	           id="roomreservationResult">
 		<!-- <result property="필드명"  column="컬럼명"/>	 -->
 		<result property="rs_number"  column="rs_number"/>	
-		<result property="user_number"  column="user_number"/>	
+		<result property="u_number"  column="u_number"/>	
 		<result property="r_number"  column="r_number"/>	
 		<result property="rs_date"  column="rs_date"/>	
 		<result property="rs_time1"  column="rs_time1"/>
@@ -38,9 +38,9 @@
 	<!-- 예약하기  -->
 	<insert id="insertRoomReservation"  parameterType="com.studycafe.scafe.reservation.domain.RoomReservation">
 		<![CDATA[
-		insert into room_reservation(rs_number,user_number,r_number,rs_date,rs_time1, rs_time2, rs_time3, rs_time4,
+		insert into room_reservation(rs_number,u_number,r_number,rs_date,rs_time1, rs_time2, rs_time3, rs_time4,
 										rs_time5, rs_time6, u_name,r_price,rs_price,u_tell)
-		values(rs_seq.nextval,#{user_number},#{r_number},#{rs_date},#{rs_time1,jdbcType=VARCHAR},#{rs_time2,jdbcType=VARCHAR},#{rs_time3,jdbcType=VARCHAR},#{rs_time4,jdbcType=VARCHAR},
+		values(rs_seq.nextval,#{u_number},#{r_number},#{rs_date},#{rs_time1,jdbcType=VARCHAR},#{rs_time2,jdbcType=VARCHAR},#{rs_time3,jdbcType=VARCHAR},#{rs_time4,jdbcType=VARCHAR},
 				#{rs_time5,jdbcType=VARCHAR},#{rs_time6,jdbcType=VARCHAR},#{u_name},#{r_price},#{rs_price},#{u_tell})
 		]]>
 	</insert>
@@ -60,7 +60,7 @@
 	        parameterType="int">
  	<![CDATA[	
 	select * from room_reservation
-	where user_number= #{user_number}
+	where u_number= #{u_number}
 	order by  rs_date ASC
   	]]>
 	</select>
