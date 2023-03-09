@@ -32,10 +32,11 @@ aside {
 }
 .payBtn {
    float: right;
-   height: 80px;
+   height: 60px;
    border: none;
    background-color: #666699;
    color: #FFE08C;
+   cursor: pointer;
 }
 </style>
 </head>

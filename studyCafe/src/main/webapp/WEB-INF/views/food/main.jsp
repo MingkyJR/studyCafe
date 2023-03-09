@@ -1,12 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="contextPath" value="<%=request.getContextPath()%>"/>    
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<c:set var="conPath" value="<%=request.getContextPath()%>"/>    
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <style>
 	div.desc {
 		padding: 2px;
 		text-align: center;
+	}
+	.deleteCart {
+		float : right;
+		cursor: pointer;
+	}
+	.changeCart {
+		cursor: pointer;
+		margin-left: 2px;
+		margin-right: 2px;
+	}
+	.firstL {
+		margin: 3px;
+	}
+	.secondL {
+		margin: 3px;
+		border-bottom: 1px solid black;
 	}
 </style>
 
@@ -23,15 +42,12 @@
   <button class="btn" onclick="filterSelection('candrinks')"> 음료(캔)</button>
   <button class="btn" onclick="filterSelection('cafedrinks')"> 음료(카페)</button>
 	</div>
-	<button class="deleteCart"> test</button>
-	<button class="test"> test</button>
 	<div class="container">
 	<c:forEach var="list" items="${list}">
-		<div class="filterDiv ${list.type}" >
-			<button class="addcart" data-food-no="${list.food_no}"> add to cart</button>
-	  		<a href="${contextPath}/food/addCart?food_no=${list.food_no}">
-	    		<img src="${contextPath}/resources/assets/images/food/${list.fileName}" alt="food image" width="600" height="300">
-	 		</a>
+		<div class="filterDiv ${list.type}" style="cursor: pointer;">
+	  		<div class="addcart" data-food-no="${list.food_no}">
+	    		<img src="${conPath}/resources/assets/images/food/${list.fileName}" alt="food image" width="600" height="300">
+	 		</div>
 		<div class="desc">${list.food_name}</div>
 		<div class="desc">${list.food_price}원</div>
 		</div>
@@ -43,7 +59,7 @@ $(document).ready(function() {
 	var total = 0;
 	
 	$.ajax({
-	    url: "${contextPath}/food/mainC",
+	    url: "${conPath}/food/mainC",
 	    method: "POST",
 	    success: function(data) {
 	        var cartList = data.cartList;
@@ -64,12 +80,13 @@ $(document).ready(function() {
 	});
 	
 	
-
+	
 
 	$('.addcart').on('click', function() {
 	    var food_no = $(this).data('food-no');
+	    total = 0;
 	    $.ajax({
-	      url: '${contextPath}/food/addCart',
+	      url: '${conPath}/food/addCart',
 	      type: 'POST',
 	      data: {
 	        food_no: food_no
@@ -84,7 +101,6 @@ $(document).ready(function() {
 		          total += cartList[i].food_price * cartList[i].quantity;
 		        }
 		        $("#totalPrice").text(total);
-		        total = 0;
 	      },
 	      error: function(xhr, status, error) {
 	        alert('이미 추가되어있습니다');
@@ -96,8 +112,9 @@ $(document).ready(function() {
 	/* 삭제 */
 	$(document).on('click','.deleteCart', function() {
 	    var food_no = $(this).data('food-no');
+	    total = 0;
 	    $.ajax({
-	      url: '${contextPath}/food/deleteCart',
+	      url: '${conPath}/food/deleteCart',
 	      type: 'POST',
 	      data: {
 	        food_no: food_no
@@ -112,7 +129,6 @@ $(document).ready(function() {
 		          total += cartList[i].food_price * cartList[i].quantity;
 		        }
 		        $("#totalPrice").text(total);
-		        total = 0;
 	      },
 	      error: function(xhr, status, error) {
 	        alert('삭제하지 못했습니다.');
@@ -123,8 +139,9 @@ $(document).ready(function() {
 	  $(document).on('click','.changeCart', function() {
 		    var food_no = $(this).data('food-no');
 		    var pm = $(this).data('food-pm');
+		    total = 0;
 		    $.ajax({
-		      url: '${contextPath}/food/changeQ',
+		      url: '${conPath}/food/changeQ',
 		      type: 'POST',
 		      data: {
 		        food_no: food_no,
@@ -140,7 +157,7 @@ $(document).ready(function() {
 			          total += cartList[i].food_price * cartList[i].quantity;
 			        }
 			        $("#totalPrice").text(total);
-			        total = 0;
+			        
 		      },
 		      error: function(xhr, status, error) {
 		        alert('삭제하지 못했습니다.');
@@ -152,33 +169,97 @@ $(document).ready(function() {
 	    function displayCart(cartList){
 	    		var html = "";
 		        for (var i = 0; i < cartList.length; i++) {
-		          html += "<div style='width : 100%;'>";
-		          html += "<td>" + cartList[i].food_name + "</td>";
-		          html += "<td class='right'>";
-		          html += "<span class='deleteCart' data-food-no='"+ cartList[i].food_no + "' style='float : right;'>";
-		          html += "<img src='${contextPath}/resources/assets/icon/food/x-lg.svg'/>";
+		          html += "<div class='firstL'>";
+		          html += "<span>"+cartList[i].food_name+"</span>";
+		          html += "<span class='deleteCart' data-food-no='"+ cartList[i].food_no + "'>";
+		          html += "<img src='${conPath}/resources/assets/icon/food/x-lg.svg'/>";
 		          html += "</span>";
-		          html += "</td>";
 		          html += "</div>";
-		          html += "<div style='width : 100%;'>";
-		          html += "<td>";
+		          html += "<div class='secondL'>";
 		          if (cartList[i].quantity == 1) {
-		            html += "<img src='${contextPath}/resources/assets/icon/food/dash-square.svg'/>";
+		            html += "<img src='${conPath}/resources/assets/icon/food/dash-square.svg' style='margin-left:2px; margin-right : 2px;'/>";
 		          } else {
 		            html += "<span class='changeCart' data-food-no='"+ cartList[i].food_no + "' data-food-pm='0'>";
-		            html += "<img src='${contextPath}/resources/assets/icon/food/dash-square.svg'/>";
+		            html += "<img src='${conPath}/resources/assets/icon/food/dash-square.svg'/>";
 		            html += "</span>";
 		          }
 		          html += cartList[i].quantity;
 		          html += "<span class='changeCart' data-food-no='"+ cartList[i].food_no + "' data-food-pm='1'>";
-		          html += "<img src='${contextPath}/resources/assets/icon/food/plus-square.svg'/>";
+		          html += "<img src='${conPath}/resources/assets/icon/food/plus-square.svg'/>";
 		          html += "</span>";
-		          html += "</td>";
 		          html += "<span class='right'>" + (cartList[i].food_price * cartList[i].quantity) + "</span>";
 		          html += "</div>";
 		        }
 		        $("#cartList").html(html);
-	    	};
+	    	};//출력 function끝
+	    	
+	    	
+	    	
+	    	$('.payBtn').on('click', function() {
+	    		requestPayKakao();
+	    	});
+	    		var time = new Date();
+	    		var year = time.getFullYear(); // 년도
+	    		var month = ('0' + (time.getMonth() + 1)).slice(-2);  // 월
+	    		var date = ('0' + time.getDate()).slice(-2);
+	    		var hours = ('0' + time.getHours()).slice(-2); 
+	    		var minutes = ('0' + time.getMinutes()).slice(-2);
+	    		var seconds = ('0' + time.getSeconds()).slice(-2);
+
+	    		var orderTime = year+month+date+hours+minutes+seconds;
+
+	    		const IMP = window.IMP; // 생략 가능
+	    		IMP.init("imp86313206");
+	    		  
+	    		function requestPayKG() {
+	    		    // IMP.request_pay(param, callback) 결제창 호출
+	    		    IMP.request_pay({ // param
+	    		        pg: "html5_inicis",
+	    		        pay_method: "card",
+	    		        merchant_uid: "SC"+orderTime+"${u_number}",
+	    		        name: "스터디카페 햇반",
+	    		        amount: "20001",
+	    		        buyer_email: "",
+	    		        buyer_name: "홍길동",
+	    		        buyer_tel: "010-4242-4242",
+	    		        buyer_addr: "서울특별시 강남구 신사동",
+	    		        buyer_postcode: "01181"
+	    		    }, function (rsp) { // callback
+	    		        if (rsp.success) {
+	    		            // 결제 성공 시 로직
+	    		        	alert("결제가 완료되었습니다.");
+	    		            location.href='http://localhost:8081/scafe/food/order?order_no='+rsp.merchant_uid+'&order_price='+rsp.amount;
+	    		        } else {
+	    		            // 결제 실패 시 로직
+	    		            
+	    		        }
+	    		    });
+	    		  }
+	    		function requestPayKakao() {
+	    		    // IMP.request_pay(param, callback) 결제창 호출
+	    		    IMP.request_pay({ // param
+	    		        pg: "kakaopay",
+	    		        pay_method: "card",
+	    		        merchant_uid: "SC"+orderTime+"${u_number}",
+	    		        name: "스터디카페 햇반",
+	    		        amount: total,
+	    		        buyer_email: "",
+	    		        buyer_name: "홍길동",
+	    		        buyer_tel: "010-4242-4242",
+	    		        buyer_addr: "서울특별시 강남구 신사동",
+	    		        buyer_postcode: "01181"
+	    		    }, function (rsp) { // callback
+	    		        if (rsp.success) {
+	    		            // 결제 성공 시 로직
+	    		            alert("결제가 완료되었습니다.");
+	    		            location.href='http://localhost:8081/scafe/food/order?order_no='+rsp.merchant_uid+'&order_price='+total;
+	    		        } else {
+	    		            // 결제 실패 시 로직
+	    		            alert("결제가 취소되었습니다.");
+	    		            
+	    		        }
+	    		    });
+	    		  };
 });//ready 끝
 </script>
 <script>

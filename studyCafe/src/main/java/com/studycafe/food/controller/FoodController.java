@@ -34,7 +34,9 @@ public class FoodController {
 	@GetMapping(value="/food/main")
 	public String reqMain(Model model) throws Exception {
 		List<Food> list = foodService.getFoodList();
+		int u_number = 1;
 		model.addAttribute("list", list);
+		model.addAttribute("u_number", u_number);
 		return "/food/mainP";
 	}
 	
@@ -42,13 +44,11 @@ public class FoodController {
 	@RequestMapping(value="/food/mainC", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> reqMainC() throws Exception {
-		System.out.println("reqMainC");
 		Map<String, Object> map = new HashMap<String, Object>();
 		int u_number = 1; //session으로 변환 예정
 		List<Cart> cartList = foodService.getCart(u_number);
 		System.out.println(cartList);
 		map.put("cartList", cartList);
-		map.put("u_number", u_number);
 		return map;
 	}
 	
@@ -102,6 +102,7 @@ public class FoodController {
 	
 	@GetMapping("/food/order")
 	public String order(String order_no, int order_price, Model model) throws Exception {
+		System.out.println("food/order, order_no = "+order_no+", order_price = "+order_price);
 		int u_number = 1;
 		Map<String,Object> map = new HashMap<String, Object>();
 		List<Cart> cart = foodService.getCart(u_number);
