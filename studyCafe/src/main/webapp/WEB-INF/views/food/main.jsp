@@ -196,7 +196,7 @@ $(document).ready(function() {
 	    	
 	    	
 	    	$('.payBtn').on('click', function() {
-	    		requestPayKakao();
+	    		requestPayKG();
 	    	});
 	    		var time = new Date();
 	    		var year = time.getFullYear(); // 년도
@@ -218,20 +218,20 @@ $(document).ready(function() {
 	    		        pay_method: "card",
 	    		        merchant_uid: "SC"+orderTime+"${u_number}",
 	    		        name: "스터디카페 햇반",
-	    		        amount: "20001",
+	    		        amount: total,
 	    		        buyer_email: "",
-	    		        buyer_name: "홍길동",
-	    		        buyer_tel: "010-4242-4242",
+	    		        buyer_name: "${AUTHUSER.u_name}",
+	    		        buyer_tel: "${AUTHUSER.u_tell}",
 	    		        buyer_addr: "서울특별시 강남구 신사동",
 	    		        buyer_postcode: "01181"
 	    		    }, function (rsp) { // callback
 	    		        if (rsp.success) {
 	    		            // 결제 성공 시 로직
 	    		        	alert("결제가 완료되었습니다.");
-	    		            location.href='http://localhost:8081/scafe/food/order?order_no='+rsp.merchant_uid+'&order_price='+rsp.amount;
+	    		            location.href='http://localhost:8081/scafe/food/order?order_no='+rsp.merchant_uid+'&order_price='+total;
 	    		        } else {
 	    		            // 결제 실패 시 로직
-	    		            
+	    		        	alert("결제가 취소되었습니다.");
 	    		        }
 	    		    });
 	    		  }
@@ -244,8 +244,8 @@ $(document).ready(function() {
 	    		        name: "스터디카페 햇반",
 	    		        amount: total,
 	    		        buyer_email: "",
-	    		        buyer_name: "홍길동",
-	    		        buyer_tel: "010-4242-4242",
+	    		        buyer_name: "${AUTHUSER.u_name}",
+	    		        buyer_tel: "${AUTHUSER.u_tell}",
 	    		        buyer_addr: "서울특별시 강남구 신사동",
 	    		        buyer_postcode: "01181"
 	    		    }, function (rsp) { // callback

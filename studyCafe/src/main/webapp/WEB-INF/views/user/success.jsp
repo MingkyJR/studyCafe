@@ -32,6 +32,7 @@
       line-height: 50px;
       border-radius: 10px;
       background-color: #1D3124;
+      cursor: pointer;
    }
 </style>
 </head>

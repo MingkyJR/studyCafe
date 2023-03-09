@@ -52,7 +52,7 @@
    </div>
    <div class="successInner" style="margin-top: 40px;">
       <p style="font-size: 20px; margin-bottom: 34px;">메뉴가 준비되면 <span style="background-color: red;">주문번호</span>로 안내드리겠습니다.</p>
-      <div class="successBtn" style="margin-right: 15px; cursor: pointer;"><button onclick="location.href='${conPath}/'">확 인</button></div>
+      <div class="successBtn" style="margin-right: 15px; cursor: pointer;"><button onclick="location.href='${conPath}/'">메 인</button></div>
       <div class="successBtn"><button>상세 내역</button></div>
    </div>
 </div>

@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +23,7 @@ import com.studycafe.food.domain.Cart;
 import com.studycafe.food.domain.Food;
 import com.studycafe.food.domain.Order;
 import com.studycafe.food.service.FoodService;
+import com.studycafe.user.domain.User;
 
 
 @Controller
@@ -32,9 +35,11 @@ public class FoodController {
 	FoodService foodService;
 	
 	@GetMapping(value="/food/main")
-	public String reqMain(Model model) throws Exception {
+	public String reqMain(Model model, HttpServletRequest req) throws Exception {
 		List<Food> list = foodService.getFoodList();
-		int u_number = 1;
+		HttpSession session = req.getSession();
+		User user = (User)session.getAttribute("AUTHUSER");
+		int u_number = user.getU_number();
 		model.addAttribute("list", list);
 		model.addAttribute("u_number", u_number);
 		return "/food/mainP";
@@ -43,11 +48,12 @@ public class FoodController {
 	//main페이지 호출
 	@RequestMapping(value="/food/mainC", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> reqMainC() throws Exception {
+	public Map<String, Object> reqMainC(HttpServletRequest req) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
-		int u_number = 1; //session으로 변환 예정
+		HttpSession session = req.getSession();
+		User user = (User)session.getAttribute("AUTHUSER");
+		int u_number = user.getU_number();
 		List<Cart> cartList = foodService.getCart(u_number);
-		System.out.println(cartList);
 		map.put("cartList", cartList);
 		return map;
 	}
@@ -55,9 +61,11 @@ public class FoodController {
 	//장바구니에 상품 추가
 	@RequestMapping(value="/food/addCart", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> addCart(int food_no) throws Exception {
+	public Map<String, Object> addCart(int food_no, HttpServletRequest req) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
-		int u_number = 1;
+		HttpSession session = req.getSession();
+		User user = (User)session.getAttribute("AUTHUSER");
+		int u_number = user.getU_number();
 		Cart cart = new Cart(u_number, food_no);
 		foodService.addCart(cart);
 		List<Cart> cartList = foodService.getCart(u_number);
@@ -68,9 +76,11 @@ public class FoodController {
 	//장바구니 수량 변경
 	@RequestMapping(value="/food/changeQ", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> changeQuantity(int pm, int food_no) throws Exception {
+	public Map<String, Object> changeQuantity(int pm, int food_no, HttpServletRequest req) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
-		int u_number = 1;
+		HttpSession session = req.getSession();
+		User user = (User)session.getAttribute("AUTHUSER");
+		int u_number = user.getU_number();
 		Cart cart = new Cart(u_number, food_no);
 		if(pm == 1) {
 			foodService.upQuantity(cart);
@@ -85,9 +95,11 @@ public class FoodController {
 	
 	@RequestMapping(value="/food/deleteCart", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> deleteCart(int food_no) throws Exception {
+	public Map<String, Object> deleteCart(int food_no, HttpServletRequest req) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
-		int u_number = 1;
+		HttpSession session = req.getSession();
+		User user = (User)session.getAttribute("AUTHUSER");
+		int u_number = user.getU_number();
 		if(food_no == 0) {
 			foodService.deleteAllCart(u_number);
 		}else {
@@ -101,9 +113,10 @@ public class FoodController {
 	
 	
 	@GetMapping("/food/order")
-	public String order(String order_no, int order_price, Model model) throws Exception {
-		System.out.println("food/order, order_no = "+order_no+", order_price = "+order_price);
-		int u_number = 1;
+	public String order(String order_no, int order_price, Model model, HttpServletRequest req) throws Exception {
+		HttpSession session = req.getSession();
+		User user = (User)session.getAttribute("AUTHUSER");
+		int u_number = user.getU_number();
 		Map<String,Object> map = new HashMap<String, Object>();
 		List<Cart> cart = foodService.getCart(u_number);
 		map.put("order_no", order_no);
