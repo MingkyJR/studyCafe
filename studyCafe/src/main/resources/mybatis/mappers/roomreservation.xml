@@ -36,7 +36,7 @@
 	</resultMap> -->
  
 	<!-- 예약하기  -->
-	<insert id="insertRoomReservation"  parameterType="com.studycafe.scafe.reservation.domain.RoomReservation">
+	<insert id="insertRoomReservation"  parameterType="com.studycafe.reservation.domain.RoomReservation">
 		<![CDATA[
 		insert into room_reservation(rs_number,u_number,r_number,rs_date,rs_time1, rs_time2, rs_time3, rs_time4,
 										rs_time5, rs_time6, u_name,r_price,rs_price,u_tell)

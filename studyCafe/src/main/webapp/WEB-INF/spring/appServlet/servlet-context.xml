@@ -62,14 +62,19 @@
    <!-- <beans:bean class="패키지명.인터셉터클래스명"/> -->
 		<!-- <beans:bean class="com.studycafe.scafe.interceptor.MonitoringInterceptor"/> -->
 			<interceptor>
+			<mapping path="/**"/>
+			<beans:bean class="com.studycafe.scafe.interceptor.MonitoringInterceptor"/>
+			</interceptor>
+			<interceptor>
 			<!-- 로그인 검증 원하는 매핑 주소를 작성  -->
 				<mapping path="/reservationMain"/>
-				<mapping path="/reservationConfirm"/>
+				<mapping path="/reservation/**"/>
+				<!-- <mapping path="/reservationConfirm"/>
 				<mapping path="/reservationDetailA"/>
 				<mapping path="/reservationDetailB"/>
 				<mapping path="/reservationDetailC"/>
-				<mapping path="/reservationDetailD"/>
-				<beans:bean id="LoginInterceptor"  class="com.studycafe.scafe.interceptor.LoginInterceptor"></beans:bean>
+				<mapping path="/reservationDetailD"/> -->
+				<beans:bean id="ReservInterceptor"  class="com.studycafe.scafe.interceptor.ReservInterceptor"></beans:bean>
 			</interceptor>
 	</interceptors>
 	

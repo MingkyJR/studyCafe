@@ -12,7 +12,7 @@
 	<div class="header_wrap">
 		<div class="inline_section">
 			<div class="header_top">
-				<div class="inline_section_left"><div style="text-align: left;"><a href="#" style="color: #E59560;">Study Cafe</a></div></div>
+				<div class="inline_section_left"><div style="text-align: left;"><a href="<%=request.getContextPath()%>" style="color: #E59560;">Study Cafe</a></div></div>
 				<div class="inline_section_right">
 					<c:if test="${AUTHUSER.u_id eq null}">
 						<span><a href="<%=request.getContextPath() %>/login">로그인</a></span><span> | </span><span><a href="#">회원가입</a></span>
@@ -35,7 +35,7 @@
 					<span><a href="<%=request.getContextPath()%>/qna/list">문의사항</a></span><span style="color: gray; font-weight: normal;">|</span>
 					<span><a href="#">음식 주문</a></span><span style="color: gray; font-weight: normal;">|</span>
 					<span><a href="<%=request.getContextPath()%>/studycafe/seatSelect?userNo=${AUTHUSER.u_number}">좌석 예약</a></span><span style="color: gray; font-weight: normal;">|</span>
-					<span><a href="<%=request.getContextPath()%>/reservationMain">스터디룸 예약</a></span><span style="color: gray; font-weight: normal;">|</span>
+					<span><a href="<%=request.getContextPath()%>/reservation/Main">스터디룸 예약</a></span><span style="color: gray; font-weight: normal;">|</span>
 					<span><a href="<%=request.getContextPath()%>/reservationConfirm">예약 확인</a></span>
 				</div>
 			</div>

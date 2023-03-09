@@ -1,11 +1,11 @@
-package com.studycafe.scafe.reservation.repository;
+package com.studycafe.reservation.repository;
 
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import com.studycafe.scafe.reservation.domain.RoomReservation;
+import com.studycafe.reservation.domain.RoomReservation;
 
 public interface RoomReservationRepository {
 

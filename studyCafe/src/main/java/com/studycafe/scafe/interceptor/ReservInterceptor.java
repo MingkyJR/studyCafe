@@ -1,8 +1,5 @@
 package com.studycafe.scafe.interceptor;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,7 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.StopWatch;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 /* interceptor(인터셉터)
@@ -48,9 +44,9 @@ import com.studycafe.user.domain.User;
     postHandle() :컨트롤러에  요청을  처리한  후 호출.컨트롤러에서 예외가 발생하면 더 이상 실행하지x  	
     afterHandle():컨트롤러에  요청을  처리하여 view전송이 종료 된 후 호출  	
  */
-public class LoginInterceptor implements HandlerInterceptor {
+public class ReservInterceptor implements HandlerInterceptor {
 	
-	private static final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
+	private static final Logger logger = LoggerFactory.getLogger(ReservInterceptor.class);
 	
 	//컨트롤러에  요청이  들어가기  전에 호출되어지면서      요청핸들러(컨트롤러)의 실행을 차단한다.
 		/*파라미터 
@@ -84,17 +80,12 @@ public class LoginInterceptor implements HandlerInterceptor {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-
 	}
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-
 	}
-	
 
-	
-	
 
 }

@@ -1,4 +1,4 @@
-package com.studycafe.scafe.reservation.controller;
+package com.studycafe.reservation.controller;
 
 import java.util.Date;
 import java.util.List;
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.studycafe.scafe.reservation.domain.RoomReservation;
-import com.studycafe.scafe.reservation.service.RoomReservationService;
+import com.studycafe.reservation.domain.RoomReservation;
+import com.studycafe.reservation.service.RoomReservationService;
 import com.studycafe.user.domain.User;
 
 import net.sf.json.JSONObject;
@@ -34,40 +34,40 @@ public class RoomReservationController {
 	RoomReservationService roomReservationService;
 	
 	//예약 메인페이지 연결
-	@GetMapping("/reservationMain")
+	@GetMapping("/reservation/Main")
 	public String reservation() {
 		return "reservationMain";
 	}
 	
 	//A룸 조회
-	@GetMapping("/reservationDetailA")
+	@GetMapping("/reservation/DetailA")
 	public String getReservationDetailA(Model model) throws Exception {
 		return "reservationDetailA";
 	}
 	
-	@GetMapping("/reservationDetailB")
+	@GetMapping("/reservation/DetailB")
 	public String getReservationDetailB(Model model) throws Exception {
 		return "reservationDetailB";
 	}
 	
-	@GetMapping("/reservationDetailC")
+	@GetMapping("/reservation/DetailC")
 	public String getReservationDetailC(Model model) throws Exception {
 		return "reservationDetailC";
 	}
 	
-	@GetMapping("/reservationDetailD")
+	@GetMapping("/reservation/DetailD")
 	public String getReservationDetailD(Model model) throws Exception {
 		return "reservationDetailD";
 	}
 	
-	@PostMapping("/reservationSuccess")
+	@PostMapping("/reservation/Success")
 	public String reservationSuccess(RoomReservation roomReservation) throws Exception {
 		int cnt = roomReservationService.insertRoomReservation(roomReservation);
 		System.out.println("cnt="+cnt);
 		return "reservationSuccess";
 	}
 	
-	@GetMapping("/reservationConfirm")
+	@GetMapping("/reservation/Confirm")
 	public String getReservationConfirm(HttpServletRequest request, Model model) throws Exception {
 		
 		HttpSession session = request.getSession();
