@@ -8,8 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.studycafe.user.domain.Page;
 import com.studycafe.user.domain.User;
+import com.studycafe.user.domain.UserPage;
 import com.studycafe.user.service.UserService;
 
 @Controller
@@ -43,7 +48,65 @@ public class UserController {
 	@GetMapping("/logout")
 	public String logout(Model model,HttpSession session) throws Exception {
 		session.invalidate();
-		return "user/login";
+		return "main";
+	}
+	
+	@GetMapping("/modiUserForm")
+	public String modiUserForm(Model model) throws Exception {
+		return "user/modiUser";
+	}
+	
+	@PostMapping("/modiUser")
+	public String modiUserForm(Model model,User user,String u_pass1,HttpServletRequest request) throws Exception {
+		User loginUser = userService.getLogin(user);
+		
+		if(loginUser==null) {
+			String msg ="기존 비밀번호가 다릅니다.";
+			model.addAttribute("msg",msg);
+			return "user/modiUser";
+		}else {
+			user.setU_pass(u_pass1);
+			userService.modiUser(user);
+			HttpSession session = request.getSession();
+			User modiUser = userService.getLogin(user);
+			session.setAttribute("AUTHUSER", modiUser);
+			return "main";
+		}
+	}
+	
+	@RequestMapping(value="/userList", method= {RequestMethod.GET,RequestMethod.POST})
+	public String userList(Model model,HttpServletRequest request) throws Exception {
+		
+		String strPageNo = request.getParameter("pageNo");
+		int pageNo = 1;   
+		if(strPageNo!=null) {
+			pageNo = Integer.parseInt(strPageNo);			
+		}
+		Page page = new Page(pageNo);
+		
+		UserPage userPage  = userService.getUserPage(page);
+		model.addAttribute("userPage", userPage);
+		
+		return "user/userList";
+	}
+	
+	@GetMapping("/adminModiUserForm")
+	public String adminModiUserForm(Model model,@RequestParam("no") int u_number) throws Exception {
+		User detailUser = userService.detailUser(u_number);
+		model.addAttribute("detailUser", detailUser);
+		return "user/adminModiUser";
+	}
+	
+	@PostMapping("/adminModiUser")
+	public String adminModiUser(User user) throws Exception {
+		userService.adminModiUser(user);
+		return "redirect:/userList";
+	}
+	
+	@GetMapping("/adminDeleteUser")
+	public String adminDeleteUser(@RequestParam("no") int u_number)throws Exception {
+		userService.adminDeleteUser(u_number);
+		return "redirect:/userList";
 	}
 	
 }

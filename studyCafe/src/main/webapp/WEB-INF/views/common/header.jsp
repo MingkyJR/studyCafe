@@ -18,12 +18,18 @@
 						<span><a href="<%=request.getContextPath() %>/login">로그인</a></span><span> | </span><span><a href="#">회원가입</a></span>
 					</c:if>
 					<c:if test="${AUTHUSER.u_id ne null}">
-						<span>${AUTHUSER.u_id}님  </span>|<span><a href="<%=request.getContextPath() %>/logout">로그아웃</a></span>
+						<span>${AUTHUSER.u_name}님  </span>|
+						<c:if test="${AUTHUSER.u_grade ne 999}">
+						<span><a href="<%=request.getContextPath() %>/modiUserForm">회원정보수정 </a></span>|
+						</c:if>
+						<c:if test="${AUTHUSER.u_grade eq 999}">
+						<span><a href="<%=request.getContextPath() %>/userList">회원관리 </a></span>|
+						</c:if>
+						<span><a href="<%=request.getContextPath() %>/logout">로그아웃</a></span>
 					</c:if>
 				</div>
 			</div>
 			<div class="naviVar">
-					<c:if test="${AUTHUSER.u_id ne null}">
 				<div>
 					<span><a href="<%=request.getContextPath()%>/article/articleList">공지사항</a></span>
 					<span><a href="#">문의사항</a></span>
@@ -31,7 +37,6 @@
 					<span><a href="#">좌석 예약</a></span>
 					<span><a href="#">스터디룸 예약</a></span>
 				</div>
-					</c:if>
 			</div>
 		</div>
 	</div>
