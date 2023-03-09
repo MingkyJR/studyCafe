@@ -1,9 +1,5 @@
 package com.studycafe.scafe.reservation.domain;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 public class RoomReservation {
 

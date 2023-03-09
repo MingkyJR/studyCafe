@@ -10,7 +10,7 @@
 <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="${conPath}/resources/assets/css/reservation/reservation_Detail_Style.css">
-<title>스터디룸 D 예약 상세페이지</title>
+<title>스터디룸 C 예약 상세페이지</title>
 <script type="text/javascript">
 $(document).ready(function() {
 
@@ -109,7 +109,7 @@ $(function() {
 	
 	$("input:checkbox").on("click",function(){
 		var sum = $("input:checkbox:checked").length
-		var price = sum*20000;		
+		var price = sum*15000;		
 		$('input[name=rs_price]').attr('value',price);
 	})
 
@@ -147,18 +147,18 @@ function check() {
 </script>
 </head>
 <body>
-	<h2 class="h2" id="tt">스터디룸 D 예약 상세페이지입니다</h2>
+	<h2 class="h2" id="tt">스터디룸 C 예약 상세페이지입니다</h2>
 	<hr style="height: 1px; border: 0; background: #aaa;" />
 	<div class="container">
 	
 	<div class="aside">
-	<img id="img" src="<%=request.getContextPath()%>/resources/assets/images/reservation/room_d.jpg">
+	<img id="img" src="<%=request.getContextPath()%>/resources/assets/images/reservation/room_c.jpg">
 	</div>
 	<div class="contant">
 	<form action="${contextPath}/scafe/reservationSuccess" method="post" name="form" onsubmit="return check()" >
 	<!-- 회원세션을 아직 안받아와서 히든으로 임시 파라미터 주는중  -->
 	<input type="hidden" name="user_number" value="999"/>
-	<input type="hidden" name="r_number" value="104"/>
+	<input type="hidden" name="r_number" value="103"/>
 	<input type="hidden" name="u_name" value="관리자"/>
 	<input type="hidden" name="r_price" value="15000"/>
 	<input type="hidden" name="u_tell" value="010-1234-5678"/>

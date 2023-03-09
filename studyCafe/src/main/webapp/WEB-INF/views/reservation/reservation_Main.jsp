@@ -6,11 +6,17 @@
 <meta charset="UTF-8">
 <title>스터디룸 예약</title>
 <style>
+	.container{
+	  display: flex;
+	  justify-content: center;
+	}
+	
+
    .room_wrap {
-      margin: 70px auto;
+      margin: 70px;
    }
    .room {
-      margin: 20px;
+      margin: 10px;
       display: inline-block;
       width: 550px;
       height: 270px;
@@ -21,7 +27,7 @@
       float: left;
       width: 60%;
       height: 100%;
-      border: 1px solid black;
+      
    }
    .room_info {
       box-sizing: border-box;
@@ -35,6 +41,7 @@
 </style>
 </head>
 <body>
+ <div class="container">
    <div class="room_wrap">
       <div class="room">
          <div class="room_img">
@@ -95,5 +102,6 @@
          </div>
       </div>
    </div>
+  </div>
 </body>
 </html>

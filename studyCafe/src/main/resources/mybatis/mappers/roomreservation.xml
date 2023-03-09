@@ -61,6 +61,7 @@
  	<![CDATA[	
 	select * from room_reservation
 	where user_number= #{user_number}
+	order by  rs_date ASC
   	]]>
 	</select>
 	

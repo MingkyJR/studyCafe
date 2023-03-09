@@ -3,6 +3,9 @@ package com.studycafe.scafe.reservation.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,63 +32,54 @@ public class RoomReservationController {
 	@Autowired
 	RoomReservationService roomReservationService;
 	
-	@GetMapping("/reservation")
+	@GetMapping("/reservationMain")
 	public String reservation() {
-		return "/reservation/reservation_Main";
+		return "reservationMain";
 	}
 	
 	@GetMapping("/reservationDetailA")
 	public String getReservationDetailA(Model model) throws Exception {
 		List<RoomReservation> list = roomReservationService.getReservationDetail(999);
 		model.addAttribute("list", list);
-		return "/reservation/reservation_Detail_A";
+		return "reservationDetailA";
 	}
 	
 	@GetMapping("/reservationDetailB")
 	public String getReservationDetailB(Model model) throws Exception {
 		List<RoomReservation> list = roomReservationService.getReservationDetail(999);
 		model.addAttribute("list", list);
-		return "/reservation/reservation_Detail_B";
+		return "reservationDetailB";
 	}
 	
 	@GetMapping("/reservationDetailC")
 	public String getReservationDetailC(Model model) throws Exception {
 		List<RoomReservation> list = roomReservationService.getReservationDetail(999);
 		model.addAttribute("list", list);
-		return "/reservation/reservation_Detail_C";
+		return "reservationDetailC";
 	}
 	
 	@GetMapping("/reservationDetailD")
 	public String getReservationDetailD(Model model) throws Exception {
 		List<RoomReservation> list = roomReservationService.getReservationDetail(999);
 		model.addAttribute("list", list);
-		return "/reservation/reservation_Detail_D";
+		return "reservationDetailD";
 	}
 	
 	@PostMapping("/reservationSuccess")
-	public ModelAndView reservationConfrim(RoomReservation roomReservation, ModelAndView mv) throws Exception {
-		
-		
-		
+	public String reservationSuccess(RoomReservation roomReservation) throws Exception {
 		int cnt = roomReservationService.insertRoomReservation(roomReservation);
-		System.out.println("cnbt="+cnt);
-		
-		mv.setViewName("reservation/reservation_Success");
-		
-		return mv;
+		System.out.println("cnt="+cnt);
+		return "reservationSuccess";
 	}
 	
 	@GetMapping("/reservationConfirm")
 	public String getReservationConfirm(Model model) throws Exception {
 		
-		
-		/*
-		 * List<RoomReservation> list =
-		 * roomReservationService.getAllReservationDetail(); model.addAttribute("list",
-		 * list);
-		 */
-		
-		return "/reservation/reservation_Confirm";
+		 List<RoomReservation> list 
+		 = roomReservationService.getReservationDetail(999); model.addAttribute("list",
+		 list);
+
+		return "reservationConfirm";
 	}
 	
 	/*
