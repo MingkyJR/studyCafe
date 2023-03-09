@@ -40,46 +40,19 @@
 	</div>
 <script>
 $(document).ready(function() {
+	var total = 0;
+	
 	$.ajax({
 	    url: "${contextPath}/food/mainC",
 	    method: "POST",
 	    success: function(data) {
 	        var cartList = data.cartList;
 	        var u_number = data.u_number;
-	        var html = "";
-	        
 	     // display cart items
-	        html = "";
-	        for (var i = 0; i < cartList.length; i++) {
-	          html += "<tr style='width : 100%;'>";
-	          html += "<td>" + cartList[i].food_name + "</td>";
-	          html += "<td class='right'>";
-	          html += "<span class='deleteCart' data-food-no='"+ cartList[i].food_no + "'>";
-	          html += "<img src='${contextPath}/resources/assets/icon/food/x-lg.svg'/>";
-	          html += "</span>";
-	          html += "</td>";
-	          html += "</tr>";
-	          html += "<tr style='width : 100%;'>";
-	          html += "<td>";
-	          if (cartList[i].quantity == 1) {
-	            html += "<img src='${contextPath}/resources/assets/icon/food/dash-square.svg'/>";
-	          } else {
-	            html += "<a href='${contextPath}/food/changeQ?pm=0&food_no=" + cartList[i].food_no + "'>";
-	            html += "<img src='${contextPath}/resources/assets/icon/food/dash-square.svg'/>";
-	            html += "</a>";
-	          }
-	          html += cartList[i].quantity;
-	          html += "<a href='${contextPath}/food/changeQ?pm=1&food_no=" + cartList[i].food_no + "'>";
-	          html += "<img src='${contextPath}/resources/assets/icon/food/plus-square.svg'/>";
-	          html += "</a>";
-	          html += "</td>";
-	          html += "<td class='right'>" + (cartList[i].food_price * cartList[i].quantity) + "</td>";
-	          html += "</tr>";
-	        }
-	        $("#cartList").html(html);
+	     	displayCart(cartList);
 	        
 	     // display total price
-	        var total = 0;
+	        
 	        for (var i = 0; i < cartList.length; i++) {
 	          total += cartList[i].food_price * cartList[i].quantity;
 	        }
@@ -91,7 +64,7 @@ $(document).ready(function() {
 	});
 	
 	
-});
+
 
 	$('.addcart').on('click', function() {
 	    var food_no = $(this).data('food-no');
@@ -103,52 +76,25 @@ $(document).ready(function() {
 	      },
 	      success: function(result) {
 	        var cartList = result.cartList;
-	        var html = "";
-	        for (var i = 0; i < cartList.length; i++) {
-		          html += "<tr>";
-		          html += "<td>" + cartList[i].food_name + "</td>";
-		          html += "<td class='right'>";
-		          html += "<span class='deleteCart' data-food-no='"+ cartList[i].food_no + "'>";
-		          html += "<img src='${contextPath}/resources/assets/icon/food/x-lg.svg'/>";
-		          html += "</span>";
-		          html += "</td>";
-		          html += "</tr>";
-		          html += "<tr>";
-		          html += "<td>";
-		          if (cartList[i].quantity == 1) {
-		            html += "<img src='${contextPath}/resources/assets/icon/food/dash-square.svg'/>";
-		          } else {
-		            html += "<a href='${contextPath}/food/changeQ?pm=0&food_no=" + cartList[i].food_no + "'>";
-		            html += "<img src='${contextPath}/resources/assets/icon/food/dash-square.svg'/>";
-		            html += "</a>";
-		          }
-		          html += cartList[i].quantity;
-		          html += "<a href='${contextPath}/food/changeQ?pm=1&food_no=" + cartList[i].food_no + "'>";
-		          html += "<img src='${contextPath}/resources/assets/icon/food/plus-square.svg'/>";
-		          html += "</a>";
-		          html += "</td>";
-		          html += "<td class='right'>" + (cartList[i].food_price * cartList[i].quantity) + "</td>";
-		          html += "</tr>";
-		        }
-		        $("#cartList").html(html);
+	        displayCart(cartList);
 		        
 		     // display total price
-		        var total = 0;
+		        //var total = 0;
 		        for (var i = 0; i < cartList.length; i++) {
 		          total += cartList[i].food_price * cartList[i].quantity;
 		        }
 		        $("#totalPrice").text(total);
+		        total = 0;
 	      },
 	      error: function(xhr, status, error) {
-	        alert('장바구니에 추가하지 못했습니다.');
+	        alert('이미 추가되어있습니다');
 	      }
 	    });
-	  });
+	  });//addCart 버튼 끝
 	
 	
 	/* 삭제 */
 	$(document).on('click','.deleteCart', function() {
-		alert('nonono');
 	    var food_no = $(this).data('food-no');
 	    $.ajax({
 	      url: '${contextPath}/food/deleteCart',
@@ -158,47 +104,82 @@ $(document).ready(function() {
 	      },
 	      success: function(result) {
 	        var cartList = result.cartList;
-	        var html = "";
-	        for (var i = 0; i < cartList.length; i++) {
-		          html += "<tr>";
-		          html += "<td>" + cartList[i].food_name + "</td>";
-		          html += "<td class='right'>";
-		          html += "<a href='#' class='deleteCart' data-food-no='"+ cartList[i].food_no + "'>";
-		          html += "<img src='${contextPath}/resources/assets/icon/food/x-lg.svg'/>";
-		          html += "</a>";
-		          html += "</td>";
-		          html += "</tr>";
-		          html += "<tr>";
-		          html += "<td>";
-		          if (cartList[i].quantity == 1) {
-		            html += "<img src='${contextPath}/resources/assets/icon/food/dash-square.svg'/>";
-		          } else {
-		            html += "<a href='${contextPath}/food/changeQ?pm=0&food_no=" + cartList[i].food_no + "'>";
-		            html += "<img src='${contextPath}/resources/assets/icon/food/dash-square.svg'/>";
-		            html += "</a>";
-		          }
-		          html += cartList[i].quantity;
-		          html += "<a href='${contextPath}/food/changeQ?pm=1&food_no=" + cartList[i].food_no + "'>";
-		          html += "<img src='${contextPath}/resources/assets/icon/food/plus-square.svg'/>";
-		          html += "</a>";
-		          html += "</td>";
-		          html += "<td class='right'>" + (cartList[i].food_price * cartList[i].quantity) + "</td>";
-		          html += "</tr>";
-		        }
-		        $("#cartList").html(html);
+	        displayCart(cartList);
 		        
 		     // display total price
-		        var total = 0;
+		        //var total = 0;
 		        for (var i = 0; i < cartList.length; i++) {
 		          total += cartList[i].food_price * cartList[i].quantity;
 		        }
 		        $("#totalPrice").text(total);
+		        total = 0;
 	      },
 	      error: function(xhr, status, error) {
 	        alert('삭제하지 못했습니다.');
 	      }
 	    });
-	  });
+	  }); // 삭제버튼 끝
+	  
+	  $(document).on('click','.changeCart', function() {
+		    var food_no = $(this).data('food-no');
+		    var pm = $(this).data('food-pm');
+		    $.ajax({
+		      url: '${contextPath}/food/changeQ',
+		      type: 'POST',
+		      data: {
+		        food_no: food_no,
+		        pm: pm
+		      },
+		      success: function(result) {
+		        var cartList = result.cartList;
+		        displayCart(cartList);
+			        
+			     // display total price
+			       // var total = 0;
+			        for (var i = 0; i < cartList.length; i++) {
+			          total += cartList[i].food_price * cartList[i].quantity;
+			        }
+			        $("#totalPrice").text(total);
+			        total = 0;
+		      },
+		      error: function(xhr, status, error) {
+		        alert('삭제하지 못했습니다.');
+		      }
+		    });
+		  }); // 수량변경버튼 끝
+	
+	
+	    function displayCart(cartList){
+	    		var html = "";
+		        for (var i = 0; i < cartList.length; i++) {
+		          html += "<div style='width : 100%;'>";
+		          html += "<td>" + cartList[i].food_name + "</td>";
+		          html += "<td class='right'>";
+		          html += "<span class='deleteCart' data-food-no='"+ cartList[i].food_no + "' style='float : right;'>";
+		          html += "<img src='${contextPath}/resources/assets/icon/food/x-lg.svg'/>";
+		          html += "</span>";
+		          html += "</td>";
+		          html += "</div>";
+		          html += "<div style='width : 100%;'>";
+		          html += "<td>";
+		          if (cartList[i].quantity == 1) {
+		            html += "<img src='${contextPath}/resources/assets/icon/food/dash-square.svg'/>";
+		          } else {
+		            html += "<span class='changeCart' data-food-no='"+ cartList[i].food_no + "' data-food-pm='0'>";
+		            html += "<img src='${contextPath}/resources/assets/icon/food/dash-square.svg'/>";
+		            html += "</span>";
+		          }
+		          html += cartList[i].quantity;
+		          html += "<span class='changeCart' data-food-no='"+ cartList[i].food_no + "' data-food-pm='1'>";
+		          html += "<img src='${contextPath}/resources/assets/icon/food/plus-square.svg'/>";
+		          html += "</span>";
+		          html += "</td>";
+		          html += "<span class='right'>" + (cartList[i].food_price * cartList[i].quantity) + "</span>";
+		          html += "</div>";
+		        }
+		        $("#cartList").html(html);
+	    	};
+});//ready 끝
 </script>
 <script>
 filterSelection("all")
