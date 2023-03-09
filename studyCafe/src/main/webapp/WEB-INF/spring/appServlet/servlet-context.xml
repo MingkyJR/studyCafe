@@ -60,9 +60,23 @@
 	<!-- 인터셉터(클래스)bean 등록 -->
 	<interceptors>
    <!-- <beans:bean class="패키지명.인터셉터클래스명"/> -->
-		<beans:bean class="com.studycafe.scafe.interceptor.MonitoringInterceptor"/>
+		<!-- <beans:bean class="com.studycafe.scafe.interceptor.MonitoringInterceptor"/> -->
+			<interceptor>
+			<!-- 로그인 검증 원하는 매핑 주소를 작성  -->
+				<mapping path="/reservationMain"/>
+				<mapping path="/reservationConfirm"/>
+				<mapping path="/reservationDetailA"/>
+				<mapping path="/reservationDetailB"/>
+				<mapping path="/reservationDetailC"/>
+				<mapping path="/reservationDetailD"/>
+				<beans:bean id="LoginInterceptor"  class="com.studycafe.scafe.interceptor.LoginInterceptor"></beans:bean>
+			</interceptor>
 	</interceptors>
 	
+	
+	<beans:bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">  
+    	<beans:property name="dataSource" ref="dataSource"/>
+	</beans:bean>
 	
 	
 </beans:beans>

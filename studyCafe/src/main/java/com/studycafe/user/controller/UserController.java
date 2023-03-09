@@ -40,11 +40,16 @@ public class UserController {
 		if(loginUser==null) {
 			String msg ="로그인에 실패하였습니다";
 			model.addAttribute("msg",msg);
-
 			return "user/login";
 		}
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("AUTHUSER", loginUser);
+		User name = (User)session.getAttribute("AUTHUSER");
+		
+		System.out.println("여기서 확인");
+		System.out.println(name.getU_name());
+		
 		return "main";
 	}
 	

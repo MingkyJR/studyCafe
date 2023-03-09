@@ -15,7 +15,7 @@
 				<div class="inline_section_left"><div style="text-align: left;">스터디 카페 햇반점</div></div>
 				<div class="inline_section_right">
 					<c:if test="${AUTHUSER.u_id eq null}">
-						<span><a href="<%=request.getContextPath() %>/login">로그인</a></span><span> | </span><span><a href="<%=request.getContextPath()%>/join">회원가입</a></span>
+						<span><a href="<%=request.getContextPath() %>/login">로그인</a></span><span> | </span><span><a href="#">회원가입</a></span>
 					</c:if>
 					<c:if test="${AUTHUSER.u_id ne null}">
 						<span>${AUTHUSER.u_name}님  </span>|
@@ -35,7 +35,8 @@
 					<span><a href="#">문의사항</a></span>
 					<span><a href="#">음식 주문</a></span>
 					<span><a href="#">좌석 예약</a></span>
-					<span><a href="#">스터디룸 예약</a></span>
+					<span><a href="<%=request.getContextPath()%>/reservationMain">스터디룸 예약</a></span>
+					<span><a href="<%=request.getContextPath()%>/reservationConfirm">예약 확인</a></span>
 				</div>
 			</div>
 		</div>
