@@ -44,6 +44,7 @@ h1 {
   font-weight: bold;
   text-align: center;
   margin-top: 50px;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 .at {
