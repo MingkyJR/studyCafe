@@ -193,7 +193,8 @@ body{
 	</span>
 	</c:forEach>
 	<br/><br/>
-	* 좌석 1일 사용료: 3000원
+	* 좌석 1일 사용료: 3000원<br/>
+	${AUTHUSER.u_name} 님의 현재 잔액 : ${history.h_wallet} 원
 
 
 </body>
