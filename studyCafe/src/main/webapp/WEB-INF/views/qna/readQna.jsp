@@ -334,7 +334,7 @@
 			 <td colspan="3" ><u:pre value="${reply.qr_content}"/></td>
 		</tr>
 			 
-			 <c:if test="${AUTHUSER.u_id=='adminid'}">
+			 <c:if test="${AUTHUSER.u_grade==999}">
 		<tr>
 			 <td colspan="5" class="center" style="text-align:center;">
 			 	<button type="button" id="btnReplyUpdate${reply.qr_no}" class="btnReplyU" id="btnReplyUpdate${reply.qr_no}" param="${reply.qr_no}">답글수정 폼 보기</button>
@@ -393,7 +393,7 @@
  
  
  <%---------------------------- 답글등록 폼 -----------------------------------%>
-<c:if test="${AUTHUSER.u_id=='adminid'}">
+<c:if test="${AUTHUSER.u_grade=='999'}">
  <form name = "frmInsReply" id="frmInsReply" 
  		action="<%=request.getContextPath()%>/qna/writeReply" method="post">
  <input type="hidden" name="pageNo" id="pageNo" value="${pageNo}"/>
