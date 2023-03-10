@@ -67,7 +67,6 @@
 			</interceptor>
 			<interceptor>
 			<!-- 로그인 검증 원하는 매핑 주소를 작성  -->
-				<mapping path="/reservationMain"/>
 				<mapping path="/reservation/**"/>
 				<!-- <mapping path="/reservationConfirm"/>
 				<mapping path="/reservationDetailA"/>
@@ -79,6 +78,30 @@
 			<interceptor>
 				<mapping path="/food/**"/>
 				<beans:bean id="FoodInterceptor"  class="com.studycafe.scafe.interceptor.FoodInterceptor"></beans:bean>
+			</interceptor>
+			<interceptor>
+				<mapping path="/qna/**"/>
+				<beans:bean id="QnaInterceptor"  class="com.studycafe.scafe.interceptor.QnaInterceptor"></beans:bean>
+			</interceptor>
+			<interceptor>
+				<mapping path="/article/addArticleForm"/>
+				<mapping path="/article/addArticle"/>
+				<mapping path="/article/modifyArticleForm"/>
+				<mapping path="/article/modifyArticle"/>
+				<mapping path="/article/deleteArticle"/>
+				<mapping path="/article/addComment"/>
+				<mapping path="/article/modiCommentForm"/>
+				<mapping path="/article/modiComment"/>
+				<mapping path="/article/deleteComment"/>
+				<beans:bean id="ArticleInterceptor"  class="com.studycafe.scafe.interceptor.ArticleInterceptor"></beans:bean>
+			</interceptor>
+			<interceptor>
+				<mapping path="/user/**"/>
+				<beans:bean id="UserInterceptor"  class="com.studycafe.scafe.interceptor.UserInterceptor"></beans:bean>
+			</interceptor>
+			<interceptor>
+				<mapping path="/studycafe/**"/>
+				<beans:bean id="SeatInterceptor"  class="com.studycafe.scafe.interceptor.SeatInterceptor"></beans:bean>
 			</interceptor>
 	</interceptors>
 	

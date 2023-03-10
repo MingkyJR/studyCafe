@@ -17,7 +17,6 @@
 <div class="container">
 	
 	<h2 style="padding-bottom: 20px;">예약이 확정되었습니다.</h2>
-<h4>예약자명 : ${param.u_number} </h4>
 <h4>예약자명 : ${param.u_name} </h4>
 <h4>예약날짜 : ${param.rs_date} </h4>
 <h4>룸 번호 : ${param.r_number} 호실 </h4>

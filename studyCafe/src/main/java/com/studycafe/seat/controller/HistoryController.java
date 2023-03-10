@@ -20,7 +20,7 @@ public class HistoryController {
 	@Autowired
 	HistoryService historyService;
 	
-	@GetMapping("studycafe/historyList")
+	@GetMapping("/studycafe/historyList")
 	public String historyList(@RequestParam("userNo")int userNo,Model model) throws Exception {
 		List<History> historyList = new ArrayList<History>();
 		
@@ -32,7 +32,7 @@ public class HistoryController {
 		return "history/historyList";
 	  }
 	
-	@GetMapping("studycafe/historySearch")
+	@GetMapping("/studycafe/historySearch")
 	public String historySearch(@RequestParam String historySearch,int userNo,Model model) throws Exception {
 		History history = historyService.historySearch(historySearch);
 		System.out.println("search Controller"+history);
@@ -41,7 +41,7 @@ public class HistoryController {
 		return "history/historyOne";
 	}
 	
-	@GetMapping("studycafe/chargeMoney999")
+	@GetMapping("/studycafe/chargeMoney999")
 	public String insertChargeMoney(@RequestParam("hno") int hno, int userNo, Model model) throws Exception {
 		History history=historyService.showUser(hno);
 		System.out.println("history"+history);
@@ -50,7 +50,7 @@ public class HistoryController {
 		return "history/chargeMoney999";
 	}
 	
-	@PostMapping("studycafe/chargeMoney999")
+	@PostMapping("/studycafe/chargeMoney999")
 	public String insertChargeMoney(@RequestParam("showMeTheMoney") int money,int userNo,@RequestParam("hno") int hno,Model model ) throws Exception {
 		History history=historyService.showUser(hno);
 		history.setH_wallet(history.getH_wallet()+money);

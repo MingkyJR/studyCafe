@@ -15,7 +15,7 @@ public class MoneyController {
 	@Autowired
 	HistoryService historyService;
 	
-	@GetMapping("studycafe/chargeMoney")
+	@GetMapping("/studycafe/chargeMoney")
 	public String chargeMoney(Model model,int userNo) throws Exception {
 		System.out.println("chargeMoney에서 userNo"+userNo);
 		History history=historyService.showUser(userNo);

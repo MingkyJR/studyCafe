@@ -40,8 +40,8 @@
 	</div>
 	<div>
 		<h3>성별 </h3>
-	    <label for="contactChoice1">남자</label><input type="radio" id="contactChoice1" name="u_gender" value="male">
-	    <label for="contactChoice2">여자</label><input type="radio" id="contactChoice2" name="u_gender" value="female">
+	    <label for="contactChoice1">남자</label><input type="radio" id="contactChoice1" name="u_gender" value="남">
+	    <label for="contactChoice2">여자</label><input type="radio" id="contactChoice2" name="u_gender" value="여">
     </div>
     </div>
     </div>

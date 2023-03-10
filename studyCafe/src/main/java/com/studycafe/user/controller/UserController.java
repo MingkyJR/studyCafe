@@ -59,12 +59,12 @@ public class UserController {
 		return "main";
 	}
 	
-	@GetMapping("/modiUserForm")
+	@GetMapping("/user/modiUserForm")
 	public String modiUserForm(Model model) throws Exception {
 		return "user/modiUser";
 	}
 	
-	@PostMapping("/modiUser")
+	@PostMapping("/user/modiUser")
 	public String modiUserForm(Model model,User user,String u_pass1,HttpServletRequest request) throws Exception {
 		User loginUser = userService.getLogin(user);
 		
@@ -82,7 +82,7 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(value="/userList", method= {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value="/user/userList", method= {RequestMethod.GET,RequestMethod.POST})
 	public String userList(Model model,HttpServletRequest request) throws Exception {
 		
 		String strPageNo = request.getParameter("pageNo");
@@ -98,20 +98,20 @@ public class UserController {
 		return "user/userList";
 	}
 	
-	@GetMapping("/adminModiUserForm")
+	@GetMapping("/user/adminModiUserForm")
 	public String adminModiUserForm(Model model,@RequestParam("no") int u_number) throws Exception {
 		User detailUser = userService.detailUser(u_number);
 		model.addAttribute("detailUser", detailUser);
 		return "user/adminModiUser";
 	}
 	
-	@PostMapping("/adminModiUser")
+	@PostMapping("/user/adminModiUser")
 	public String adminModiUser(User user) throws Exception {
 		userService.adminModiUser(user);
 		return "redirect:/userList";
 	}
 	
-	@GetMapping("/adminDeleteUser")
+	@GetMapping("/user/adminDeleteUser")
 	public String adminDeleteUser(@RequestParam("no") int u_number)throws Exception {
 		userService.adminDeleteUser(u_number);
 		return "redirect:/userList";
