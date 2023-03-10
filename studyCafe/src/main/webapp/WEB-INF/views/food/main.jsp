@@ -196,7 +196,7 @@ $(document).ready(function() {
 	    	
 	    	
 	    	$('.payBtn').on('click', function() {
-	    		requestPayKG();
+	    		requestPayKakao();
 	    	});
 	    		var time = new Date();
 	    		var year = time.getFullYear(); // 년도
