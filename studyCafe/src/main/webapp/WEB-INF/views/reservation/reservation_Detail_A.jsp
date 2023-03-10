@@ -36,9 +36,6 @@ const config = {
         		url: '${conPath}/timeCheckA',
         	    data:{rs_date:dateText},//서버로 전송할 데이터. 예){name:"홍GD"}
         	    success:function(data,status,xhr){//정상응답후 호출되는 함수
-        	         //data: 서버로부터 응답받은 내용
-        	         //status: 응답코드 , /xhr: xhr헤더
-        	         //서버로부터 응답받은 내용 책제목 목록인 data변수값을  JSON으로 변환
         	      let jsonInfo = JSON.parse(data);
         	      console.log(jsonInfo.time);
 
