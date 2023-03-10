@@ -155,7 +155,7 @@ function check() {
 	<img id="img" src="<%=request.getContextPath()%>/resources/assets/images/reservation/room_a.jpg">
 	</div>
 	<div class="contant">
-	<form action="${contextPath}/scafe/reservationSuccess" method="post" name="form" onsubmit="return check()" >
+	<form action="${contextPath}/scafe/reservation/Success" method="post" name="form" onsubmit="return check()" >
 	<!-- 회원세션을 아직 안받아와서 히든으로 임시 파라미터 주는중  -->
 	<input type="hidden" name="u_number" value="${AUTHUSER.u_number}"/>
 	<input type="hidden" name="r_number" value="101"/>

@@ -155,7 +155,7 @@ function check() {
 	<img id="img" src="<%=request.getContextPath()%>/resources/assets/images/reservation/room_c.jpg">
 	</div>
 	<div class="contant">
-	<form action="${contextPath}/scafe/reservationSuccess" method="post" name="form" onsubmit="return check()" >
+	<form action="${contextPath}/scafe/reservation/Success" method="post" name="form" onsubmit="return check()" >
 	
 	<input type="hidden" name="u_number" value="${AUTHUSER.u_number}"/>
 	<input type="hidden" name="r_number" value="103"/>
