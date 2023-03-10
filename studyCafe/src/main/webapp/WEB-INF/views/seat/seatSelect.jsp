@@ -151,15 +151,14 @@ body{
 </head>
 <body>
 	<h1> 좌석 선택하기 </h1>	
-	<c:if test="${history.h_grade == 999}">
-	<a href="<%=request.getContextPath()%>/studycafe/historyList?userNo=${history.h_number}" class="at">이용중인 회원</a>
-	<br/>
-	</c:if>
 	사용 가능<input type="button" name="do" class="noti1"> 이용 중<input type="button" name="not" class="noti2">	
-	
+	<c:if test="${history.h_grade == 999}">
+	<a href="<%=request.getContextPath()%>/studycafe/historyList?userNo=${history.h_number}" style="margin-left:800px;" class="at">이용중인 회원</a>
+	</c:if>
 	<c:if test="${history.h_grade ==1}">
-	<a href="<%=request.getContextPath()%>/studycafe/chargeMoney?userNo=${history.h_number}" style="text-align:right" class="at">금액 충전하기</a>
-	</c:if><hr/>
+	<a href="<%=request.getContextPath()%>/studycafe/chargeMoney?userNo=${history.h_number}" style="margin-left:800px;" class="at">금액 충전하기</a>
+	</c:if>
+	<hr/>
 	
 	<c:forEach var="item" items="${seat}" begin="0" end="4">
 	<span style="display:inline-block;  width:200px;" >
