@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title><tiles:insertAttribute name="title" /></title>
 <link href="<%=request.getContextPath()%>/resources/assets/css/main/main.css" rel="stylesheet" />
 </head>
 <body>

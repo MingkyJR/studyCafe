@@ -58,3 +58,49 @@ div.filterDiv:hover {
 #myBtnContainer{
 	text-align: center;
 }
+
+div.desc {
+	padding: 2px;
+	text-align: center;
+}
+.deleteCart {
+	float : right;
+	cursor: pointer;
+}
+.changeCart {
+	cursor: pointer;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+.firstL {
+	margin: 3px;
+}
+.secondL {
+	margin: 3px;
+	border-bottom: 1px solid black;
+}
+aside {
+	width: 300px; 
+	float: right;
+	position: sticky; top: 0;
+}
+
+.right{
+	float : right;
+    text-align: right;
+}
+
+.cartTable{
+    width:100%;
+}
+#cartList{
+	width:100%;
+}
+.payBtn {
+   float: right;
+   height: 60px;
+   border: none;
+   background-color: #666699;
+   color: #FFE08C;
+   cursor: pointer;
+}

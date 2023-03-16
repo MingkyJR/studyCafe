@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="<%=request.getContextPath()%>/resources/assets/css/main/main.css" rel="stylesheet" />
-</head>
-<body>
 	<div class="header_wrap">
 		<div class="inline_section">
 			<div class="header_top">
@@ -41,5 +33,3 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>

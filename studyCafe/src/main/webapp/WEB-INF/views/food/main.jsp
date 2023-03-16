@@ -6,31 +6,6 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-<style>
-	div.desc {
-		padding: 2px;
-		text-align: center;
-	}
-	.deleteCart {
-		float : right;
-		cursor: pointer;
-	}
-	.changeCart {
-		cursor: pointer;
-		margin-left: 2px;
-		margin-right: 2px;
-	}
-	.firstL {
-		margin: 3px;
-	}
-	.secondL {
-		margin: 3px;
-		border-bottom: 1px solid black;
-	}
-</style>
-
-</head>
-<body>
 	<div class="summary">
 	<h3 style="text-align: center;">스터디카페 먹거리 주문</h3>
 	</div>
@@ -196,7 +171,7 @@ $(document).ready(function() {
 	    	
 	    	
 	    	$('.payBtn').on('click', function() {
-	    		requestPayKG();
+	    		requestPayKakao();
 	    	});
 	    		var time = new Date();
 	    		var year = time.getFullYear(); // 년도
@@ -312,6 +287,3 @@ for (var i = 0; i < btns.length; i++) {
 }
 
 </script>
-
-</body>
-</html>

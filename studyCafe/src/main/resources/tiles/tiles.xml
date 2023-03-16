@@ -18,6 +18,7 @@
         <put-attribute name="body" value="/WEB-INF/views/common/main.jsp"/>    <!-- 레이아웃에서 본문 표시할 JSP 위치 -->
     </definition>
     	<definition name="user/login" extends="baseLayout">
+    	<put-attribute name="title" value="Study Cafe/로그인"/>
 		<put-attribute name="body" value="/WEB-INF/views/user/login.jsp"/>
 	</definition>
 	</tiles-definitions>

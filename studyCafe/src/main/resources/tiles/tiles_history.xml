@@ -5,17 +5,20 @@
 
 <tiles-definitions>
 	
-	<definition name="history/historyList" extends="baseLayout">     
+	<definition name="history/historyList" extends="baseLayout"> 
+		<put-attribute name="title" value="Study Cafe/자리예약"/>    
 	  	<put-attribute  name="body"   
 		              value="/WEB-INF/views/history/historyList.jsp"/> 
 	</definition>
 	
 	<definition name="history/historyOne" extends="baseLayout">     
+	  	<put-attribute name="title" value="Study Cafe/자리예약"/>  
 	  	<put-attribute  name="body"   
 		              value="/WEB-INF/views/history/historyOne.jsp"/>
 	</definition>
 	
 	<definition name="history/chargeMoney" extends="baseLayout">     
+	  	<put-attribute name="title" value="Study Cafe/금액변경"/>  
 	  	<put-attribute  name="body"
 		              value="/WEB-INF/views/history/chargeMoney.jsp"/>
 	</definition>
