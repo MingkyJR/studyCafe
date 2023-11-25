@@ -41,6 +41,14 @@
 ![image](https://github.com/MingkyJR/studyCafe/assets/99116319/a24d3836-c89b-4897-bf45-9854ce46ea9d)
 
 
+### 5. ERD
+
+![image](https://github.com/MingkyJR/studyCafe/assets/99116319/2e19f4ac-f88c-43fe-b20a-7e58f2f1a560)
+
+![image](https://github.com/MingkyJR/studyCafe/assets/99116319/76805364-53cb-45c2-8e9b-e77173d0dddb)
+
+
+
 <br>
 <br>
 <p>블로그 후기 <a href="https://happymingkyjr.tistory.com/25" target="_blank"><img src="https://img.shields.io/badge/Tistory-000000?style=flat-square&logo=Tistory&logoColor=white"/></a></p>
